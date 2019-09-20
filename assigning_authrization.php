@@ -762,9 +762,9 @@ background-color: #c1c1c1 !important;
 
 								 <div class="col-md-6">
 
-                                                <div class="input-label"><label >Authorization Name </label></div>
+                                                <div class="input-label"><label >Role Name </label></div>
                                                 <div class="input-feild">
-                                                <input type="text" name="auth_Name" id="auth_Name" required>
+                                                <input type="text" name="auth_Name" id="auth_Name" maxlength="40" required>
                                                 </div>                                                                                   
                                  </div>
 
