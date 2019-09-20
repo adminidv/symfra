@@ -140,21 +140,17 @@ $Quickhr = '';
 
 							<div class="input-label"><label>Title</label></div>
 							<div class="input-feild">
-								<input type="text" name="appTitle">
+								<input type="text" name="appTitle" maxlength="30">
 							</div>	
 
 							<!-- Here -->
-
-							
-
-							
 																	
 						</div>
 						
 						<div class="col-md-6">
 							<div class="input-label"><label>Description</label></div>	
 							<div class="input-feild">
-								<textarea name="appDescription"></textarea>
+								<textarea name="appDescription" maxlength="200"></textarea>
 							</div>
 						</div>
 
