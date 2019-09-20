@@ -215,7 +215,7 @@ if(isset($_POST['submitBtn']))
 			  	// echo "The file has been uploaded.";
 
 			    // Inserting records to DB
-				$insertQuery = mysqli_query($con, "insert into users (user_ID, user_fName, user_mName, user_lName, userName, user_pswd, user_address, user_contact, user_email, dept_ID, desig_ID, Auth_ID, user_manager, user_status, user_active, user_region, emerg_contact, user_DOB, user_DOJ, userBr, user_img) values  ('$newID', '$user_fName', '$user_mName', '$user_lName', '$userName', '$user_pswd', '$user_address', '$user_contact', '$user_email', '$dept_ID', '$desig_ID', '$Auth_ID', '$user_manager', '$user_status', '$thisApproval', '$user_region', '$emerg_contact', '$user_DOB', '-', '$userBr', '$nameForTable')");
+				$insertQuery = mysqli_query($con, "insert into users (user_ID, user_fName, user_mName, user_lName, userName, user_pswd, user_address, user_contact, user_email, dept_ID, desig_ID, Auth_ID, user_manager, user_status, user_active, user_region, emerg_contact, user_DOB, user_DOJ, userBr, user_img) values  ('$newID', '$user_fName', '$user_mName', '$user_lName', '$userName', '$user_pswd', '$user_address', '$user_contact', '$user_email', '$dept_ID', '$desig_ID', '$Auth_ID', '$user_manager', 'Need Approval', '$thisApproval', '$user_region', '$emerg_contact', '$user_DOB', '-', '$userBr', '$nameForTable')");
 
 				// $userID = $_SESSION['user'];
 				$selectUsername = mysqli_query($con, "SELECT * FROM users WHERE user_ID='$userID' ");
@@ -241,7 +241,7 @@ if(isset($_POST['submitBtn']))
 	            alert($msg);*/
 
 	            echo '<script type="text/javascript">'; 
-			    echo 'alert("User added successfully.");';
+			    // echo 'alert("User added successfully.");';
 			    echo 'window.location.href = "add_user.php";';
 			    echo '</script>';
 			   }
