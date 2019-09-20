@@ -13,11 +13,18 @@ $customerCont = $_GET['customerCont'];
 // 	$fetchOwner = $rowCountry["newCode"];
 // }
 
-$selectName = mysqli_query($con, "SELECT * FROM custrepdetails WHERE custMCode='$customerCont' ");
+$selectName = mysqli_query($con, "SELECT * FROM represent_setup ");
 while ($rowOwner = mysqli_fetch_array($selectName))
 {
-   echo '<option value="'.$rowOwner['SrNo'].'">'.$rowOwner['repName'].'</option>';
-	// echo $rowOwner["repName"];
+	$repArr = $rowOwner["userNo"];
+	list($repID, $second) = explode('-', $repArr);
+	if ($repID == $customerCont)
+	{
+		$finalRep = $repID;
+		echo '<option value="'.$rowOwner['rep_name'].'">'.$rowOwner['rep_name'].'</option>';
+	}
 }
+
+// echo $finalRep;
 
 ?>
