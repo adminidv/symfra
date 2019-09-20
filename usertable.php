@@ -90,12 +90,13 @@ if(isset($_POST["btnCustom_U"]))
 
   $updateUM = mysqli_query($con, "UPDATE tableview_UM SET userID_UM = '$userID_UM', userName_UM='$userName_UM', userAddress_UM='$userAddress_UM', userContact_UM='$userContact_UM', userEmail_UM='$userEmail_UM', userDept_UM='$userDept_UM', userDesig_UM='$userDesig_UM', userRole_UM='$userRole_UM', userRegion_UM='$userRegion_UM', userDOB_UM='$userDOB_UM', userDOJ_UM='$userDOJ_UM', userDOL_UM='$userDOL_UM' WHERE SrNo= '1' ");
 
-  $clause = " WHERE ";//Initial clause
-  $searchRecord="SELECT * FROM `users`  ";
+  $clause = " WHERE user_active='Active' AND ";//Initial clause
+  $searchRecord="SELECT * FROM `users` WHERE user_active='Active' ";
 
       // if user is giving the middle name
       if(!empty($_POST['user_mName']))
       {
+          $searchRecord="SELECT * FROM `users` ";
           $user_mName = $_POST['user_mName'];
           $searchRecord .= $clause."`user_lName` LIKE '%$user_mName%'";
           $user_mName = 1;
@@ -112,6 +113,7 @@ if(isset($_POST["btnCustom_U"]))
           {
             $clause = " AND ";
           }
+          $searchRecord="SELECT * FROM `users` ";
           $user_fName = $_POST['user_fName'];
           $searchRecord .= $clause."`user_fName` LIKE '%$user_fName%'";
           $fNameStatus = 1;
@@ -130,6 +132,7 @@ if(isset($_POST["btnCustom_U"]))
           }
           foreach($_POST['dept_list'] as $c)
           {
+              $searchRecord="SELECT * FROM `users` ";
               if(!empty($c)){
                   $searchRecord .= $clause."`dept_ID` = '{$c}'";
                   $clause = " OR ";
@@ -153,6 +156,7 @@ if(isset($_POST["btnCustom_U"]))
           {
               if(!empty($d))
               {
+                  $searchRecord="SELECT * FROM `users` ";
                   $searchRecord .= $clause."`desig_ID` LIKE '%{$d}%'";
                   $clause = " OR ";
               }   
@@ -473,7 +477,7 @@ else if(isset($_POST["btnExport_D"]))
 else
 {
   $clause = " WHERE ";//Initial clause
-  $searchRecord="SELECT * FROM `users`  ";
+  $searchRecord="SELECT * FROM `users` WHERE user_active='Active'  ";
 
       // if user is giving the middle name
       if(!empty($_POST['user_mName']))
