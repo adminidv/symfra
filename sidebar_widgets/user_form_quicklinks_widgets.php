@@ -966,7 +966,7 @@ echo '<style type="text/css">
                 <li class="sidebar-dropdown pnl pnl_h">
                   <a href="#">
                     <i class="fa fa-tachometer"></i>
-                    <span>Assign Authorization</span>
+                    <span>Assign Roles</span>
                   </a>
                    <div class="sidebar-submenu h">
                     <ul>
