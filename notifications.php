@@ -69,6 +69,12 @@ if(isset($_POST['accept']))
     $notRecord = $rowNext['notRecord'];
   }
 
+  if ($notTitle == "User Management")
+  {
+    $updateUser = mysqli_query($con, "UPDATE users SET user_active='Active' WHERE user_ID='$notRecord' ");
+    $updateNot = mysqli_query($con, "UPDATE notTable SET notStatus='Accepted' WHERE SrNo='$txtSrNo' ");
+  }
+
   if ($notApp == 1)
   {
     // Fetching the next approval, if present
