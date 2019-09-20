@@ -1,0 +1,69 @@
+
+  .nav_overlay{
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+
+  background-color:#000;
+  overflow-x: hidden;
+  transition: 0.5s;
+  }
+  .nav_overlay-content {
+  position: relative;
+  top: 25%;
+  width: 100%;
+}
+
+.nav_overlay a{
+    text-decoration: none;
+/*    font-size: 16px;
+*/    color: #ffffff;
+    display: inline;
+    transition: 0.3s;
+}
+.nav_overlay h5 {
+    text-decoration: none;
+    font-size: 16px;
+    color: #027bc7;
+    transition: 0.3s;
+    margin: 14px 0 !important;
+}
+.nav_overlay a:hover, .overlay a:focus {
+  color: #f1f1f1;
+}
+
+.nav_overlay .closebtn {
+    position: absolute;
+    top: 0;
+    right: 5px;
+    font-size: 30px;
+}
+.nav_list_item ul {
+/*    padding: 0;
+*/    width: 25%;
+    float: left;
+}
+.nav_list_item ul li {
+    list-style: none;
+    padding-left: 22px;
+
+}
+.nav_list_item {
+    width: 100%;
+    float: left;
+}
+.nav_overlay h6 {
+    color: #027bc7;
+    text-decoration: underline;
+}
+@media  screen and (max-width: 767px) {
+.nav_list_item ul {
+    padding: 0;
+    width: 100%;
+    float: left;
+    text-align: center;
+}
+}

@@ -1,0 +1,213 @@
+body {
+    background: #d9ebf736 !important;
+}
+.container.add_user_sec {
+    width: 65%;
+    position: relative;
+    top: 50px;
+}
+.cls{
+clear: both;
+}
+.slction_info{
+    width: 100%;
+    float: left;
+/*    box-shadow: 0px 0px 13px -5px;
+*/    padding: 15px 30px;
+    background: #fff;
+    border: 1px solid #E2e2e2;
+    border-radius: 5px;
+}
+.acount_info{
+      width: 100%;
+    float: left;
+/*    box-shadow: 0px 0px 13px -5px;
+*/    padding: 15px 30px;
+    background: #fff;
+    border: 1px solid #E2e2e2;
+    border-radius: 5px;
+}
+.efctive_dates_info{
+/*    min-height: 200px;
+*/      width: 100%;
+    float: left;
+/*    box-shadow: 0px 0px 13px -5px;
+*/    padding: 15px 30px;
+    background: #fff;
+    border: 1px solid #E2e2e2;
+    border-radius: 5px;
+}
+.Bsic_usr_info {
+    width: 100%;
+    float: left;
+/*    box-shadow: 0px 0px 13px -5px;
+*/    padding: 15px 30px;
+    background: #fff;
+    border: 1px solid #E2e2e2;
+    border-radius: 5px;
+}
+.contct_usr_info{
+    width: 100%;
+    float: left;
+/*    box-shadow: 0px 0px 13px -5px;
+*/    padding: 15px 30px;
+    background: #fff;
+    border: 1px solid #E2e2e2;
+    border-radius: 5px;
+}
+
+
+ 
+.input-label label {
+   margin: 0 ;
+}
+
+
+.input-feild {
+    margin: 5px 5px;
+}
+.input-feild {
+   width: 80%;
+   margin:3px 0;
+   float: right;
+}
+
+.input-feild label {
+    display: block;
+    margin: 0;
+}
+
+.input-label {
+   width: 20%;
+   float: left;
+   margin: 7px 0;
+   clear: both;
+}
+.input-feild input::placeholder {
+    color: #000;
+}
+
+.input-feild input {
+    width: 70%;
+    margin: 4px 0;
+    box-shadow: 0px 0px 6px -6px;
+    padding: 2px 8px;
+}
+.input-feild input {
+   margin: 0;
+}
+.input-feild select {
+   margin: 0;
+}
+.input-feild select {
+    width: 70%;
+    padding: 5px 5px;
+    border: 1px solid #9a9a9a;
+    border-top: 2px solid #9a9a9a;
+}
+
+.input-feild textarea {
+    width: 70%;
+    height: 72px;
+    border: 1px solid #bfbfbf;
+
+}
+
+.input-feild.namefields input {
+   margin: 3px 0;
+}
+
+.input-feild.paswrdfields input {
+   margin: 3px 0;
+}
+.input-feild.contactfields input {
+   margin: 3px 0;
+}
+.confirmTable-modal .Popup_bdy button {
+    float: none;
+    }
+
+.form_sec_title h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #034787;
+}
+.input-feild input[type="checkbox"] {
+    width: auto;
+}
+.input-feild input[type="file"] {
+    background: no-repeat;
+    border: none;
+    box-shadow: none;
+    margin: 5px 0;
+}
+.input-feild.act_btn_user label {
+    display: inline-block;
+    margin-top: 25px;
+}
+.input-feild.act_btn_user{
+    margin: 8px 0;
+}
+.form_sec_action_btn {
+    text-align: right;
+}
+.form_action_right_btn {
+    text-align: left;
+    display: inline-block;
+    float: left;
+}
+
+.form_sec_action_btn.col-md-12{
+    margin:0 0 30px 0;
+}
+.form_sec_action_btn.col-md-12 button {
+    margin:  0 2px;
+}
+.form_action_right_btn button {
+    background: none !important;
+    color: #031b41 !important;
+    padding-left:0 !important;
+    border:none !important;
+}
+.form_sec_action_btn_bottom {
+    width: 76%;
+    text-align: right;
+    float: left;
+    margin: 15px 0px;
+}
+
+#btnEnable {
+    background: #e7e7e7;
+    padding: 4px 12px;
+    border: 1px solid #b1b1b1 !important;
+    color: #000;
+    box-shadow: 1px 0px 2px -2px #b1b1b1;
+}
+.side_bar_list ul li a {
+    color: #062653;
+    font-size: 14px;
+}
+.uform_slct_opt {
+    width: 65% !important;
+    float: left;
+}
+
+.col-md-12.topscrolbtn {
+    margin: 5px 0;
+    text-align: right;
+}
+.col-md-12.topscrolbtn {
+    margin: 5px 0;
+    text-align: right;
+}
+.col-md-12.topscrolbtn i {
+    margin-right: 12px;
+}
+.col-md-12.topscrolbtn  button#scroltop {
+    background: no-repeat;
+    border: none;
+}
+#scroltop:hover {
+    color: #031a41;
+    cursor: pointer;
+}

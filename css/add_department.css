@@ -1,0 +1,11 @@
+
+.dpt_form input[type="submit"] {
+    width: auto;
+}
+
+.submitdptbtn {
+    float: right;
+    width: 100%;
+    clear: both;
+    margin: 10px 0;
+}

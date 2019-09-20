@@ -1,0 +1,92 @@
+.iner-col{
+    padding-left: 0 !important;
+ }
+.lead_title_header {
+    background: #f9f9f9;
+    float: left;
+    padding: 15px 0px;
+    width: 100%;
+}
+.input-feild {
+    margin: 10px 0;
+    clear: both;
+}
+.lead_title_header h5 {
+    color: #027bc7;
+    font-size: 22px;
+}
+.leads_actions_btns button {
+    background: #027bc7;
+    border: none;
+    color: #fff;
+    border-radius: 10px;
+    padding: 1px 10px;
+}
+.create_lead_form_sec h6 {
+    background-image: linear-gradient(to right top, #004e92, #06407c, #073367, #062653, #031a40, #031a40, #031a40, #031a40, #062653, #073367, #06407c, #004e92);
+
+/*    background: #027bc7;
+*/    color: #fff;
+    padding: 5px 5px;
+    font-size: 14px;
+    font-weight: 600
+}
+.input-feild input {
+    border: 0;
+    background: #f3f3f3;
+    width: 100%;
+    padding: 0px 5px;
+}
+.input-feild input::placeholder {
+    font-size: 11px;
+    color: #000;
+}
+.input-feild label {
+    font-size: 12px;
+}
+.input-feild button {
+    margin: 10px 0px;
+    color: #fff;
+    background: #027bc7;
+    border: #027bc7;
+    border-radius: 10px;
+    font-size: 12px;
+    padding: 2px 12px;
+}
+.input-feild select {
+    display: block;
+    font-size: 12px;
+    background: #f9f9f9;
+    color: #7d7979;
+    border: 1px solid #9a9a9a;
+    margin: 5px 0px 10px 0px;
+    box-shadow: -1px -1px 1px -1px #027bc7b0;;
+}
+.create_lead_form_sec form {
+    width: 90%;
+    float: left;
+    right: 0;
+    position: absolute;
+}
+.iner_side_tabs {
+    width: 10%;
+    position: fixed;
+    left: 0;
+    border-radius: 1px 20px 20px 0px;
+    background: #f3f3f3;
+    float: left;
+    z-index: 111;
+    top: 40%;
+    padding: 20px 10px;
+}
+.iner_action_btns ul {
+    padding-left: 0;
+    list-style: none;
+}
+.iner_action_btns ul li button {
+    background: #027bc7;
+    border: none;
+    color: #027bc7;
+    margin: 5px 0;
+    color: #f3f3f3;
+}

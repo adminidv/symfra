@@ -1,0 +1,141 @@
+.user_info-bar {
+    position: absolute;
+    width: 85%;
+    right: 0;
+    top: 50px;
+    height: 200px;
+   /* background-color: #fff;*/
+
+}
+body {
+    font-size: 11px;
+}
+.user_prefence_modules {
+    text-align: center;
+}
+.prefence_module img {
+	border-radius: 10px;
+    width: 60px;
+/*    margin: 0 10px;
+*/}
+.prf_module_img img {
+/*    display: block;
+*//*    margin: 0 auto;
+*/}
+.prf_module_img {
+    display: inline-block;
+}
+.module_txt {
+    margin: 8px;
+}
+.module_txt label {
+    font-size: 11px;
+    line-height: 11px;
+    font-weight: 400;
+}
+.module_txt a {
+    color: #063f7b;
+}
+
+.module_img,
+.module_img.active {
+opacity: 0.3;
+    cursor: pointer;
+    width: 80px;
+/*    margin: 10px;
+*/    -webkit-transition: opacity .3s;
+    /* -webkit-transition-timing-function: ease; */
+    height: 80px;
+    float: left; 
+}
+.module_img.active {
+    position: relative;
+    opacity: 1;
+    /*width: 80px;
+        box-shadow: 1px 2px 9px 0px #737373;*/
+}
+.module_img.active img {
+    width: 65px;
+    box-shadow: 1px 2px 9px 0px #737373;
+}
+.module_img:hover {
+    opacity:1;
+}
+.module_img.active::after {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 12px solid #031a40;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    bottom: -35px;
+
+}
+
+/*
+#timeleft {
+color:#fff;
+display:none;
+}*/
+
+.targetDiv ul li a{
+    color: #fff;
+    font-size:11px;
+}
+.targetDiv ul li {
+    list-style: none;
+    display: inline-block;
+    float: none;
+    margin: 0 5px;
+}
+.targetDiv ul {
+    padding: 0;
+    margin: 0;
+}
+
+.targetDiv ul li ::before {
+    content: "•";
+    font-size: 11px;
+    font-weight: 800;
+    color: #fff;
+    display: inline-block;
+    width: 20px;
+    /* margin-left: -1px; */
+    height: 10px;
+}
+.targetDiv:after {
+    display: none;
+}
+
+.targetDiv {
+    position: relative;
+    background-image: linear-gradient(to right top, #004e92, #06407c, #073367, 
+        #062653, #031a40, #031a40, #031a40, #031a40, #062653, #073367, #06407c, #004e92);
+    width: 70%;
+    margin: 30px auto;
+    border-radius: 10px;
+    padding:  0px;
+    
+    
+}
+
+.targetDiv:after {
+    border-color: rgba(243, 243, 243, 0);
+    border-bottom-color: #031a40 !important;
+    border-width: 12px;
+    margin-left: 5px;
+}
+.targetDiv:before {
+    border-color: rgba(243, 243, 243, 0);
+    border-bottom-color: #f3f3f3;
+    border-width: 11px;
+    margin-left: -11px;
+}
+
+
+
+

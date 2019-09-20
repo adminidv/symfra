@@ -1,0 +1,72 @@
+.user_table-title h4 {
+    font-size: 13px;
+    font-weight: 600;
+    color: #034787;
+    text-align: center;
+}
+.Usertable th {
+/*    padding: 4px 10px !important;
+*/    text-align: left;
+   background: #fff;
+    border-top: 1px solid #d2d0d0;
+}
+ th {
+   /* padding: 4px 10px !important;*/
+    text-align: center !important;
+   background: #fff;
+    border-top: 1px solid #d2d0d0;
+
+}
+td{
+    text-align: center !important;
+    padding: 4px 10px !important;
+}
+.Usertable td {
+    padding: 4px 10px !important;
+    text-align: left;
+    border: none !important;
+}
+
+.user_create_btn{
+	text-align: right;
+}
+
+/*.navbar.navbar-inverse{
+    position: relative;
+}*/
+.Usertable {
+    top: 295px;
+    width: 85%;
+    position: absolute;
+    right: 0;
+    padding: 20px;
+
+}
+
+.Usertable .row {
+    background: #f3f3f3;
+    padding: 10px 0; 
+}
+.dataTables_wrapper .dataTables_length {
+    float: right;
+    margin: 2px 15px;
+}
+.tbleDrpdown ul {
+    padding: 0;
+}
+.tbleDrpdown {
+    display: inline-block;
+    float: left;
+    position: relative;
+    top: 33px;
+    z-index: 999;
+}
+#tblebtn ul li {
+    list-style: none;
+    display: inline-block;
+}
+.tbleDrpdown button {
+    color: #031a40;
+    background: none;
+    border: none;
+}

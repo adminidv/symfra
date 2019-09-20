@@ -1,0 +1,11 @@
+.customize_table_sec {
+    position: absolute;
+    width: 85%;
+    padding: 15px;
+    right: 0;
+    border: none !important;
+    top: 50px;
+}
+.panel.panel-default.customize_table_sec .panel-body {
+    background: #f3f3f3;
+}

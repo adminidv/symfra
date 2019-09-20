@@ -1,0 +1,226 @@
+body{
+    padding: 0 !important;
+}
+.main_air_sec {
+    width: 100%;
+    float: left;
+    background: #f9f9f9;
+}
+.modal-open {
+padding: 0 !important;
+    overflow: hidden;
+}
+.e_form-tab {
+    background: #f9f9f9;
+    padding: 5px 10px;
+    width: 95%;
+    position: absolute;
+    right: 0;
+}
+.audit_table{
+/*   background: #e2e1;
+*/    float: left;
+    padding: 5px 10px;
+    width: 95%; 
+}
+
+.side_bar {
+    margin-top: 15px;
+    width: 5%;
+    position: fixed;
+    background: #031a40;
+    left: 0;
+    z-index: 111;
+    border-radius: 0px 15px 15px 0px;
+
+}
+.side_bar button {
+    padding: 0;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    background: none;
+    border:none;
+    margin: 15px auto;
+}
+.side_bar button i {
+      border: 2px solid #014c8f;
+    width: 27px;
+    height: 27px;
+    color: #f9f9f9;
+    line-height: 23px;
+    border-radius: 100%;
+    position: relative;
+}
+
+
+.side_bar .Popup_bdy button {
+    background: #027bc7;
+    border-radius: 0;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-left: 0;
+}
+.side_bar .modal-header {
+    border-radius: 5px;
+    padding: 5px 15px;
+    border-bottom: 1px solid #e5e5e5;
+    background-image: linear-gradient(to right top, #004e92, #06407c, #073367, #062653, #031a40, #031a40, #031a40, #031a40, #062653, #073367, #06407c, #004e92);
+    color: #fff;
+}
+.top-btns button {
+    float: right;
+    margin: 15px 5px;
+    background-image: linear-gradient(to right top, #004e92, #06407c, #073367, #062653, #031a40, #031a40, #031a40, #031a40, #062653, #073367, #06407c, #004e92);
+    /*background: #027bc7;*/
+    border: none;
+    padding: 2px 10px;
+    color: #fff;
+    border-radius: 15px;
+    font-size: 12px;
+}
+.top-btns a {
+    font-size: 12px;
+    float: right;
+    margin: 15px 5px;
+    background-image: linear-gradient(to right top, #004e92, #06407c, #073367, #062653, #031a40, #031a40, #031a40, #031a40, #062653, #073367, #06407c, #004e92);
+/*    background: #027bc7;
+*/    border: none;
+    padding: 2px 10px;
+    color: #fff;
+    border-radius: 15px;
+}
+.top-btns a:hover {
+    text-decoration: none;
+    color: #fff;
+}
+.side_bar .Popup_bdy input {
+    width: 100%;
+    padding: 0px 6px;
+}
+.clcutd_feild span {
+    background: #dcdcdc;
+    display: none;
+    font-size: 10px;
+    position: absolute;
+    top: 0;
+    right: 15px;
+    border: 1px solid #027bc7;
+    padding: 3px 15px;
+}
+.side_bar .Popup_bdy p {
+    color: #027bc7;
+    margin: 5px 0px;
+}
+
+.input-feild label {
+    color: #027bc7;
+    font-weight: 100;
+    margin: 0;
+}
+.input-feild input {
+    box-shadow: 0px 0px 1px 0px;
+    padding: 0px 5px;
+    margin: 5px 0;
+    background: none;
+    display: block;
+    border: none;
+    width: 100%;
+}
+.input-feild h3:hover span{
+    display: block;
+
+}
+.input-feild h3 {
+    margin: 5px 0px;
+    font-size: 16px;
+    background: #fff;
+    padding: 2px 10px;
+}
+.total_feild {
+    display: inline-block;
+    float: right;
+}
+.e_form-tab h5  {
+    text-align: left;
+    color: #fff;
+    margin: 10px auto;
+    font-size: 14px;
+    background-image: linear-gradient(to right top, #004e92, #06407c, #073367, #062653, #031a40, #031a40, #031a40, #031a40, #062653, #073367, #06407c, #004e92);
+    /*background: #027bc7;*/
+    padding: 5px;
+}
+
+.audit_table h5 {
+    text-align: center;
+/*    color: #fff;
+*/    margin: 10px auto;
+    font-size: 18px;
+/*    background: #027bc7;
+*/    padding: 8px 0;
+}
+.e_form-tab h5  small{
+    color: #fff;
+}
+.audit_table h5  small{
+    color: #fff;
+}
+.input-feild input::placeholder {
+/*    color: #808080a6;
+*/
+
+font-size: 11px;
+color: #000;
+}
+.exp_table {
+    padding: 0 30px;
+}
+.audit_table{
+	padding: 0 30px;
+}
+.exp_table td, th {
+  border: 1px solid #dddddd;
+  padding: 8px;
+}
+
+.exp_table table th {
+    padding: 10px 0;
+    text-align: center;
+    background: #027bc7;
+    color: #fff;
+}
+.exp_table table {
+    width: 100%;
+    background-color: transparent;
+}
+.exp_table td {
+    background: #027bc747;
+    padding: 5px;
+    text-align: center;
+}
+
+
+
+.audit_table td, th {
+  border: 1px solid #dddddd;
+  padding: 8px;
+}
+
+.audit_table table th {
+    padding: 10px 0;
+    text-align: center;
+    
+}
+.audit_table table {
+    width: 100%;
+    background-color: transparent;
+}
+.audit_table td {
+/*    background: #027bc747;
+*/    padding: 5px;
+    text-align: center;
+}
+.total_float_left {
+    float: left;
+}

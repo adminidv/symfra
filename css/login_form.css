@@ -1,0 +1,39 @@
+.header {
+    background-image: linear-gradient(to right top, #004e92, #06407c, #073367, #062653, #031a40, #031a40, #031a40, #031a40, #062653, #073367, #06407c, #004e92);
+}
+.blck_title h4 {
+    margin: 0;
+    color: #fff;
+    font-size: 35px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    position: relative;
+}
+
+.blck_title h4 small {
+    font-size: 50%;
+    position: absolute;
+    color: #fff;
+}
+.input-group-prepend span {
+    width: 50px;
+    background-image: linear-gradient(to right top, #004e92, #06407c, #073367, #062653, #031a40, #031a40, #031a40, #031a40, #062653, #073367, #06407c, #004e92);
+    color: black;
+    border: 0 !important;
+}
+.card-footer a {
+    margin-left: 4px;
+    color: #062957;
+}
+/*.form-group button {
+    margin: 10px auto;
+    background-image: linear-gradient(to right top, #004e92, #06407c, #073367, #062653, #031a40, #031a40, #031a40, #031a40, #062653, #073367, #06407c, #004e92);
+    color: #fff;
+    padding: 4px 22px;
+}*/
+.form-group button:hover {
+    color: #031a40;
+}
+input.float-right {
+    padding: 5px 15px;
+}

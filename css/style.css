@@ -1,0 +1,206 @@
+/* Made with love by Mutiullah Samim*/
+
+@import url('https://fonts.googleapis.com/css?family=Numans');
+
+body {
+    font-size: 11px;
+}
+
+.container{
+height: 100%;
+align-content: center;
+}
+
+.card{
+/*height: 370px;
+margin-top: auto;
+margin-bottom: auto;
+*/width: 420px;
+margin: 20px auto;
+/*background-color: rgba(0,0,0,0.5) !important;
+*/}
+
+.social_icon span{
+font-size: 60px;
+margin-left: 10px;
+color: #3998D5;
+}
+
+.social_icon span:hover{
+color: white;
+cursor: pointer;
+}
+
+.card-header h3{
+color: white;
+}
+
+.social_icon{
+position: absolute;
+right: 20px;
+top: -45px;
+}
+
+.input-group-prepend span{
+width: 50px;
+background-color: #3998D5;
+color: black;
+border:0 !important;
+}
+
+input:focus{
+outline: 0 0 0 0  !important;
+box-shadow: 0 0 0 0 !important;
+
+}
+
+/*.remember{
+color: white;
+}*/
+
+.remember input
+{
+width: 20px;
+height: 20px;
+margin-left: 15px;
+margin-right: 5px;
+}
+
+.login_btn{
+color: black;
+background-color: #3998D5;
+width: 100px;
+}
+
+.login_btn:hover{
+color: black;
+background-color: white;
+}
+
+/*.links{
+color: white;
+}*/
+
+.links a{
+margin-left: 4px;
+}
+/*.form-group button {
+    margin: 10px auto;
+    background: #3998D5;
+    color: #fff;
+    padding: 4px 22px;
+}*/
+	.cls{
+		clear: both;
+	}
+	
+	.logo img {
+		 position: absolute;
+    	top: 10px;
+    	text-align: center;
+		width: 160px;
+		height: auto;
+	}
+	.logo {
+    text-align: center;
+    position: relative;
+}
+	.header {
+    background: #3998d5;
+}
+.white_title h5 {
+    font-size: 14px;
+    color: #fff;
+    margin: 0;
+    font-weight: 600;
+}
+.blck_title h4 {
+    margin: 0;
+   font-size: 25px;
+   font-weight: 600;
+}
+.banner_content {
+    margin: 20px 0;
+}
+.shadow_bnr_top{
+    height: 30px;
+    background: #3998d526;
+}
+.card-footer .links p {
+    margin: 0;
+}
+.form-group input::placeholder {
+    font-size: 14px;
+}
+.form-group input {
+    padding: 18px 9px;
+}
+.form-body i {
+    color: #fff;
+    margin: 0 auto;
+    font-size: 14px;
+}
+.checkbox_rem {
+    margin: 8px ;
+    font-size: 14px;
+}
+input.checkbox {
+    margin: 0 3px;
+}
+/*.tp_sting_dropdwn{
+width: 270px;
+padding: 10px 15px;
+ }*/
+ .dropdown.tp_dropdwn {
+    top: 18px;
+}
+ .dropdown.tp_dropdwn button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 11px;
+}
+ul#drp_show h5 {
+    font-size: 12px;
+    margin: 0px 0;
+}
+ul#drp_show a {
+    font-size: 11px;
+}
+ul#drp_show h4 {
+    font-size: 14px;
+}
+.pref_list ul h5 {
+    display: inline-block;
+}
+.pref_list ul {
+    list-style: none;
+    padding: 0;
+}
+.form-group a {
+    border-radius: 5px;
+    float: right;
+    margin: 10px auto;
+    background: #3998D5;
+    color: #fff;
+    padding: 5px 25px;
+}
+@media  screen and (max-width: 767px) {
+.logo img {
+         position: inherit;}
+       
+.banner_content {
+    text-align: center;
+    margin: 20px 0;
+}
+.blck_title h4 {
+    font-size: 16px;
+}
+.navbar-inverse .navbar-toggle {
+    border-color: #333;
+    display: none;
+}
+.user_img {
+    text-align: center;
+}
+    }

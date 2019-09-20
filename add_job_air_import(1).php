@@ -1,0 +1,908 @@
+<?php 
+include('manage/connection.php');
+include("manage/session.php");
+$advSearch = 'Unhide';
+$ribbon = 'Default';
+$subRibbon = 'addUser';
+$Quick = 'Hide';
+$Quickhr = '';
+
+
+// Today date func
+$todayDate = date("Y-m-d");
+
+// auto increment
+$selectLastID = mysqli_query($con, "SELECT * FROM air_import_entry ORDER BY job_no DESC LIMIT 1");
+$rowLastID = mysqli_fetch_array($selectLastID, MYSQLI_ASSOC);
+
+$lastID = $rowLastID['job_no'];
+$newID = $lastID + 1;
+$job_no = $newID;
+
+// Add Air Import Submit Btn Event
+if (isset($_POST['submitBtn'])) {
+
+  $job_no = $_POST['job_no'];
+  $job_date = $_POST['job_date'];
+  $m_awb = $_POST['m_awb'];
+  $m_date = $_POST['m_date'];
+  $m_pp_cc = $_POST['m_pp_cc'];
+  $m_pieces = $_POST['m_pieces'];
+  $m_grs_weight = $_POST['m_grs_weight'];
+  $m_ch_weight = $_POST['m_ch_weight'];
+  $m_rate = $_POST['m_rate'];
+  $h_awb = $_POST['h_awb'];
+  $h_date = $_POST['h_date'];
+  $h_pp_cc = $_POST['h_pp_cc'];
+  $h_pieces = $_POST['h_pieces'];
+  $h_grs_weight = $_POST['h_grs_weight'];
+  $h_ch_weight = $_POST['h_ch_weight'];
+  $h_rate = $_POST['h_rate'];
+  $description = $_POST['description'];
+  $party = $_POST['party'];
+  $agent_party = $_POST['agent_party'];
+  $foreign_agent = $_POST['foreign_agent'];
+  $spo = $_POST['spo'];
+  $origin = $_POST['origin'];
+  $destination = $_POST['destination'];
+  $flight_no = $_POST['flight_no'];
+  $flight_date = $_POST['flight_date'];
+  $igm_no = $_POST['igm_no'];
+  $igm_date = $_POST['igm_date'];
+  $air_d_o_no = $_POST['air_d_o_no'];
+  $d_o_date = $_POST['d_o_date'];
+  $b_e_no = $_POST['b_e_no'];
+  $b_e_date = $_POST['b_e_date'];
+  $index_no = $_POST['index_no'];
+  $sub_index_no = $_POST['sub_index_no'];
+  $e_t_d = $_POST['e_t_d'];
+  $e_t_a = $_POST['e_t_a'];
+  $l_c = $_POST['l_c'];
+  $origin_d_o_no = $_POST['origin_d_o_no'];
+  $passport_id = $_POST['passport_id'];
+  $foreign_detail = $_POST['foreign_detail'];
+  $notify_detail = $_POST['notify_detail'];
+  $consignee_detail = $_POST['consignee_detail'];
+  $remarks = $_POST['remarks'];
+  $nomination = $_POST['nomination'];
+  $remark = $_POST['remark'];
+  $fight_term = $_POST['fight_term'];
+  $invoice_f_agent = $_POST['invoice_f_agent'];
+  $local_inv = $_POST['local_inv'];
+  $inv_from_f_agent = $_POST['inv_from_f_agent'];
+  $status = $_POST['status'];
+
+
+  $InsertQuery = mysqli_query($con, " INSERT INTO air_import_entry (job_no,job_date,m_awb,m_date,m_pp_cc,m_pieces,m_grs_weight,m_ch_weight,m_rate,h_awb,h_date,h_pp_cc,h_pieces,h_grs_weight,h_ch_weight,h_rate,description,party,agent_party,foreign_agent,spo,origin,destination,flight_no,flight_date,igm_no,igm_date,air_d_o_no,d_o_date,b_e_no,b_e_date,index_no,sub_index_no,e_t_d,e_t_a,l_c,origin_d_o_no,passport_id,foreign_detail,notify_detail,consignee_detail,remarks,nomination,status,remark,fight_term,invoice_f_agent,local_inv,inv_from_f_agent) VALUES ('$job_no','$job_date','$m_awb','$m_date','$m_pp_cc','$m_pieces','$m_grs_weight','$m_ch_weight','$m_rate','$h_awb','$h_date','$h_pp_cc','$h_pieces','$h_grs_weight','$h_ch_weight','$h_rate','$description','$party','$agent_party','$foreign_agent','$spo','$origin','$destination','$flight_no','$flight_date','$igm_no','$igm_date','$air_d_o_no','$d_o_date','$b_e_no','$b_e_date','$index_no','$sub_index_no','$e_t_d','$e_t_a','$l_c','$origin_d_o_no','$passport_id','$foreign_detail','$notify_detail','$consignee_detail','$remarks','$nomination','$status','$remark','$fight_term','$invoice_f_agent','$local_inv','$inv_from_f_agent') ") or die(mysqli_error($con));
+
+  header("location: add_job_air_import.php");
+
+
+
+}
+
+// Addmore house bill
+if (isset($_POST['submitBtn1'])) {
+
+  $job_no = $_POST['job_no'];
+  $job_date = $_POST['job_date'];
+  $m_awb = $_POST['m_awb'];
+  $m_date = $_POST['m_date'];
+  $m_pp_cc = $_POST['m_pp_cc'];
+  $m_pieces = $_POST['m_pieces'];
+  $m_grs_weight = $_POST['m_grs_weight'];
+  $m_ch_weight = $_POST['m_ch_weight'];
+  $m_rate = $_POST['m_rate'];
+  $h_awb = $_POST['h_awb'];
+  $h_date = $_POST['h_date'];
+  $h_pp_cc = $_POST['h_pp_cc'];
+  $h_pieces = $_POST['h_pieces'];
+  $h_grs_weight = $_POST['h_grs_weight'];
+  $h_ch_weight = $_POST['h_ch_weight'];
+  $h_rate = $_POST['h_rate'];
+  $description = $_POST['description'];
+  $party = $_POST['party'];
+  $agent_party = $_POST['agent_party'];
+  $foreign_agent = $_POST['foreign_agent'];
+  $spo = $_POST['spo'];
+  $origin = $_POST['origin'];
+  $destination = $_POST['destination'];
+  $flight_no = $_POST['flight_no'];
+  $flight_date = $_POST['flight_date'];
+  $igm_no = $_POST['igm_no'];
+  $igm_date = $_POST['igm_date'];
+  $air_d_o_no = $_POST['air_d_o_no'];
+  $d_o_date = $_POST['d_o_date'];
+  $b_e_no = $_POST['b_e_no'];
+  $b_e_date = $_POST['b_e_date'];
+  $index_no = $_POST['index_no'];
+  $sub_index_no = $_POST['sub_index_no'];
+  $e_t_d = $_POST['e_t_d'];
+  $e_t_a = $_POST['e_t_a'];
+  $l_c = $_POST['l_c'];
+  $origin_d_o_no = $_POST['origin_d_o_no'];
+  $passport_id = $_POST['passport_id'];
+  $foreign_detail = $_POST['foreign_detail'];
+  $notify_detail = $_POST['notify_detail'];
+  $consignee_detail = $_POST['consignee_detail'];
+  $remarks = $_POST['remarks'];
+  $nomination = $_POST['nomination'];
+  $remark = $_POST['remark'];
+  $fight_term = $_POST['fight_term'];
+  $invoice_f_agent = $_POST['invoice_f_agent'];
+  $local_inv = $_POST['local_inv'];
+  $inv_from_f_agent = $_POST['inv_from_f_agent'];
+  $status = $_POST['status'];
+
+
+  $InsertQuery = mysqli_query($con, " INSERT INTO air_import_entry (job_no,job_date,m_awb,m_date,m_pp_cc,m_pieces,m_grs_weight,m_ch_weight,m_rate,h_awb,h_date,h_pp_cc,h_pieces,h_grs_weight,h_ch_weight,h_rate,description,party,agent_party,foreign_agent,spo,origin,destination,flight_no,flight_date,igm_no,igm_date,air_d_o_no,d_o_date,b_e_no,b_e_date,index_no,sub_index_no,e_t_d,e_t_a,l_c,origin_d_o_no,passport_id,foreign_detail,notify_detail,consignee_detail,remarks,nomination,status,remark,fight_term,invoice_f_agent,local_inv,inv_from_f_agent) VALUES ('$job_no','$job_date','$m_awb','$m_date','$m_pp_cc','$m_pieces','$m_grs_weight','$m_ch_weight','$m_rate','$h_awb','$h_date','$h_pp_cc','$h_pieces','$h_grs_weight','$h_ch_weight','$h_rate','$description','$party','$agent_party','$foreign_agent','$spo','$origin','$destination','$flight_no','$flight_date','$igm_no','$igm_date','$air_d_o_no','$d_o_date','$b_e_no','$b_e_date','$index_no','$sub_index_no','$e_t_d','$e_t_a','$l_c','$origin_d_o_no','$passport_id','$foreign_detail','$notify_detail','$consignee_detail','$remarks','$nomination','$status','$remark','$fight_term','$invoice_f_agent','$local_inv','$inv_from_f_agent') ") or die(mysqli_error($con));
+
+  header("location: add_job_air_import2.php?m_awb=" . $m_awb);
+   
+
+}
+
+
+ ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Air Import (Job Entry) </title>
+	<link rel="shortcut icon" type="image/png" href="./images/favicon.png">
+	<link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+	<link rel="stylesheet" href="css/font-awesome.css" type="text/css">
+	<link rel="stylesheet" type="text/css" href="css/symfra_forms.css">
+  <link rel="stylesheet" type="text/css" href="css/crm.css">
+  <link rel="stylesheet" type="text/css" href="css/main_box_widgets.css">
+	<link rel="stylesheet" type="text/css" href="css/usertable.css">
+	<link rel="stylesheet" type="text/css" href="css/sidebar.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
+
+	<link rel="stylesheet" href="css/symfra_popups.css" type="text/css">
+	<script src="js/jquery-3.3.1.js"></script>
+
+  <!-- Bread crumbs starting here -->
+  <link rel="stylesheet" href="css/breadCrumb.css" type="text/css">
+  <link rel="shortcut icon" type="image/png" href="images/favicon.png">
+  <link rel="stylesheet" href="css/user_ribbon.css" type="text/css">
+  <!-- Bread crumbs ending here -->
+	
+  	<script src="js/sidebar.js"></script>
+    <script src="js/jquery.min.js"></script>
+    
+
+<style type="text/css">
+.main_widget_box .nav-tabs > li > a {
+        color: #05417e;
+    }
+.main_widget_box  .nav-tabs {
+        background: #eee;
+    }
+.main_widget_box .tab-pane {
+    margin-top: 30px;
+    width: 100%;
+    float: left;
+}
+
+#prtner_Bnk .input-feild input {
+    padding: 0 0px;
+}
+#prtner_Bnk .input-feild {
+    width: 70%;
+}
+/*#aimport_form_table_wrapper .dataTables_filter {
+    display: none;
+}*/
+
+
+
+</style>
+
+</head>
+<body>
+<?php include 'header.php';?>
+<?php include 'inc_widgets/header_ribbon.php';?>
+
+<!-- Bread Crumbs -->
+<div class="breadCrumb_bar">
+  <div class="breadCrumb_bar_iner">
+    <div class="">
+        <div class="btn-group btn-breadcrumb">
+          <a href="#" class="btn btn-info "><i class="glyphicon glyphicon-home"></i></a>
+          <a href="Usermodules.php" class="btn btn-info ">Operations</a>
+
+          <a href="Usermodules.php" class="btn btn-info active">Air Import (Job Entry)</a>
+
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrapper symfra_theme toggled">
+
+ <nav id="sidebar" class="sidebar-wrapper">
+        <div class="sidebar-content">
+
+           <div class="sidebar-brand">
+            <a href="#">SYMFRA</a>
+                <div id="close-sidebar">
+                  <!-- <i class="fa fa-close"></i> -->
+                </div>
+           </div>
+
+           <?php include 'sidebar_widgets/user_info_widgets.php'; ?>
+                   <!-- sidebar-header  -->
+
+           <div class="sidebar-search">
+              <div>
+                <div class="input-group">
+                  <input type="text" class="form-control search-menu" placeholder="Search...">
+                  <div class="input-group-append">
+                    <span class="input-group-text">
+                      <i class="fa fa-search" aria-hidden="true"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+           </div>
+                    <!-- sidebar-search  -->
+
+           
+           <?php include 'sidebar_widgets/adv_hr_bar.php'; ?>
+                       <!-- sidebar-advanced-search_options  -->
+           <?php include 'sidebar_widgets/user_form_quicklinks_widgets.php'; ?>
+                          <!-- sidebar-menu  -->
+
+      </div>
+      <!-- sidebar-content  -->
+ </nav>
+  <!-- sidebar-wrapper  -->
+</div>
+
+<div class="main_widget_box">
+	<div class="">
+									<!-- <hr> -->
+		<form action="" method="POST" enctype="multipart/form-data">
+
+	    <!-- Modal_one-->
+       <div class="modal fade confirmTable-modal" id="save_Modal" role="dialog">
+          <div class="modal-dialog">
+          
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Confirmation</h4>
+              </div>
+              <div class="modal-body">
+                <p>Are You Sure You Want to Save?</p>
+                <button type="submit" name="saveBtn">Yes</button>
+                    <button type="button" name="btnDelete_N" data-dismiss="modal" >No</button>
+
+              </div>
+              <div class="modal-footer">
+                <p>Add Related content if needed</p>
+                <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+              </div>
+            </div>
+            
+          </div>
+       </div>
+
+               <!-- Modal Two-->
+               <div class="modal fade confirmTable-modal" id="submit_Modal" role="dialog">
+                    <div class="modal-dialog">
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Confirmation</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>Are You Sure You Want to Submit?</p>
+                          <button type="submit" name="submitBtn1"> Add More House</button>
+                          <button type="submit" name="submitBtn">Yes Only This</button>
+                              <button type="button" name="btnDelete_N" data-dismiss="modal">No</button>
+
+                        </div>
+                        <div class="modal-footer">
+                          <p>Add Related content if needed</p>
+                         
+                        </div>
+                      </div>
+                    </div>
+               </div>
+			 <label id="formSummary" style="color: red;"></label>
+
+        <div class="widget_iner_box">
+              <div class="form_sec_action_btn col-md-12">
+                    <div class="form_action_right_btn">
+                                          <!-- Go back button code starting here -->
+                                          <?php include('inc_widgets/backBtn.php'); ?>
+                                          <!-- Go back button code ending here -->
+                    </div>
+                    <button type="button" id="btnConfirm_Su" onclick="submitFunc();"> <small>Submit</small></button>
+                    <button type="button" name="btnConfirm_S" onclick="saveFunc();"> <small>Save</small></button>
+                    <button type="button" name="submitBtn"> <small>Cancel</small></button>        
+                </div>
+                              
+
+                <div class="col-md-6">
+
+                  <div class="input-label"><label>Job No.</label></div>
+                  <div class="input-feild">
+                     <?php echo '<input type="text" name="job_no" id="job_no" disabled value="'.$job_no.'">'; ?>
+                  </div>
+                </div>
+                <div class="col-md-6">
+
+                  <div class="input-label"><label>Date</label></div>
+                  <div class="input-feild">
+                    <input class="mini_input_field" type="date" name="job_date" value="<?php echo $todayDate?>" >
+                  </div>
+                </div>
+                
+
+                <table  id="aimport_form_table" class="display nowrap no-footer" style="width:100%">
+                                                                  
+                                                                 <thead>
+                                                                            <tr>
+                                                                              <th></th>
+                                                                              <th>AWB No.</th>
+                                                                              <th>Date</th>
+                                                                              <th>PP/CC</th>
+                                                                              <th>Pcs</th>
+                                                                              <th>Grs. Weight</th>
+                                                                              <th>Ch.Weight</th>
+                                                                              <th>Rate</th>
+                                                                              <th>Goods Desc.</th>
+                                                                            </tr>
+                                                                  </thead>
+                                                                  <tbody>    
+
+                                                                             <tr>
+                                                                              
+                                                                              <th>MawB No.</th>
+                                                                              <td> <input type="text" name="m_awb"></td>
+                                                                              <td> <input type="date" name="m_date"></td>
+                                                                              <td> <select name="m_pp_cc">
+                                                                                <option value="pp">pp</option>
+                                                                                <option value="cc">cc</option>
+                                                                              </select></td>
+                                                                              <td> <input type="text" name="m_pieces"></td>
+                                                                              <td> <input type="text" name="m_grs_weight"></td>
+                                                                              <td> <input type="text" name="m_ch_weight"></td>
+                                                                              <td> <input type="text" name="m_rate"></td>
+                                                                              <td rowspan="2"><textarea name="description"></textarea></td>
+                                                                                             
+                                                                            <tr>
+                                                                              <th>Hawb No.</th>
+                                                                              <td> <input type="text" name="h_awb"></td>
+                                                                              <td> <input type="date" name="h_date"></td>
+                                                                                <td> <select name="h_pp_cc">
+                                                                                <option value="pp">pp</option>
+                                                                                <option value="cc">cc</option>
+                                                                              </select></td>
+                                                                              <td> <input type="text" name="h_pieces"></td>
+                                                                              <td> <input type="text" name="h_grs_weight"></td>
+                                                                              <td> <input type="text" name="h_ch_weight"></td>
+                                                                              <td> <input type="text" name="h_rate"></td>
+                                                                              <td></td>
+
+                                                                               
+                                                                            </tr>
+                                                                  </tbody>
+                </table> 
+               
+        </div>
+
+        <div class="cls"></div>
+        <hr>				
+
+        <div class="widget_iner_box">         
+               <div class="col-md-6">
+
+                      <div class="input-label"><label>Party Code</label></div>
+                      <div class="input-feild">
+                        <input class="mini_input_field" type="text">
+                        <input class="mini_input_field" type="text">
+
+                      </div>
+
+                      <div class="input-label"><label>Agent Party</label></div>
+                      <div class="input-feild">
+                        <input class="mini_input_field" type="text">
+                        <input class="mini_input_field" type="text">
+                        
+                      </div>
+
+                      <div class="input-label"><label>Foreign Agent</label></div>
+                      <div class="input-feild">
+                        <input class="mini_input_field" type="text">
+                        <input class="mini_input_field" type="text">
+                        
+                      </div>
+
+                      <div class="cls"></div>
+                      <hr>
+
+                      <div class="input-label"><label>SPO Code</label></div>
+                      <div class="input-feild">
+                        <input class="mini_input_field" type="text">
+                        <input class="mini_input_field" type="text">
+                        
+                      </div>
+
+
+
+
+                      <div class="input-label"><label>Origin</label></div>
+                      <div class="input-feild">
+                        <input class="mini_input_field" type="text">
+                        <input class="mini_input_field" type="text">
+                        
+                      </div>
+
+
+                      <div class="input-label"><label>Destination</label></div>
+                      <div class="input-feild">
+                        <input class="mini_input_field" type="text">
+                        <input class="mini_input_field" type="text">
+                        
+                      </div>
+
+
+                      <div class="input-label"><label>Flight No.</label></div>
+                      <div class="input-feild">
+                        <input class="mini_input_field" type="text">
+                        <input class="mini_input_field" type="text">
+                        
+                      </div>
+
+
+               </div> 
+                 
+                 <div class="col-md-6">
+
+                      <div class="input-label"><label>IGM No.</label></div>
+                      <div class="input-feild">
+                        <input  type="text">
+
+                      </div>
+
+                      <div class="input-label"><label>Air D.O.P No.</label></div>
+                      <div class="input-feild">
+                        <input type="text">
+                        
+                      </div>
+
+                      <div class="input-label"><label>B/E No.</label></div>
+                      <div class="input-feild">
+                        <input type="text">
+                        
+                      </div>
+
+                      <div class="input-label"><label>Index No.</label></div>
+                      <div class="input-feild">
+                        <input type="text">
+                        
+                      </div>
+
+
+                      <div class="input-label"><label>E.T.D</label></div>
+                      <div class="input-feild">
+                        <input  type="text">                        
+                      </div>
+
+                      <div class="input-label"><label>L/C</label></div>
+                      <div class="input-feild">
+                        <input  type="text">                        
+                      </div>
+
+                      <div class="input-label"><label>Passport/ I.D</label></div>
+                      <div class="input-feild">
+                        <input  type="text">                        
+                      </div>
+
+               </div>  
+        </div>
+
+      <div class="cls"></div>
+      <hr>  
+
+      <div class="widget_iner_box">
+        <div class="col-md-6">
+            <div class="input-label"><label>Nomination</label></div>
+            <div class="input-feild">
+              <select class="mini_select_field">
+                <option>No</option>
+                <option>Yes</option>
+
+              </select>
+            </div>
+            
+            <div class="widget_child_title"><h4>Invoice Required</h4></div>
+            <div class="cls"></div>
+            <hr>
+
+
+            <div class="input-label"><label>Invoice to F/Agent</label></div>
+            <div class="input-feild">
+              <select class="mini_select_field">
+                <option>No</option>
+                <option>Yes</option>
+
+              </select>
+            </div>
+
+
+            <div class="input-label"><label>Local Invoice</label></div>
+            <div class="input-feild">
+              <select class="mini_select_field">
+                <option>Yes</option>
+                <option>No</option>
+
+              </select>
+            </div>
+
+            <div class="input-label"><label>Inv. From F/Agent</label></div>
+            <div class="input-feild">
+              <select class="mini_select_field">
+                <option>No</option>
+                <option>Yes</option>
+
+              </select>
+            </div>
+
+
+        </div>
+
+        <div class="col-md-6">
+            <div class="input-label"><label>Nomination</label></div>
+            <div class="input-feild">
+              <select class="mini_select_field">
+                <option>No</option>
+                <option>Yes</option>
+
+              </select>
+            </div>
+            
+            <div class="widget_child_title"><h4>House Airway Bill</h4></div>
+            <div class="cls"></div>
+            <hr>
+
+            <table id="hawbtable" class="display nowrap no-footer" style="width:100%">
+              <thead>
+                <tr>
+                  <th>SrNo</th>
+                  <th>No</th>
+                  <th>Job No.</th>
+
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td> 
+                  <td></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+
+      </div>
+
+        <div class="cls"></div>
+        <hr>
+
+
+      <div class="widget_iner_box">
+        <div class="col-md-6">
+          
+          <div class="input-label"><label>Status</label></div>
+          <div class="input-feild">
+            <select class="mini_select_field">
+              <option></option>
+            </select>
+          </div>
+
+          <div class="input-label"><label>Freight trem</label></div>
+          <div class="input-feild">
+            <input class="mini_input_field" type="text" name="">
+          </div>
+
+
+
+        </div>
+
+        <div class="col-md-6">
+          
+          <div class="input-label"><label>Remarks</label></div>
+          <div class="input-feild">
+            <textarea></textarea>
+          </div>  
+
+        </div>
+
+      </div> 
+
+      <div class="cls"></div>
+      <hr>  
+
+        <div class="widget_iner_box">
+          <div class="col-md-6">
+            <div class="input-label"><label>IGM Date</label></div>
+            <div class="input-feild"><input type="date" data-date-inline-picker="false" data-date-open-on-focus="true" /></div>
+
+
+            <div class="input-label"><label>D.O Date</label></div>
+            <div class="input-feild"><input type="date" data-date-inline-picker="false" data-date-open-on-focus="true" /></div>
+
+
+            <div class="input-label"><label>B/E Date</label></div>
+            <div class="input-feild"><input type="date" data-date-inline-picker="false" data-date-open-on-focus="true" /></div>
+          </div>  
+          <div class="col-md-6">
+
+            <div class="input-label"><label>Sub Index</label></div>
+            <div class="input-feild"><input type="date" data-date-inline-picker="false" data-date-open-on-focus="true" /></div>
+
+            <div class="input-label"><label>E.T.A</label></div>
+            <div class="input-feild"><input type="date" data-date-inline-picker="false" data-date-open-on-focus="true" /></div>
+
+            <div class="input-label"><label>Origin D.O No.</label></div>
+            <div class="input-feild"><input type="text" name=""></div>
+
+          </div>
+        </div> 
+
+        <div class="cls"></div>
+        <hr>
+
+        <div class="widget_iner_box">
+          <div class="col-md-6">
+            <div class="input-label"><label>Foreign Agent's Shipper </label></div>
+            <div class="input-feild">
+              <input type="text" name="" placeholder="Name/Address">
+            </div>
+
+
+
+            <div class="input-label"><label>Notify </label></div>
+            <div class="input-feild">
+              <input type="text" name="" placeholder="Name/Address">
+            </div>
+
+          </div>
+
+
+           <div class="col-md-6">
+
+            <div class="input-label"><label>Consignee </label></div>
+            <div class="input-feild">
+              <input type="text" name="" placeholder="Name/Address">
+            </div>
+
+              <div class="cls"></div>
+              <hr>
+
+            <div class="input-label"><label>Remarks</label></div>
+            <div class="input-feild">
+              <textarea></textarea>
+            </div>
+
+          </div>
+        </div>  
+
+        <div class="cls"></div>
+
+        <div class="widget_iner_box">
+            <div class="col-md-12"> 
+                <ul class="nav nav-tabs">
+                  <li class="active"><a data-toggle="tab" href="#local_invoices">Local Invoices</a></li>
+                  <li><a data-toggle="tab" href="#party_agent_details">Party & Foreign Agent Details</a></li>
+                </ul>
+            </div>
+
+
+           <div class="tab-content">
+
+              <div id="local_invoices" class="tab-pane fade in active">
+                 <table id="local_inv_table" class="display nowrap no-footer" style="width:100%">
+                    <thead>
+                      <tr>
+                        <th>Type</th>
+                        <th>No.</th>
+                        <th>Currency</th>
+                        <th>F/Amount</th>
+                        <th>PKR Amount</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+                      </tr>
+                    </tbody>
+
+                 </table>                       
+              </div>
+
+              <div id="party_agent_details" class="tab-pane fade">
+                <div class="col-md-6">
+                  <table  id="prtytable" class="display nowrap no-footer" style="width:100%">
+                    
+                       <thead>
+                                <tr>
+                                  <th>..</th>  
+                                  <th>Rate</th>
+                                  <th>Amount</th>
+                                  <th>Amount (PKR)</th>
+                                </tr>
+                       </thead>
+                        <tbody>           
+                                  <tr>
+                                    <td>Selling</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+
+                                  </tr>
+
+                                  <tr>
+                                    <td>Buying</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                  </tr>
+
+                                  <tr>
+                                    <td>Difference</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                  </tr>
+
+
+                                  <tr>
+                                    <td>Profit Share.</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                  </tr>
+
+
+                        </tbody>
+                  </table> 
+                </div>
+
+                <div class="col-md-6">
+                  <table  id="foreigntbale" class="display nowrap no-footer" style="width:100%">
+                    
+                       <thead>
+                                <tr>
+                                  <th>..</th>  
+                                  <th>Rate</th>
+                                  <th>Amount</th>
+                                  <th>Amount (PKR)</th>
+                                </tr>
+                       </thead>
+                        <tbody>           
+                                  <tr>
+                                    <td>Selling</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+
+                                  </tr>
+
+                                  <tr>
+                                    <td>Buying</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                  </tr>
+
+                                  <tr>
+                                    <td>Difference</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                  </tr>
+
+
+                                  <tr>
+                                    <td>Profit Share.</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                  </tr>
+
+
+                        </tbody>
+                  </table> 
+                </div>
+                
+
+              </div>
+
+           </div> 
+
+        </div>      
+
+				                          
+
+					
+		</form>
+				
+        
+
+	</div>
+
+  
+</div>
+<script>
+  $(document).ready(function() {
+     $('#aimport_form_table').DataTable( {
+        "scrollX": true,
+        "paging":false,
+        "info":false,
+
+
+    } );
+
+     $('#hawbtable').DataTable( {
+        "scrollY": 50,
+        "scrollX": true,
+        "paging":false,
+        "info":false,
+
+    } );
+
+     $('#local_inv_table').DataTable( {
+        "paging":false,
+        "info":false,
+
+    } ); 
+
+     
+
+} );
+</script>
+<script>
+  $(document).ready(function() {
+     $('#prtytable').DataTable( {
+        "paging":false,
+        "info":false,
+
+    } );
+
+    $('#foreigntbale').DataTable( {
+        "paging":false,
+        "info":false,
+
+    } );
+
+     } );
+</script>
+
+<script>
+$("#scroltop").click(function() {
+    $("html").animate({ scrollTop: 0 }, "slow");
+  });
+</script>
+
+
+
+
+<script src="js/jquery.dataTables.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

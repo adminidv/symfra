@@ -1,0 +1,135 @@
+
+.navbar.navbar-inverse {
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+}
+.side_bar {
+    overflow-y: scroll;
+	top: 50px;
+    position: fixed;
+    background: #f3f3f3;
+    width: 15%;
+    float: left;
+    height: 100%;
+}
+
+/*.side_bar ul li ul {
+    padding-left: 25px;
+}*/
+.side_bar ul {
+    padding: 0;
+}
+.side_bar ul li {
+	margin: 12px 0;
+    list-style: none;
+}
+.side_bar ul li input {
+    width: 100%;
+    padding: 5px;
+}
+.side_bar ul li  .fa-search{
+	position: absolute;
+    top: 24px;
+    right: 5px;
+}
+li.br_srch_li {
+    position: relative;
+}
+.side_bar ul li .fa-search {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+}
+.side_bar .btn {
+    color: #fff;
+    background: #031b41;
+    border-radius: 0;
+    padding: 5px 20px;
+}
+.side_bar_list h4 {
+    padding: 8px 0;
+    margin: 0px;
+    color: #fff;
+    background-image: linear-gradient(to right top, #004e92, #06407c, #073367, #062653, #031a40, #031a40, #031a40, #031a40, #062653, #073367, #06407c, #004e92);
+    font-size: 14px;
+}
+.side_bar_list .fa.fa-fw.fa-angle-double-down {
+    float: right;
+    margin: 0px 5px;
+}
+.side_bar_list i {
+    margin: 0px 5px 0px 2px;
+}
+.modal-body input {
+    border: 1px solid;
+    padding: 5px;
+}
+.modal-body button {
+	background-image: linear-gradient(to right top, #004e92, #06407c, #073367, #062653, #031a40, #031a40, #031a40, #031a40, #062653, #073367, #06407c, #004e92);    
+	border: none;
+    color: #fff;
+    float: right;
+    padding: 5px 20px;
+}
+.input-feild.act_btn_user label {
+    display: inline-block;
+    margin-top: 5px;
+}
+.input-feild.act_btn_user {
+    display: inline-block;
+}
+.side_bar_list button {
+    width: 80%;
+    text-align: left;
+}
+.side_bar_list i.fa.fa-fw.fa-angle-double-right {
+    margin: 2px 0;
+    float: right;
+    text-align: right;
+}
+.side_bar_list input[type="checkbox"] {
+    float: left;
+    display: inline-block;
+    width: 15% !important;
+}
+ul#advsearchli li {
+    margin: 0;
+}
+#advsearchli li input {
+    padding: 5px;
+    border: none;
+    border-bottom: 1px solid #e2e2e2;
+}
+ul#advsearchli a {
+    text-decoration: none;
+    width: 100% !important;
+    color: #031a40;
+    font-size: 14px;
+    background: #c1c1c1;
+    display: inline-block;
+    margin: 15px 0px;
+    cursor: default;
+}
+ul#advsearchli input[type="submit"]{
+    margin: 25px 0;
+    background-image: linear-gradient(to right top, #004e92, #06407c,
+     #073367, #062653, #031a40, #031a40, #031a40, #031a40, 
+     #062653, #073367, #06407c, #004e92);
+    color: #fff;
+    padding: 5px 20px !important;
+    display: block;
+    width: auto !important;
+}
+ul#advsearchli label {
+    margin-top: 15px;
+}
+ul.dptmntli li label {
+    margin-top: 0 !important;
+}
+ul.Desigli li label {
+    margin-top: 0 !important;
+}
+ul.rolesli  li label {
+    margin-top: 0 !important;
+}

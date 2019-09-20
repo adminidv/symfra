@@ -1,0 +1,29 @@
+
+
+.contcttabletitle h5 {
+    background: #054482;
+    padding: 5px;
+    color: #fff;
+    margin: 10px auto;
+    font-size: 14px;
+}
+.contcttable table th {
+	font-size: 11px;
+    border-width: 1px !important;
+    text-align: center;
+    padding: 0px ;
+}
+.contcttable table {
+    background: #f9f9f9;
+}
+.contcttableinfo {
+	padding: 5px !important;
+	text-align: center;
+    background: #05427f6b;
+     font-size: 14px !important;
+}
+.contcttable table td {
+    text-align: center;
+    padding: 0px !important;
+}
+

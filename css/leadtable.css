@@ -1,0 +1,68 @@
+.leadtabletitle h5 {
+    background: #054482;
+    padding: 5px;
+    color: #fff;
+    margin: 10px auto;
+    font-size: 14px;
+}
+.Leadtable table td {
+	border: none !important;
+    padding: 8px !important;
+    font-size: 12px;
+}
+.Leadtable table th {
+    margin: 0 0 !important;
+    padding: 2px 5px !important;
+    font-size: 12px;
+}
+.Leadtable table a:hover {
+    text-decoration: none;
+}
+.Leadtable table a {
+    color: #000;
+}
+
+.Leadtable.container select {
+	background: #054482;
+    background-image: linear-gradient(to right top, #004e92, #06407c, #073367, #062653, #031a40, #031a40, #031a40, #031a40, #062653, #073367, #06407c, #004e92);
+    color: #ffffff;
+    border-radius: 15px;
+    font-size: 11px;
+}
+.Leadtable.container button {
+    background-image: linear-gradient(to right top, #004e92, #06407c, #073367, #062653, #031a40, #031a40, #031a40, #031a40, #062653, #073367, #06407c, #004e92);
+    color: #fff;
+    border: none;
+    border-radius: 15px;
+    padding: 1px 10px;
+    font-size: 11px;
+}
+.leadFtrcontnt  small {
+    font-size: 15px;
+    margin-left: 10px;
+}
+.leadFtrcontnt h6 {
+    border-right: 1px solid #9c9c9c;
+}
+.leadFtrcontnt h5 {
+    font-size: 12px;
+}
+.leadFtrcontnt a:hover{
+	text-decoration: none;
+} 
+.leadcreatetbtn{
+	text-align: right;
+}
+.leadcreatetbtn a {
+    padding: 2px 10px;
+    color: #fff;
+    margin: 10px 30px;
+    background-image: linear-gradient(to right top, #004e92, #06407c, #073367, #062653, #031a40, #031a40, #031a40, #031a40, #062653, #073367, #06407c, #004e92);
+    border-radius: 15px;
+    display: inline-block;
+    font-size: 12px;
+}
+.leadcreatetbtn a:hover {
+	color: #fff;
+text-decoration: none;
+}

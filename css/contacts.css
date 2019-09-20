@@ -1,0 +1,21 @@
+.create_lead_form_sec form{
+		width: 100%;
+		float: none;
+		position: relative;
+
+	}
+.input-feild input {
+    margin: 3px 0;
+}
+
+ .input-feild textarea {
+    border: 0;
+    background: #f3f3f3;
+    width: 100%;
+    padding:  5px;
+    min-height: 140px;
+}
+.input-feild textarea::placeholder{
+	font-size: 11px;
+    color: #000;
+}

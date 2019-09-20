@@ -1,0 +1,19 @@
+.main_widget_box{
+     width: 85%;
+   position: absolute;
+   right: 0;
+   padding:15px;
+   top: 240px;
+}
+.cls{
+clear: both;
+}
+
+.widget_iner_box{
+	width: 100%;
+    float: left;
+    padding: 15px 30px;
+    background: #fff;
+    border: 1px solid #E2e2e2;
+    border-radius: 5px;
+}

@@ -1,0 +1,154 @@
+
+body {
+    background: #f9f9f9 !important;
+    padding: 0 !important;
+
+}
+
+.import-side-bar {
+    margin-top: 15px;
+    width: 5%;
+    position: fixed;
+    background: #031a40;
+    left: 0;
+    z-index:111;
+    border-radius: 0px 15px 15px 0px;
+}
+.import_form_content {
+    width: 95%;
+    right: 0;
+    position: absolute;
+    padding: 0 15px;
+}
+.import-side-bar ul {
+    padding-left: 0;
+    text-align: center;
+    margin: 0;
+}
+.import-side-bar ul li {
+    margin: 15px 0;
+}
+
+.form-action-btns  {
+text-align: right;
+}
+.form-action-btns a {
+    display: inline-block;
+    margin: 15px 5px;
+    background-image: linear-gradient(to right top, #004e92, #06407c, #073367, #062653, #031a40, #031a40, #031a40, #031a40, #062653, #073367, #06407c, #004e92);
+    /*background: #027bc7;*/
+    border: none;
+    padding: 2px 10px;
+    color: #fff;
+    font-size: 12px;
+    border-radius: 15px;
+}
+.form-action-btns a:hover{
+text-decoration: none;
+color: #fff;
+}
+.input-feild input {
+    box-shadow: 0px 0px 1px 0px;
+    padding: 0px 5px;
+    margin: 5px 0;
+    background: none;
+    display: block;
+    border: none;
+    width: 100%;
+}
+.import-side-bar ul li button {
+       background: none;
+    border: 2px solid #014d90;
+    color: #f9f9f9;
+    border-radius: 100%;
+    line-height: 23px;
+}
+.import_form_content h5 {
+    display: block;
+    text-align: left;
+    color: #fff;
+    margin: 10px auto;
+    font-size: 14px;
+    background-image: linear-gradient(to right top, #004e92, #06407c, #073367, #062653, #031a40, #031a40, #031a40, #031a40, #062653, #073367, #06407c, #004e92);
+    /*background: #027bc7;*/
+    padding:5px;
+}
+.input-feild label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 0px;
+    color: #027bc7;
+    font-weight: 100;
+}
+.input-feild input::placeholder {
+    color: #000;
+    font-size: 12px;
+}
+.input-feild h3 {
+    margin: 4px 0px;
+    font-size: 14px;
+    background: #fff;
+    padding: 3px;
+}
+.total_feild {
+    display: inline-block;
+    float: right;
+}
+.input-feild h3:hover span {
+    display: block;
+}
+.clcutd_feild span {
+    background: #dcdcdc;
+    display: none;
+    font-size: 10px;
+    position: absolute;
+    top: 0;
+    right: 15px;
+    border: 1px solid #027bc7;
+    padding: 3px 15px;
+}
+.import_form_content h5 small {
+    color: #fff;
+}
+.total_float_left {
+    float: left;
+}
+.modal-body.Popup_bdy input::placeholder {
+    font-size: 12px;
+    color: #000;
+    background: #f3f3f3;
+}
+.import-side-bar-modal .modal-header {
+    border-radius: 5px 5px 0 0 ;
+    padding: 5px 15px;
+    border-bottom: 1px solid #e5e5e5;
+    /*background: #027bc7;*/
+    background-image: linear-gradient(to right top, #004e92, #06407c, #073367, #062653, #031a40, #031a40, #031a40, #031a40, #062653, #073367, #06407c, #004e92);
+    color: #fff;
+}
+
+.modal-body {
+    position: relative;
+    padding: 15px;
+}
+.import-side-bar-modal  .Popup_bdy input {
+    background: #f3f3f3;
+    border:none;
+    width: 100%;
+    padding: 0px 6px;
+}
+.import-side-bar-modal .Popup_bdy p {
+    color: #1b70c7;
+    margin: 5px 0px;
+}
+.import-side-bar-modal .Popup_bdy button {
+    /*background: #027bc7;*/
+        background-image: linear-gradient(to right top, #004e92, #06407c, #073367, #062653, #031a40, #031a40, #031a40, #031a40, #062653, #073367, #06407c, #004e92);
+    border-radius: 0;
+    color: #fff;
+    font-size: 14px;
+    padding: 2px 10px;
+    border-radius: 15px;
+    margin: 10px 0;
+    border: none;
+}

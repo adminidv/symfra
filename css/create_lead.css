@@ -1,0 +1,208 @@
+body {
+    padding: 0 !important;
+}
+.productaddbtn {
+    text-align: right;
+}   
+.productaddbtn a {
+    display: inline-block;
+    color: #fff;
+    background-image: linear-gradient(to right top, #004e92, #06407c, #073367, #062653, #031a40, #031a40, #031a40, #031a40, #062653, #073367, #06407c, #004e92);
+    padding: 2px 10px;
+    margin: 5px;
+    font-size: 12px;
+    border-radius: 15px;
+}
+.modal-body button {
+    margin: 10px;
+}
+#btnactionsShow {
+    width: max-content;
+    background: #031a40c7;
+    text-align: left;
+    position: absolute;
+    z-index: 111;
+    list-style: none;
+    padding: 10px 10px 10px 18px;
+    margin-top: 1px;
+    margin-left: 10px;
+    border-radius: 5px;
+}
+#btnactionsShow li a {
+    border-radius: 15px;
+    margin: 2px 0;
+    color: #031a40;
+    background: #fff;
+    padding: 0px 10px;
+    display: inline-block;
+    font-size: 12px;
+}
+
+#btnactionsShow li {
+    padding: 0 !important;
+    text-align: left;
+}
+.action_cl_top {
+    display: inline-block;
+    position: relative;
+}
+button#showaction {
+    text-align: left;
+    position: relative;
+}
+.Leadtable table{
+    display: block;
+    overflow-x: scroll;
+}
+.Leadtable table tr {
+    background: #f9f9f9;
+}
+.producttabletitle h5 {
+    background: #05204a4f;
+    margin: 0;
+    padding: 10px;
+    color: #031a40;
+    font-weight: 600;
+}
+.top_actions_btns {
+    text-align: right;
+}
+.lead-action_drpdwn{
+    font-size: 12px;
+    width: 100px;
+    background: #031a40;
+    padding: 2px 10px;
+    display: inline-block;
+    color: #fff;
+    border-radius: 15px;
+    background-image: linear-gradient(to right top, #004e92, #06407c, #073367, #062653, #031a40, #031a40, #031a40, #031a40, #062653, #073367, #06407c, #004e92);
+}
+.top_actions_btns button {
+    background-image: linear-gradient(to right top, #004e92, #06407c, #073367, #062653, #031a40, #031a40, #031a40, #031a40, #062653, #073367, #06407c, #004e92);
+    /*background: #027bc7;*/
+    border: none;
+    padding: 2px 10px;
+    border-radius: 15px;
+    margin: 15px 0 0 0;
+    color: #fff;
+    font-size: 12px;
+}
+.col-md-6.col-inr-col-6 .input-feild {
+    margin: 0 0px;
+}
+.col-md-6.col-inr-col-6 h3 {
+    margin: 0;
+    font-size: 14px;
+}
+.col-md-6.col-inr-col-6 {
+    padding: 0 15px 0 0;
+    margin: 0;
+}
+.input-feild input[type="checkbox"] {
+    display: block;
+    width: auto;
+}
+.input-feild h3 {
+    margin: 5px 0px;
+    font-size: 14px;
+    background: #027bc73d;
+    padding: 5px;
+    display: block;
+}
+.input-feild textarea {
+    border: 0;
+    background: #f3f3f3;
+    width: 100%;
+    padding:  5px;
+    min-height: 140px;
+}
+.input-feild textarea::placeholder{
+    font-size: 11px;
+    color: #000;
+}
+.lead_title_header {
+    background: #f9f9f9;
+    float: left;
+    padding: 15px 0px;
+    width: 100%;
+}
+.input-feild {
+    margin: 10px 0;
+}
+.lead_title_header h5 {
+    color: #027bc7;
+    font-size: 22px;
+}
+.leads_actions_btns button {
+    background: #027bc7;
+    border: none;
+    color: #fff;
+    border-radius: 10px;
+    padding: 1px 10px;
+}
+.create_lead_form_sec h6 {
+    background-image: linear-gradient(to right top, #004e92, #06407c, #073367, #062653, #031a40, #031a40, #031a40, #031a40, #062653, #073367, #06407c, #004e92);
+    /*background: #031a40;*/
+    color: #fff;
+    padding: 5px;
+    font-size: 14px;
+}
+.input-feild input {
+    border: 0;
+    background: #f3f3f3;
+    width: 100%;
+    padding: 0px 5px;
+}
+.input-feild input::placeholder {
+    font-size: 11px;
+    color: #000;
+}
+.input-feild label {
+    font-size: 12px;
+}
+.input-feild button {
+    margin: 10px 0px;
+    color: #fff;
+    background: #027bc7;
+    border: #027bc7;
+    border-radius: 10px;
+    font-size: 12px;
+    padding: 2px 12px;
+}
+.input-feild select {
+    display: block;
+    font-size: 12px;
+    background: #f9f9f9;
+    color: #7d7979;
+    border: 1px solid #9a9a9a;
+    margin: 5px 0px 10px 0px;
+    box-shadow: -1px -1px 1px -1px #027bc7b0;;
+}
+    /*.create_lead_form_sec form {
+        width: 90%;
+        float: left;
+        right: 0;
+        position: absolute;
+    }*/
+.iner_side_tabs {
+    width: 10%;
+    position: fixed;
+    left: 0;
+    border-radius: 1px 20px 20px 0px;
+    background: #f3f3f3;
+    float: left;
+    z-index: 111;
+    top: 40%;
+    padding: 20px 10px;
+}
+.iner_action_btns ul {
+    padding-left: 0;
+    list-style: none;
+}
+.iner_action_btns ul li button {
+    background: #027bc7;
+    border: none;
+    color: #027bc7;
+    margin: 5px 0;
+    color: #f3f3f3;
+}

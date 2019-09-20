@@ -1,0 +1,98 @@
+  /** The Magic **/
+btn-breadcrumb>.btn.disabled {
+    opacity: 1 !important;
+    color: #999;
+}
+
+.btn-breadcrumb .btn:not(:last-child):after {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 13px solid transparent;
+  border-bottom: 13px solid transparent;
+  border-left: 10px solid white;
+  position: absolute;
+  top: 62%;
+  margin-top: -17px;
+  left: 100%;
+  /*z-index: 3;*/
+}
+.btn-breadcrumb .btn:not(:last-child):before {
+    content: " ";
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 14px solid transparent;
+    border-bottom: 14px solid transparent;
+    border-left: 10px solid rgb(173, 173, 173);
+    position: absolute;
+    top: 62%;
+    margin-top: -17px;
+    margin-left: -1px;
+    left: 100%;
+    z-index: 3;
+    border-radius: 2px;
+}
+
+/** The Spacing **/
+.btn-breadcrumb .btn {
+  padding:6px 12px 6px 24px;
+}
+.btn-breadcrumb .btn:first-child {
+  padding:6px 6px 6px 10px;
+}
+.btn-breadcrumb .btn:last-child {
+  padding:6px 18px 6px 24px;
+}
+
+/** Info button **/
+.btn-breadcrumb .btn.btn-info:not(:last-child):after {
+  border-left: 10px solid #fff;
+}
+.btn-breadcrumb .btn.btn-info:not(:last-child):before {
+  border-left: 10px solid #fff;
+}
+.btn-breadcrumb .btn.btn-info:hover:not(:last-child):after {
+  border-left: 10px solid #d2d0d0;
+}
+/*.btn-breadcrumb .btn.btn-info:hover:not(:last-child):before {*/
+/*  border-left: 10px solid #d2d0d0;*/
+/*}*/
+.btn-breadcrumb .btn.btn-info:hover:not(:last-child):before {
+  border-left: 10px solid #031a40;
+}
+.breadCrumb_bar {
+    /* display: none; */
+    width: 85%;
+    position: absolute;
+    right: 0;
+    padding: 0px 15px;
+    top: 210px;
+}
+.breadCrumb_bar a{
+    font-size:11px;
+}
+.breadCrumb_bar .btn-info {
+    color: #031a40;
+    background-color: transparent; !important;
+    border-color: #eeeeee;
+    border: none;
+}
+.breadCrumb_bar .btn-group.btn-breadcrumb a:hover {
+   background-image: linear-gradient(to right top, #004e92, #06407c, #073367, 
+    #062653, #031a40, #031a40, #031a40, #031a40, #062653, #073367, #06407c, #004e92);
+    color: #ffffff;
+}
+.breadCrumb_bar .btn-group.btn-breadcrumb .active {
+    background-image: linear-gradient(to right top, #004e92, #06407c, #073367, 
+      #062653, #031a40, #031a40, #031a40, #031a40, #062653, #073367, #06407c, #004e92);
+    color: #ffffff;
+}
+.breadCrumb_bar_iner{
+  width: 100%;
+  float: left;
+  background: #fff;
+/*  border: 1px solid #E2e2e2;
+*/  border-radius: 5px;
+}
