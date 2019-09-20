@@ -240,27 +240,27 @@ if (isset($_POST['submitBtn1'])) {
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Air Import (Job Entry) </title>
-	<link rel="shortcut icon" type="image/png" href="./images/favicon.png">
-	<link rel="stylesheet" href="css/bootstrap.css" type="text/css">
-	<link rel="stylesheet" href="css/font-awesome.css" type="text/css">
-	<link rel="stylesheet" type="text/css" href="css/symfra_forms.css">
+  <title>Air Import (Job Entry) </title>
+  <link rel="shortcut icon" type="image/png" href="./images/favicon.png">
+  <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+  <link rel="stylesheet" href="css/font-awesome.css" type="text/css">
+  <link rel="stylesheet" type="text/css" href="css/symfra_forms.css">
   <link rel="stylesheet" type="text/css" href="css/crm.css">
   <link rel="stylesheet" type="text/css" href="css/main_box_widgets.css">
-	<link rel="stylesheet" type="text/css" href="css/usertable.css">
-	<link rel="stylesheet" type="text/css" href="css/sidebar.css">
-	<link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
+  <link rel="stylesheet" type="text/css" href="css/usertable.css">
+  <link rel="stylesheet" type="text/css" href="css/sidebar.css">
+  <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
 
-	<link rel="stylesheet" href="css/symfra_popups.css" type="text/css">
-	<script src="js/jquery-3.3.1.js"></script>
+  <link rel="stylesheet" href="css/symfra_popups.css" type="text/css">
+  <script src="js/jquery-3.3.1.js"></script>
 
   <!-- Bread crumbs starting here -->
   <link rel="stylesheet" href="css/breadCrumb.css" type="text/css">
   <link rel="shortcut icon" type="image/png" href="images/favicon.png">
   <link rel="stylesheet" href="css/user_ribbon.css" type="text/css">
   <!-- Bread crumbs ending here -->
-	
-  	<script src="js/sidebar.js"></script>
+  
+    <script src="js/sidebar.js"></script>
     <script src="js/jquery.min.js"></script>
     
 
@@ -351,9 +351,9 @@ if (isset($_POST['submitBtn1'])) {
 </div>
 
 <div class="main_widget_box">
-	<div class="">
-									<!-- <hr> -->
-		<form action="" method="POST" enctype="multipart/form-data">
+  <div class="">
+                  <!-- <hr> -->
+    <form action="" method="POST" enctype="multipart/form-data">
 
       <!-- Modal_one-->
        <div class="modal fade confirmTable-modal" id="save_Modal" role="dialog">
@@ -404,7 +404,28 @@ if (isset($_POST['submitBtn1'])) {
                     </div>
                </div>
 
-			 <label id="formSummary" style="color: red;"></label>
+       <label id="formSummary" style="color: red;"></label>
+          <p id="V_m_awb" style="color: red;"></p>
+            <p id="V_m_date" style="color: red;"></p>
+            <p id="V_m_pp_cc" style="color: red;"></p>
+            <p id="V_m_pieces" style="color: red;"></p>
+            <p id="V_m_grs_weight" style="color: red;"></p>
+            <p id="V_m_ch_weight" style="color: red;"></p>
+            <p id="V_h_awb" style="color: red;"></p>
+            <p id="V_h_date" style="color: red;"></p>
+            <p id="V_h_pp_cc" style="color: red;"></p>
+            <p id="V_h_pieces" style="color: red;"></p>
+            <p id="V_h_grs_weight" style="color: red;"></p>
+            <p id="V_h_ch_weight" style="color: red;"></p>
+            <p id="V_party" style="color: red;"></p>
+            <p id="V_foreign_party" style="color: red;"></p>
+            <p id="V_spo" style="color: red;"></p>
+            <p id="V_origin" style="color: red;"></p>
+            <p id="V_destination" style="color: red;"></p>
+            <p id="V_flight_no" style="color: red;"></p>
+            <p id="V_flight_date" style="color: red;"></p>
+            <p id="V_foreign_detail" style="color: red;"></p>
+            <p id="V_consignee_detail" style="color: red;"></p>
 
         <div class="widget_iner_box">
               <div class="form_sec_action_btn col-md-12">
@@ -413,7 +434,7 @@ if (isset($_POST['submitBtn1'])) {
                                           <?php include('inc_widgets/backBtn.php'); ?>
                                           <!-- Go back button code ending here -->
                     </div>
-                    <button type="button" id="btnConfirm_Su" onclick="submitFunc();"> <small>Submit</small></button>
+                    <button type="button" id="btnConfirm_Su" onclick="FormValidation();"> <small>Submit</small></button>
                     <button type="button" name="btnConfirm_S" onclick="saveFunc();"> <small>Save</small></button>
                     <button type="button" name="submitBtn"> <small>Cancel</small></button>        
                 </div>
@@ -463,47 +484,44 @@ if (isset($_POST['submitBtn1'])) {
                                                                   <tbody>   
                                                                              <tr>
                                                                               <th>MawB No.</th>
-                                                                              <td> <input type="text" name="m_awb" value="<?php echo $m_awb2; ?>"></td>
-                                                                              <td> <input type="date" name="m_date" value="<?php echo $m_date2 ?>"></td>
-                                                                              <td> <select name="m_pp_cc">
+                                                                              <td> <input type="text" id="m_awb" name="m_awb" value="<?php echo $m_awb2; ?>"></td>
+                                                                              <td> <input type="date" name="m_date" id="m_date" value="<?php echo $m_date2 ?>"></td>
+                                                                              <td> <select name="m_pp_cc" id="m_pp_cc" >
                                                                                 <option value="<?php echo $m_pp_cc2; ?>"><?php echo $m_pp_cc2; ?></option>
                                                                                 <option value="<?php echo $m_pp_cc2; ?>"><?php echo $m_pp_cc2; ?></option>
                                                                               </select></td>
-                                                                              <td> <input type="text" name="m_pieces" value="<?php echo $m_pieces2; ?>"></td>
-                                                                              <td> <input type="text" name="m_grs_weight" value="<?php echo $m_grs_weight2; ?>"></td>
-                                                                              <td> <input type="text" name="m_ch_weight" value="<?php echo $m_ch_weight2; ?>"></td>
-                                                                              <td> <input type="text" name="m_rate" value="<?php echo $m_rate2; ?>"></td>
+                                                                              <td> <input type="text" name="m_pieces" id="m_pieces" value="<?php echo $m_pieces2; ?>"></td>
+                                                                              <td> <input type="text" id="m_grs_weight" name="m_grs_weight" value="<?php echo $m_grs_weight2; ?>"></td>
+                                                                              <td> <input type="text" name="m_ch_weight" id="m_ch_weight" value="<?php echo $m_ch_weight2; ?>"></td>
+                                                                              <td> <input type="text" name="m_rate" id="m_rate" value="<?php echo $m_rate2; ?>"></td>
                                                                               <!-- <td rowspan="2"><textarea name="description"></textarea></td> -->                      
                                                                              </tr>
 
-                                                                            <tr>
-                                                                              <th>Hawb No.</th>
-                                                                              <td> <input type="text" name="h_awb"></td>
-                                                                              <td> <input type="date" name="h_date"></td>
-                                                                                <td> <select name="h_pp_cc">
-                                                                                <option value="pp">pp</option>
-                                                                                <option value="cc">cc</option>
-                                                                              </select></td>
-                                                                              <td> <input type="text" name="h_pieces"></td>
-                                                                              <td> <input type="text" name="h_grs_weight"></td>
-                                                                              <td> <input type="text" name="h_ch_weight"></td>
-                                                                              <td> <input type="text" name="h_rate"></td> 
-                                                                              <td rowspan="0"></td>                     
-                                                                             </tr> 
-
-                                                                            
-                                                                  </tbody>
-                </table> 
-               
-        </div>
-
+                                                                             <tr>
+                                      <th>HAWB No.</th>
+                                      <td> <input   type="text" name="h_awb" maxlength="12" id="h_awb"><span class="steric">*</span></td>
+                                      <td> <input   type="date" name="h_date" id="h_date"><span class="steric">*</span></td>
+                                        <td> <select name="h_pp_cc" id="h_pp_cc">
+                                        <option value="pp">pp</option>
+                                        <option value="cc">cc</option>
+                                      </select><span class="steric">*</span></td>
+                                      <td> <input  type="text" maxlength="4" name="h_pieces" id="h_pieces"><span class="steric">*</span></td>
+                                      <td> <input    type="text" maxlength="10" name="h_grs_weight" id="h_grs_weight"><span class="steric">*</span></td>
+                                      <td> <input  type="text" name="h_ch_weight" maxlength="10" id="h_ch_weight"><span class="steric">*</span></td>
+                                      <td> <input  type="text" name="h_rate" id="h_rate" onfocusout="calcDetails_Sell_P();"></td>
+                                   </tr>
+                                                                      
+                          </tbody>
+                          </table> 
+              </div>
               <div class="cls"></div>
-              <hr>				
-                  <div class="col-md-6">
+              <hr>
+
+             <div class="col-md-6">
                    
                     <div class="input-label"><label>Goods Description</label></div>
                     <div class="input-feild">
-                    <textarea name="description"></textarea>
+                    <textarea name="description" maxlength="100" id="description"></textarea>
                     </div>
 
                     <div class="input-label"><label>Status</label></div>
@@ -514,15 +532,15 @@ if (isset($_POST['submitBtn1'])) {
                   </div>
         </div>
         <div class="cls"></div>
-        <hr>      
+        <hr>        
 
         <div class="widget_iner_box">         
                <div class="col-md-4">
 
-                      <div class="input-label"><label>Party Code</label></div>
+                      <div class="input-label"><label>Party</label></div>
                       <div class="input-feild">
-                       <select name="party" required>
-                          <option value="Select">Select </option>
+                        <select name="party" id="party">
+                          <option value="">Select </option>
                           <?php
 
                             $selectSub = mysqli_query($con, "select * from custmaster");
@@ -532,13 +550,13 @@ if (isset($_POST['submitBtn1'])) {
                               echo '<option value="'.$rowSub['SrNo'].'">'.$rowSub['cmpTitle'].'</option>';
                             }
                           ?>
-                      </select>
+                      </select><span class="steric">*</span>
 
                       </div>
 
                       <div class="input-label"><label>Agent Party</label></div>
                       <div class="input-feild">
-                        <select name="agent_party" required>
+                        <select name="agent_party" id="agent_party">
                           <option value="Select">Select </option>
                           <?php
 
@@ -554,8 +572,8 @@ if (isset($_POST['submitBtn1'])) {
 
                       <div class="input-label"><label>Foreign Agent</label></div>
                       <div class="input-feild">
-                        <select name="foreign_party" required>
-                          <option value="Select">Select </option>
+                        <select name="foreign_party" id="foreign_party">
+                          <option value="">Select </option>
                           <?php
 
                             $selectSub = mysqli_query($con, "select * from custmaster");
@@ -565,76 +583,89 @@ if (isset($_POST['submitBtn1'])) {
                               echo '<option value="'.$rowSub['SrNo'].'">'.$rowSub['cmpTitle'].'</option>';
                             }
                           ?>
-                      </select>
+                      </select><span class="steric">*</span>
                       </div>
 
                </div> 
                  
                  <div class="col-md-4">
 
-                      <div class="input-label"><label>SPO Code</label></div>
+                        <div class="input-label"><label>Nomination</label></div>
                       <div class="input-feild">
-                        <select name="spo" required>
-                          <option value="Select">Select </option>
-                          <?php
-
-                            $selectSpo = mysqli_query($con, "select * from  spo_setup");
-
-                            while ($rowSpo = mysqli_fetch_array($selectSpo))
-                            {
-                              echo '<option value="'.$rowSpo['spo_name'].'">'.$rowSpo['spo_name'].'</option>';
-                            }
-                          ?>
-                      </select>
+                        <select class="mini_select_field" name="nomination" id="nomination" class="nomination" onchange="nomChange();">
+                          <option value="">Select</option>
+                          <option value="N">N</option>
+                          <option value="Y">Y</option>
+                        </select>
                       </div>
+                     
 
                       <div class="input-label"><label>Origin</label></div>
                       <div class="input-feild">
-                       <select name="origin" required>
-                          <option value="Select">Select </option>
+                       <select name="origin" id="origin">
+                          <option value="">Select </option>
                           <?php
 
                             $selectorigin = mysqli_query($con, "select * from destination_setup");
 
                             while ($roworigin = mysqli_fetch_array($selectorigin))
                             {
-                              echo '<option value="'.$roworigin['dest_name'].'">'.$roworigin['dest_name'].'</option>';
+                              echo '<option value="'.$roworigin['SrNo'].'">'.$roworigin['dest_name'].'</option>';
                             }
                           ?>
-                      </select>
+                      </select><span class="steric">*</span>
                       </div>
 
-
-                      <div class="input-label"><label>Destination</label></div>
+                      <div class="input-label"><label>Flight No.</label></div>
                       <div class="input-feild">
-                        <select name="destination" required>
-                          <option value="Select">Select </option>
-                          <?php
-
-                            $selectdest = mysqli_query($con, "select * from destination_setup");
-
-                            while ($rowdest = mysqli_fetch_array($selectdest))
-                            {
-                              echo '<option value="'.$rowdest['dest_name'].'">'.$rowdest['dest_name'].'</option>';
-                            }
-                          ?>
-                      </select>
+                        <input class="" type="text" maxlength="6" name="flight_no" id="flight_no"><span class="steric">*</span>
+                        
                       </div>
+
+                      
 
 
                       
                   </div> 
 
                   <div class="col-md-4">
-                    <div class="input-label"><label>Flight No.</label></div>
+
+                     <div class="input-label" id="spoLable"><label>SPO.</label></div>
+                    <div class="input-feild">
+                      <select name="spo" id="spo" >
+                        <option value="">Select </option>
+                        <?php
+
+                          $selectSub = mysqli_query($con, "select * from spo_setup");
+                          while ($rowSub = mysqli_fetch_array($selectSub))
+                          {
+                            echo '<option value="'.$rowSub['SrNo'].'">'.$rowSub['spo_name'].'</option>';
+                          }
+
+                        ?>
+                      </select><span class="steric">*</span>
+                    </div>
+
+                      <div class="input-label"><label>Destination</label></div>
                       <div class="input-feild">
-                        <input class="" type="text" name="flight_no">
-                        
+                        <select name="destination" id="destination">
+                          <option value="">Select </option>
+                          <?php
+
+                            $selectdest = mysqli_query($con, "select * from destination_setup");
+
+                            while ($rowdest = mysqli_fetch_array($selectdest))
+                            {
+                              echo '<option value="'.$rowdest['SrNo'].'">'.$rowdest['dest_name'].'</option>';
+                            }
+                          ?>
+                      </select><span class="steric">*</span>
                       </div>
+                    
                      
                      <div class="input-label"><label>Flight Date</label></div>
                       <div class="input-feild">
-                        <input class="" type="date" name="flight_date">
+                        <input class="" type="date" name="flight_date" id="flight_date"><span class="steric">*</span>
                       </div>
 
                   </div>
@@ -643,69 +674,82 @@ if (isset($_POST['submitBtn1'])) {
 
                <div class="col-md-4">
                  
-                  <div class="input-label"><label>IGM No.</label></div>
+                      <div class="input-label"><label>IGM No.</label></div>
                       <div class="input-feild">
-                        <input  type="text" name="igm_no">
+                        <input  type="text" name="igm_no" maxlength="20" id="igm_no">
 
                       </div>
 
                       <div class="input-label"><label>Air D.O.P No.</label></div>
                       <div class="input-feild">
-                        <input type="text" name="air_d_o_no">
+                        <input type="text" name="air_d_o_no" maxlength="20" id="air_d_o_no">
                         
                       </div>
 
                       <div class="input-label"><label>B/E No.</label></div>
                       <div class="input-feild">
-                        <input type="text" name="b_e_no">
+                        <input type="text" name="b_e_no" maxlength="20" id="b_e_no">
                         
                       </div>
 
-                      <div class="input-label"><label>Index No.</label></div>
-                      <div class="input-feild">
-                        <input type="text" name="index_no">
-                        
-                      </div>
+                      
 
 
                       <div class="input-label"><label>E.T.D</label></div>
                       <div class="input-feild">
-                        <input  type="date" name="e_t_d">                        
+                        <input  type="date" name="e_t_d" id="e_t_d">                        
                       </div>
 
-                      <div class="input-label"><label>L/C</label></div>
-                      <div class="input-feild">
-                        <input  type="text" name="l_c">                        
-                      </div>
+                      
 
-                      <div class="input-label"><label>Passport/ I.D</label></div>
-                      <div class="input-feild">
-                        <input  type="text" name="passport_id">                        
-                      </div>
-                    </div>
-                      <div class="col-md-4">
+                      
+               </div>
+               <div class="col-md-4">
                          <div class="input-label"><label>IGM Date</label></div>
-            <div class="input-feild"><input type="date" name="igm_date" data-date-inline-picker="false" data-date-open-on-focus="true" /></div>
+                          <div class="input-feild"><input type="date" name="igm_date" id="igm_date" data-date-inline-picker="false" data-date-open-on-focus="true" /></div>
 
 
-            <div class="input-label"><label>D.O Date</label></div>
-            <div class="input-feild"><input type="date" name="d_o_date" data-date-inline-picker="false" data-date-open-on-focus="true" /></div>
+                            <div class="input-label"><label>D.O Date</label></div>
+                            <div class="input-feild"><input type="date" name="d_o_date" id="d_o_date" data-date-inline-picker="false" data-date-open-on-focus="true" /></div>
 
 
-            <div class="input-label"><label>B/E Date</label></div>
-            <div class="input-feild"><input type="date" name="b_e_date" data-date-inline-picker="false" data-date-open-on-focus="true" /></div>
-          
+                            <div class="input-label"><label>B/E Date</label></div>
+                            <div class="input-feild"><input type="date" name="b_e_date" id="b_e_date" data-date-inline-picker="false" data-date-open-on-focus="true" /></div>
+                          
 
-            <div class="input-label"><label>Sub Index</label></div>
-            <div class="input-feild"><input type="date" name="sub_index_no" data-date-inline-picker="false" data-date-open-on-focus="true" /></div>
+                           
 
-            <div class="input-label"><label>E.T.A</label></div>
-            <div class="input-feild"><input type="date" name="e_t_a" data-date-inline-picker="false" data-date-open-on-focus="true" /></div>
+                            <div class="input-label"><label>E.T.A</label></div>
+                            <div class="input-feild"><input type="date" name="e_t_a" id="e_t_a" data-date-inline-picker="false" data-date-open-on-focus="true" /></div>
 
-            <div class="input-label"><label>Origin D.O No.</label></div>
-            <div class="input-feild"><input type="text" name="origin_d_o_no"></div>
+                            
            
+                </div>
+                <div class="col-md-4">
+
+                  <div class="input-label"><label>Index No.</label></div>
+                      <div class="input-feild">
+                        <input type="text" name="index_no" maxlength="20" id="index_no">
+                        
                       </div>
+
+                   <div class="input-label"><label>Sub Index</label></div>
+                            <div class="input-feild"><input type="date" name="sub_index_no" maxlength="20" id="sub_index_no" data-date-inline-picker="false" data-date-open-on-focus="true" /></div>
+
+                    <div class="input-label"><label>Origin D.O No.</label></div>
+                            <div class="input-feild"><input type="text" name="origin_d_o_no" id="origin_d_o_no"></div>
+
+                    <div class="input-label"><label>L/C</label></div>
+                      <div class="input-feild">
+                        <input  type="text" name="l_c" maxlength="20" id="l_c">                        
+                      </div>
+
+                    <div class="input-label"><label>Passport/ I.D</label></div>
+                      <div class="input-feild">
+                        <input  type="text" name="passport_id" maxlength="20" id="passport_id">                        
+                      </div>
+
+                </div>
 
                    
         </div>
@@ -716,14 +760,14 @@ if (isset($_POST['submitBtn1'])) {
           <div class="col-md-6">
             <div class="input-label"><label>Foreign Agent's Shipper </label></div>
             <div class="input-feild">
-               <textarea name="foreign_detail"></textarea>
+               <textarea name="foreign_detail" maxlength="140" id="foreign_detail"></textarea><span class="steric">*</span>
             </div>
 
 
 
             <div class="input-label"><label>Notify </label></div>
             <div class="input-feild">
-              <textarea name="notify_detail"></textarea>
+              <textarea name="notify_detail" maxlength="140" id="notify_detail"></textarea>
             </div>
 
           </div>
@@ -733,23 +777,16 @@ if (isset($_POST['submitBtn1'])) {
 
             <div class="input-label"><label>Consignee </label></div>
             <div class="input-feild">
-              <textarea name="consignee_detail"></textarea>
+              <textarea name="consignee_detail" maxlength="140" id="consignee_detail"></textarea><span class="steric">*</span>
             </div>
 
              
             <div class="input-label"><label>Remarks</label></div>
             <div class="input-feild">
-              <textarea name="remarks"></textarea>
+              <textarea name="remarks" maxlength="200" id="remarks"></textarea>
             </div>
 
-            <div class="input-label"><label>Nomination</label></div>
-            <div class="input-feild">
-              <select class="mini_select_field" name="nomination">
-                <option>No</option>
-                <option>Yes</option>
-
-              </select>
-            </div>
+           
 
           </div>
         </div> 
@@ -776,8 +813,9 @@ if (isset($_POST['submitBtn1'])) {
             <div class="input-label"><label>Local Invoice</label></div>
             <div class="input-feild">
               <select class="mini_select_field" name="local_inv">
-                <option>Yes</option>
+                
                 <option>No</option>
+                <option>Yes</option>
 
               </select>
             </div>
@@ -810,16 +848,17 @@ if (isset($_POST['submitBtn1'])) {
 
           <div class="input-label"><label>Freight trem</label></div>
           <div class="input-feild">
-            <input class="mini_input_field" type="text" name="fight_term">
+            <input class="mini_input_field" maxlength="30" type="text" name="fight_term">
           </div>
 
             
            <div class="input-label"><label>Remarks</label></div>
           <div class="input-feild" >
-            <textarea name="remark"></textarea>
+            <textarea name="remark" id="remark" maxlength="100"></textarea>
           </div>
 
         </div>
+
 
         <div class="col-md-3">
             
@@ -1028,14 +1067,14 @@ if (isset($_POST['submitBtn1'])) {
 
         </div>      
 
-				                          
+                                  
 
-					
-		</form>
-				
+          
+    </form>
+        
         
 
-	</div>
+  </div>
 
   
 </div>
@@ -1096,12 +1135,12 @@ function saveFunc()
   $("#save_Modal").modal();
 }
 </script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 function submitFunc()
 {
   $("#submit_Modal").modal();
 }
-</script>
+</script> -->
 
 <script>
 function nomChange()
@@ -1319,6 +1358,394 @@ function nomChange()
 
   }
   
+</script>
+
+<script type="text/javascript">
+   function FormValidation()
+   {
+      var regexp = /^[a-z]*$/i;
+      var regexp2 = /^[0-9]*$/i;
+      var re = /\S+@\S+\.\S+/;
+      var decimals = /^[-+]?[0-9]+\.[0-9]+$/;
+      var missingVal = 0;
+
+      
+
+      var m_awb=document.getElementById('m_awb').value;
+      var m_date=document.getElementById('m_date').value;
+      var m_pp_cc=document.getElementById('m_pp_cc').value;
+      var m_pieces=document.getElementById('m_pieces').value;
+      var m_grs_weight=document.getElementById('m_grs_weight').value;
+      var m_ch_weight=document.getElementById('m_ch_weight').value;
+      var h_awb=document.getElementById('h_awb').value;
+      var h_date=document.getElementById('h_date').value;
+      var h_pp_cc=document.getElementById('h_pp_cc').value;
+      var h_pieces=document.getElementById('h_pieces').value;
+      var h_grs_weight=document.getElementById('h_grs_weight').value;
+      var h_ch_weight=document.getElementById('h_ch_weight').value;
+      var party=document.getElementById('party').value;
+      var foreign_party=document.getElementById('foreign_party').value;
+      var spo=document.getElementById('spo').value;
+      var origin=document.getElementById('origin').value;
+      var destination=document.getElementById('destination').value;
+      var flight_no=document.getElementById('flight_no').value;
+      var flight_date=document.getElementById('flight_date').value;
+      var foreign_detail=document.getElementById('foreign_detail').value;
+      var consignee_detail=document.getElementById('consignee_detail').value;
+     
+      var summary = "Summary: ";
+
+      if(m_awb == "")
+      {
+          document.getElementById('m_awb').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_m_awb").innerHTML = "MAster AWB Number is required.";
+      }
+      if(m_awb != "")
+      {
+          document.getElementById('m_awb').style.borderColor = "white";
+          document.getElementById("V_m_awb").innerHTML = "";
+
+      }
+
+      if(m_date == "")
+      {
+          document.getElementById('m_date').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_m_date").innerHTML = "Master Date is required.";
+      }
+      if(m_date != "")
+      {
+          document.getElementById('m_date').style.borderColor = "white";
+          document.getElementById("V_m_date").innerHTML = "";
+
+      }
+
+      if(m_pp_cc == "")
+      {
+          document.getElementById('m_pp_cc').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_m_pp_cc").innerHTML = " Master PP/CC is required.";
+      }
+      if(m_pp_cc != "")
+      {
+          document.getElementById('m_pp_cc').style.borderColor = "white";
+          document.getElementById("V_m_pp_cc").innerHTML = "";
+
+      }
+
+       
+      if(m_pieces == "")
+      {
+          document.getElementById('m_pieces').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_m_pieces").innerHTML = "Master pieces is required.";
+      }
+      if(m_pieces != "")
+      {
+          document.getElementById('m_pieces').style.borderColor = "white";
+          document.getElementById("V_m_pieces").innerHTML = "";
+
+        //   if (!regexp2.test(rate))
+        // {
+        //   document.getElementById('rate').style.borderColor = "red";
+        //     missingVal = 1;
+        //     // summary += "Firstname is required.";
+        //     document.getElementById("V_rate").innerHTML = "Only numbers and decimals are allowed in rate.";
+        // }
+      }
+
+       if(m_grs_weight == "")
+      {
+          document.getElementById('m_grs_weight').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_m_grs_weight").innerHTML = "Master Gross Weight is required.";
+      }
+      if(m_grs_weight != "")
+      {
+          document.getElementById('m_grs_weight').style.borderColor = "white";
+          document.getElementById("V_m_grs_weight").innerHTML = "";
+
+        //   if (!regexp2.test(ch_weight))
+        // {
+        //   document.getElementById('ch_weight').style.borderColor = "red";
+        //     missingVal = 1;
+        //     // summary += "Firstname is required.";
+        //     document.getElementById("V_ch_weight").innerHTML = "Only alphabets are allowed.";
+        // }
+      }
+
+      if(m_ch_weight == "")
+      {
+          document.getElementById('m_ch_weight').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_m_ch_weight").innerHTML = "Master Charge Weight is required.";
+      }
+      if(m_ch_weight != "")
+      {
+          document.getElementById('m_ch_weight').style.borderColor = "white";
+          document.getElementById("V_m_ch_weight").innerHTML = "";
+
+        //   if (!regexp2.test(grs_weight))
+        // {
+        //   document.getElementById('grs_weight').style.borderColor = "red";
+        //     missingVal = 1;
+        //     // summary += "Firstname is required.";
+        //     document.getElementById("V_grs_weight").innerHTML = "Only numbers are allowed.";
+        // }
+      }
+
+      if(h_awb == "")
+      {
+          document.getElementById('h_awb').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_h_awb").innerHTML = "House AWB is required.";
+      }
+      if(h_awb != "")
+      {
+          document.getElementById('h_awb').style.borderColor = "white";
+          document.getElementById("V_h_awb").innerHTML = "";
+
+      }
+
+      if(h_date == "")
+      {
+          document.getElementById('h_date').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_h_date").innerHTML = "House Date is required.";
+      }
+      if(h_date != "")
+      {
+          document.getElementById('h_date').style.borderColor = "white";
+          document.getElementById("V_h_date").innerHTML = "";
+
+      }
+
+      if(h_pp_cc == "")
+      {
+          document.getElementById('h_pp_cc').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_h_pp_cc").innerHTML = "House PP/CC is required.";
+      }
+      if(h_pp_cc != "")
+      {
+          document.getElementById('h_pp_cc').style.borderColor = "white";
+          document.getElementById("V_h_pp_cc").innerHTML = "";
+
+      }
+
+      if(h_pieces == "")
+      {
+          document.getElementById('h_pieces').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_h_pieces").innerHTML = "House Pieces is required.";
+      }
+      if(h_pieces != "")
+      {
+          document.getElementById('h_pieces').style.borderColor = "white";
+          document.getElementById("V_h_pieces").innerHTML = "";
+
+      }
+
+      if(h_grs_weight == "")
+      {
+          document.getElementById('h_grs_weight').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_h_grs_weight").innerHTML = "House Gross Weight is required.";
+      }
+      if(h_grs_weight != "")
+      {
+          document.getElementById('h_grs_weight').style.borderColor = "white";
+          document.getElementById("V_h_grs_weight").innerHTML = "";
+
+      }
+
+      if(h_ch_weight == "")
+      {
+          document.getElementById('h_ch_weight').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_h_ch_weight").innerHTML = "House Charge Weight is required.";
+      }
+      if(h_ch_weight != "")
+      {
+          document.getElementById('h_ch_weight').style.borderColor = "white";
+          document.getElementById("V_h_ch_weight").innerHTML = "";
+
+      }
+
+      if(party == "")
+      {
+          document.getElementById('party').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_party").innerHTML = "Party is required.";
+      }
+      if(party != "")
+      {
+          document.getElementById('party').style.borderColor = "white";
+          document.getElementById("V_party").innerHTML = "";
+
+      }
+
+      if(foreign_party == "")
+      {
+          document.getElementById('foreign_party').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_foreign_party").innerHTML = "Foreign Party is required.";
+      }
+      if(foreign_party != "")
+      {
+          document.getElementById('foreign_party').style.borderColor = "white";
+          document.getElementById("V_foreign_party").innerHTML = "";
+
+      }
+
+      //  if(spo == "")
+      // {
+      //     document.getElementById('spo').style.borderColor = "red";
+      //     missingVal = 1;
+      //     // summary += "Firstname is required.";
+      //     document.getElementById("V_spo").innerHTML = "Spo is required.";
+      // }
+      // if(spo != "")
+      // {
+      //     document.getElementById('spo').style.borderColor = "white";
+      //     document.getElementById("V_spo").innerHTML = "";
+
+      // }
+
+       if(origin == "")
+      {
+          document.getElementById('origin').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_origin").innerHTML = "Origin is required.";
+      }
+      if(origin != "")
+      {
+          document.getElementById('origin').style.borderColor = "white";
+          document.getElementById("V_origin").innerHTML = "";
+
+      }
+
+      if(destination == "")
+      {
+          document.getElementById('destination').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_destination").innerHTML = "Destination is required.";
+      }
+      if(destination != "")
+      { 
+        document.getElementById('destination').style.borderColor = "white";
+          document.getElementById("V_destination").innerHTML = "";
+
+      }
+
+      if(flight_no == "")
+      {
+          document.getElementById('flight_no').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_flight_no").innerHTML = "Flight No. is required.";
+      }
+      if(flight_no != "")
+      {
+          document.getElementById('flight_no').style.borderColor = "white";
+          document.getElementById("V_flight_no").innerHTML = "";
+
+      }
+
+       if(flight_date == "")
+      {
+          document.getElementById('flight_date').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_flight_date").innerHTML = "Flight Date is required.";
+      }
+      if(flight_date != "")
+      {
+          document.getElementById('flight_date').style.borderColor = "white";
+          document.getElementById("V_flight_date").innerHTML = "";
+
+      }
+
+      if(foreign_detail == "")
+      {
+          document.getElementById('foreign_detail').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_foreign_detail").innerHTML = "Foreign Details is required.";
+      }
+      if(foreign_detail != "")
+      {
+          document.getElementById('foreign_detail').style.borderColor = "white";
+          document.getElementById("V_foreign_detail").innerHTML = "";
+
+      }
+
+       if(consignee_detail == "")
+      {
+          document.getElementById('consignee_detail').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_consignee_detail").innerHTML = "Consignee Details is required.";
+      }
+      if(consignee_detail != "")
+      {
+          document.getElementById('consignee_detail').style.borderColor = "white";
+          document.getElementById("V_consignee_detail").innerHTML = "";
+
+      }
+
+     
+
+      if (missingVal != 1)
+      {
+        document.getElementById('m_awb').style.borderColor = "white";
+        document.getElementById('m_date').style.borderColor = "white";
+        document.getElementById('m_pp_cc').style.borderColor = "white";
+        document.getElementById('m_pieces').style.borderColor = "white";
+        document.getElementById('m_grs_weight').style.borderColor = "white";
+        document.getElementById('m_ch_weight').style.borderColor = "white";
+        document.getElementById('h_awb').style.borderColor = "white";
+        document.getElementById('h_date').style.borderColor = "white";
+        document.getElementById('h_pp_cc').style.borderColor = "white";
+        document.getElementById('h_pieces').style.borderColor = "white";
+        document.getElementById('h_grs_weight').style.borderColor = "white";
+        document.getElementById('h_ch_weight').style.borderColor = "white";
+        document.getElementById('party').style.borderColor = "white";
+        document.getElementById('foreign_party').style.borderColor = "white";
+        document.getElementById('spo').style.borderColor = "white";
+        document.getElementById('origin').style.borderColor = "white";
+        document.getElementById('destination').style.borderColor = "white";
+        document.getElementById('flight_no').style.borderColor = "white";
+        document.getElementById('flight_date').style.borderColor = "white";
+        document.getElementById('foreign_detail').style.borderColor = "white";
+        document.getElementById('consignee_detail').style.borderColor = "white";
+       
+        $("#submit_Modal").modal();
+        
+      }
+
+      if (missingVal == 1)
+      {
+        document.getElementById("formSummary").textContent="Error: ";
+      }
+  }
 </script>
 
 
