@@ -7,8 +7,21 @@ $subRibbon = 'addUser';
 $Quick = 'Hide';
 $Quickhr = '';
 
-//  Today date func
+$userID = $_SESSION['user'];
+
+//login user
+$loginUser= $_SESSION['user'];
+// Today date func
 $todayDate = date("Y-m-d");
+
+
+
+$selectLastID1 = mysqli_query($con, "SELECT * FROM chainlog WHERE record_id = '$userID' ORDER BY instance DESC LIMIT 1  ");
+  $rowLastID1 = mysqli_fetch_array($selectLastID1, MYSQLI_ASSOC);
+
+  $lastID1 = $rowLastID1['instance'];
+  $newID1 = $lastID1 + 1;
+  $instance = $newID1;
 
 // auto increment
 $selectLastID = mysqli_query($con, "SELECT * FROM air_import_entry ORDER BY job_no DESC LIMIT 1");
@@ -40,6 +53,11 @@ while ($row= mysqli_fetch_array($selectQurey)) {
 // Add Air Import Submit Btn Event
 if (isset($_POST['submitBtn'])) {
   
+
+  $instance =$instance;
+  $record_id =$user_ID;
+  $createBy =$loginUser;
+  $createDate =$todayDate;
   $job_no = $job_no;
   $so_no = $_POST['so_no'];
   $job_date = $_POST['job_date'];
@@ -129,6 +147,8 @@ if (isset($_POST['submitBtn'])) {
 
 
   $InsertQuery = mysqli_query($con, " INSERT INTO air_import_entry (so_no,job_no,job_date,m_awb,m_date,m_pp_cc,m_pieces,m_grs_weight,m_ch_weight,m_rate,h_awb,h_date,h_pp_cc,h_pieces,h_grs_weight,h_ch_weight,h_rate,description,party,agent_party,foreign_party,spo,origin,destination,flight_no,flight_date,igm_no,igm_date,air_d_o_no,d_o_date,b_e_no,b_e_date,index_no,sub_index_no,e_t_d,e_t_a,l_c,origin_d_o_no,passport_id,foreign_detail,notify_detail,consignee_detail,remarks,nomination,status,remark,fight_term,invoice_f_agent,local_inv,inv_from_f_agent,status_type,checkCurr,exchangeRate_P,sellRate_P,sellAmount_P,sellAmountPKR_P,buyRate_P,buyAmount_P,buyAmountPKR_P,diffAmount_P,diffAmountPKR_P,profitRate_P,profitAmount_P,profitAmountPKR_P,buyRate_F,buyAmount_F,buyAmountPKR_F,sellRate_F,sellAmount_F,sellAmountPKR_F,diffAmount_F,diffAmountPKR_F,profitRate_F,profitAmount_F,profitAmountPKR_F,payableAmount,payableAmountPKR) VALUES ('$so_no','$job_no','$job_date','$m_awb','$m_date','$m_pp_cc','$m_pieces','$m_grs_weight','$m_ch_weight','$m_rate','$h_awb','$h_date','$h_pp_cc','$h_pieces','$h_grs_weight','$h_ch_weight','$h_rate','$description','$party','$agent_party','$foreign_party','$spo','$origin','$destination','$flight_no','$flight_date','$igm_no','$igm_date','$air_d_o_no','$d_o_date','$b_e_no','$b_e_date','$index_no','$sub_index_no','$e_t_d','$e_t_a','$l_c','$origin_d_o_no','$passport_id','$foreign_detail','$notify_detail','$consignee_detail','$remarks','$nomination','$status','$remark','$fight_term','$invoice_f_agent','$local_inv','$inv_from_f_agent','$status_type','$checkCurr','$exchangeRate_P','$sellRate_P','$sellAmount_P','$sellAmountPKR_P','$buyRate_P','$buyAmount_P','$buyAmountPKR_P','$diffAmount_P','$diffAmountPKR_P','$profitRate_P','$profitAmount_P','$profitAmountPKR_P','$buyRate_F','$buyAmount_F','$buyAmountPKR_F','$sellRate_F','$sellAmount_F','$sellAmountPKR_F','$diffAmount_F','$diffAmountPKR_F','$profitRate_F','$profitAmount_F','$profitAmountPKR_F','$payableAmount','$payableAmountPKR') ") or die(mysqli_error($con));
+
+  $insertQuery2 = mysqli_query($con, "insert into chainlog (instance, formName, record_id,createBy, createDate) values ('$newID1', 'Air Import', '$user_ID', '$loginUser', '$todayDate') ");
 
   header("location: add_job_air_import.php");
 
@@ -404,6 +424,73 @@ if (isset($_POST['submitBtn1'])) {
                     </div>
                </div>
 
+               <!-- logChange -->
+               <div class="modal fade symfra_popup2" id="popup_5" role="dialog">
+                    <div class="modal-dialog" style="width: 80%">
+                    
+                      <!-- Modal content-->
+                      <div class="modal-content modal-large ">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Log Change</h4>
+                        </div>
+                        <div class="modal-body">
+                            <table id="logchange_table" class="display nowrap" style="width:100%">
+                             <thead>
+                      <tr>
+                      <th>SrNo</th>
+                      <th>Instance</th>
+                      <th>Record ID</th>
+                      <th>Created By</th>
+                      <th>Created Date</th>
+                      <th>Update By</th>
+                      <th>Update Date</th>
+                      <th>Pervious Value</th>
+                      <th>New Value</th>
+                      </tr>
+
+                     </thead>
+                     <tbody>
+                      <?php
+
+                              include 'manage/connection.php';
+
+                              $selectchainlog = mysqli_query($con, "select * from chainlog where formName = 'Air Import' ");
+
+                              ?>
+                          <?php
+
+                                while ($rowchainlog = mysqli_fetch_array($selectchainlog))
+                                {
+                                ?>
+
+                      <tr>
+                      <td><?php echo $rowchainlog['SrNo']; ?></td>
+                      <td><?php echo $rowchainlog['instance']; ?></td>
+                      <td><?php echo $rowchainlog['record_id']; ?></td>
+                      <td><?php echo $rowchainlog['createBy']; ?></td>
+                      <td><?php echo $rowchainlog['createDate']; ?></td>
+                      <td><?php echo $rowchainlog['updateBy']; ?></td>
+                      <td><?php echo $rowchainlog['updateDate']; ?></td>
+                      <td><?php echo $rowchainlog['perValue']; ?></td>
+                      <td><?php echo $rowchainlog['newValue']; ?></td>
+                      </tr>
+                      <?php
+                     }
+                     ?>
+                     </tbody>
+
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <p>Add Related content if needed</p>
+                          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                        </div>
+                      </div>
+                      
+                    </div>
+              </div>
+
        <label id="formSummary" style="color: red;"></label>
           <p id="V_m_awb" style="color: red;"></p>
             <p id="V_m_date" style="color: red;"></p>
@@ -469,35 +556,35 @@ if (isset($_POST['submitBtn1'])) {
 
                 <table  id="aimport_form_table" class="display nowrap no-footer" style="width:100%">
                                                                   
-                                                                 <thead>
-                                                                            <tr>
-                                                                              <th></th>
-                                                                              <th>AWB No.</th>
-                                                                              <th>Date</th>
-                                                                              <th>PP/CC</th>
-                                                                              <th>Pieces</th>
-                                                                              <th>Grs. Weight</th>
-                                                                              <th>Ch.Weight</th>
-                                                                              <th>Rate</th>
-                                                                            </tr>
-                                                                  </thead>
-                                                                  <tbody>   
-                                                                             <tr>
-                                                                              <th>MawB No.</th>
-                                                                              <td> <input type="text" id="m_awb" name="m_awb" value="<?php echo $m_awb2; ?>"></td>
-                                                                              <td> <input type="date" name="m_date" id="m_date" value="<?php echo $m_date2 ?>"></td>
-                                                                              <td> <select name="m_pp_cc" id="m_pp_cc" >
-                                                                                <option value="<?php echo $m_pp_cc2; ?>"><?php echo $m_pp_cc2; ?></option>
-                                                                                <option value="<?php echo $m_pp_cc2; ?>"><?php echo $m_pp_cc2; ?></option>
-                                                                              </select></td>
-                                                                              <td> <input type="text" name="m_pieces" id="m_pieces" value="<?php echo $m_pieces2; ?>"></td>
-                                                                              <td> <input type="text" id="m_grs_weight" name="m_grs_weight" value="<?php echo $m_grs_weight2; ?>"></td>
-                                                                              <td> <input type="text" name="m_ch_weight" id="m_ch_weight" value="<?php echo $m_ch_weight2; ?>"></td>
-                                                                              <td> <input type="text" name="m_rate" id="m_rate" value="<?php echo $m_rate2; ?>"></td>
-                                                                              <!-- <td rowspan="2"><textarea name="description"></textarea></td> -->                      
-                                                                             </tr>
+                           <thead>
+                                      <tr>
+                                        <th></th>
+                                        <th>AWB No.</th>
+                                        <th>Date</th>
+                                        <th>PP/CC</th>
+                                        <th>Pieces</th>
+                                        <th>Grs. Weight</th>
+                                        <th>Ch.Weight</th>
+                                        <th>Rate</th>
+                                      </tr>
+                            </thead>
+                            <tbody>   
+                                       <tr>
+                                        <th>MawB No.</th>
+                                        <td> <input type="text" id="m_awb" name="m_awb" value="<?php echo $m_awb2; ?>"></td>
+                                        <td> <input type="date" name="m_date" id="m_date" value="<?php echo $m_date2 ?>"></td>
+                                        <td> <select name="m_pp_cc" id="m_pp_cc" >
+                                          <option value="<?php echo $m_pp_cc2; ?>"><?php echo $m_pp_cc2; ?></option>
+                                          <option value="<?php echo $m_pp_cc2; ?>"><?php echo $m_pp_cc2; ?></option>
+                                        </select></td>
+                                        <td> <input type="text" name="m_pieces" id="m_pieces" value="<?php echo $m_pieces2; ?>"></td>
+                                        <td> <input type="text" id="m_grs_weight" name="m_grs_weight" value="<?php echo $m_grs_weight2; ?>"></td>
+                                        <td> <input type="text" name="m_ch_weight" id="m_ch_weight" value="<?php echo $m_ch_weight2; ?>"></td>
+                                        <td> <input type="text" name="m_rate" id="m_rate" value="<?php echo $m_rate2; ?>"></td>
+                                        <!-- <td rowspan="2"><textarea name="description"></textarea></td> -->                      
+                                       </tr>
 
-                                                                             <tr>
+                                       <tr>
                                       <th>HAWB No.</th>
                                       <td> <input   type="text" name="h_awb" maxlength="12" id="h_awb"><span class="steric">*</span></td>
                                       <td> <input   type="date" name="h_date" id="h_date"><span class="steric">*</span></td>
