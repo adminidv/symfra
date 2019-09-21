@@ -7,6 +7,12 @@ $subRibbon = 'addUser';
 $Quick = 'Hide';
 $Quickhr = '';
 
+
+
+//login user
+$loginUser= $_SESSION['user'];
+// Today date func
+$todayDate = date("Y-m-d");
 // After Submit
 //$empNo = $_GET['empNo'];
 $userNo = $_GET['id'];
@@ -133,8 +139,8 @@ if(isset($_POST['updateBtn']))
                   $h_ch_weight = $_POST['h_ch_weight'];
                   $h_rate = $_POST['h_rate'];
                   $description = $_POST['description'];
-                  $party = $_POST['party'];   
-                  $agent_party = $_POST['agent_party'];
+                  $party = $_POST['party'];
+                  $agent_party =$_POST['agent_party'];  
                   $foreign_party = $_POST['foreign_party'];
                   $spo = $_POST['spo'];
                   $origin = $_POST['origin'];
@@ -165,7 +171,7 @@ if(isset($_POST['updateBtn']))
                   $invoice_f_agent = $_POST['invoice_f_agent'];
                   $local_inv = $_POST['local_inv'];
                   $inv_from_f_agent = $_POST['inv_from_f_agent'];
-                  $status_type = $_POST['status_type'];
+                  $status_type =  $_POST['status_type'];
                   $checkCurr = $_POST['checkCurr'];
                   $exchangeRate = $_POST['exchangeRate_P'];
                   $sellRate = $_POST['sellRate_P'];
@@ -193,476 +199,987 @@ if(isset($_POST['updateBtn']))
                   $payableAmount = $_POST['payableAmount'];
                   $payableAmountPKR = $_POST['payableAmountPKR'];
 
-  $clause = " WHERE SrNo='$userNo'";
-  $initQuery = "UPDATE air_import_entry SET so_no='$so_no' ";
-
-  if ($job_no != $job_no_p)
-  {
-    $initQuery .= ", job_no='$job_no'";
-  }
-  if ($job_date != $job_date_p)
-  {
-    $initQuery .= ", job_date='$job_date'";
-  }
-  if ($m_awb != $m_awb_p)
-  {
-    $initQuery .= ", m_awb='$m_awb'";
-  }
-  if ($m_date != $m_date_p)
-  {
-    $initQuery .= ", m_date='$m_date'";
-  }
-  if ($m_pp_cc!= $m_pp_cc_p)
-  {
-    $initQuery .= ",m_pp_cc='$m_pp_cc'";
-  }    
-  if ($m_pieces != $m_pieces_p)
-  {
-    $initQuery .= ", m_pieces='$m_pieces'";
-  }  
-
-  if ($m_grs_weight != $m_grs_weight_p)
-  {
-    $initQuery .= ", m_grs_weight='$m_grs_weight'";
-  }  
-  if ($m_ch_weight != $m_ch_weight_p)
-  {
-    $initQuery .= ", m_ch_weight='$m_ch_weight'";
-  }
-  if ($m_rate != $m_rate_p)
-  {
-    $initQuery .= ", m_rate='$m_rate'";
-  }
-
-  if ($h_date != $h_date_p)
-  {
-    $initQuery .= ", h_date='$h_date'";
-  }
-
-    if ($h_pp_cc != $h_pp_cc_p)
-  {
-    $initQuery .= ", h_pp_cc='$h_pp_cc'";
-  }
-
-    if ($h_pieces != $h_pieces_p)
-  {
-    $initQuery .= ", h_pieces='$h_pieces'";
-  }
-
-    if ($h_grs_weight != $h_grs_weight_p)
-  {
-    $initQuery .= ", h_grs_weight='$h_grs_weight'";
-  }
-
-    if ($h_ch_weight != $h_ch_weight_p)
-  {
-    $initQuery .= ", h_ch_weight='$h_ch_weight'";
-  }
-
-    if ($h_rate != $h_rate_p)
-  {
-    $initQuery .= ", h_rate='$h_rate'";
-  }
-  if ($description != $description_p)
-  {
-    $initQuery .= ", description='$description'";
-  }
-
-    if ($party != $party_p)
-  {
-    $initQuery .= ", party='$party'";
-  }
-
-
-    if ($agent_party != $agent_party_p)
-  {
-    $initQuery .= ", agent_party='$agent_party'";
-  }
-
-
-    if ($foreign_party != $foreign_party_p)
-  {
-    $initQuery .= ", foreign_party='$foreign_party'";
-  }
-
-
-    if ($spo != $spo_p)
-  {
-    $initQuery .= ", spo='$spo'";
-  }
-
-
-
-    if ($origin != $origin_p)
-  {
-    $initQuery .= ", origin='$origin'";
-  }
-
-    if ($destination != $destination_p)
-  {
-    $initQuery .= ", destination='$destination'";
-  }
-
-    if ($flight_no != $flight_no_p)
-  {
-    $initQuery .= ", flight_no='$flight_no'";
-  }
-
-    if ($flight_date != $flight_date_p)
-  {
-    $initQuery .= ", flight_date='$flight_date'";
-  }
-
-    if ($igm_no != $igm_no_p)
-  {
-    $initQuery .= ", igm_no='$igm_no'";
-  }
-
-    if ($igm_date != $igm_date_p)
-  {
-    $initQuery .= ", igm_date='$igm_date'";
-  }
-
-
-    if ($air_d_o_no != $air_d_o_no_p)
-  {
-    $initQuery .= ", air_d_o_no='$air_d_o_no'";
-  }
-
-    if ($d_o_date != $d_o_date_p)
-  {
-    $initQuery .= ", d_o_date='$d_o_date'";
-  }
-
-    if ($b_e_no != $b_e_no_p)
-  {
-    $initQuery .= ", b_e_no='$b_e_no'";
-  }
-
-    if ($b_e_date != $b_e_date_p)
-  {
-    $initQuery .= ", b_e_date='$b_e_date'";
-  }
-
-    if ($index_no != $index_no_p)
-  {
-    $initQuery .= ", index_no='$index_no'";
-  }
-
-
-
-    if ($sub_index_no != $sub_index_no_p)
-  {
-    $initQuery .= ", sub_index_no='$sub_index_no'";
-  }
-
-
-
-    if ($e_t_d != $e_t_d_p)
-  {
-    $initQuery .= ", e_t_d='$e_t_d'";
-  }
-
-
-
-    if ($e_t_a != $e_t_a_p)
-  {
-    $initQuery .= ", e_t_a='$e_t_a'";
-  }
-
-
-
-    if ($l_c != $l_c_p)
-  {
-    $initQuery .= ", l_c='$l_c'";
-  }
-
-
-
-    if ($origin_d_o_no != $origin_d_o_no_p)
-  {
-    $initQuery .= ", origin_d_o_no='$origin_d_o_no'";
-  }
-
-
-    if ($passport_id != $passport_id_p)
-  {
-    $initQuery .= ", passport_id='$passport_id'";
-  }
-
-
-    if ($foreign_detail != $foreign_detail_p)
-  {
-    $initQuery .= ", foreign_detail='$foreign_detail'";
-  }
-
-
-    if ($notify_detail != $notify_detail_p)
-  {
-    $initQuery .= ", notify_detail='$notify_detail'";
-  }
-
-
-    if ($consignee_detail != $consignee_detail_p)
-  {
-    $initQuery .= ", consignee_detail='$consignee_detail'";
-  }
-
-
-
-    if ($remarks != $remarks_p)
-  {
-    $initQuery .= ", remarks='$remarks'";
-  }
-
-
-
-    if ($nomination != $nomination_p)
-  {
-    $initQuery .= ", nomination='$nomination'";
-  }
-
-
-
-    if ($status != $status_p)
-  {
-    $initQuery .= ", status='$status'";
-  }
-
-
-
-    if ($remark != $remark_p)
-  {
-    $initQuery .= ", remark='$remark'";
-  }
-
-
-
-    if ($fight_term != $fight_term_p)
-  {
-    $initQuery .= ", fight_term='$fight_term'";
-  }
-
-    if ($invoice_f_agent != $invoice_f_agent_p)
-  {
-    $initQuery .= ", invoice_f_agent='$invoice_f_agent'";
-  }
-
-
-     if ($local_inv_p != $local_inv_p)
-  {
-    $initQuery .= ", local_inv_p='$local_inv_p'";
-  }
-
-
-     if ($inv_from_f_agent != $inv_from_f_agent_p)
-  {
-    $initQuery .= ", inv_from_f_agent='$inv_from_f_agent'";
-  }
-
-     if ($status_type != $status_type_p)
-  {
-    $initQuery .= ", status_type='$status_type'";
-  }
-
-
-     if ($checkCurr != $checkCurr_p)
-  {
-    $initQuery .= ", checkCurr='$checkCurr'";
-  }
-
-
-     if ($exchangeRate != $exchangeRate_p)
-  {
-    $initQuery .= ", exchangeRate='$exchangeRate'";
-  }
-
-
-     if ($sellRate != $sellRate_p)
-  {
-    $initQuery .= ", sellRate='$sellRate'";
-  }
-
-
-     if ($sellAmount != $sellAmount_p)
-  {
-    $initQuery .= ", sellAmount='$sellAmount'";
-  }
-
-
-     if ($sellAmountPKR != $sellAmountPKR_p)
-  {
-    $initQuery .= ", sellAmountPKR='$sellAmountPKR'";
-  }
-
-
-
-     if ($buyRate != $buyRate_p)
-  {
-    $initQuery .= ", buyRate='$buyRate'";
-  }
-
-
-
-     if ($buyAmount != $buyAmount_p)
-  {
-    $initQuery .= ", buyAmount='$buyAmount'";
-  }
-
-
-     if ($buyAmountPKR != $buyAmountPKR_p)
-  {
-    $initQuery .= ", buyAmountPKR='$buyAmountPKR'";
-  }
-
-
-     if ($fight_term != $fight_term_p)
-  {
-    $initQuery .= ", fight_term='$fight_term'";
-  } 
-
-
-     if ($diffAmount != $diffAmount_p)
-  {
-    $initQuery .= ", diffAmount='$diffAmount'";
-  }
-
-
-     if ($diffAmount != $diffAmount_p)
-  {
-    $initQuery .= ", diffAmount='$diffAmount'";
-  }
-
-
-     if ($diffAmountPKR != $diffAmountPKR_p)
-  {
-    $initQuery .= ", diffAmountPKR='$diffAmountPKR'";
-  }
-
-
-     if ($profitRate != $profitRate_p)
-  {
-    $initQuery .= ", profitRate='$profitRate'";
-  }
-
-
-     if ($profitAmount != $profitAmount_p)
-  {
-    $initQuery .= ", profitAmount='$profitAmount'";
-  }
-
-
-     if ($profitAmountPKR != $profitAmountPKR_p)
-  {
-    $initQuery .= ", profitAmountPKR='$profitAmountPKR'";
-  }
-
-
-
-     if ($buyRate_F != $buyRate_F_p)
-  {
-    $initQuery .= ", buyRate_F='$buyRate_F'";
-  }
-
-
-     if ($buyAmount_F != $buyAmount_F_p)
-  {
-    $initQuery .= ", buyAmount_F='$buyAmount_F'";
-  }
-
-
-     if ($buyAmountPKR_F != $buyAmountPKR_F_p)
-  {
-    $initQuery .= ", buyAmountPKR_F='$buyAmountPKR_F'";
-  }
-
-
-
-     if ($sellRate_F != $sellRate_F_p)
-  {
-    $initQuery .= ", sellRate_F='$sellRate_F'";
-  }
-
-
-
-
-     if ($sellAmount_F != $sellAmount_F_p)
-  {
-    $initQuery .= ", sellAmount_F='$sellAmount_F'";
-  }
-
-
-
-
-     if ($sellAmountPKR_F_p != $sellAmountPKR_F_p)
-  {
-    $initQuery .= ", sellAmountPKR_F_p='$sellAmountPKR_F_p'";
-  }
-
-
-
-
-     if ($sellAmountPKR_F != $sellAmountPKR_F_p)
-  {
-    $initQuery .= ", sellAmountPKR_F='$sellAmountPKR_F'";
-  }
-
-
-
-     if ($diffAmount_F != $diffAmount_F_p)
-  {
-    $initQuery .= ", diffAmount_F='$diffAmount_F'";
-  }
-
-
-     if ($diffAmount_F != $diffAmount_F_p)
-  {
-    $initQuery .= ", diffAmount_F='$diffAmount_F'";
-  }
-
-
-     if ($diffAmountPKR_F != $diffAmountPKR_F_p)
-  {
-    $initQuery .= ", diffAmountPKR_F='$diffAmountPKR_F'";
-  }
-
-
-     if ($profitRate_F != $profitRate_F_p)
-  {
-    $initQuery .= ", profitRate_F='$profitRate_F'";
-  }
-
-     if ($profitAmount_F != $profitAmount_F_p)
-  {
-    $initQuery .= ", profitAmount_F='$profitAmount_F'";
-  }
-
-     if ($profitAmountPKR_F != $profitAmountPKR_F_p)
-  {
-    $initQuery .= ", profitAmountPKR_F='$profitAmountPKR_F'";
-  }
-
-
-     if ($payableAmount != $payableAmount_p)
-  {
-    $initQuery .= ", payableAmount='$payableAmount'";
-  }
-
-
-     if ($payableAmountPKR != $payableAmountPKR_p)
-  {
-    $initQuery .= ", payableAmountPKR='$payableAmountPKR'";
-  }
-
-
-
-  
-  $finalQuery = $initQuery . $clause;
-  // echo $finalQuery;
-
-  mysqli_query($con, $finalQuery) or die(mysqli_error($con));
-
-  header("Location: add_job_air_import_Edit.php?id=" . $userNo);
+                  $clause = " WHERE SrNo='$userNo'";
+                  $initQuery = "UPDATE air_import_entry SET SrNo='$userNo'";
+
+                      // change log
+                  $selectLastID1 = mysqli_query($con, "SELECT * FROM chainlog WHERE record_id = '$userNo' ORDER BY instance DESC LIMIT 1  ");
+                  $rowLastID1 = mysqli_fetch_array($selectLastID1, MYSQLI_ASSOC);
+
+                  $lastID1 = $rowLastID1['instance'];
+                  $newID1 = $lastID1 + 1;
+                  $instance = $newID1;
+
+                  $selectCreate = mysqli_query($con, "SELECT * FROM chainlog WHERE record_id = '$userNo' ");
+                  while ($rowCreate = mysqli_fetch_array($selectCreate))
+                  {
+                  if ($rowCreate['createBy'] != "")
+                  {
+                    $createBy = $rowCreate['createBy'];
+                  }
+                  if ($rowCreate['createDate'] != "")
+                  {
+                    $createDate = $rowCreate['createDate'];
+                  }
+                  }
+
+                  $initChangeLog = "INSERT INTO chainlog (instance, formName, record_id, createBy, createDate, updateBy, updateDate, perValue, newValue)";
+                  $initChangeLog .= " VALUES ('$newID1', 'Air Import', '$userNo', '$createBy', '$createDate', '$loginUser', '$todayDate'";
+
+                       if ($so_no != $so_no_p)
+                      {
+                        $initQuery .= ", so_no='$so_no'";
+                        $initChangeLog2 = ", '$so_no_p', '$so_no') ";
+
+                         // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+                      if ($job_no != $job_no_p)
+                      {
+                        $initQuery .= ", job_no='$job_no'";
+                        $initChangeLog2 = ", '$job_no_p', '$job_no') ";
+
+                         // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+                      if ($job_date != $job_date_p)
+                      {
+                        $initQuery .= ", job_date='$job_date'";
+                        $initChangeLog2 = ", '$job_date_p', '$job_date') ";
+
+                         // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+
+                      }
+                      if ($m_awb != $m_awb_p)
+                      {
+                        $initQuery .= ", m_awb='$m_awb'";
+                        $initChangeLog2 = ", '$m_awb_p', '$m_awb') ";
+
+                         // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+                      if ($m_date != $m_date_p)
+                      {
+                        $initQuery .= ", m_date='$m_date'";
+                        $initChangeLog2 = ", '$m_date_p', '$m_date') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+                      if ($m_pp_cc!= $m_pp_cc_p)
+                      {
+                        $initQuery .= ",m_pp_cc='$m_pp_cc'";
+                        $initChangeLog2 = ", '$m_pp_cc_p', '$m_pp_cc') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }    
+                      if ($m_pieces != $m_pieces_p)
+                      {
+                        $initQuery .= ", m_pieces='$m_pieces'";
+                        $initChangeLog2 = ", '$m_pieces_p', '$m_pieces') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }  
+
+                      if ($m_grs_weight != $m_grs_weight_p)
+                      {
+                        $initQuery .= ", m_grs_weight='$m_grs_weight'";
+                        $initChangeLog2 = ", '$m_grs_weight_p', '$m_grs_weight') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }  
+                      if ($m_ch_weight != $m_ch_weight_p)
+                      {
+                        $initQuery .= ", m_ch_weight='$m_ch_weight'";
+                        $initChangeLog2 = ", '$m_ch_weight_p', '$m_ch_weight') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+                      if ($m_rate != $m_rate_p)
+                      {
+                        $initQuery .= ", m_rate='$m_rate'";
+                        $initChangeLog2 = ", '$m_rate_p', '$m_rate') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+                      if ($h_awb != $h_awb_p)
+                      {
+                        $initQuery .= ", h_awb='$h_awb'";
+                        $initChangeLog2 = ", '$h_awb_p', '$h_awb') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+                      if ($h_date != $h_date_p)
+                      {
+                        $initQuery .= ", h_date='$h_date'";
+                        $initChangeLog2 = ", '$h_date_p', '$h_date') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+                        if ($h_pp_cc != $h_pp_cc_p)
+                      {
+                        $initQuery .= ", h_pp_cc='$h_pp_cc'";
+                        $initChangeLog2 = ", '$h_pp_cc_p', '$h_pp_cc') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+                        if ($h_pieces != $h_pieces_p)
+                      {
+                        $initQuery .= ", h_pieces='$h_pieces'";
+                        $initChangeLog2 = ", '$h_pieces_p', '$h_pieces') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+                        if ($h_grs_weight != $h_grs_weight_p)
+                      {
+                        $initQuery .= ", h_grs_weight='$h_grs_weight'";
+                        $initChangeLog2 = ", '$h_grs_weight_p', '$h_grs_weight') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+                        if ($h_ch_weight != $h_ch_weight_p)
+                      {
+                        $initQuery .= ", h_ch_weight='$h_ch_weight'";
+                        $initChangeLog2 = ", '$h_ch_weight_p', '$h_ch_weight') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+                        if ($h_rate != $h_rate_p)
+                      {
+                        $initQuery .= ", h_rate='$h_rate'";
+                        $initChangeLog2 = ", '$h_rate_p', '$h_rate') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+                      if ($description != $description_p)
+                      {
+                        $initQuery .= ", description='$description'";
+                        $initChangeLog2 = ", '$description_p', '$description') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+                        if ($party != $party_p)
+                      {
+                        $initQuery .= ", party='$party'";
+                        $initChangeLog2 = ", '$party_p', '$party') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+                        if ($agent_party != $agent_party_p)
+                      {
+                        $initQuery .= ", agent_party='$agent_party'";
+                        $initChangeLog2 = ", '$agent_party_p', '$agent_party') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+                        if ($foreign_party != $foreign_party_p)
+                      {
+                        $initQuery .= ", foreign_party='$foreign_party'";
+                        $initChangeLog2 = ", '$foreign_party_p', '$foreign_party') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+                        if ($spo != $spo_p)
+                      {
+                        $initQuery .= ", spo='$spo'";
+                        $initChangeLog2 = ", '$spo_p', '$spo') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+
+                        if ($origin != $origin_p)
+                      {
+                        $initQuery .= ", origin='$origin'";
+                        $initChangeLog2 = ", '$origin_p', '$origin') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+                        if ($destination != $destination_p)
+                      {
+                        $initQuery .= ", destination='$destination'";
+                        $initChangeLog2 = ", '$destination_p', '$destination') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+                        if ($flight_no != $flight_no_p)
+                      {
+                        $initQuery .= ", flight_no='$flight_no'";
+                        $initChangeLog2 = ", '$flight_no_p', '$flight_no') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+                        if ($flight_date != $flight_date_p)
+                      {
+                        $initQuery .= ", flight_date='$flight_date'";
+                        $initChangeLog2 = ", '$flight_date_p', '$flight_date') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+                        if ($igm_no != $igm_no_p)
+                      {
+                        $initQuery .= ", igm_no='$igm_no'";
+                        $initChangeLog2 = ", '$igm_no_p', '$igm_no') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+                        if ($igm_date != $igm_date_p)
+                      {
+                        $initQuery .= ", igm_date='$igm_date'";
+                        $initChangeLog2 = ", '$igm_date_p', '$igm_date') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+                        if ($air_d_o_no != $air_d_o_no_p)
+                      {
+                        $initQuery .= ", air_d_o_no='$air_d_o_no'";
+                        $initChangeLog2 = ", '$air_d_o_no_p', '$air_d_o_no') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+                        if ($d_o_date != $d_o_date_p)
+                      {
+                        $initQuery .= ", d_o_date='$d_o_date'";
+                        $initChangeLog2 = ", '$d_o_date_p', '$d_o_date') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+                        if ($b_e_no != $b_e_no_p)
+                      {
+                        $initQuery .= ", b_e_no='$b_e_no'";
+                        $initChangeLog2 = ", '$b_e_no_p', '$b_e_no') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+                        if ($b_e_date != $b_e_date_p)
+                      {
+                        $initQuery .= ", b_e_date='$b_e_date'";
+                        $initChangeLog2 = ", '$b_e_date_p', '$b_e_date') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+                        if ($index_no != $index_no_p)
+                      {
+                        $initQuery .= ", index_no='$index_no'";
+                        $initChangeLog2 = ", '$index_no_p', '$index_no') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+
+                        if ($sub_index_no != $sub_index_no_p)
+                      {
+                        $initQuery .= ", sub_index_no='$sub_index_no'";
+                        $initChangeLog2 = ", '$sub_index_no_p', '$sub_index_no') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+
+                        if ($e_t_d != $e_t_d_p)
+                      {
+                        $initQuery .= ", e_t_d='$e_t_d'";
+                        $initChangeLog2 = ", '$e_t_d_p', '$e_t_d') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+
+                        if ($e_t_a != $e_t_a_p)
+                      {
+                        $initQuery .= ", e_t_a='$e_t_a'";
+                        $initChangeLog2 = ", '$e_t_a_p', '$e_t_a') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+
+                        if ($l_c != $l_c_p)
+                      {
+                        $initQuery .= ", l_c='$l_c'";
+                        $initChangeLog2 = ", '$l_c_p', '$l_c') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+
+                        if ($origin_d_o_no != $origin_d_o_no_p)
+                      {
+                        $initQuery .= ", origin_d_o_no='$origin_d_o_no'";
+                        $initChangeLog2 = ", '$origin_d_o_no_p', '$origin_d_o_no') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+                        if ($passport_id != $passport_id_p)
+                      {
+                        $initQuery .= ", passport_id='$passport_id'";
+                        $initChangeLog2 = ", '$passport_id_p', '$passport_id') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+                        if ($foreign_detail != $foreign_detail_p)
+                      {
+                        $initQuery .= ", foreign_detail='$foreign_detail'";
+                        $initChangeLog2 = ", '$foreign_detail_p', '$foreign_detail') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+                        if ($notify_detail != $notify_detail_p)
+                      {
+                        $initQuery .= ", notify_detail='$notify_detail'";
+                        $initChangeLog2 = ", '$notify_detail_p', '$notify_detail') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+                        if ($consignee_detail != $consignee_detail_p)
+                      {
+                        $initQuery .= ", consignee_detail='$consignee_detail'";
+                        $initChangeLog2 = ", '$consignee_detail_p', '$consignee_detail') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+
+                        if ($remarks != $remarks_p)
+                      {
+                        $initQuery .= ", remarks='$remarks'";
+                        $initChangeLog2 = ", '$remarks_p', '$remarks') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+
+                        if ($nomination != $nomination_p)
+                      {
+                        $initQuery .= ", nomination='$nomination'";
+                        $initChangeLog2 = ", '$nomination_p', '$nomination') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+
+                        if ($status != $status_p)
+                      {
+                        $initQuery .= ", status='$status'";
+                        $initChangeLog2 = ", '$status_p', '$status') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+
+                        if ($remark != $remark_p)
+                      {
+                        $initQuery .= ", remark='$remark'";
+                        $initChangeLog2 = ", '$remark_p', '$remark') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+
+                        if ($fight_term != $fight_term_p)
+                      {
+                        $initQuery .= ", fight_term='$fight_term'";
+                        $initChangeLog2 = ", '$fight_term_p', '$fight_term') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+                        if ($invoice_f_agent != $invoice_f_agent_p)
+                      {
+                        $initQuery .= ", invoice_f_agent='$invoice_f_agent'";
+                        $initChangeLog2 = ", '$invoice_f_agent_p', '$invoice_f_agent') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+                         if ($local_inv != $local_inv_p)
+                      {
+                        $initQuery .= ", local_inv_p='$local_inv'";
+                        $initChangeLog2 = ", '$local_inv_p', '$local_inv') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+                         if ($inv_from_f_agent != $inv_from_f_agent_p)
+                      {
+                        $initQuery .= ", inv_from_f_agent='$inv_from_f_agent'";
+                        $initChangeLog2 = ", '$inv_from_f_agent_p', '$inv_from_f_agent') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+                         if ($status_type != $status_type_p)
+                      {
+                        $initQuery .= ", status_type='$status_type'";
+                        $initChangeLog2 = ", '$status_type_p', '$status_type') ";
+                      }
+
+
+                         if ($checkCurr != $checkCurr_p)
+                      {
+                        $initQuery .= ", checkCurr='$checkCurr'";
+                        $initChangeLog2 = ", '$checkCurr_p', '$checkCurr') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+                         if ($exchangeRate != $exchangeRate_p)
+                      {
+                        $initQuery .= ", exchangeRate='$exchangeRate'";
+                        $initChangeLog2 = ", '$exchangeRate_p', '$exchangeRate') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+                         if ($sellRate != $sellRate_p)
+                      {
+                        $initQuery .= ", sellRate='$sellRate'";
+                        $initChangeLog2 = ", '$sellRate_p', '$sellRate') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+                         if ($sellAmount != $sellAmount_p)
+                      {
+                        $initQuery .= ", sellAmount='$sellAmount'";
+                        $initChangeLog2 = ", '$sellAmount_p', '$sellAmount') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+                         if ($sellAmountPKR != $sellAmountPKR_p)
+                      {
+                        $initQuery .= ", sellAmountPKR='$sellAmountPKR'";
+                        $initChangeLog2 = ", '$sellAmountPKR_p', '$sellAmountPKR') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+
+                         if ($buyRate != $buyRate_p)
+                      {
+                        $initQuery .= ", buyRate='$buyRate'";
+                        $initChangeLog2 = ", '$buyRate_p', '$buyRate') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+
+                         if ($buyAmount != $buyAmount_p)
+                      {
+                        $initQuery .= ", buyAmount='$buyAmount'";
+                        $initChangeLog2 = ", '$buyAmount_p', '$buyAmount') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+                         if ($buyAmountPKR != $buyAmountPKR_p)
+                      {
+                        $initQuery .= ", buyAmountPKR='$buyAmountPKR'";
+                        $initChangeLog2 = ", '$buyAmountPKR_p', '$buyAmountPKR') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+                         if ($fight_term != $fight_term_p)
+                      {
+                        $initQuery .= ", fight_term='$fight_term'";
+                        $initChangeLog2 = ", '$fight_term_p', '$fight_term') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      } 
+
+
+                         if ($diffAmount != $diffAmount_p)
+                      {
+                        $initQuery .= ", diffAmount='$diffAmount'";
+                        $initChangeLog2 = ", '$diffAmount_p', '$diffAmount') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+                      //    if ($diffAmount != $diffAmount_p)
+                      // {
+                      //   $initQuery .= ", diffAmount='$diffAmount'";
+                      //   $initChangeLog2 = ", '$', '$') ";
+                      // }
+
+
+                         if ($diffAmountPKR != $diffAmountPKR_p)
+                      {
+                        $initQuery .= ", diffAmountPKR='$diffAmountPKR'";
+                        $initChangeLog2 = ", '$diffAmountPKR_p', '$diffAmountPKR') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+                         if ($profitRate != $profitRate_p)
+                      {
+                        $initQuery .= ", profitRate='$profitRate'";
+                        $initChangeLog2 = ", '$profitRate_p', '$profitRate') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+                         if ($profitAmount != $profitAmount_p)
+                      {
+                        $initQuery .= ", profitAmount='$profitAmount'";
+                        $initChangeLog2 = ", '$profitAmount_p', '$profitAmount') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+                         if ($profitAmountPKR != $profitAmountPKR_p)
+                      {
+                        $initQuery .= ", profitAmountPKR='$profitAmountPKR'";
+                        $initChangeLog2 = ", '$profitAmountPKR_p', '$profitAmountPKR') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+
+                         if ($buyRate_F != $buyRate_F_p)
+                      {
+                        $initQuery .= ", buyRate_F='$buyRate_F'";
+                        $initChangeLog2 = ", '$buyRate_F_p', '$buyRate_F') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+                         if ($buyAmount_F != $buyAmount_F_p)
+                      {
+                        $initQuery .= ", buyAmount_F='$buyAmount_F'";
+                        $initChangeLog2 = ", '$buyAmount_F_p', '$buyAmount_F') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+                         if ($buyAmountPKR_F != $buyAmountPKR_F_p)
+                      {
+                        $initQuery .= ", buyAmountPKR_F='$buyAmountPKR_F'";
+                        $initChangeLog2 = ", '$buyAmountPKR_F_p', '$buyAmountPKR_F') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+
+                         if ($sellRate_F != $sellRate_F_p)
+                      {
+                        $initQuery .= ", sellRate_F='$sellRate_F'";
+                        $initChangeLog2 = ", '$sellRate_F_p', '$sellRate_F') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+
+
+                         if ($sellAmount_F != $sellAmount_F_p)
+                      {
+                        $initQuery .= ", sellAmount_F='$sellAmount_F'";
+                        $initChangeLog2 = ", '$sellAmount_F_p', '$sellAmount_F') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+
+
+                         if ($sellAmountPKR_F_p != $sellAmountPKR_F_p)
+                      {
+                        $initQuery .= ", sellAmountPKR_F_p='$sellAmountPKR_F_p'";
+                        $initChangeLog2 = ", '$sellAmountPKR_F_p_p', '$sellAmountPKR_F_p') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+
+
+                         if ($sellAmountPKR_F != $sellAmountPKR_F_p)
+                      {
+                        $initQuery .= ", sellAmountPKR_F='$sellAmountPKR_F'";
+                        $initChangeLog2 = ", '$sellAmountPKR_F_p', '$sellAmountPKR_F') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+
+                      //    if ($diffAmount_F != $diffAmount_F_p)
+                      // {
+                      //   $initQuery .= ", diffAmount_F='$diffAmount_F'";
+                      //   $initChangeLog2 = ", '$', '$') ";
+                      // }
+
+
+                         if ($diffAmount_F != $diffAmount_F_p)
+                      {
+                        $initQuery .= ", diffAmount_F='$diffAmount_F'";
+                        $initChangeLog2 = ", '$diffAmount_F_p', '$diffAmount_F') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+                         if ($diffAmountPKR_F != $diffAmountPKR_F_p)
+                      {
+                        $initQuery .= ", diffAmountPKR_F='$diffAmountPKR_F'";
+                        $initChangeLog2 = ", '$diffAmountPKR_F_p', '$diffAmountPKR_F') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+                         if ($profitRate_F != $profitRate_F_p)
+                      {
+                        $initQuery .= ", profitRate_F='$profitRate_F'";
+                        $initChangeLog2 = ", '$profitRate_F_p', '$profitRate_F') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+                         if ($profitAmount_F != $profitAmount_F_p)
+                      {
+                        $initQuery .= ", profitAmount_F='$profitAmount_F'";
+                        $initChangeLog2 = ", '$profitAmount_F_p', '$profitAmount_F') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+                         if ($profitAmountPKR_F != $profitAmountPKR_F_p)
+                      {
+                        $initQuery .= ", profitAmountPKR_F='$profitAmountPKR_F'";
+                        $initChangeLog2 = ", '$profitAmountPKR_F_p', '$profitAmountPKR_F') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+                         if ($payableAmount != $payableAmount_p)
+                      {
+                        $initQuery .= ", payableAmount='$payableAmount'";
+                        $initChangeLog2 = ", '$payableAmount_p', '$payableAmount') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+                         if ($payableAmountPKR != $payableAmountPKR_p)
+                      {
+                        $initQuery .= ", payableAmountPKR='$payableAmountPKR'";
+                        $initChangeLog2 = ", '$payableAmountPKR_p', '$payableAmountPKR') ";
+                        // qurey..
+                      $finalChangeLog = $initChangeLog . $initChangeLog2;
+                      
+
+                      mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+                      }
+
+
+                      
+                      $finalQuery = $initQuery . $clause;
+                      // echo $finalQuery;
+
+                      mysqli_query($con, $finalQuery) or die(mysqli_error($con));
+
+                      
+
+                        header("Location: add_job_air_import_Edit.php?id=" . $userNo);
 
 
 }
@@ -674,7 +1191,7 @@ if(isset($_POST['updateBtn']))
 <!DOCTYPE html>
 <html>
 <head>
-	 <title>Air Import (Job Entry) </title>
+   <title>Air Import (Job Entry) </title>
   <link rel="shortcut icon" type="image/png" href="./images/favicon.png">
   <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
   <link rel="stylesheet" href="css/font-awesome.css" type="text/css">
@@ -798,9 +1315,9 @@ if(isset($_POST['updateBtn']))
 </div>
 
 <div class="main_widget_box">
-	<div class>
-									<!-- <hr> -->
-		<form action method="POST" enctype="multipart/form-data">
+  <div class>
+                  <!-- <hr> -->
+    <form action="" method="POST" enctype="multipart/form-data">
 
 
         <!-- Modal One-->
@@ -853,9 +1370,91 @@ if(isset($_POST['updateBtn']))
           </div>
        </div>
 
-              
+              <!-- Show Log Chain -->
+      <div class="modal fade symfra_popup2" id="logUser_Modal" role="dialog">
+            <div class="modal-dialog">
+              <!-- Show Log Chain -->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Log Chain Details</h4>
+                </div>
 
-			 <label id="formSummary" style="color: red;"></label>
+                  <table id="dpttable" class="display nowrap no-footer" style="width:100%">
+                     
+                     <thead>
+                      <tr>
+                      <th>SrNo</th>
+                      <th>Instance</th>
+                      <th>Record ID</th>
+                      <th>Created By</th>
+                      <th>Created Date</th>
+                      <th>Update By</th>
+                      <th>Update Date</th>
+                      <th>Pervious Value</th>
+                      <th>New Value</th>
+                      </tr>
+
+                     </thead>
+                     <tbody>
+                      <?php
+
+                              include 'manage/connection.php';
+
+                              $selectchainlog = mysqli_query($con, "select * from chainlog where formName = 'Air Import' ");
+
+                              ?>
+                          <?php
+
+                                while ($rowchainlog = mysqli_fetch_array($selectchainlog))
+                                {
+                                ?>
+
+                      <tr>
+                      <td><?php echo $rowchainlog['SrNo']; ?></td>
+                      <td><?php echo $rowchainlog['instance']; ?></td>
+                      <td><?php echo $rowchainlog['record_id']; ?></td>
+                      <td><?php echo $rowchainlog['createBy']; ?></td>
+                      <td><?php echo $rowchainlog['createDate']; ?></td>
+                      <td><?php echo $rowchainlog['updateBy']; ?></td>
+                      <td><?php echo $rowchainlog['updateDate']; ?></td>
+                      <td><?php echo $rowchainlog['perValue']; ?></td>
+                      <td><?php echo $rowchainlog['newValue']; ?></td>
+                      </tr>
+                      <?php
+                     }
+                     ?>
+                     </tbody>
+
+                  </table>
+                
+              </div>
+              
+            </div>
+        </div>
+
+            <label id="formSummary" style="color: red;"></label>
+            <p id="V_m_awb" style="color: red;"></p>
+            <p id="V_m_date" style="color: red;"></p>
+            <p id="V_m_pp_cc" style="color: red;"></p>
+            <p id="V_m_pieces" style="color: red;"></p>
+            <p id="V_m_grs_weight" style="color: red;"></p>
+            <p id="V_m_ch_weight" style="color: red;"></p>
+            <p id="V_h_awb" style="color: red;"></p>
+            <p id="V_h_date" style="color: red;"></p>
+            <p id="V_h_pp_cc" style="color: red;"></p>
+            <p id="V_h_pieces" style="color: red;"></p>
+            <p id="V_h_grs_weight" style="color: red;"></p>
+            <p id="V_h_ch_weight" style="color: red;"></p>
+            <p id="V_party" style="color: red;"></p>
+            <p id="V_foreign_party" style="color: red;"></p>
+            <p id="V_spo" style="color: red;"></p>
+            <p id="V_origin" style="color: red;"></p>
+            <p id="V_destination" style="color: red;"></p>
+            <p id="V_flight_no" style="color: red;"></p>
+            <p id="V_flight_date" style="color: red;"></p>
+            <p id="V_foreign_detail" style="color: red;"></p>
+            <p id="V_consignee_detail" style="color: red;"></p>
 
         <div class="widget_iner_box">
               <div class="form_sec_action_btn col-md-12">
@@ -864,7 +1463,8 @@ if(isset($_POST['updateBtn']))
                                           <?php include('inc_widgets/backBtn.php'); ?>
                                           <!-- Go back button code ending here -->
                     </div>
-                    <button type="button" id="btnConfirm_Su" name="btnConfirm_Su" onclick="submitFunc();"> <small>Submit</small></button>
+                    <button type="button" name="saveBtn" onclick="logUserFunc();"> <small>Log Chain</small></button>
+                    <button type="button" id="btnConfirm_Su" name="btnConfirm_Su" onclick="FormValidation();"> <small>Submit</small></button>
                     <button type="button" name="btnConfirm_S" onclick="saveFunc();"> <small>Save</small></button>
                     <button type="button" name="submitBtn"> <small>Cancel</small></button>        
                 </div>
@@ -881,7 +1481,7 @@ if(isset($_POST['updateBtn']))
 
                   <div class="input-label"><label>So No</label></div>
                   <div class="input-feild">
-                   <input class="mini_input_field" type="text"  name="so_no" value="<?php echo $so_no_p ?>" >
+                   <input class="mini_input_field" type="text"  name="so_no" id="so_no" value="<?php echo $so_no_p ?>" >
                   </div>
                 
                 </div>
@@ -890,7 +1490,7 @@ if(isset($_POST['updateBtn']))
                 <div class="col-md-6">
                   <div class="input-label"><label>Job Date</label></div>
                   <div class="input-feild">
-                    <input class="mini_input_field" type="date"  name="job_date" value="<?php echo $job_date_p ?>" >
+                    <input class="mini_input_field" type="date"  name="job_date" id="job_date" value="<?php echo $job_date_p ?>" >
                   </div>
                 </div>
 
@@ -913,33 +1513,33 @@ if(isset($_POST['updateBtn']))
                           <tbody>   
                                    <tr>
                                       <th>MAWB No.</th>
-                                      <td> <input class="mini_input_field"  type="text" name="m_awb" value="<?php echo $m_awb_p ?>"></td>
-                                      <td> <input class="mini_input_field"  type="date" name="m_date" value="<?php echo $m_date_p ?>"></td>
-                                      <td> <select name="m_pp_cc" >
-                                        <option value><?php echo $m_pp_cc_p ?></option>
+                                      <td> <input class="mini_input_field"  type="text" name="m_awb" id="m_awb" value="<?php echo $m_awb_p ?>"maxlength="12"><span class="steric">*</span></td>
+                                      <td> <input class="mini_input_field"  type="date" name="m_date" id="m_date" value="<?php echo $m_date_p ?>" ><span class="steric">*</span></td>
+                                      <td> <select name="m_pp_cc" id="m_pp_cc" >
+                                        <option value="<?php echo $m_pp_cc_p ?>"><?php echo $m_pp_cc_p ?></option>
                                         <option value="pp">pp</option>
                                         <option value="cc">cc</option>
-                                      </select></td>
-                                      <td> <input class="mini_input_field"  type="text" name="m_pieces" value="<?php echo $m_pieces_p ?>"></td>
-                                      <td> <input class="mini_input_field"  type="text" name="m_grs_weight" value="<?php echo $m_grs_weight_p ?>"></td>
-                                      <td> <input class="mini_input_field"  class="mini_input_field"  type="text" name="m_ch_weight" id="m_ch_weight" value="<?php echo $m_ch_weight_p ?>"></td>
-                                      <td> <input class="mini_input_field" type="text" name="m_rate" id="m_rate" value="<?php echo $m_rate_p ?>" onfocusout="calcDetails_Buy_P();"></td>
+                                      </select><span class="steric">*</span></td>
+                                      <td> <input class="mini_input_field"  type="text" name="m_pieces" id="m_pieces" value="<?php echo $m_pieces_p ?>"maxlength="4" ><span class="steric">*</span></td>
+                                      <td> <input class="mini_input_field"  type="text" name="m_grs_weight" id="m_grs_weight" value="<?php echo $m_grs_weight_p ?>"  maxlength="10"><span class="steric">*</span></td>
+                                      <td> <input class="mini_input_field"  class="mini_input_field"  type="text" name="m_ch_weight" id="m_ch_weight" value="<?php echo $m_ch_weight_p ?>"><span class="steric">*</span></td>
+                                      <td> <input class="mini_input_field" type="text"  maxlength="10" name="m_rate" id="m_rate" value="<?php echo $m_rate_p ?>" onfocusout="calcDetails_Buy_P();"></td>
                                       
                                    </tr>  
 
                                    <tr>
                                       <th>HAWB No.</th>
-                                      <td> <input class="mini_input_field"  type="text" name="h_awb" value="<?php echo $h_awb_p ?>"></td>
-                                      <td> <input class="mini_input_field"  type="date" name="h_date" value="<?php echo $h_date_p ?>"> </td>
-                                        <td> <select name="h_pp_cc">
-                                          <option value><?php echo $h_pp_cc_p ?></option>
+                                      <td> <input class="mini_input_field"  type="text" name="h_awb" id="h_awb" value="<?php echo $h_awb_p ?>"maxlength="12" ><span class="steric">*</span></td>
+                                      <td> <input class="mini_input_field"  type="date" name="h_date" id="h_date" value="<?php echo $h_date_p ?>"><span class="steric">*</span> </td>
+                                        <td> <select name="h_pp_cc" id="h_pp_cc">
+                                          <option value="<?php echo $h_pp_cc_p ?>"><?php echo $h_pp_cc_p ?></option>
                                         <option value="pp">pp</option>
                                         <option value="cc">cc</option>
-                                      </select></td>
-                                      <td> <input class="mini_input_field"  type="text" name="h_pieces" value="<?php echo $h_pieces_p ?>"></td>
-                                      <td> <input class="mini_input_field"   type="text" name="h_grs_weight" value="<?php echo $h_grs_weight_p ?>"></td>
-                                      <td> <input class="mini_input_field"  type="text" name="h_ch_weight" id="h_ch_weight" value="<?php echo $h_ch_weight_p ?>"></td>
-                                      <td> <input class="mini_input_field"  type="text" name="h_rate" id="h_rate" value="<?php echo $h_rate_p ?>" onfocusout="calcDetails_Sell_P();"></td>
+                                      </select><span class="steric">*</span></td>
+                                      <td> <input class="mini_input_field"  type="text" name="h_pieces" id="h_pieces" value="<?php echo $h_pieces_p ?>"maxlength="4" ><span class="steric">*</span></td>
+                                      <td> <input class="mini_input_field"  maxlength="10" type="text" name="h_grs_weight" id="h_grs_weight" value="<?php echo $h_grs_weight_p ?>"><span class="steric">*</span></td>
+                                      <td> <input class="mini_input_field"  type="text" name="h_ch_weight" id="h_ch_weight" value="<?php echo $h_ch_weight_p ?>"><span class="steric">*</span></td>
+                                      <td> <input class="mini_input_field"  type="text" name="h_rate" id="h_rate" value="<?php echo $h_rate_p ?>" maxlength="10" onfocusout="calcDetails_Sell_P();"></td>
                                    </tr>
                                                                       
                           </tbody>
@@ -952,44 +1552,26 @@ if(isset($_POST['updateBtn']))
                    
                     <div class="input-label"><label>Goods Description</label></div>
                     <div class="input-feild">
-                    <textarea name="description"  > <?php echo $description_p ?></textarea>
+                    <textarea name="description" maxlength="100" id="description"><?php echo $description_p ?></textarea>
                     </div>
 
                     <div class="input-label"><label>Status</label></div>
                     <div class="input-feild">
-                      <?php
-                      if ($status_type_p == "Active")
-                      {
-                      ?>
-
-                      <input type="checkbox" name="status_type"  id="status_type" checked>
-
-                      <?php
-                      }
-
-                      else
-                      {
-                      ?>
-
-                      <input type="checkbox" name="status_type"  id="status_type">
-
-                      <?php
-                      }
-                      ?>
+                    <input type="checkbox" name="status_type" id="status_type" checked value="<?php echo $status_type_p  ?>"> 
                     
                     </div>
 
                   </div>
         </div>
         <div class="cls"></div>
-        <hr>				
+        <hr>        
 
         <div class="widget_iner_box">         
                <div class="col-md-4">
 
                       <div class="input-label"><label>Party</label></div>
                       <div class="input-feild">
-                        <select name="party"  required>
+                        <select name="party"  id="party">
                           <!-- <option value><?php echo $party ?></option> -->
                           <!-- <option value="Select">Select </option> -->
                           <?php
@@ -1011,13 +1593,13 @@ if(isset($_POST['updateBtn']))
                               echo '<option value="'.$rowSub['SrNo'].'">'.$rowSub['cmpTitle'].'</option>';
                             }
                           ?>
-                      </select>
+                      </select><span class="steric">*</span>
 
                       </div>
 
                       <div class="input-label"><label>Agent Party</label></div>
                       <div class="input-feild">
-                        <select name="agent_party"  required>
+                        <select name="agent_party"  id="agent_party">
                          
                           <?php
 
@@ -1043,7 +1625,7 @@ if(isset($_POST['updateBtn']))
 
                       <div class="input-label"><label>Foreign Agent</label></div>
                       <div class="input-feild">
-                        <select name="foreign_party"  required>
+                        <select name="foreign_party"  id="foreign_party">
                            >
                           <?php
 
@@ -1064,7 +1646,7 @@ if(isset($_POST['updateBtn']))
                               echo '<option value="'.$rowSub['SrNo'].'">'.$rowSub['cmpTitle'].'</option>';
                             }
                           ?>
-                      </select>
+                      </select><span class="steric">*</span>
                       </div>
 
                </div> 
@@ -1073,7 +1655,7 @@ if(isset($_POST['updateBtn']))
 
                         <div class="input-label"><label>Nomination</label></div>
                       <div class="input-feild">
-                        <select class="mini_select_field"  name="nomination" id="nomination" class="nomination" >
+                        <select class="mini_select_field nomination"  name="nomination" id="nomination"  >
                           <option value="<?php echo $nomination_p ?>"></option>
                           
                           <option value="N">N</option>
@@ -1084,7 +1666,7 @@ if(isset($_POST['updateBtn']))
 
                       <div class="input-label"><label>Origin</label></div>
                       <div class="input-feild">
-                       <select name="origin"  required>
+                       <select name="origin"  id="origin">
                        
                           <?php
 
@@ -1104,12 +1686,12 @@ if(isset($_POST['updateBtn']))
                               echo '<option value="'.$roworigin['SrNo'].'">'.$roworigin['dest_name'].'</option>';
                             }
                           ?>
-                      </select>
+                      </select><span class="steric">*</span>
                       </div>
 
                       <div class="input-label"><label>Flight No.</label></div>
                       <div class="input-feild">
-                        <input class type="text"  name="flight_no" value="<?php echo $flight_no_p ?>">
+                        <input class type="text"  name="flight_no" id="flight_no"  maxlength="6" value="<?php echo $flight_no_p ?>" ><span class="steric">*</span>
                         
                       </div>
 
@@ -1123,7 +1705,7 @@ if(isset($_POST['updateBtn']))
 
                      <div class="input-label" id="spoLable"><label>SPO.</label></div>
                     <div class="input-feild">
-                      <select name="spo"  id="spo" required>
+                      <select name="spo"  id="spo" >
                         
                         <?php
 
@@ -1144,12 +1726,12 @@ if(isset($_POST['updateBtn']))
                           }
 
                         ?>
-                      </select>
+                      </select><span class="steric">*</span>
                     </div>
 
                       <div class="input-label"><label>Destination</label></div>
                       <div class="input-feild">
-                        <select name="destination"  required>
+                        <select name="destination" id="destination">
                         
                           <?php
 
@@ -1170,14 +1752,14 @@ if(isset($_POST['updateBtn']))
                               echo '<option value="'.$roworigin['SrNo'].'">'.$roworigin['dest_name'].'</option>';
                             }
                           ?>
-                      </select>
+                      </select><span class="steric">*</span>
                       </div>
                       
                     
                      
                      <div class="input-label"><label>Flight Date</label></div>
                       <div class="input-feild">
-                        <input class type="date"  name="flight_date" value="<?php echo $flight_date_p  ?>">
+                        <input class type="date"  name="flight_date" id="flight_date" value="<?php echo $flight_date_p  ?>"><span class="steric">*</span>
                       </div>
 
                   </div>
@@ -1188,19 +1770,19 @@ if(isset($_POST['updateBtn']))
                  
                       <div class="input-label"><label>IGM No.</label></div>
                       <div class="input-feild">
-                        <input  type="text" name="igm_no"  value="<?php echo $igm_no_p  ?>">
+                        <input  type="text" name="igm_no" id="igm_no"  maxlength="20" value="<?php echo $igm_no_p  ?>">
 
                       </div>
 
                       <div class="input-label"><label>Air D.O.P No.</label></div>
                       <div class="input-feild">
-                        <input type="text" name="air_d_o_no"  value="<?php echo $air_d_o_no_p ?>">
+                        <input type="text" name="air_d_o_no"  maxlength="20" id="air_d_o_no"  value="<?php echo $air_d_o_no_p ?>">
                         
                       </div>
 
                       <div class="input-label"><label>B/E No.</label></div>
                       <div class="input-feild">
-                        <input type="text" name="b_e_no"  value="<?php echo $b_e_no_p  ?>">
+                        <input type="text" name="b_e_no" maxlength="20" id="b_e_no"  value="<?php echo $b_e_no_p  ?>">
                         
                       </div>
 
@@ -1209,7 +1791,7 @@ if(isset($_POST['updateBtn']))
 
                       <div class="input-label"><label>E.T.D</label></div>
                       <div class="input-feild">
-                        <input  type="date" name="e_t_d"  value="<?php echo $e_t_d_p ?>">                        
+                        <input  type="date" name="e_t_d" id="e_t_d"  value="<?php echo $e_t_d_p ?>">                        
                       </div>
 
                       
@@ -1218,21 +1800,21 @@ if(isset($_POST['updateBtn']))
                </div>
                <div class="col-md-4">
                          <div class="input-label"><label>IGM Date</label></div>
-                          <div class="input-feild"><input type="date"  name="igm_date" value="<?php  echo $igm_date_p ?>" data-date-inline-picker="false" data-date-open-on-focus="true" /></div>
+                          <div class="input-feild"><input type="date"  name="igm_date" id="igm_date"  value="<?php  echo $igm_date_p ?>"  data-date-inline-picker="false" data-date-open-on-focus="true" /></div>
 
 
                             <div class="input-label"><label>D.O Date</label></div>
-                            <div class="input-feild"><input type="date"  name="d_o_date" value="<?php  echo $d_o_date_p ?>" data-date-inline-picker="false" data-date-open-on-focus="true" /></div>
+                            <div class="input-feild"><input type="date"  name="d_o_date" id="d_o_date"  value="<?php  echo $d_o_date_p ?>"  data-date-inline-picker="false" data-date-open-on-focus="true" /></div>
 
 
                             <div class="input-label"><label>B/E Date</label></div>
-                            <div class="input-feild"><input type="date"  name="b_e_date" value="<?php  echo $b_e_date_p ?>" data-date-inline-picker="false" data-date-open-on-focus="true" /></div>
+                            <div class="input-feild"><input type="date"  name="b_e_date"  id="b_e_date" value="<?php  echo $b_e_date_p ?>"   data-date-inline-picker="false" data-date-open-on-focus="true" /></div>
                           
 
                            
 
                             <div class="input-label"><label>E.T.A</label></div>
-                            <div class="input-feild"><input type="date"  name="e_t_a"  value="<?php  echo $e_t_a_p ?>" data-date-inline-picker="false" data-date-open-on-focus="true" /></div>
+                            <div class="input-feild"><input type="date"  name="e_t_a" id="e_t_a" value="<?php  echo $e_t_a_p ?>"  data-date-inline-picker="false" data-date-open-on-focus="true" /></div>
 
                             
            
@@ -1241,24 +1823,24 @@ if(isset($_POST['updateBtn']))
 
                   <div class="input-label"><label>Index No.</label></div>
                       <div class="input-feild">
-                        <input type="text" name="index_no"  value="<?php echo $index_no_p ?>">
+                        <input type="text" name="index_no" maxlength="20" id="index_no" value="<?php echo $index_no_p ?>">
                         
                       </div>
 
                    <div class="input-label"><label>Sub Index</label></div>
-                            <div class="input-feild"><input type="date"  name="sub_index_no" value="<?php echo $sub_index_no_p ?>" data-date-inline-picker="false" data-date-open-on-focus="true" /></div>
+                            <div class="input-feild"><input type="date"  name="sub_index_no" maxlength="20" id="sub_index_no" value="<?php echo $sub_index_no_p ?>" data-date-inline-picker="false" data-date-open-on-focus="true" /></div>
 
                     <div class="input-label"><label>Origin D.O No.</label></div>
-                            <div class="input-feild"><input type="text"  name="origin_d_o_no" value="<?php echo $origin_d_o_no_p ?>"></div>
+                            <div class="input-feild"><input type="text"  name="origin_d_o_no" id="origin_d_o_no" value="<?php echo $origin_d_o_no_p ?>"></div>
 
                     <div class="input-label"><label>L/C</label></div>
                       <div class="input-feild">
-                        <input  type="text" name="l_c"  value="<?php echo $l_c_p  ?>">                        
+                        <input  type="text" name="l_c" maxlength="20" id="l_c"  value="<?php echo $l_c_p  ?>">                        
                       </div>
 
                     <div class="input-label"><label>Passport/ I.D</label></div>
                       <div class="input-feild">
-                        <input  type="text" name="passport_id"  value="<?php echo $passport_id_p ?>">                        
+                        <input  type="text" name="passport_id" maxlength="20" id="passport_id"  value="<?php echo $passport_id_p ?>">                        
                       </div>
 
                 </div>
@@ -1272,14 +1854,14 @@ if(isset($_POST['updateBtn']))
           <div class="col-md-6">
             <div class="input-label"><label>Foreign Agent's Shipper </label></div>
             <div class="input-feild">
-               <textarea name="foreign_detail" ><?php echo $foreign_detail_p  ?></textarea>
+               <textarea name="foreign_detail" maxlength="140" id="foreign_detail"><?php echo $foreign_detail_p  ?></textarea><span class="steric">*</span>
             </div>
 
 
 
             <div class="input-label"><label>Notify </label></div>
             <div class="input-feild">
-              <textarea name="notify_detail" > <?php echo $notify_detail_p ?> </textarea>
+              <textarea name="notify_detail" maxlength="140" id="notify_detail"><?php echo $notify_detail_p ?></textarea>
             </div>
 
           </div>
@@ -1289,13 +1871,13 @@ if(isset($_POST['updateBtn']))
 
             <div class="input-label"><label>Consignee </label></div>
             <div class="input-feild">
-              <textarea name="consignee_detail"  ><?php echo $consignee_detail_p ?></textarea>
+              <textarea name="consignee_detail"  maxlength="140" id="consignee_detail" ><?php echo $consignee_detail_p ?></textarea><span class="steric">*</span>
             </div>
 
              
             <div class="input-label"><label>Remarks</label></div>
             <div class="input-feild">
-              <textarea name="remarks" ><?php echo $remarks_p ?></textarea>
+              <textarea name="remarks"  maxlength="200" id="remarks" ><?php echo $remarks_p ?></textarea>
             </div>
 
            
@@ -1314,7 +1896,7 @@ if(isset($_POST['updateBtn']))
 
             <div class="input-label"><label>Invoice to F/Agent</label></div>
             <div class="input-feild">
-              <select class="mini_select_field"  name="invoice_f_agent">
+              <select class="mini_select_field"  name="invoice_f_agent" id="invoice_f_agent" >
                 <?php echo $invoice_f_agent_p  ?> 
                 <option>No</option>
                 <option>Yes</option>
@@ -1325,7 +1907,7 @@ if(isset($_POST['updateBtn']))
 
             <div class="input-label"><label>Local Invoice</label></div>
             <div class="input-feild">
-              <select class="mini_select_field"  name="local_inv">
+              <select class="mini_select_field"  name="local_inv" id="local_inv">
                 <?php echo $local_inv_p ?>
                 <option>No</option>
                 <option>Yes</option>
@@ -1335,7 +1917,7 @@ if(isset($_POST['updateBtn']))
 
             <div class="input-label"><label>Inv. From F/Agent</label></div>
             <div class="input-feild">
-              <select class="mini_select_field"  name="inv_from_f_agent">
+              <select class="mini_select_field"  name="inv_from_f_agent" id="inv_from_f_agent" >
                 <?php echo $inv_from_f_agent_p  ?>
                 <option>No</option>
                 <option>Yes</option>
@@ -1352,7 +1934,7 @@ if(isset($_POST['updateBtn']))
          
             <div class="input-label"><label>Status</label></div>
           <div class="input-feild">
-            <select class="mini_select_field"  name="status">
+            <select class="mini_select_field"  name="status" id="status">
               <?php echo $status_p  ?>
             <option value="In process">In Process</option>
             <option value="Released">Released</option>
@@ -1363,13 +1945,13 @@ if(isset($_POST['updateBtn']))
 
           <div class="input-label"><label>Freight trem</label></div>
           <div class="input-feild">
-            <input class="mini_input_field" type="text"  name="fight_term" value="<?php echo $fight_term_p  ?>">
+            <input class="mini_input_field" type="text"  name="fight_term" id="fight_term" value="<?php echo $fight_term_p  ?>">
           </div>
 
             
            <div class="input-label"><label>Remarks</label></div>
           <div class="input-feild" >
-            <textarea name="remark" ><?php echo $remark_p ?></textarea>
+            <textarea name="remark" id="remark" maxlength="100" ><?php echo $remark_p ?></textarea>
           </div>
 
         </div>
@@ -1580,10 +2162,10 @@ if(isset($_POST['updateBtn']))
            </div> 
 
         </div>      
-					
-		</form>
+          
+    </form>
 
-	</div>
+  </div>
 
 </div>
 
@@ -1644,12 +2226,12 @@ function saveFunc()
   $("#save_Modal").modal();
 }
 </script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 function submitFunc()
 {
   $("#addModal1").modal();
 }
-</script>
+</script> -->
 
 <script>
 function nomChange()
@@ -1868,6 +2450,403 @@ function nomChange()
   }
   
 </script>
+
+<script type="text/javascript">
+   function FormValidation()
+   {
+      var regexp = /^[a-z]*$/i;
+      var regexp2 = /^[0-9]*$/i;
+      var re = /\S+@\S+\.\S+/;
+      var decimals = /^[-+]?[0-9]+\.[0-9]+$/;
+      var missingVal = 0;
+
+      
+
+      var m_awb=document.getElementById('m_awb').value;
+      var m_date=document.getElementById('m_date').value;
+      var m_pp_cc=document.getElementById('m_pp_cc').value;
+      var m_pieces=document.getElementById('m_pieces').value;
+      var m_grs_weight=document.getElementById('m_grs_weight').value;
+      var m_ch_weight=document.getElementById('m_ch_weight').value;
+      var h_awb=document.getElementById('h_awb').value;
+      var h_date=document.getElementById('h_date').value;
+      var h_pp_cc=document.getElementById('h_pp_cc').value;
+      var h_pieces=document.getElementById('h_pieces').value;
+      var h_grs_weight=document.getElementById('h_grs_weight').value;
+      var h_ch_weight=document.getElementById('h_ch_weight').value;
+      var party=document.getElementById('party').value;
+      var foreign_party=document.getElementById('foreign_party').value;
+      var spo=document.getElementById('spo').value;
+      var origin=document.getElementById('origin').value;
+      var destination=document.getElementById('destination').value;
+      var flight_no=document.getElementById('flight_no').value;
+      var flight_date=document.getElementById('flight_date').value;
+      var foreign_detail=document.getElementById('foreign_detail').value;
+      var consignee_detail=document.getElementById('consignee_detail').value;
+     
+      var summary = "Summary: ";
+
+      if(m_awb == "")
+      {
+          document.getElementById('m_awb').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_m_awb").innerHTML = "MAster AWB Number is required.";
+      }
+      if(m_awb != "")
+      {
+          document.getElementById('m_awb').style.borderColor = "white";
+          document.getElementById("V_m_awb").innerHTML = "";
+
+      }
+
+      if(m_date == "")
+      {
+          document.getElementById('m_date').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_m_date").innerHTML = "Master Date is required.";
+      }
+      if(m_date != "")
+      {
+          document.getElementById('m_date').style.borderColor = "white";
+          document.getElementById("V_m_date").innerHTML = "";
+
+      }
+
+      if(m_pp_cc == "")
+      {
+          document.getElementById('m_pp_cc').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_m_pp_cc").innerHTML = " Master PP/CC is required.";
+      }
+      if(m_pp_cc != "")
+      {
+          document.getElementById('m_pp_cc').style.borderColor = "white";
+          document.getElementById("V_m_pp_cc").innerHTML = "";
+
+      }
+
+       
+      if(m_pieces == "")
+      {
+          document.getElementById('m_pieces').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_m_pieces").innerHTML = "Master pieces is required.";
+      }
+      if(m_pieces != "")
+      {
+          document.getElementById('m_pieces').style.borderColor = "white";
+          document.getElementById("V_m_pieces").innerHTML = "";
+
+        //   if (!regexp2.test(rate))
+        // {
+        //   document.getElementById('rate').style.borderColor = "red";
+        //     missingVal = 1;
+        //     // summary += "Firstname is required.";
+        //     document.getElementById("V_rate").innerHTML = "Only numbers and decimals are allowed in rate.";
+        // }
+      }
+
+       if(m_grs_weight == "")
+      {
+          document.getElementById('m_grs_weight').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_m_grs_weight").innerHTML = "Master Gross Weight is required.";
+      }
+      if(m_grs_weight != "")
+      {
+          document.getElementById('m_grs_weight').style.borderColor = "white";
+          document.getElementById("V_m_grs_weight").innerHTML = "";
+
+        //   if (!regexp2.test(ch_weight))
+        // {
+        //   document.getElementById('ch_weight').style.borderColor = "red";
+        //     missingVal = 1;
+        //     // summary += "Firstname is required.";
+        //     document.getElementById("V_ch_weight").innerHTML = "Only alphabets are allowed.";
+        // }
+      }
+
+      if(m_ch_weight == "")
+      {
+          document.getElementById('m_ch_weight').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_m_ch_weight").innerHTML = "Master Charge Weight is required.";
+      }
+      if(m_ch_weight != "")
+      {
+          document.getElementById('m_ch_weight').style.borderColor = "white";
+          document.getElementById("V_m_ch_weight").innerHTML = "";
+
+        //   if (!regexp2.test(grs_weight))
+        // {
+        //   document.getElementById('grs_weight').style.borderColor = "red";
+        //     missingVal = 1;
+        //     // summary += "Firstname is required.";
+        //     document.getElementById("V_grs_weight").innerHTML = "Only numbers are allowed.";
+        // }
+      }
+
+      if(h_awb == "")
+      {
+          document.getElementById('h_awb').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_h_awb").innerHTML = "House AWB is required.";
+      }
+      if(h_awb != "")
+      {
+          document.getElementById('h_awb').style.borderColor = "white";
+          document.getElementById("V_h_awb").innerHTML = "";
+
+      }
+
+      if(h_date == "")
+      {
+          document.getElementById('h_date').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_h_date").innerHTML = "House Date is required.";
+      }
+      if(h_date != "")
+      {
+          document.getElementById('h_date').style.borderColor = "white";
+          document.getElementById("V_h_date").innerHTML = "";
+
+      }
+
+      if(h_pp_cc == "")
+      {
+          document.getElementById('h_pp_cc').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_h_pp_cc").innerHTML = "House PP/CC is required.";
+      }
+      if(h_pp_cc != "")
+      {
+          document.getElementById('h_pp_cc').style.borderColor = "white";
+          document.getElementById("V_h_pp_cc").innerHTML = "";
+
+      }
+
+      if(h_pieces == "")
+      {
+          document.getElementById('h_pieces').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_h_pieces").innerHTML = "House Pieces is required.";
+      }
+      if(h_pieces != "")
+      {
+          document.getElementById('h_pieces').style.borderColor = "white";
+          document.getElementById("V_h_pieces").innerHTML = "";
+
+      }
+
+      if(h_grs_weight == "")
+      {
+          document.getElementById('h_grs_weight').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_h_grs_weight").innerHTML = "House Gross Weight is required.";
+      }
+      if(h_grs_weight != "")
+      {
+          document.getElementById('h_grs_weight').style.borderColor = "white";
+          document.getElementById("V_h_grs_weight").innerHTML = "";
+
+      }
+
+      if(h_ch_weight == "")
+      {
+          document.getElementById('h_ch_weight').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_h_ch_weight").innerHTML = "House Charge Weight is required.";
+      }
+      if(h_ch_weight != "")
+      {
+          document.getElementById('h_ch_weight').style.borderColor = "white";
+          document.getElementById("V_h_ch_weight").innerHTML = "";
+
+      }
+
+      if(party == "")
+      {
+          document.getElementById('party').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_party").innerHTML = "Party is required.";
+      }
+      if(party != "")
+      {
+          document.getElementById('party').style.borderColor = "white";
+          document.getElementById("V_party").innerHTML = "";
+
+      }
+
+      if(foreign_party == "")
+      {
+          document.getElementById('foreign_party').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_foreign_party").innerHTML = "Foreign Party is required.";
+      }
+      if(foreign_party != "")
+      {
+          document.getElementById('foreign_party').style.borderColor = "white";
+          document.getElementById("V_foreign_party").innerHTML = "";
+
+      }
+
+      //  if(spo == "")
+      // {
+      //     document.getElementById('spo').style.borderColor = "red";
+      //     missingVal = 1;
+      //     // summary += "Firstname is required.";
+      //     document.getElementById("V_spo").innerHTML = "Spo is required.";
+      // }
+      // if(spo != "")
+      // {
+      //     document.getElementById('spo').style.borderColor = "white";
+      //     document.getElementById("V_spo").innerHTML = "";
+
+      // }
+
+       if(origin == "")
+      {
+          document.getElementById('origin').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_origin").innerHTML = "Origin is required.";
+      }
+      if(origin != "")
+      {
+          document.getElementById('origin').style.borderColor = "white";
+          document.getElementById("V_origin").innerHTML = "";
+
+      }
+
+      if(destination == "")
+      {
+          document.getElementById('destination').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_destination").innerHTML = "Destination is required.";
+      }
+      if(destination != "")
+      { 
+        document.getElementById('destination').style.borderColor = "white";
+          document.getElementById("V_destination").innerHTML = "";
+
+      }
+
+      if(flight_no == "")
+      {
+          document.getElementById('flight_no').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_flight_no").innerHTML = "Flight No. is required.";
+      }
+      if(flight_no != "")
+      {
+          document.getElementById('flight_no').style.borderColor = "white";
+          document.getElementById("V_flight_no").innerHTML = "";
+
+      }
+
+       if(flight_date == "")
+      {
+          document.getElementById('flight_date').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_flight_date").innerHTML = "Flight Date is required.";
+      }
+      if(flight_date != "")
+      {
+          document.getElementById('flight_date').style.borderColor = "white";
+          document.getElementById("V_flight_date").innerHTML = "";
+
+      }
+
+      if(foreign_detail == "")
+      {
+          document.getElementById('foreign_detail').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_foreign_detail").innerHTML = "Foreign Details is required.";
+      }
+      if(foreign_detail != "")
+      {
+          document.getElementById('foreign_detail').style.borderColor = "white";
+          document.getElementById("V_foreign_detail").innerHTML = "";
+
+      }
+
+       if(consignee_detail == "")
+      {
+          document.getElementById('consignee_detail').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_consignee_detail").innerHTML = "Consignee Details is required.";
+      }
+      if(consignee_detail != "")
+      {
+          document.getElementById('consignee_detail').style.borderColor = "white";
+          document.getElementById("V_consignee_detail").innerHTML = "";
+
+      }
+
+     
+
+      if (missingVal != 1)
+      {
+        document.getElementById('m_awb').style.borderColor = "white";
+        document.getElementById('m_date').style.borderColor = "white";
+        document.getElementById('m_pp_cc').style.borderColor = "white";
+        document.getElementById('m_pieces').style.borderColor = "white";
+        document.getElementById('m_grs_weight').style.borderColor = "white";
+        document.getElementById('m_ch_weight').style.borderColor = "white";
+        document.getElementById('h_awb').style.borderColor = "white";
+        document.getElementById('h_date').style.borderColor = "white";
+        document.getElementById('h_pp_cc').style.borderColor = "white";
+        document.getElementById('h_pieces').style.borderColor = "white";
+        document.getElementById('h_grs_weight').style.borderColor = "white";
+        document.getElementById('h_ch_weight').style.borderColor = "white";
+        document.getElementById('party').style.borderColor = "white";
+        document.getElementById('foreign_party').style.borderColor = "white";
+        document.getElementById('spo').style.borderColor = "white";
+        document.getElementById('origin').style.borderColor = "white";
+        document.getElementById('destination').style.borderColor = "white";
+        document.getElementById('flight_no').style.borderColor = "white";
+        document.getElementById('flight_date').style.borderColor = "white";
+        document.getElementById('foreign_detail').style.borderColor = "white";
+        document.getElementById('consignee_detail').style.borderColor = "white";
+       
+        $("#addModal1").modal();
+        
+      }
+
+      if (missingVal == 1)
+      {
+        document.getElementById("formSummary").textContent="Error: ";
+      }
+  }
+</script>
+
+<!-- java script -->
+        <script type="text/javascript">
+        function logUserFunc()
+        {
+          $("#logUser_Modal").modal();
+        }
+        </script>
+
 
 <script src="js/jquery.dataTables.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
