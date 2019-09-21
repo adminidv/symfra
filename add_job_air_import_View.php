@@ -296,6 +296,70 @@ $userNo = $_GET['id'];
                     </div>
                </div>
 
+               <!-- Show Log Chain -->
+      <div class="modal fade symfra_popup2" id="logUser_Modal" role="dialog">
+            <div class="modal-dialog">
+              <!-- Show Log Chain -->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Log Chain Details</h4>
+                </div>
+
+                  <table id="dpttable" class="display nowrap no-footer" style="width:100%">
+                     
+                     <thead>
+                      <tr>
+                      <th>SrNo</th>
+                      <th>Instance</th>
+                      <th>Record ID</th>
+                      <th>Created By</th>
+                      <th>Created Date</th>
+                      <th>Update By</th>
+                      <th>Update Date</th>
+                      <th>Pervious Value</th>
+                      <th>New Value</th>
+                      </tr>
+
+                     </thead>
+                     <tbody>
+                      <?php
+
+                              include 'manage/connection.php';
+
+                              $selectchainlog = mysqli_query($con, "select * from chainlog where formName = 'Air Import' ");
+
+                              ?>
+                          <?php
+
+                                while ($rowchainlog = mysqli_fetch_array($selectchainlog))
+                                {
+                                ?>
+
+                      <tr>
+                      <td><?php echo $rowchainlog['SrNo']; ?></td>
+                      <td><?php echo $rowchainlog['instance']; ?></td>
+                      <td><?php echo $rowchainlog['record_id']; ?></td>
+                      <td><?php echo $rowchainlog['createBy']; ?></td>
+                      <td><?php echo $rowchainlog['createDate']; ?></td>
+                      <td><?php echo $rowchainlog['updateBy']; ?></td>
+                      <td><?php echo $rowchainlog['updateDate']; ?></td>
+                      <td><?php echo $rowchainlog['perValue']; ?></td>
+                      <td><?php echo $rowchainlog['newValue']; ?></td>
+                      </tr>
+                      <?php
+                     }
+                     ?>
+                     </tbody>
+
+                  </table>
+                
+              </div>
+              
+            </div>
+        </div>
+
+
 			 <label id="formSummary" style="color: red;"></label>
 
         <div class="widget_iner_box">
@@ -305,9 +369,8 @@ $userNo = $_GET['id'];
                                           <?php include('inc_widgets/backBtn.php'); ?>
                                           <!-- Go back button code ending here -->
                     </div>
-                    <button type="button" id="btnConfirm_Su" onclick="submitFunc();"> <small>Submit</small></button>
-                    <button type="button" name="btnConfirm_S" onclick="saveFunc();"> <small>Save</small></button>
-                    <button type="button" name="submitBtn"> <small>Cancel</small></button>        
+                    <button type="button" name="saveBtn" onclick="logUserFunc();"> <small>Log Chain</small></button>
+                   <button type="button" name="submitBtn"><a href="add_job_air_import_Edit.php?id=". $userNo> <small>Edit</small></a></button>         
                 </div>
                               
 
@@ -1238,6 +1301,15 @@ function nomChange()
   }
   
 </script>
+
+<!-- java script -->
+        <script type="text/javascript">
+        function logUserFunc()
+        {
+          $("#logUser_Modal").modal();
+        }
+        </script>
+
 
 <script src="js/jquery.dataTables.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
