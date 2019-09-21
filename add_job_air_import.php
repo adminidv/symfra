@@ -7,8 +7,8 @@ $subRibbon = 'addUser';
 $Quick = 'Hide';
 $Quickhr = '';
 
-// Today date func
-$todayDate = date("Y-m-d");
+
+
 
 // auto increment
 $selectLastID = mysqli_query($con, "SELECT * FROM air_import_entry ORDER BY job_no DESC LIMIT 1");
@@ -18,9 +18,31 @@ $lastID = $rowLastID['job_no'];
 $newID = $lastID + 1;
 $job_no = $newID;
 
+$userID = $_SESSION['user'];
+
+//login user
+$loginUser= $_SESSION['user'];
+// Today date func
+$todayDate = date("Y-m-d");
+
+
+
+$selectLastID1 = mysqli_query($con, "SELECT * FROM chainlog WHERE record_id = '$job_no' ORDER BY instance DESC LIMIT 1  ");
+  $rowLastID1 = mysqli_fetch_array($selectLastID1, MYSQLI_ASSOC);
+
+  $lastID1 = $rowLastID1['instance'];
+  $newID1 = $lastID1 + 1;
+  $instance = $newID1;
+
+
+
 // Add Air Import Submit Btn Event
 if (isset($_POST['submitBtn'])) {
   
+  $instance =$instance;
+  $record_id =$user_ID;
+  $createBy =$loginUser;
+  $createDate =$todayDate;
   $job_no = $job_no;
   $so_no = $_POST['so_no'];
   $job_date = $_POST['job_date'];
@@ -109,6 +131,8 @@ if (isset($_POST['submitBtn'])) {
   }
 
   $InsertQuery = mysqli_query($con, " INSERT INTO air_import_entry (so_no,job_no,job_date,m_awb,m_date,m_pp_cc,m_pieces,m_grs_weight,m_ch_weight,m_rate,h_awb,h_date,h_pp_cc,h_pieces,h_grs_weight,h_ch_weight,h_rate,description,party,agent_party,foreign_party,spo,origin,destination,flight_no,flight_date,igm_no,igm_date,air_d_o_no,d_o_date,b_e_no,b_e_date,index_no,sub_index_no,e_t_d,e_t_a,l_c,origin_d_o_no,passport_id,foreign_detail,notify_detail,consignee_detail,remarks,nomination,status,remark,fight_term,invoice_f_agent,local_inv,inv_from_f_agent,status_type,checkCurr,exchangeRate_P,sellRate_P,sellAmount_P,sellAmountPKR_P,buyRate_P,buyAmount_P,buyAmountPKR_P,diffAmount_P,diffAmountPKR_P,profitRate_P,profitAmount_P,profitAmountPKR_P,buyRate_F,buyAmount_F,buyAmountPKR_F,sellRate_F,sellAmount_F,sellAmountPKR_F,diffAmount_F,diffAmountPKR_F,profitRate_F,profitAmount_F,profitAmountPKR_F,payableAmount,payableAmountPKR) VALUES ('$so_no','$job_no','$job_date','$m_awb','$m_date','$m_pp_cc','$m_pieces','$m_grs_weight','$m_ch_weight','$m_rate','$h_awb','$h_date','$h_pp_cc','$h_pieces','$h_grs_weight','$h_ch_weight','$h_rate','$description','$party','$agent_party','$foreign_party','$spo','$origin','$destination','$flight_no','$flight_date','$igm_no','$igm_date','$air_d_o_no','$d_o_date','$b_e_no','$b_e_date','$index_no','$sub_index_no','$e_t_d','$e_t_a','$l_c','$origin_d_o_no','$passport_id','$foreign_detail','$notify_detail','$consignee_detail','$remarks','$nomination','$status','$remark','$fight_term','$invoice_f_agent','$local_inv','$inv_from_f_agent','$status_type','$checkCurr','$exchangeRate_P','$sellRate_P','$sellAmount_P','$sellAmountPKR_P','$buyRate_P','$buyAmount_P','$buyAmountPKR_P','$diffAmount_P','$diffAmountPKR_P','$profitRate_P','$profitAmount_P','$profitAmountPKR_P','$buyRate_F','$buyAmount_F','$buyAmountPKR_F','$sellRate_F','$sellAmount_F','$sellAmountPKR_F','$diffAmount_F','$diffAmountPKR_F','$profitRate_F','$profitAmount_F','$profitAmountPKR_F','$payableAmount','$payableAmountPKR') ") or die(mysqli_error($con));
+
+  $insertQuery2 = mysqli_query($con, "insert into chainlog (instance, formName, record_id,createBy, createDate) values ('$newID1', 'Air Import', '$job_no', '$loginUser', '$todayDate') ");
 
   header("location: add_job_air_import.php");
 
@@ -418,7 +442,7 @@ if (isset($_POST['submitBtn1'])) {
 
                               include 'manage/connection.php';
 
-                              $selectchainlog = mysqli_query($con, "select * from chainlog where formName = 'Add User' ");
+                              $selectchainlog = mysqli_query($con, "select * from chainlog where formName = 'Air Import' ");
 
                               ?>
                           <?php
@@ -550,7 +574,7 @@ if (isset($_POST['submitBtn1'])) {
                                         <option value="cc">cc</option>
                                       </select><span class="steric">*</span></td>
                                       <td> <input class="mini_input_field"  type="text" name="m_pieces" maxlength="4" id="m_pieces"><span class="steric">*</span></td>
-                                      <td> <input class="mini_input_field"  type="text" name="m_grs_weight" id="m_grs_weight"><span class="steric">*</span></td>
+                                      <td> <input class="mini_input_field"  type="text" name="m_grs_weight" id="m_grs_weight"  maxlength="10"><span class="steric">*</span></td>
                                       <td> <input class="mini_input_field"  class="mini_input_field" maxlength="10" type="text" name="m_ch_weight" id="m_ch_weight" ><span class="steric">*</span></td>
                                       <td> <input class="mini_input_field" type="text" maxlength="10" name="m_rate" id="m_rate" onfocusout="calcDetails_Buy_P();"></td>
                                       
@@ -567,7 +591,7 @@ if (isset($_POST['submitBtn1'])) {
                                       <td> <input class="mini_input_field"  type="text" maxlength="4" name="h_pieces" id="h_pieces"><span class="steric">*</span></td>
                                       <td> <input class="mini_input_field"   type="text" maxlength="10" name="h_grs_weight" id="h_grs_weight"><span class="steric">*</span></td>
                                       <td> <input class="mini_input_field"  type="text" name="h_ch_weight" maxlength="10" id="h_ch_weight"><span class="steric">*</span></td>
-                                      <td> <input class="mini_input_field"  type="text" name="h_rate" id="h_rate" onfocusout="calcDetails_Sell_P();"></td>
+                                      <td> <input class="mini_input_field"  type="text" name="h_rate" maxlength="10" id="h_rate" onfocusout="calcDetails_Sell_P();"></td>
                                    </tr>
                                                                       
                           </tbody>
