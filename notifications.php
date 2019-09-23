@@ -23,7 +23,7 @@ $finalDate = $semiFinal3 . ' ' . $semiFinal2;
 
 // echo "<br>" . $userID;
 
-$selectNote = mysqli_query($con, "SELECT * FROM notTable WHERE notOn='$userID' AND  notStatus='Approval Pending' ");
+$selectNote = mysqli_query($con, "SELECT * FROM nottable WHERE notOn='$userID' AND  notStatus='Approval Pending' ");
 while ($rowNote = mysqli_fetch_array($selectNote))
 {
   $noteRecord = $rowNote['notRecord'];
@@ -72,7 +72,7 @@ if(isset($_POST['accept']))
   if ($notTitle == "User Management")
   {
     $updateUser = mysqli_query($con, "UPDATE users SET user_active='Active' WHERE user_ID='$notRecord' ");
-    $updateNot = mysqli_query($con, "UPDATE notTable SET notStatus='Accepted' WHERE SrNo='$txtSrNo' ");
+    $updateNot = mysqli_query($con, "UPDATE nottable SET notStatus='Accepted' WHERE SrNo='$txtSrNo' ");
   }
 
   if ($notApp == 1)
@@ -94,10 +94,10 @@ if(isset($_POST['accept']))
       }
 
       // Creating notification for second approval
-      $insertNot = mysqli_query($con, "INSERT INTO notTable (notTitle, notDateTime, notStatus, creatorID, createdBy, notOn, notRecord, appFlowID, mainCreator, notApp) VALUES ('$notTitle', '$finalDate', '$notStatus', '$userID', '$userNot', '$approval2', '$notRecord', '$appFlowID', '$mainCreator', '2') ") or die(mysqli_error($con));
+      $insertNot = mysqli_query($con, "INSERT INTO nottable (notTitle, notDateTime, notStatus, creatorID, createdBy, notOn, notRecord, appFlowID, mainCreator, notApp) VALUES ('$notTitle', '$finalDate', '$notStatus', '$userID', '$userNot', '$approval2', '$notRecord', '$appFlowID', '$mainCreator', '2') ") or die(mysqli_error($con));
 
       // Updating current notification
-      $updateNot = mysqli_query($con, "UPDATE notTable SET notStatus='Accepted' WHERE SrNo='$txtSrNo' ");
+      $updateNot = mysqli_query($con, "UPDATE nottable SET notStatus='Accepted' WHERE SrNo='$txtSrNo' ");
 
       // Updating the main record
       $updateRecord = mysqli_query($con, "UPDATE saleorders SET saleStatus='Waiting for second approval' WHERE SrNo='$notRecord' ");
@@ -127,10 +127,10 @@ if(isset($_POST['accept']))
       // $notApp = $rowNext['notApp'];
 
       // Creating notification for second approval
-      $insertNot = mysqli_query($con, "INSERT INTO notTable (notTitle, notDateTime, notStatus, creatorID, createdBy, notOn, notRecord, appFlowID, mainCreator) VALUES ('$notTitle', '$finalDate', '$notStatus', '$userID', '$userNot', '$mainCreator', '$notRecord', '$appFlowID', '$mainCreator') ") or die(mysqli_error($con));
+      $insertNot = mysqli_query($con, "INSERT INTO nottable (notTitle, notDateTime, notStatus, creatorID, createdBy, notOn, notRecord, appFlowID, mainCreator) VALUES ('$notTitle', '$finalDate', '$notStatus', '$userID', '$userNot', '$mainCreator', '$notRecord', '$appFlowID', '$mainCreator') ") or die(mysqli_error($con));
 
       // Updating current notification
-      $updateNot = mysqli_query($con, "UPDATE notTable SET notStatus='Accepted' WHERE SrNo='$txtSrNo' ");
+      $updateNot = mysqli_query($con, "UPDATE nottable SET notStatus='Accepted' WHERE SrNo='$txtSrNo' ");
 
       // Updating the main record
       $updateRecord = mysqli_query($con, "UPDATE saleorders SET saleStatus='Approved' WHERE SrNo='$notRecord' ");
@@ -173,10 +173,10 @@ if(isset($_POST['acceptFinal']))
   }
 
   // Creating final notification to add job entry
-  $insertNot = mysqli_query($con, "INSERT INTO notTable (notTitle, notDateTime, notStatus, creatorID, createdBy, notOn, notRecord, appFlowID, mainCreator) VALUES ('$notTitle', '$finalDate', 'A sale order has been created. You may add the job entry', '$userID', '$userNot', '$FinalNot', '$notRecord', '$appFlowID', '$mainCreator') ") or die(mysqli_error($con));
+  $insertNot = mysqli_query($con, "INSERT INTO nottable (notTitle, notDateTime, notStatus, creatorID, createdBy, notOn, notRecord, appFlowID, mainCreator) VALUES ('$notTitle', '$finalDate', 'A sale order has been created. You may add the job entry', '$userID', '$userNot', '$FinalNot', '$notRecord', '$appFlowID', '$mainCreator') ") or die(mysqli_error($con));
 
   // Updating current notification
-  $updateNot = mysqli_query($con, "UPDATE notTable SET notStatus='Accepted' WHERE SrNo='$txtSrNo' ");
+  $updateNot = mysqli_query($con, "UPDATE nottable SET notStatus='Accepted' WHERE SrNo='$txtSrNo' ");
 
   // Updating the main record
   $updateRecord = mysqli_query($con, "UPDATE saleorders SET saleStatus='Active' WHERE SrNo='$notRecord' ");
@@ -242,8 +242,8 @@ if(isset($_POST['acceptFinal']))
   <div class="breadCrumb_bar_iner">
     <div class="">
         <div class="btn-group btn-breadcrumb">
-          <a href="#" class="btn btn-info "><i class="glyphicon glyphicon-home"></i></a>
-          <a href="Usermodules.php" class="btn btn-info active">Notifications</a>
+          <a href="usermodules.php" class="btn btn-info "><i class="glyphicon glyphicon-home"></i></a>
+          <a href="#" class="btn btn-info active">Notifications</a>
         </div>
     </div>
   </div>
@@ -320,7 +320,7 @@ if(isset($_POST['acceptFinal']))
 
     <?php
 
-    $selectNot = mysqli_query($con, "SELECT * FROM notTable WHERE notOn='$userID' AND  notStatus!='Accepted' ORDER BY SrNo DESC  ");
+    $selectNot = mysqli_query($con, "SELECT * FROM nottable WHERE notOn='$userID' AND  notStatus!='Accepted' ORDER BY SrNo DESC  ");
     while ($rowNot = mysqli_fetch_array($selectNot))
     {
       $checkTitle = $rowNot['notTitle'];
