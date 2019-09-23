@@ -12,7 +12,7 @@ if(isset($_POST["awaFee"]))
  $query = '';
 
  $query .= '
-   INSERT INTO dueAgentAirExp (mawb_no, awaFee, awaCharges, awaPrint) 
+   INSERT INTO dueAgentairexp (mawb_no, awaFee, awaCharges, awaPrint) 
    VALUES("'.$mawb_no.'", "'.$awaFee.'", "'.$awaCharges.'", "'.$awaPrint.'"); 
    ';
 
