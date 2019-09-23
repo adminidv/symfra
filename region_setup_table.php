@@ -129,9 +129,9 @@ if (isset($_POST['btnadd'])) {
   <div class="breadCrumb_bar_iner">
     <div class="">
         <div class="btn-group btn-breadcrumb">
-          <a href="#" class="btn btn-info "><i class="glyphicon glyphicon-home"></i></a>
-          <a href="Usermodules.php" class="btn btn-info">Setup</a>
-          <a href="hr_add_emp_info.php" class="btn btn-info active">Region Setup Table</a>
+          <a href="usermodules.php" class="btn btn-info "><i class="glyphicon glyphicon-home"></i></a>
+          <a href="usermodules.php" class="btn btn-info">Setup</a>
+          <a href="region_setup_table.php" class="btn btn-info active">Region Setup Table</a>
         </div>
     </div>
   </div>
