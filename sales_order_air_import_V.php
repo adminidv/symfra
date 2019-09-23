@@ -26,7 +26,7 @@ $todayDate = date("Y-m-d");
 //$userNo = $_GET['empNo'];
 $soNo = $_GET['soNo'];
 
-$selectSO = mysqli_query($con, "SELECT * FROM saleOrders WHERE soNo='$soNo' ");
+$selectSO = mysqli_query($con, "SELECT * FROM saleorders WHERE soNo='$soNo' ");
 while ($rowSO = mysqli_fetch_array($selectSO))
 {
    $saleCust =$rowSO['saleCust'];
@@ -116,8 +116,8 @@ while ($rowSO = mysqli_fetch_array($selectSO))
   <div class="breadCrumb_bar_iner">
     <div class="">
         <div class="btn-group btn-breadcrumb">
-          <a href="#" class="btn btn-info "><i class="glyphicon glyphicon-home"></i></a>
-          <a href="Usermodules.php" class="btn btn-info">CRM</a>
+          <a href="usermodules.php" class="btn btn-info "><i class="glyphicon glyphicon-home"></i></a>
+          <a href="usermodules.php" class="btn btn-info">CRM</a>
           <a href="#" class="btn btn-info active">Sales Order(Air Import)</a>
         </div>
     </div>
