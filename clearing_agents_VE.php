@@ -33,12 +33,12 @@ while ($rowSrNo = mysqli_fetch_array($selectSrNo))
 if(isset($_POST['btnedit1']))
 {
   // valuse save in variable
-  $SrNoV = $_POST['$SrNoV'];
+  $SrNoV = $_POST['SrNoV'];
   $rep_nameV= $_POST['rep_nameV'];
   $rep_desgV = $_POST['rep_desgV'];
   $rep_office_noV = $_POST['rep_office_noV'];
   $rep_phone_noV = $_POST['rep_phone_noV'];
-  $emailV = $_POST['emailV'];
+  $rep_emailV = $_POST['rep_emailV'];
    if (isset($_POST['statusV'])) {
     $statusV='Active';
 
@@ -50,7 +50,7 @@ if(isset($_POST['btnedit1']))
  
 $expload = $viewvar."-CA";
 // update query
-   $updateQuery13 = mysqli_query($con, " UPDATE represent_setup SET userNo='$expload',rep_name='$rep_nameV',rep_desg='$rep_desgV',rep_office_no='$rep_office_noV',rep_phone_no='$rep_phone_noV',email='$emailV',status='$statusV' WHERE SrNo='$SrNoV'")or die(mysqli_error($con));
+   $updateQuery13 = mysqli_query($con, " UPDATE represent_setup SET userNo='$expload',rep_name='$rep_nameV',rep_desg='$rep_desgV',rep_office_no='$rep_office_noV',rep_phone_no='$rep_phone_noV',rep_email='$rep_emailV',status='$statusV' WHERE SrNo='$SrNoV'")or die(mysqli_error($con));
 
 // msg Alert
     $msg = "Record is inserted successfully.";
@@ -72,7 +72,7 @@ if (isset($_POST['btnadd'])) {
   $rep_desg= $_POST['rep_desg'];
   $rep_office_no = $_POST['rep_office_no'];
   $rep_phone_no = $_POST['rep_phone_no'];
-  $email = $_POST['email'];
+  $rep_email = $_POST['rep_email'];
   
   if (isset($_POST['status'])) {
     $status='Active';
@@ -85,7 +85,7 @@ if (isset($_POST['btnadd'])) {
 
   $expload = $viewvar."-CA";
 //  insert qurey
- $insertQuery = mysqli_query($con, "insert into represent_setup(userNo,rep_name,rep_desg,rep_office_no,rep_phone_no,email,status) values ('$expload','$rep_name','$rep_desg','$rep_office_no','$rep_phone_no','$email','$status')") or die(mysqli_error($con));
+ $insertQuery = mysqli_query($con, "insert into represent_setup(userNo,rep_name,rep_desg,rep_office_no,rep_phone_no,rep_email,status) values ('$expload','$rep_name','$rep_desg','$rep_office_no','$rep_phone_no','$rep_email','$status')") or die(mysqli_error($con));
  
   $msg = "Record is inserted successfully.";
   function alert($msg)
@@ -502,7 +502,7 @@ if ($viewvar==$row['SrNo'])
                   </div>
                   <div class="input-fields">  
                     <label>Email</label> 
-                    <input type="text" name="email" id="email" placeholder="Enter Here Email !">    
+                    <input type="text" name="rep_email" id="rep_email" placeholder="Enter Here Email !">    
                   </div>
                   
                    <div class="input-fields">  
@@ -556,7 +556,7 @@ if ($viewvar==$row['SrNo'])
                   </div>
                   <div class="input-fields">  
                     <label>Email</label> 
-                    <input type="text" name="emailV" id="emailV" placeholder="Enter Here Email !">    
+                    <input type="text" name="rep_emailV" id="rep_emailV" placeholder="Enter Here Email !">    
                   </div>
                  
                    <div class="input-fields">  
@@ -666,8 +666,11 @@ if ($viewvar==$row['SrNo'])
 				     
 
 
-						 <label id="formSummary" style="color: red;"></label>
-             <p id="V_name" style="color: red;"></p>
+						  <h4><label id="formSummary" style="color: red;"></label></h4>
+                 <p id="V_name" style="color: red;"></p>
+                  <p id="V_email" style="color: red;"></p>
+                 <p id="V_phone" style="color: red;"></p>
+                  <p id="V_fax" style="color: red;"></p>
 
 							
 
@@ -840,8 +843,8 @@ if ($viewvar==$row['SrNo'])
                       <div class="tbleDrpdown">
                         <div id="tblebtn">
                           <ul>
-                              <li><button type="button" id="btnDelete_C1"><i class="fa fa-trash"></i> Activate</button></li>
-                              <li><button type="button" id="btnDelete_C"><i class="fa fa-trash"></i> Deactivate</button></li>
+                             <!--  <li><button type="button" id="btnDelete_C1"><i class="fa fa-trash"></i> Activate</button></li>
+                              <li><button type="button" id="btnDelete_C"><i class="fa fa-trash"></i> Deactivate</button></li> -->
                               
                           </ul>
                         </div>
@@ -876,7 +879,7 @@ if ($viewvar==$row['SrNo'])
                                                   $rep_desg =$rowairport['rep_desg'];
                                                   $rep_office_no =$rowairport['rep_office_no'];
                                                   $rep_phone_no =$rowairport['rep_phone_no'];
-                                                  $email =$rowairport['email'];
+                                                  $rep_email =$rowairport['rep_email'];
                                                   $status =$rowairport['status'];
                                                                                                    
 
@@ -888,7 +891,7 @@ if ($viewvar==$row['SrNo'])
                                           <td><?php echo $rep_desg ?></td>
                                           <td><?php echo $rep_office_no ?></td>
                                           <td><?php echo $rep_phone_no ?></td>
-                                          <td><?php echo $email ?></td>
+                                          <td><?php echo $rep_email ?></td>
                                           <td><?php echo $status ?></td>
                                           <td><a href="#" class="editData" data-toggle="modal" id="<?php echo $rowairport['SrNo']; ?>" data-target="#btn1" >Edit</td> 
                                           <?php
@@ -970,7 +973,7 @@ $(document).on('click', '.editData', function(){
               $('#rep_desgV').val(data.rep_desg);  
               $('#rep_office_noV').val(data.rep_office_no); 
               $('#rep_phone_noV').val(data.rep_phone_no);
-               $('#emailV').val(data.email);  
+               $('#rep_emailV').val(data.rep_email);  
 
               var checkif = data.status;
               if (checkif == "Active") {
@@ -1030,6 +1033,12 @@ $(document).ready(function(){
       var missingVal = 0;
 
       var name=document.getElementById('name').value;
+      var email=document.getElementById('email').value;
+      var phone=document.getElementById('phone').value;
+      var fax=document.getElementById('fax').value;
+
+
+
      
      
       var summary = "Summary: ";
@@ -1048,12 +1057,78 @@ $(document).ready(function(){
 
       }
 
-      
+      // if(user_fName == "")
+      // {
+      //     document.getElementById('user_fName').style.borderColor = "red";
+      //     missingVal = 1;
+      //     // summary += "Firstname is required.";
+      //     document.getElementById("s_fName").innerHTML = "Firstname is required.";
+      // }
+      // if(airport_ICAO != "")
+      // {
+      //     document.getElementById('airport_ICAO').style.borderColor = "white";
+      //     document.getElementById("V_airport_ICAO").innerHTML = "";
+
+      //     if (!regexp.test(airport_ICAO))
+      //   {
+      //     document.getElementById('airport_ICAO').style.borderColor = "red";
+      //       missingVal = 1;
+      //       // summary += "Firstname is required.";
+      //       document.getElementById("V_airport_ICAO").innerHTML = "Only alphabets are allowed in ICAO.";
+      //   }
+      // }
+
+       if(phone != "")
+      {
+          document.getElementById('phone').style.borderColor = "white";
+          document.getElementById("V_phone").innerHTML = "";
+
+          if (!regexp2.test(phone))
+        {
+          document.getElementById('phone').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_phone").innerHTML = "Only Number are allowed in Phone No.";
+        }
+       } 
+
+
+       if(fax != "")
+      {
+          document.getElementById('fax').style.borderColor = "white";
+          document.getElementById("V_fax").innerHTML = "";
+
+          if (!regexp2.test(fax))
+        {
+          document.getElementById('fax').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_fax").innerHTML = "Only Number are allowed in Fax No.";
+        }
+       } 
+
+      if(email != "")
+      {
+          document.getElementById('email').style.borderColor = "white";
+          document.getElementById("V_email").innerHTML = "";
+
+          if (!re.test(email))
+        {
+          document.getElementById('email').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_email").innerHTML = "Please follow the email format (user@domain.com).";
+        }
+      }
+
       
       
       if (missingVal != 1)
       {
         document.getElementById('name').style.borderColor = "white";
+        document.getElementById('email').style.borderColor = "white";
+        document.getElementById('phone').style.borderColor = "white";
+        document.getElementById('fax').style.borderColor = "white";
        
         $("#submitAirline_Modal").modal();
         
@@ -1066,6 +1141,7 @@ $(document).ready(function(){
       
   }
 </script>
+
 
 <!-- java script -->
         <script type="text/javascript">
