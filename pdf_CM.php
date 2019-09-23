@@ -360,7 +360,7 @@ $run= mysqli_query($con, "SELECT * FROM custmaster WHERE userBr='$userBr' ");
 
                                 while ($searchRow= mysqli_fetch_array($run))
                                 {
-                                  $cmpType = $searchRow['cmpType'];            
+                                                $cmpType = $searchRow['cmpType'];            
                                                 $legCode = $searchRow['legCode']; 
                                                 $cmpTitle = $searchRow['cmpTitle'];
                                                 $newCode = $searchRow ['newCode'];
