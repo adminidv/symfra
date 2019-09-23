@@ -116,7 +116,7 @@ if(isset($_POST["btnCustom_U"]))
     $status_Ar = 1;
   }
 
-  $updateUM = mysqli_query($con, "UPDATE airlineCustomize SET air_name_Ar = '$air_name_Ar', flight_name_Ar='$flight_name_Ar', address_Ar='$address_Ar', country_Ar='$country_Ar', city_Ar='$city_Ar', account_no_Ar='$account_no_Ar', contact_person_Ar='$contact_person_Ar', con_office_Ar='$con_office_Ar', con_personal_Ar='$con_personal_Ar', fax_no_Ar='$fax_no_Ar', email_Ar='$email_Ar', website_Ar='$website_Ar', kb_adj_Ar='$kb_adj_Ar', awb_standard_Ar='$awb_standard_Ar', iata_mem_Ar='$iata_mem_Ar', sec_charges_Ar='$sec_charges_Ar', fuel_charges_Ar='$fuel_charges_Ar', scan_charges_Ar='$scan_charges_Ar', status_Ar='$status_Ar' WHERE SrNo_Ar= '$SrNo_Ar' ")or die(mysqli_error($con));
+  $updateUM = mysqli_query($con, "UPDATE airlinecustomize SET air_name_Ar = '$air_name_Ar', flight_name_Ar='$flight_name_Ar', address_Ar='$address_Ar', country_Ar='$country_Ar', city_Ar='$city_Ar', account_no_Ar='$account_no_Ar', contact_person_Ar='$contact_person_Ar', con_office_Ar='$con_office_Ar', con_personal_Ar='$con_personal_Ar', fax_no_Ar='$fax_no_Ar', email_Ar='$email_Ar', website_Ar='$website_Ar', kb_adj_Ar='$kb_adj_Ar', awb_standard_Ar='$awb_standard_Ar', iata_mem_Ar='$iata_mem_Ar', sec_charges_Ar='$sec_charges_Ar', fuel_charges_Ar='$fuel_charges_Ar', scan_charges_Ar='$scan_charges_Ar', status_Ar='$status_Ar' WHERE SrNo_Ar= '$SrNo_Ar' ")or die(mysqli_error($con));
 
 }
 
@@ -299,8 +299,8 @@ if(isset($_POST["btnDelete"]))
     <div class="">
         <div class="btn-group btn-breadcrumb">
           <a href="#" class="btn btn-info "><i class="glyphicon glyphicon-home"></i></a>
-          <a href="Usermodules.php" class="btn btn-info">Setup</a>
-          <a href="usertable.php" class="btn btn-info active">Airline Table</a>
+          <a href="usermodules.php" class="btn btn-info">Setup</a>
+          <a href="airline_table.php" class="btn btn-info active">Airline Table</a>
         </div>
     </div>
   </div>
