@@ -83,9 +83,9 @@ $userNo = $_GET['Desig_ID'];
   <div class="breadCrumb_bar_iner">
     <div class="">
         <div class="btn-group btn-breadcrumb">
-          <a href="#" class="btn btn-info "><i class="glyphicon glyphicon-home"></i></a>
-          <a href="Usermodules.php" class="btn btn-info">User Management</a>
-          <a href="add_designation.php" class="btn btn-info active">Add Designation</a>
+          <a href="usermodules.php" class="btn btn-info "><i class="glyphicon glyphicon-home"></i></a>
+          <a href="usermodules.php" class="btn btn-info">User Management</a>
+          <a href="#" class="btn btn-info active">Add Designation</a>
         </div>
     </div>
   </div>
