@@ -61,10 +61,10 @@ if (isset($_POST['btnSubmit']))
 	}
 
 	// Inserting records to Authorization Set
-	$insertAuthSet = mysqli_query($con, "insert into authorizationSet (auth_Name) values ('$user_ID')");
+	$insertAuthSet = mysqli_query($con, "insert into authorizationset (auth_Name) values ('$user_ID')");
 
 	// Inserting records to Authorization Details
-	$insertAuthDetails = mysqli_query($con, "insert into authDetails (auth_Name, add_U, update_U, delete_U, view_U) values ('$user_ID', $userAdd, $userUpdate, $userDelete, $userView)");
+	$insertAuthDetails = mysqli_query($con, "insert into authdetails (auth_Name, add_U, update_U, delete_U, view_U) values ('$user_ID', $userAdd, $userUpdate, $userDelete, $userView)");
 
 	if ($insertAuthSet)
 	{
