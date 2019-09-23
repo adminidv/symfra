@@ -38,7 +38,7 @@ if(isset($_POST['btnedit1']))
   $rep_desgV = $_POST['rep_desgV'];
   $rep_office_noV = $_POST['rep_office_noV'];
   $rep_phone_noV = $_POST['rep_phone_noV'];
-  $emailV = $_POST['emailV'];
+  $rep_emailV = $_POST['rep_emailV'];
    if (isset($_POST['statusV'])) {
     $statusV='Active';
 
@@ -50,7 +50,7 @@ if(isset($_POST['btnedit1']))
  
 $expload = $userNo."-Sub";
 // update query
-   $updateQuery13 = mysqli_query($con, " UPDATE represent_setup SET userNo='$expload',rep_name='$rep_nameV',rep_desg='$rep_desgV',rep_office_no='$rep_office_noV',rep_phone_no='$rep_phone_noV',email='$emailV',status='$statusV' WHERE SrNo='$SrNoV'")or die(mysqli_error($con));
+   $updateQuery13 = mysqli_query($con, " UPDATE represent_setup SET userNo='$expload',rep_name='$rep_nameV',rep_desg='$rep_desgV',rep_office_no='$rep_office_noV',rep_phone_no='$rep_phone_noV',rep_email='$rep_emailV',status='$statusV' WHERE SrNo='$SrNoV'")or die(mysqli_error($con));
 
 // msg Alert
     $msg = "Record is inserted successfully.";
@@ -72,7 +72,7 @@ if (isset($_POST['btnadd'])) {
   $rep_desg= $_POST['rep_desg'];
   $rep_office_no = $_POST['rep_office_no'];
   $rep_phone_no = $_POST['rep_phone_no'];
-  $email = $_POST['email'];
+  $rep_email = $_POST['rep_email'];
   
   if (isset($_POST['status'])) {
     $status='Active';
@@ -85,7 +85,7 @@ if (isset($_POST['btnadd'])) {
 
   $expload = $userNo."-Sub";
 //  insert qurey
- $insertQuery = mysqli_query($con, "insert into represent_setup(userNo,rep_name,rep_desg,rep_office_no,rep_phone_no,email,status) values ('$expload','$rep_name','$rep_desg','$rep_office_no','$rep_phone_no','$email','$status')") or die(mysqli_error($con));
+ $insertQuery = mysqli_query($con, "insert into represent_setup(userNo,rep_name,rep_desg,rep_office_no,rep_phone_no,rep_email,status) values ('$expload','$rep_name','$rep_desg','$rep_office_no','$rep_phone_no','$rep_email','$status')") or die(mysqli_error($con));
  
   $msg = "Record is inserted successfully.";
   function alert($msg)
@@ -182,17 +182,29 @@ if (isset($_POST['submitBtn'])) {
            // $initChangeLog = "UPDATE chainlog SET instance='$newID1',formName='$Agent',record_id='$',createBy='$createBy',createDate='$createDate',updateBy='$loginUser',updateDate='$todayDate',  "
 
           $initChangeLog = "INSERT INTO chainlog (instance, formName, record_id, createBy, createDate, updateBy, updateDate, perValue, newValue)";
-          $initChangeLog .= " VALUES ('$newID1', 'Agent', '$SrNo', '$createBy', '$createDate', '$loginUser', '$todayDate'";
+          $initChangeLog .= " VALUES ('$newID1', 'SubAgent', '$SrNo', '$createBy', '$createDate', '$loginUser', '$todayDate'";
 
           if ($partyname != $partyname_P)
           {
             $initQuery .= ", partyname='$partyname'";
             $initChangeLog2 = ", '$partyname_P', '$partyname') ";
+            
+            // <!-- qurey.. -->
+          $finalChangeLog = $initChangeLog . $initChangeLog2 ;
+          
+
+          mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
           }
           if ($subpartyname != $subpartyname_P)
           {
             $initQuery .= ", subpartyname='$subpartyname'";
             $initChangeLog2 = ", '$subpartyname_P', '$subpartyname') ";
+            
+            // <!-- qurey.. -->
+          $finalChangeLog = $initChangeLog . $initChangeLog2 ;
+          
+
+          mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
           }
           
           
@@ -200,60 +212,125 @@ if (isset($_POST['submitBtn'])) {
           {
             $initQuery .= ", address='$address'";
             $initChangeLog2 = ", '$address_P', '$address') ";
+            
+            // <!-- qurey.. -->
+          $finalChangeLog = $initChangeLog . $initChangeLog2 ;
+          
+
+          mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
           }
           if ($country != $country_P)
           {
             $initQuery .= ", country='$country'";
             $initChangeLog2 = ", '$country_P', '$country') ";
+            
+            // <!-- qurey.. -->
+          $finalChangeLog = $initChangeLog . $initChangeLog2 ;
+          
+
+          mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
           }
           if ($city != $city_P)
           {
             $initQuery .= ", city='$city'";
             $initChangeLog2 = ", '$city_P', '$city') ";
+            
+            // <!-- qurey.. -->
+          $finalChangeLog = $initChangeLog . $initChangeLog2 ;
+          
+
+          mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
           }
            if ($phone != $phone_P)
           {
             $initQuery .= ", phone='$phone'";
             $initChangeLog2 = ", '$phone_P', '$phone') ";
+            
+            // <!-- qurey.. -->
+          $finalChangeLog = $initChangeLog . $initChangeLog2 ;
+          
+
+          mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
           }
           if ($fax != $fax_P)
           {
             $initQuery .= ", fax='$fax'";
             $initChangeLog2 = ", '$fax_P', '$fax') ";
+            
+            // <!-- qurey.. -->
+          $finalChangeLog = $initChangeLog . $initChangeLog2 ;
+          
+
+          mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
           }
           
           if ($email != $email_P)
           {
             $initQuery .= ", email='$email'";
             $initChangeLog2 = ", '$email_P', '$email') ";
+            
+            // <!-- qurey.. -->
+          $finalChangeLog = $initChangeLog . $initChangeLog2 ;
+          
+
+          mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
           }
 
           if ($website != $website_P)
           {
             $initQuery .= ", website='$website'";
             $initChangeLog2 = ", '$website_P', '$website') ";
+            
+            // <!-- qurey.. -->
+          $finalChangeLog = $initChangeLog . $initChangeLog2 ;
+          
+
+          mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
           }
 
           if ($export_reg_no != $export_reg_no_P)
           {
             $initQuery .= ", export_reg_no='$export_reg_no'";
             $initChangeLog2 = ", '$export_reg_no_P', '$export_reg_no') ";
+            
+            // <!-- qurey.. -->
+          $finalChangeLog = $initChangeLog . $initChangeLog2 ;
+          
+
+          mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
           }
           if ($sales_tax_no != $sales_tax_no_P)
           {
             $initQuery .= ", sales_tax_no='$sales_tax_no'";
             $initChangeLog2 = ", '$sales_tax_no_P', '$sales_tax_no') ";
+
+            // <!-- qurey.. -->
+          $finalChangeLog = $initChangeLog . $initChangeLog2 ;
+          
+
+          mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
           }
           if ($ntn_no != $ntn_no_P)
           {
             $initQuery .= ", ntn_no='$ntn_no'";
             $initChangeLog2 = ", '$ntn_no_P', '$ntn_no') ";
+            // <!-- qurey.. -->
+          $finalChangeLog = $initChangeLog . $initChangeLog2 ;
+          
+
+          mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+
           }
      
           if ($status != $status_P)
           {
             $initQuery .= ", status='$status'";
             $initChangeLog2 = ", '$status_P', '$status') ";
+            // <!-- qurey.. -->
+          $finalChangeLog = $initChangeLog . $initChangeLog2 ;
+          
+
+          mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
           }
 
           $finalQuery = $initQuery . $clause;
@@ -261,11 +338,7 @@ if (isset($_POST['submitBtn'])) {
 
           mysqli_query($con, $finalQuery) or die(mysqli_error($con));
 
-        // <!-- qurey.. -->
-          $finalChangeLog = $initChangeLog . $initChangeLog2 ;
-          
-
-          mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+        
 
  
   $msg = "Record is inserted successfully.";
@@ -445,7 +518,7 @@ if (isset($_POST['submitBtn'])) {
 
                               include 'manage/connection.php';
 
-                              $selectchainlog = mysqli_query($con, "select * from chainlog where formName = 'Agent' ");
+                              $selectchainlog = mysqli_query($con, "select * from chainlog where formName = 'SubAgent' ");
 
                               ?>
                           <?php
@@ -513,7 +586,7 @@ if (isset($_POST['submitBtn'])) {
                   </div>
                   <div class="input-fields">  
                     <label>Email</label> 
-                    <input type="text" name="email" id="email" placeholder="Enter Here Email !">    
+                    <input type="text" name="rep_email" id="rep_email" placeholder="Enter Here Email !">    
                   </div>
                   
                    <div class="input-fields">  
@@ -565,7 +638,7 @@ if (isset($_POST['submitBtn'])) {
                   </div>
                   <div class="input-fields">  
                     <label>Email</label> 
-                    <input type="text" name="emailV" id="emailV" class="emailV" placeholder="Enter Here Email !">    
+                    <input type="text" name="rep_emailV" id="rep_emailV" class="rep_emailV" placeholder="Enter Here Email !">    
                   </div>
                  
                    <div class="input-fields">  
@@ -741,6 +814,7 @@ if (isset($_POST['submitBtn'])) {
  <h4><label id="formSummary" style="color: red;"></label></h4>
        <p id="V_partyname" style="color: red;"></p>
         <p id="V_subpartyname" style="color: red;"></p>
+        <p id="V_email" style="color: red;"></p>
 
               
 
@@ -769,7 +843,7 @@ if (isset($_POST['submitBtn'])) {
                                                       
                                                       <div class="input-label"><label >Party Name</label></div>  
                                                       <div class="input-feild">
-                                                             <select name="partyname" id="partyname" class="partyname" required>
+                                                             <select name="partyname" id="partyname" class="partyname" >
                                                   <!-- <option value="Select">Select </option> -->
                                                   <!-- Drop Down list Country Name -->
                                                   <?php
@@ -802,7 +876,7 @@ if (isset($_POST['submitBtn'])) {
 
                                                       <div class="input-label"><label >Country</label></div> 
                                              <div class="input-feild"> 
-                                             <select name="country" id="country" class="country" required>
+                                             <select name="country" id="country" class="country" >
                                                  
                                                   <!-- Drop Down list Country Name -->
                                                   <?php
@@ -830,7 +904,7 @@ if (isset($_POST['submitBtn'])) {
                                                       </div>
                                                       <div class="input-label"><label >City</label></div> 
                                 <div class="input-feild">
-                                           <select name="city" id="city" class="city" required>
+                                           <select name="city" id="city" class="city" >
                                                
                                                 <!-- Drop Down list Country Name -->
                                                 <?php
@@ -859,8 +933,7 @@ if (isset($_POST['submitBtn'])) {
 
                                                       <div class="input-label"><label >Address</label></div>  
                                                       <div class="input-feild" >
-                                                          <textarea name="address" id="address"><?php echo $address_P ?>
-                                                          </textarea>
+                                                          <textarea name="address" id="address"><?php echo $address_P ?></textarea>
                                                       </div>                                                                  
                                </div>
 
@@ -928,10 +1001,10 @@ if (isset($_POST['submitBtn'])) {
                       <div class="tbleDrpdown">
                         <div id="tblebtn">
                           <ul>
-                              <li><button type="button" id="btnDelete_C1"><i class="fa fa-trash"></i> Activate</button></li>
-                              <li><button type="button" id="btnDelete_C"><i class="fa fa-trash"></i> Deactivate</button></li>
-                              <li><button type="submit" id="btnExport_P"> <i class="fa fa-print"></i><a href="airport_print.php" target="_blank"> Print</a></button></li>
-                              <li><button type="button" id="exportBtn"><i class="fa fa-download"></i>  Export</button></li>
+                              <!-- <li><button type="button" id="btnDelete_C1"><i class="fa fa-trash"></i> Activate</button></li>
+                              <li><button type="button" id="btnDelete_C"><i class="fa fa-trash"></i> Deactivate</button></li> -->
+                              <!-- <li><button type="submit" id="btnExport_P"> <i class="fa fa-print"></i><a href="airport_print.php" target="_blank"> Print</a></button></li>
+                              <li><button type="button" id="exportBtn"><i class="fa fa-download"></i>  Export</button></li> -->
                           </ul>
                         </div>
                       </div>
@@ -964,7 +1037,7 @@ if (isset($_POST['submitBtn'])) {
                                                   $rep_desg =$rowairport['rep_desg'];
                                                   $rep_office_no =$rowairport['rep_office_no'];
                                                   $rep_phone_no =$rowairport['rep_phone_no'];
-                                                  $email =$rowairport['email'];
+                                                  $rep_email =$rowairport['rep_email'];
                                                   $status =$rowairport['status'];
                                                                                                    
 
@@ -975,7 +1048,7 @@ if (isset($_POST['submitBtn'])) {
                                           <td><?php echo $rep_desg ?></td>
                                           <td><?php echo $rep_office_no ?></td>
                                           <td><?php echo $rep_phone_no ?></td>
-                                          <td><?php echo $email ?></td>
+                                          <td><?php echo $rep_email ?></td>
                                           <td><?php echo $status ?></td>
                                           <td><a href="#" class="editData" data-toggle="modal" id="<?php echo $rowairport['SrNo']; ?>" data-target="#btn1" >Edit</td> 
                                           <?php
@@ -1047,69 +1120,69 @@ function saveFunc()
     var re = /\S+@\S+\.\S+/;
       var missingVal = 0;
 
-      var airport_name=document.getElementById('airport_name').value;
-      var airport_ICAO=document.getElementById('airport_ICAO').value;
-     // var email=document.getElementById('email').value;
+      var partyname=document.getElementById('partyname').value;
+      var subpartyname=document.getElementById('subpartyname').value;
+     var email=document.getElementById('email').value;
      
      
       var summary = "Summary: ";
 
-      if(airport_name == "")
+      if(partyname == "")
       {
-          document.getElementById('airport_name').style.borderColor = "red";
+          document.getElementById('partyname').style.borderColor = "red";
           missingVal = 1;
           // summary += "Firstname is required.";
-          document.getElementById("V_airport_name").innerHTML = "Firstname is required.";
+          document.getElementById("V_partyname").innerHTML = "Party Name is required.";
       }
-      if(airport_name != "")
+      if(partyname != "")
       {
-          document.getElementById('airport_name').style.borderColor = "white";
-          document.getElementById("V_airport_name").innerHTML = "";
+          document.getElementById('partyname').style.borderColor = "white";
+          document.getElementById("V_partyname").innerHTML = "";
 
       }
 
-      if(user_fName == "")
+      if(subpartyname == "")
       {
-          document.getElementById('user_fName').style.borderColor = "red";
+          document.getElementById('subpartyname').style.borderColor = "red";
           missingVal = 1;
           // summary += "Firstname is required.";
-          document.getElementById("s_fName").innerHTML = "Firstname is required.";
+          document.getElementById("V_subpartyname").innerHTML = "Sub Agent is required.";
       }
-      if(airport_ICAO != "")
+      if(subpartyname != "")
       {
-          document.getElementById('airport_ICAO').style.borderColor = "white";
-          document.getElementById("V_airport_ICAO").innerHTML = "";
+          document.getElementById('subpartyname').style.borderColor = "white";
+          document.getElementById("V_subpartyname").innerHTML = "";
 
-          if (!regexp.test(airport_ICAO))
+         
+      }
+
+     if(email == "")
+      {
+          document.getElementById('email').style.borderColor = "red";
+          missingVal = 1;
+          // summary += " Contact number required.";
+          document.getElementById("V_email").innerHTML = "Email is required.";
+      }
+        if(email != "")
         {
-          document.getElementById('airport_ICAO').style.borderColor = "red";
-            missingVal = 1;
-            // summary += "Firstname is required.";
-            document.getElementById("V_airport_ICAO").innerHTML = "Only alphabets are allowed in ICAO.";
+          document.getElementById('email').style.borderColor = "white";
+            document.getElementById("V_email").innerHTML = "";
+
+            if (!re.test(email))
+            {
+              document.getElementById('email').style.borderColor = "red";
+              missingVal = 1;
+              // summary += "Firstname is required.";
+              document.getElementById("V_email").innerHTML = "Please follow the email format (user@domain.com).";
+            }
         }
-      }
-
-      // if(email != "")
-      // {
-      //     document.getElementById('email').style.borderColor = "white";
-      //     document.getElementById("V_email").innerHTML = "";
-
-      //     if (!re.test(email))
-      //   {
-      //     document.getElementById('email').style.borderColor = "red";
-      //       missingVal = 1;
-      //       // summary += "Firstname is required.";
-      //       document.getElementById("V_email").innerHTML = "Please follow the email format (user@domain.com).";
-      //   }
-      // }
-
       
       
       if (missingVal != 1)
       {
-        document.getElementById('airport_name').style.borderColor = "white";
-        document.getElementById('airport_ICAO').style.borderColor = "white";
-        // document.getElementById('email').style.borderColor = "white";
+        document.getElementById('partyname').style.borderColor = "white";
+        document.getElementById('subpartyname').style.borderColor = "white";
+        document.getElementById('email').style.borderColor = "white";
        
         $("#submit_Modal").modal();
         
@@ -1159,7 +1232,7 @@ $(document).on('click', '.editData', function(){
               $('#rep_desgV').val(data.rep_desg);  
               $('#rep_office_noV').val(data.rep_office_no); 
               $('#rep_phone_noV').val(data.rep_phone_no);
-               $('#emailV').val(data.email);  
+               $('#rep_emailV').val(data.rep_email);  
 
               var checkif = data.status;
               if (checkif == "Active") {
