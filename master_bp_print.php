@@ -8,7 +8,7 @@ include 'manage/connection.php';
 $run= mysqli_query($con, "SELECT * FROM  bpmaster");
 
 // For search result field customization
-$selectUM = mysqli_query($con, 'SELECT * FROM bpmaster_BM');
+$selectUM = mysqli_query($con, 'SELECT * FROM bpmaster_bm');
 
 while ($rowUM = mysqli_fetch_array($selectUM))
 {
