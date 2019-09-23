@@ -242,7 +242,7 @@ if(isset($_POST["btnCustom_U"]))
     $aeDelete_cus = 1;
   }
 
-  $updateUM = mysqli_query($con, "UPDATE tableview_UM SET auth_Name_cus = '$auth_Name_cus', add_U_cus='$add_U_cus', update_U_cus='$update_U_cus', delete_U_cus='$delete_U_cus', view_U_cus='$view_U_cus', deptView_cus='$deptView_cus', deptAdd_cus='$deptAdd_cus', deptDelete_cus='$deptDelete_cus', deptEdit_cus='$deptEdit_cus', desigView_cus='$desigView_cus', desigAdd_cus='$desigAdd_cus', desigDelete_cus='$desigDelete_cus', desigEdit_cus='$desigEdit_cus', roleView_cus='$roleView_cus', roleAdd_cus='$roleAdd_cus', roleDelete_cus='$roleDelete_cus', roleEdit_cus='$roleEdit_cus', empView_cus='$empView_cus', empAdd_cus='$empAdd_cus', empDelete_cus='$empDelete_cus', empEdit_cus='$empEdit_cus', leaveView_cus='$leaveView_cus', leaveAdd_cus='$leaveAdd_cus', leaveDelete_cus='$leaveDelete_cus', leaveEdit_cus='$leaveEdit_cus', siView_cus='$siView_cus', siAdd_cus='$siAdd_cus', siEdit_cus='$siEdit_cus', siDelete_cus='$siDelete_cus', seView_cus='$seView_cus', seAdd_cus='$seAdd_cus', seEdit_cus='$seEdit_cus', seDelete_cus='$seDelete_cus', aiView_cus='$aiView_cus', aiAdd_cus='$aiAdd_cus', aiEdit_cus='$aiEdit_cus', aiDelete_cus='$aiDelete_cus', aeView_cus='$aeView_cus', aeAdd_cus='$aeAdd_cus', aeEdit_cus='$aeEdit_cus', aeDelete_cus='$aeDelete_cus' WHERE SrNo= '1' ");
+  $updateUM = mysqli_query($con, "UPDATE tableview_um SET auth_Name_cus = '$auth_Name_cus', add_U_cus='$add_U_cus', update_U_cus='$update_U_cus', delete_U_cus='$delete_U_cus', view_U_cus='$view_U_cus', deptView_cus='$deptView_cus', deptAdd_cus='$deptAdd_cus', deptDelete_cus='$deptDelete_cus', deptEdit_cus='$deptEdit_cus', desigView_cus='$desigView_cus', desigAdd_cus='$desigAdd_cus', desigDelete_cus='$desigDelete_cus', desigEdit_cus='$desigEdit_cus', roleView_cus='$roleView_cus', roleAdd_cus='$roleAdd_cus', roleDelete_cus='$roleDelete_cus', roleEdit_cus='$roleEdit_cus', empView_cus='$empView_cus', empAdd_cus='$empAdd_cus', empDelete_cus='$empDelete_cus', empEdit_cus='$empEdit_cus', leaveView_cus='$leaveView_cus', leaveAdd_cus='$leaveAdd_cus', leaveDelete_cus='$leaveDelete_cus', leaveEdit_cus='$leaveEdit_cus', siView_cus='$siView_cus', siAdd_cus='$siAdd_cus', siEdit_cus='$siEdit_cus', siDelete_cus='$siDelete_cus', seView_cus='$seView_cus', seAdd_cus='$seAdd_cus', seEdit_cus='$seEdit_cus', seDelete_cus='$seDelete_cus', aiView_cus='$aiView_cus', aiAdd_cus='$aiAdd_cus', aiEdit_cus='$aiEdit_cus', aiDelete_cus='$aiDelete_cus', aeView_cus='$aeView_cus', aeAdd_cus='$aeAdd_cus', aeEdit_cus='$aeEdit_cus', aeDelete_cus='$aeDelete_cus' WHERE SrNo= '1' ");
 
   $clause = " WHERE ";//Initial clause
   $searchRecord="SELECT * FROM `authdetails`  ";
@@ -812,9 +812,9 @@ else
   <div class="breadCrumb_bar_iner">
     <div class="">
         <div class="btn-group btn-breadcrumb">
-          <a href="#" class="btn btn-info "><i class="glyphicon glyphicon-home"></i></a>
-          <a href="Usermodules.php" class="btn btn-info">Roles</a>
-          <a href="usertable.php" class="btn btn-info active">Show Roles</a>
+          <a href="usermodules.php" class="btn btn-info "><i class="glyphicon glyphicon-home"></i></a>
+          <a href="usermodules.php" class="btn btn-info">Roles</a>
+          <a href="viewAuthorizations.php" class="btn btn-info active">Show Roles</a>
         </div>
     </div>
   </div>
