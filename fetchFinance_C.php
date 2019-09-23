@@ -17,7 +17,7 @@ echo "<script>
     });
   </script>";
 
-$query = "SELECT * FROM custFinanceDetails WHERE custMCode='$newCodeC' ";
+$query = "SELECT * FROM custfinancedetails WHERE custMCode='$newCodeC' ";
 $statement = $connect->prepare($query);
 $statement->execute();
 $result = $statement->fetchAll();
