@@ -100,7 +100,7 @@ if (isset($_POST['submitBtn'])) {
         // $userNot = $user_fName . ' ' . $user_lName;
 
         // Inserting notification
-        $insertNot = mysqli_query($con, "INSERT INTO notTable (notTitle, notDateTime, notStatus, creatorID, createdBy, notOn, notRecord, appFlowID, mainCreator, notApp) VALUES ('Air Export', '$finalDate', 'Approval Pending', '$userID', '$userNot', '$notOn', '$newID', '$appFlowID', '$userID', '1') ") or die(mysqli_error($con));
+        $insertNot = mysqli_query($con, "INSERT INTO nottable (notTitle, notDateTime, notStatus, creatorID, createdBy, notOn, notRecord, appFlowID, mainCreator, notApp) VALUES ('Air Export', '$finalDate', 'Approval Pending', '$userID', '$userNot', '$notOn', '$newID', '$appFlowID', '$userID', '1') ") or die(mysqli_error($con));
 
       header("Location: sales_order_air_export.php");
     }
@@ -164,9 +164,9 @@ if (isset($_POST['submitBtn'])) {
   <div class="breadCrumb_bar_iner">
     <div class="">
         <div class="btn-group btn-breadcrumb">
-          <a href="#" class="btn btn-info "><i class="glyphicon glyphicon-home"></i></a>
-          <a href="Usermodules.php" class="btn btn-info">CRM</a>
-          <a href="#" class="btn btn-info active">Sales Order(Air Export)</a>
+          <a href="usermodules.php" class="btn btn-info "><i class="glyphicon glyphicon-home"></i></a>
+          <a href="usermodules.php" class="btn btn-info">CRM</a>
+          <a href="sales_order_air_export.php" class="btn btn-info active">Sales Order(Air Export)</a>
         </div>
     </div>
   </div>
