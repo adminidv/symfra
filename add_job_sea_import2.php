@@ -270,9 +270,9 @@ if (isset($_POST['submitBtn1'])) {
     <div class="">
         <div class="btn-group btn-breadcrumb">
           <a href="#" class="btn btn-info "><i class="glyphicon glyphicon-home"></i></a>
-          <a href="Usermodules.php" class="btn btn-info ">Operations</a>
+          <a href="usermodules.php" class="btn btn-info ">Operations</a>
 
-          <a href="Usermodules.php" class="btn btn-info active">Sea Import (Job Entry)</a>
+          <a href="add_job_sea_import.php" class="btn btn-info active">Sea Import (Job Entry)</a>
 
         </div>
     </div>
