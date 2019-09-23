@@ -111,8 +111,8 @@ if (isset($_POST['submitBtn'])) {
   <div class="breadCrumb_bar_iner">
     <div class="">
         <div class="btn-group btn-breadcrumb">
-          <a href="#" class="btn btn-info "><i class="glyphicon glyphicon-home"></i></a>
-          <a href="Usermodules.php" class="btn btn-info">CRM</a>
+          <a href="usermodules.php" class="btn btn-info "><i class="glyphicon glyphicon-home"></i></a>
+          <a href="usermodules.php" class="btn btn-info">CRM</a>
           <a href="#" class="btn btn-info active">Sales Order(Air Import)</a>
         </div>
     </div>
@@ -276,7 +276,7 @@ if (isset($_POST['submitBtn'])) {
                                     
                               <div class="input-label"><label >Currency  </label></div>
                               <div class="input-feild">
-                                  <select ="" class="mini_select_field" name="saleCurr" id="saleCurr" >
+                                  <select class="mini_select_field" name="saleCurr" id="saleCurr" >
                                     
                                     <?php
 
