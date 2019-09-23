@@ -17,7 +17,7 @@ while ($rowBr = mysqli_fetch_array($selectBr))
   $userBr = $rowBr['userBr'];
 }
 
-$selectlea =  "SELECT * FROM custmaster WHERE userBr='$userBr' ";
+$selectlea =  "SELECT * FROM custmaster WHERE userbr='$userBr' ";
 $select = mysqli_query($con, $selectlea);
 if(mysqli_num_rows($select) > 0)
 {
