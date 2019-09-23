@@ -16,7 +16,7 @@ if (isset($_POST['btnSubmit']))
   $auth_Name = $_POST['auth'];
 
   //Inserting records to Assign Authorization table
-  $insertAuthSet = mysqli_query($con, "insert into authAssign (dept_Name, desig_Name, auth_Name) values ('$dept_Name', '$desig_Name', '$auth_Name')");
+  $insertAuthSet = mysqli_query($con, "insert into authassign (dept_Name, desig_Name, auth_Name) values ('$dept_Name', '$desig_Name', '$auth_Name')");
 
   if ($insertAuthSet)
   {
