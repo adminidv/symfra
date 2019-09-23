@@ -92,7 +92,7 @@ if (isset($_POST['submitBtn'])) {
     }
 
     // Inserting notification
-    $insertNot = mysqli_query($con, "INSERT INTO notTable (notTitle, notDateTime, notStatus, creatorID, createdBy, notOn, notRecord, appFlowID, mainCreator, notApp) VALUES ('Air Import', '$finalDate', 'Approval Pending', '$userID', '$userNot', '$notOn', '$newID', '$appFlowID', '$userID', '1') ") or die(mysqli_error($con));
+    $insertNot = mysqli_query($con, "INSERT INTO nottable (notTitle, notDateTime, notStatus, creatorID, createdBy, notOn, notRecord, appFlowID, mainCreator, notApp) VALUES ('Air Import', '$finalDate', 'Approval Pending', '$userID', '$userNot', '$notOn', '$newID', '$appFlowID', '$userID', '1') ") or die(mysqli_error($con));
 
     header("Location: sales_order_air_import.php");
   }
@@ -156,9 +156,9 @@ if (isset($_POST['submitBtn'])) {
   <div class="breadCrumb_bar_iner">
     <div class="">
         <div class="btn-group btn-breadcrumb">
-          <a href="#" class="btn btn-info "><i class="glyphicon glyphicon-home"></i></a>
-          <a href="Usermodules.php" class="btn btn-info">CRM</a>
-          <a href="#" class="btn btn-info active">Sales Order(Air Import)</a>
+          <a href="usermodules.php" class="btn btn-info "><i class="glyphicon glyphicon-home"></i></a>
+          <a href="usermodules.php" class="btn btn-info">CRM</a>
+          <a href="sales_order_air_import.php" class="btn btn-info active">Sales Order(Air Import)</a>
         </div>
     </div>
   </div>
@@ -649,13 +649,13 @@ function checkValues() {
  var customerCont = document.getElementById("saleCust").value;
 
   $.ajax({
-     url:"sales_air_export_ajax.php",  
-            method:"GET",  
-            data:{customerCont:customerCont},  
-            dataType:"text",  
+     url:"sales_air_export_ajax.php",
+            method:"GET",
+            data:{customerCont:customerCont},
+            dataType:"text",
      success: function(data) {
-          $('.conPerson').html(data); 
-            }
+          $('.conPerson').html(data);
+        }
   });
  
 } 
