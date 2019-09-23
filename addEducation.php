@@ -11,7 +11,7 @@ if(isset($_POST["eduDegree"]))
  $empNo = $_POST["empNo"];
  $query = '';
  $query .= '
-   INSERT INTO empEducation(empNo, empDegree, empInstitute, empGPA, empYear) 
+   INSERT INTO empeducation(empNo, empDegree, empInstitute, empGPA, empYear) 
    VALUES("'.$empNo.'", "'.$empDegree.'", "'.$empInstitute.'", "'.$empGPA.'", "'.$empYear.'"); 
    ';
  if($query != '')
