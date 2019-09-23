@@ -3,7 +3,7 @@
 include('database_connection.php');
 
 $query = "
-SELECT * FROM custFinanceDetails 
+SELECT * FROM custfinancedetails 
 WHERE SrNo = '".$_POST["SrNoEdu"]."'
 ";
 $statement = $connect->prepare($query);
