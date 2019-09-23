@@ -27,45 +27,45 @@ while ($rowSrNo = mysqli_fetch_array($selectSrNo))
 // fatch data in currency setup
  $selectairport = mysqli_query($con, "select * from airport_setup ");
 
-// multi Deactived
-if(isset($_POST["btnDelete"]))
-{
-  $id = $_POST['user_check'];
-  while (list($key, $val) = @each ($id))
-  {
-    $selectStatus = mysqli_query($con, "SELECT * FROM  represent_setup WHERE SrNo='".$val."' ");
-    while ($rowStatus = mysqli_fetch_array($selectStatus))
-    {
-      $currentStatus = $rowStatus['status'];
-    }
-    if ($currentStatus == "Active")
-    {
-      mysqli_query($con, "UPDATE  represent_setup SET status='Deactive' WHERE SrNo = '".$val."' ");
-    }
+// // multi Deactived
+// if(isset($_POST["btnDelete"]))
+// {
+//   $id = $_POST['user_check'];
+//   while (list($key, $val) = @each ($id))
+//   {
+//     $selectStatus = mysqli_query($con, "SELECT * FROM  represent_setup WHERE SrNo='".$val."' ");
+//     while ($rowStatus = mysqli_fetch_array($selectStatus))
+//     {
+//       $currentStatus = $rowStatus['status'];
+//     }
+//     if ($currentStatus == "Active")
+//     {
+//       mysqli_query($con, "UPDATE  represent_setup SET status='Deactive' WHERE SrNo = '".$val."' ");
+//     }
 
-    header("Location: airport_setup_Edit.php?id=".$userNo);
-}
+//     header("Location: airport_setup_Edit.php?id=".$userNo);
+// }
 
-}
-    // multi Actived
-    if(isset($_POST["btnDelete1"]))
-{
-  $id = $_POST['user_check'];
-  while (list($key, $val) = @each ($id))
-  {
-    $selectStatus = mysqli_query($con, "SELECT * FROM  represent_setup WHERE SrNo='".$val."' ");
-    while ($rowStatus = mysqli_fetch_array($selectStatus))
-    {
-      $currentStatus = $rowStatus['status'];
-    }
-     if ($currentStatus == "Deactive")
-    {
-      mysqli_query($con, "UPDATE  represent_setup SET status='Active' WHERE SrNo = '".$val."' ");
-    }
+// }
+//     // multi Actived
+//     if(isset($_POST["btnDelete1"]))
+// {
+//   $id = $_POST['user_check'];
+//   while (list($key, $val) = @each ($id))
+//   {
+//     $selectStatus = mysqli_query($con, "SELECT * FROM  represent_setup WHERE SrNo='".$val."' ");
+//     while ($rowStatus = mysqli_fetch_array($selectStatus))
+//     {
+//       $currentStatus = $rowStatus['status'];
+//     }
+//      if ($currentStatus == "Deactive")
+//     {
+//       mysqli_query($con, "UPDATE  represent_setup SET status='Active' WHERE SrNo = '".$val."' ");
+//     }
 
-    header("Location: airport_setup_Edit.php?id=".$userNo);
-  }
-}
+//     header("Location: airport_setup_Edit.php?id=".$userNo);
+//   }
+// }
 
 
 // select Qurey for fatch result by Given id  
@@ -211,7 +211,7 @@ if (isset($_POST['btnadd'])) {
   $rep_desg= $_POST['rep_desg'];
   $rep_office_no = $_POST['rep_office_no'];
   $rep_phone_no = $_POST['rep_phone_no'];
-  $email = $_POST['email'];
+  $rep_email = $_POST['rep_email'];
   
   if (isset($_POST['status'])) {
     $status='Active';
@@ -225,7 +225,7 @@ if (isset($_POST['btnadd'])) {
 
   $expload = $userNo."-Air";
 //  insert qurey
- $insertQuery = mysqli_query($con, "insert into represent_setup(userNo,rep_name,rep_desg,rep_office_no,rep_phone_no,email,status) values ('$expload','$rep_name','$rep_desg','$rep_office_no','$rep_phone_no','$email','$status')") or die(mysqli_error($con));
+ $insertQuery = mysqli_query($con, "insert into represent_setup(userNo,rep_name,rep_desg,rep_office_no,rep_phone_no,rep_email,status) values ('$expload','$rep_name','$rep_desg','$rep_office_no','$rep_phone_no','$rep_email','$status')") or die(mysqli_error($con));
  
   $msg = "Record is inserted successfully.";
   function alert($msg)
@@ -242,12 +242,12 @@ if (isset($_POST['btnadd'])) {
 if(isset($_POST['btnedit1']))
 {
   // valuse save in variable
-  $SrNoV = $_POST['$SrNoV'];
+  $SrNoV = $_POST['SrNoV'];
   $rep_nameV= $_POST['rep_nameV'];
   $rep_desgV = $_POST['rep_desgV'];
   $rep_office_noV = $_POST['rep_office_noV'];
   $rep_phone_noV = $_POST['rep_phone_noV'];
-  $emailV = $_POST['emailV'];
+  $rep_emailV = $_POST['rep_emailV'];
    if (isset($_POST['statusV'])) {
     $statusV='Active';
 
@@ -261,7 +261,7 @@ if(isset($_POST['btnedit1']))
   $expload = $userNo."-Air";
 
 // update query
-   $updateQuery12 = mysqli_query($con, "UPDATE represent_setup SET rep_name='$rep_nameV',rep_desg='$rep_desgV',rep_office_no='$rep_office_noV',rep_phone_no='$rep_phone_noV',email='$emailV',status='$statusV' WHERE SrNo='$SrNoV'") or die(mysqli_error($con));
+   $updateQuery12 = mysqli_query($con, "UPDATE represent_setup SET rep_name='$rep_nameV',rep_desg='$rep_desgV',rep_office_no='$rep_office_noV',rep_phone_no='$rep_phone_noV',rep_email='$rep_emailV',status='$statusV' WHERE SrNo='$SrNoV'") or die(mysqli_error($con));
 
 // msg Alert
     $msg = "Record is inserted successfully.";
@@ -424,8 +424,8 @@ header("Location: airport_setup_2.php");
     <div class="">
         <div class="btn-group btn-breadcrumb">
           <a href="usermodules.php" class="btn btn-info "><i class="glyphicon glyphicon-home"></i></a>
-          <a href="usermodules.php" class="btn btn-info">Setups</a>
-          <a href="#" class="btn btn-info active">Airport Setup</a>
+          <a href="Usermodules.php" class="btn btn-info">Setups</a>
+          <a href="hr_add_emp_info.php" class="btn btn-info active">Airport Setup</a>
         </div>
     </div>
   </div>
@@ -657,7 +657,7 @@ header("Location: airport_setup_2.php");
                           </div>
                           <div class="input-fields">  
                             <label>Email</label> 
-                            <input type="text" name="email" id="email" class="email" placeholder="Email">    
+                            <input type="text" name="rep_email" id="rep_email" class="rep_email" placeholder="Email">    
                           </div>
                            <div class="input-fields">  
                             <label>Active</label> 
@@ -707,7 +707,7 @@ header("Location: airport_setup_2.php");
                           </div>
                           <div class="input-fields">  
                             <label>Email</label> 
-                            <input type="text" name="emailV" id="emailV" class="emailV" placeholder="Email">    
+                            <input type="text" name="rep_emailV" id="rep_emailV" class="rep_emailV" placeholder="Email">    
                           </div>
                            <div class="input-fields">  
                             <label>Active</label> 
@@ -759,6 +759,8 @@ header("Location: airport_setup_2.php");
              <p id="V_airport_name" style="color: red;"></p>
               <p id="V_airport_ICAO" style="color: red;"></p>
               <p id="V_email" style="color: red;"></p>
+              <p id="V_cont_per_off" style="color: red;"></p>
+              <p id="V_fax_no" style="color: red;"></p>
 							
 
 											  
@@ -911,8 +913,8 @@ header("Location: airport_setup_2.php");
                       <div class="tbleDrpdown">
                         <div id="tblebtn">
                           <ul>
-                              <li><button type="button" id="btnDelete_C1"><i class="fa fa-trash"></i> Activate</button></li>
-                              <li><button type="button" id="btnDelete_C"><i class="fa fa-trash"></i> Deactivate</button></li>
+                              <!-- <li><button type="button" id="btnDelete_C1"><i class="fa fa-trash"></i> Activate</button></li>
+                              <li><button type="button" id="btnDelete_C"><i class="fa fa-trash"></i> Deactivate</button></li> -->
                              
                               
                           </ul>
@@ -950,7 +952,7 @@ header("Location: airport_setup_2.php");
                                                   $rep_desg =$rowairport['rep_desg'];
                                                   $rep_office_no =$rowairport['rep_office_no'];
                                                   $rep_phone_no =$rowairport['rep_phone_no'];
-                                                  $email_air =$rowairport['email'];
+                                                  $rep_email =$rowairport['rep_email'];
                                                   $status =$rowairport['status'];
                                                                                                    
 
@@ -961,7 +963,7 @@ header("Location: airport_setup_2.php");
                                           <td><?php echo $rep_desg ?></td>
                                           <td><?php echo $rep_office_no ?></td>
                                           <td><?php echo $rep_phone_no ?></td>
-                                          <td><?php echo $email_air ?></td>
+                                          <td><?php echo $rep_email ?></td>
                                           <td><?php echo $status ?></td>
                                           <td><a href="#" class="editData" data-toggle="modal" id="<?php echo $rowairport['SrNo']; ?>" data-target="#btn1" >Edit</td> 
                                           <?php
@@ -1070,7 +1072,6 @@ $(document).ready(function(){
 });
 </script>
 
-<!-- Validation -->
 <script type="text/javascript">
    function FormValidation()
    {
@@ -1082,6 +1083,10 @@ $(document).ready(function(){
       var airport_name=document.getElementById('airport_name').value;
       var airport_ICAO=document.getElementById('airport_ICAO').value;
       var email=document.getElementById('email').value;
+      var cont_per_off=document.getElementById('cont_per_off').value;
+      var fax_no=document.getElementById('fax_no').value;
+
+
      
      
       var summary = "Summary: ";
@@ -1121,13 +1126,40 @@ $(document).ready(function(){
         }
       }
 
-      
+       if(cont_per_off != "")
+      {
+          document.getElementById('cont_per_off').style.borderColor = "white";
+          document.getElementById("V_cont_per_off").innerHTML = "";
+
+          if (!regexp2.test(cont_per_off))
+        {
+          document.getElementById('cont_per_off').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_cont_per_off").innerHTML = "Only Number are allowed in Contact No.";
+        }
+       } 
+
+       if(fax_no != "")
+      {
+          document.getElementById('fax_no').style.borderColor = "white";
+          document.getElementById("V_fax_no").innerHTML = "";
+
+          if (!regexp2.test(fax_no))
+        {
+          document.getElementById('fax_no').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_fax_no").innerHTML = "Only Number are allowed in Fax No.";
+        }
+       } 
+
       if(email != "")
       {
           document.getElementById('email').style.borderColor = "white";
           document.getElementById("V_email").innerHTML = "";
 
-        if (!re.test(email))
+          if (!re.test(email))
         {
           document.getElementById('email').style.borderColor = "red";
             missingVal = 1;
@@ -1143,6 +1175,8 @@ $(document).ready(function(){
         document.getElementById('airport_name').style.borderColor = "white";
         document.getElementById('airport_ICAO').style.borderColor = "white";
         document.getElementById('email').style.borderColor = "white";
+        document.getElementById('cont_per_off').style.borderColor = "white";
+        document.getElementById('fax_no').style.borderColor = "white";
        
         $("#submitAirline_Modal").modal();
         
@@ -1225,7 +1259,7 @@ $(document).on('click', '.editData', function(){
               $('#rep_desgV').val(data.rep_desg);  
               $('#rep_office_noV').val(data.rep_office_no); 
               $('#rep_phone_noV').val(data.rep_phone_no);
-               $('#emailV').val(data.email);  
+               $('#rep_emailV').val(data.rep_email);  
             
               var checkif = data.status;
               if (checkif == "Active") {
