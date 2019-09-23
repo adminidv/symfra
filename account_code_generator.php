@@ -68,7 +68,7 @@ $Quickhr = '';
     <div class="">
         <div class="btn-group btn-breadcrumb">
           <a href="usermodules.php" class="btn btn-info "><i class="glyphicon glyphicon-home"></i></a>
-          <a href="Usermodules.php" class="btn btn-info">Human Resource</a>
+          <a href="usermodules.php" class="btn btn-info">Human Resource</a>
           <a href="hr_add_emp_info.php" class="btn btn-info active">Master Customer</a>
         </div>
     </div>
