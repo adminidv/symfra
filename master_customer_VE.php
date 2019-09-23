@@ -410,8 +410,8 @@ if(isset($_POST['btnedit1']))
     <div class="">
         <div class="btn-group btn-breadcrumb">
           <a href="usermodules.php" class="btn btn-info "><i class="glyphicon glyphicon-home"></i></a>
-          <a href="Usermodules.php" class="btn btn-info">CRM</a>
-          <a href="hr_add_emp_info.php" class="btn btn-info active">Master Customer Edit</a>
+          <a href="usermodules.php" class="btn btn-info">CRM</a>
+          <a href="master_customer.php" class="btn btn-info active">Master Customer Edit</a>
         </div>
     </div>
   </div>
