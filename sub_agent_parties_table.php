@@ -190,9 +190,9 @@ if(isset($_POST["btnDelete"]))
   <div class="breadCrumb_bar_iner">
     <div class="">
         <div class="btn-group btn-breadcrumb">
-          <a href="#" class="btn btn-info "><i class="glyphicon glyphicon-home"></i></a>
-          <a href="Usermodules.php" class="btn btn-info">Setups</a>
-          <a href="usertable.php" class="btn btn-info active">Sub Agent Parties Table</a>
+          <a href="usermodules.php" class="btn btn-info "><i class="glyphicon glyphicon-home"></i></a>
+          <a href="usermodules.php" class="btn btn-info">Setups</a>
+          <a href="#" class="btn btn-info active">Sub Agent Parties Table</a>
         </div>
     </div>
   </div>
