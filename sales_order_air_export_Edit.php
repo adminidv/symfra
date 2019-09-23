@@ -15,7 +15,7 @@ $userID = $_SESSION['user'];
 $soNo = $_GET['soNo'];
 
 // auto increment
-$selectSO = mysqli_query($con, "SELECT * FROM saleOrders WHERE soNo='$soNo' ");
+$selectSO = mysqli_query($con, "SELECT * FROM saleorders WHERE soNo='$soNo' ");
 while ($rowSO = mysqli_fetch_array($selectSO))
 {
   $saleCust = $rowSO['saleCust'];
