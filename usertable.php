@@ -88,7 +88,7 @@ if(isset($_POST["btnCustom_U"]))
     $userDOL_UM = 1;
   }
 
-  $updateUM = mysqli_query($con, "UPDATE tableview_UM SET userID_UM = '$userID_UM', userName_UM='$userName_UM', userAddress_UM='$userAddress_UM', userContact_UM='$userContact_UM', userEmail_UM='$userEmail_UM', userDept_UM='$userDept_UM', userDesig_UM='$userDesig_UM', userRole_UM='$userRole_UM', userRegion_UM='$userRegion_UM', userDOB_UM='$userDOB_UM', userDOJ_UM='$userDOJ_UM', userDOL_UM='$userDOL_UM' WHERE SrNo= '1' ");
+  $updateUM = mysqli_query($con, "UPDATE tableview_um SET userID_UM = '$userID_UM', userName_UM='$userName_UM', userAddress_UM='$userAddress_UM', userContact_UM='$userContact_UM', userEmail_UM='$userEmail_UM', userDept_UM='$userDept_UM', userDesig_UM='$userDesig_UM', userRole_UM='$userRole_UM', userRegion_UM='$userRegion_UM', userDOB_UM='$userDOB_UM', userDOJ_UM='$userDOJ_UM', userDOL_UM='$userDOL_UM' WHERE SrNo= '1' ");
 
   $clause = " WHERE user_active='Active' AND ";//Initial clause
   $searchRecord="SELECT * FROM `users` WHERE user_active='Active' ";
@@ -663,8 +663,8 @@ else
   <div class="breadCrumb_bar_iner">
     <div class="">
         <div class="btn-group btn-breadcrumb">
-          <a href="#" class="btn btn-info "><i class="glyphicon glyphicon-home"></i></a>
-          <a href="Usermodules.php" class="btn btn-info">User Management</a>
+          <a href="usermodules.php" class="btn btn-info "><i class="glyphicon glyphicon-home"></i></a>
+          <a href="usermodules.php" class="btn btn-info">User Management</a>
           <a href="usertable.php" class="btn btn-info active">Show Users</a>
         </div>
     </div>
@@ -737,7 +737,7 @@ else
           <?php
 
           // Searching for search field customization
-          $selectUM = mysqli_query($con, 'SELECT * FROM tableview_UM');
+          $selectUM = mysqli_query($con, 'SELECT * FROM tableview_um');
 
           while ($rowUM = mysqli_fetch_array($selectUM))
           {
