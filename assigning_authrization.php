@@ -667,9 +667,9 @@ background-color: #c1c1c1 !important;
   <div class="breadCrumb_bar_iner">
     <div class="">
         <div class="btn-group btn-breadcrumb">
-          <a href="#" class="btn btn-info "><i class="glyphicon glyphicon-home"></i></a>
-          <a href="Usermodules.php" class="btn btn-info">Human Resource</a>
-          <a href="#" class="btn btn-info active">Declare Authorization</a>
+          <a href="usermodules.php" class="btn btn-info "><i class="glyphicon glyphicon-home"></i></a>
+          <a href="usermodules.php" class="btn btn-info">Human Resource</a>
+          <a href="assigning_authorization.php" class="btn btn-info active">Declare Authorization</a>
         </div>
     </div>
   </div>
