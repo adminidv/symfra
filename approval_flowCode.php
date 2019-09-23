@@ -22,7 +22,7 @@ echo $app3 . '<br>';
 // Inserting record if there is only 1 approval
 if ($app2 == "Select" && $app3 == "Select")
 {
-	$insertQuery = mysqli_query($con, "INSERT INTO appFlow (appTitle, appDepartment, appDescription, noApp, app1, app2, app3, appStatus) VALUES ('$appTitle', '$appDept', '$appDescription', '$noApp', '$app1', 'NA', 'NA', 'Active') ");
+	$insertQuery = mysqli_query($con, "INSERT INTO appflow (appTitle, appDepartment, appDescription, noApp, app1, app2, app3, appStatus) VALUES ('$appTitle', '$appDept', '$appDescription', '$noApp', '$app1', 'NA', 'NA', 'Active') ");
 
 	header("Location: approval_flow.php");
 }
@@ -30,7 +30,7 @@ if ($app2 == "Select" && $app3 == "Select")
 // Inserting record if there are 2 approvals
 else if ($app2 != "Select" && $app3 == "Select")
 {
-	$insertQuery = mysqli_query($con, "INSERT INTO appFlow (appTitle, appDepartment, appDescription, noApp, app1, app2, app3, appStatus) VALUES ('$appTitle', '$appDept', '$appDescription', '$noApp', '$app1', '$app2', 'NA', 'Active') ");
+	$insertQuery = mysqli_query($con, "INSERT INTO appflow (appTitle, appDepartment, appDescription, noApp, app1, app2, app3, appStatus) VALUES ('$appTitle', '$appDept', '$appDescription', '$noApp', '$app1', '$app2', 'NA', 'Active') ");
 
 	header("Location: approval_flow.php");
 }
@@ -38,7 +38,7 @@ else if ($app2 != "Select" && $app3 == "Select")
 // Inserting record if there are 3 approvals
 else if ($app2 != "Select" && $app3 != "Select")
 {
-	$insertQuery = mysqli_query($con, "INSERT INTO appFlow (appTitle, appDepartment, appDescription, noApp, app1, app2, app3, appStatus) VALUES ('$appTitle', '$appDept', '$appDescription', '$noApp', '$app1', '$app2', '$app3', 'Active') ");
+	$insertQuery = mysqli_query($con, "INSERT INTO appflow (appTitle, appDepartment, appDescription, noApp, app1, app2, app3, appStatus) VALUES ('$appTitle', '$appDept', '$appDescription', '$noApp', '$app1', '$app2', '$app3', 'Active') ");
 
 	header("Location: approval_flow.php");
 }
