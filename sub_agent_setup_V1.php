@@ -9,46 +9,6 @@ $Quickhr = '';
 
 $userNo = $_GET['id'];
 
-// // fatch data in Sub Agent setup
-//  $selectagent = mysqli_query($con, "select * from represent_setup where userNo='$userNo' ");
-// multi Deactived
-if(isset($_POST["btnDelete"]))
-{
-  $id = $_POST['user_check'];
-  while (list($key, $val) = @each ($id))
-  {
-    $selectStatus = mysqli_query($con, "SELECT * FROM represent_setup WHERE SrNo='".$val."' ");
-    while ($rowStatus = mysqli_fetch_array($selectStatus))
-    {
-      $currentStatus = $rowStatus['status'];
-    }
-    if ($currentStatus == "Active")
-    {
-      mysqli_query($con, "UPDATE represent_setup SET status='Deactive' WHERE SrNo = '".$val."' ");
-    }
-     header("Location: sub_agent_setup_V1.php?id=" .$userNo);
-}
-
-}
-    // multi Actived
-    if(isset($_POST["btnDelete1"]))
-{
-  $id = $_POST['user_check'];
-  while (list($key, $val) = @each ($id))
-  {
-    $selectStatus = mysqli_query($con, "SELECT * FROM represent_setup WHERE SrNo='".$val."' ");
-    while ($rowStatus = mysqli_fetch_array($selectStatus))
-    {
-      $currentStatus = $rowStatus['status'];
-    }
-     if ($currentStatus == "Deactive")
-    {
-      mysqli_query($con, "UPDATE represent_setup SET status='Active' WHERE SrNo = '".$val."' ");
-    }
-
-    header("Location: sub_agent_setup_V1.php?id=" .$userNo);
-  }
-}
 
 // click Edit submit btn 
 if(isset($_POST['btnedit1']))
@@ -60,7 +20,7 @@ if(isset($_POST['btnedit1']))
   $rep_office_noV = $_POST['rep_office_noV'];
   $rep_phone_noV = $_POST['rep_phone_noV'];
   
-  $emailV = $_POST['emailV'];
+  $rep_emailV = $_POST['rep_emailV'];
   
   
   // Active or Inactive Condition 
@@ -74,8 +34,9 @@ if(isset($_POST['btnedit1']))
   }
  
 
+$expload = $userNo."-Sub";
 // update query
-   $updateQuery12 = mysqli_query($con, "UPDATE represent_setup SET rep_name='$rep_nameV',rep_desg='$rep_desgV',rep_office_no='$rep_office_noV',rep_phone_no='$rep_phone_noV',email='$emailV',status='$statusV' WHERE SrNo='$SrNoV'") or die(mysqli_error($con));
+   $updateQuery13 = mysqli_query($con, " UPDATE represent_setup SET userNo='$expload',rep_name='$rep_nameV',rep_desg='$rep_desgV',rep_office_no='$rep_office_noV',rep_phone_no='$rep_phone_noV',rep_email='$rep_emailV',status='$statusV' WHERE SrNo='$SrNoV'")or die(mysqli_error($con));
 
 // msg Alert
     $msg = "Record is inserted successfully.";
@@ -88,29 +49,7 @@ if(isset($_POST['btnedit1']))
   header("Location: sub_agent_setup_V1.php?id=" .$userNo);
 }
 
- // Export
- if(isset($_POST["btnExport_D"]))
-{
-  $exportOptions = $_POST['exportOptions'];
-  if ($exportOptions == "Select")
-  {
-
-  }
-  else if ($exportOptions == "excel")
-  {
-    header("Location: agent_excel.php?searchRecord=$searchRecord");
-  }
-  else if ($exportOptions == "csv")
-  {
-    echo '<script type="text/javascript" language="Javascript">window.open("agent_csv.php?searchRecord=$searchRecord");</script>';
-    //header("Location: downloadtableCSV_U.php?searchRecord=$searchRecord");
-  }
-  else if ($exportOptions == "pdf")
-  {
-    echo '<script type="text/javascript" language="Javascript">window.open("agent_pdf.php?searchRecord=$searchRecord");</script>';
-    //header("Location: downloadtableCSV_U.php?searchRecord=$searchRecord");
-  }
-}
+ 
 
 // click Add btn (sub agents setup) 
 
@@ -119,7 +58,7 @@ if (isset($_POST['btnadd'])) {
   $rep_desg= $_POST['rep_desg'];
   $rep_office_no = $_POST['rep_office_no'];
   $rep_phone_no = $_POST['rep_phone_no'];
-  $email = $_POST['email'];
+  $rep_email = $_POST['rep_email'];
   
   if (isset($_POST['status'])) {
     $status='Active';
@@ -129,8 +68,10 @@ if (isset($_POST['btnadd'])) {
   {
     $status='Deactive';
   }
+ $expload = $userNo."-Sub";
 //  insert qurey
- $insertQuery = mysqli_query($con, "insert into represent_setup(userNo,rep_name,rep_desg,rep_office_no,rep_phone_no,email,status) values ('$userNo','$rep_name','$rep_desg','$rep_office_no','$rep_phone_no','$email','$status')") or die(mysqli_error($con));
+ $insertQuery = mysqli_query($con, "insert into represent_setup(userNo,rep_name,rep_desg,rep_office_no,rep_phone_no,rep_email,status) values ('$expload','$rep_name','$rep_desg','$rep_office_no','$rep_phone_no','$rep_email','$status')") or die(mysqli_error($con));
+
  
   $msg = "Record is inserted successfully.";
   function alert($msg)
@@ -198,7 +139,7 @@ if (isset($_POST['submitBtn'])) {
     $status='Deactive';
   }
 
-  $updateQuery= mysqli_query($con, " UPDATE sub_agents_parties_setup SET partyname='$partyname',subpartyname='$subpartyname',address='$address',country='$country',city='$city',phone='$phone',fax='$fax',email='$email',website='$website',export_reg_no='$export_reg_no',sales_tax_no='$sale_tax',ntn_no='$ntn_no',status='$status' WHERE  SrNo='$SrNo', ");
+  $updateQuery= mysqli_query($con, " UPDATE sub_agents_parties_setup SET partyname='$partyname',subpartyname='$subpartyname',address='$address',country='$country',city='$city',phone='$phone',fax='$fax',email='$email',website='$website',export_reg_no='$export_reg_no',sales_tax_no='$sale_tax',ntn_no='$ntn_no',status='$status' WHERE  SrNo='$SrNo' ");
 // //  insert qurey
 //  $insertQuery = mysqli_query($con, "insert into  sub_agents_parties_setup(partyname,subpartyname,address,country,city,phone,fax,email,website,export_reg_no,sales_tax_no,ntn_no,status) values ('$partyname','$spar_name','$address','$country_name','$city_name','$phone','$fax_no','$email','$website','$export_no','$sale_tax','$ntn_no','$status')") or die(mysqli_error($con));
  
@@ -385,7 +326,7 @@ if (isset($_POST['submitBtn'])) {
                   </div>
                   <div class="input-fields">  
                     <label>Email</label> 
-                    <input type="text" name="email" id="email" placeholder="Enter Here Email !">    
+                    <input type="text" name="rep_email" id="rep_email" placeholder="Enter Here Email !">    
                   </div>
                   
                    <div class="input-fields">  
@@ -439,7 +380,7 @@ if (isset($_POST['submitBtn'])) {
                   </div>
                   <div class="input-fields">  
                     <label>Email</label> 
-                    <input type="text" name="emailV" id="emailV" placeholder="Enter Here Email !">    
+                    <input type="text" name="rep_emailV" id="rep_emailV" placeholder="Enter Here Email !">    
                   </div>
                  
                    <div class="input-fields">  
@@ -767,10 +708,10 @@ if (isset($_POST['submitBtn'])) {
                 <ul>
                 
 
-                  <li><button type="button" id="btnDelete_C1" > <i class="fa fa-trash"></i> Activate</button></li>
-                  <li><button type="button" id="btnDelete_C" ><i class="fa fa-trash"></i> Deactivate</button></li>
-                 <!--  <li><button type="submit" id="btnExport_P"> <i class="fa fa-print"></i><a href="airport_print.php" target="_blank"> Print</a></button></li> -->
-                  <li><button type="button" id="exportBtn" ><i class="fa fa-download"></i>  Export</button></li>
+                  <!-- <li><button type="button" id="btnDelete_C1" > <i class="fa fa-trash"></i> Activate</button></li>
+                  <li><button type="button" id="btnDelete_C" ><i class="fa fa-trash"></i> Deactivate</button></li> -->
+                <!--   <li><button type="submit" id="btnExport_P"> <i class="fa fa-print"></i><a href="airport_print.php" target="_blank"> Print</a></button></li>
+                  <li><button type="button" id="exportBtn" ><i class="fa fa-download"></i>  Export</button></li> -->
                  
 
                 </ul>
@@ -808,7 +749,7 @@ if (isset($_POST['submitBtn'])) {
                                           <td><?php echo $rowairport['rep_desg']; ?></td>
                                           <td><?php echo $rowairport['rep_office_no']; ?></td>
                                           <td><?php echo $rowairport['rep_phone_no']; ?></td>
-                                          <td><?php echo $rowairport['email']; ?></td>
+                                          <td><?php echo $rowairport['rep_email']; ?></td>
                                           <td><?php echo $rowairport['status']; ?></td>
                                           <td><a href="#" class="editData" data-toggle="modal" id="<?php echo $rowairport['SrNo']; ?>" data-target="#btn1" >Edit</td> 
                                           <?php
@@ -918,7 +859,7 @@ $(document).on('click', '.editData', function(){
               // $('#addressV').val(data.address);    
               $('#rep_office_noV').val(data.rep_office_no); 
               $('#rep_phone_noV').val(data.rep_phone_no);
-               $('#emailV').val(data.email);  
+               $('#rep_emailV').val(data.rep_email);  
               // $('#websiteV').val(data.website); 
               //  $('#export_noV').val(data.export_no);  
               // $('#sale_taxV').val(data.sale_tax);   
