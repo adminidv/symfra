@@ -79,7 +79,7 @@ include 'manage/connection.php';
                                 ?>
                         <tr>
                           
-                            <td><?php echo $rowcity['city_code']; ?></td>
+                          <td><?php echo $rowcity['city_code']; ?></td>
                           <td><?php echo $rowcity['city_name']; ?></td>
                           <td><?php echo $rowcity['country_name']; ?></td>
                           <td><?php echo $rowcity['city_tel_code']; ?></td>
