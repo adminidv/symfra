@@ -2,7 +2,7 @@
 
 include 'manage/connection.php';
 // For search result field customization
-$selectUM = mysqli_query($con, 'SELECT * FROM tableview_UM');
+$selectUM = mysqli_query($con, 'SELECT * FROM tableview_um');
 
 while ($rowUM = mysqli_fetch_array($selectUM))
 {
