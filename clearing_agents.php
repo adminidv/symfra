@@ -268,6 +268,8 @@ if (isset($_POST['submitBtn'])) {
 						 <h4><label id="formSummary" style="color: red;"></label></h4>
       					 <p id="V_name" style="color: red;"></p>
       					  <p id="V_email" style="color: red;"></p>
+      					 <p id="V_phone" style="color: red;"></p>
+      					  <p id="V_fax" style="color: red;"></p>
 							
 
 											  
@@ -313,7 +315,7 @@ if (isset($_POST['submitBtn'])) {
 
 															<div class="input-label"><label >Country</label></div> 
 																<div class="input-feild"> 
-												                     <select name="country" id="country" class="country" required>
+												                     <select name="country" id="country" class="country" >
 												                          <option value="Select">Select </option>
 												                          <!-- Drop Down list Country Name -->
 												                          <?php
@@ -434,7 +436,12 @@ function saveAirlineFunc()
       var missingVal = 0;
 
       var name=document.getElementById('name').value;
-       var email=document.getElementById('email').value;
+      var email=document.getElementById('email').value;
+      var phone=document.getElementById('phone').value;
+      var fax=document.getElementById('fax').value;
+
+
+
      
      
       var summary = "Summary: ";
@@ -453,13 +460,78 @@ function saveAirlineFunc()
 
       }
 
+      // if(user_fName == "")
+      // {
+      //     document.getElementById('user_fName').style.borderColor = "red";
+      //     missingVal = 1;
+      //     // summary += "Firstname is required.";
+      //     document.getElementById("s_fName").innerHTML = "Firstname is required.";
+      // }
+      // if(airport_ICAO != "")
+      // {
+      //     document.getElementById('airport_ICAO').style.borderColor = "white";
+      //     document.getElementById("V_airport_ICAO").innerHTML = "";
 
-     
+      //     if (!regexp.test(airport_ICAO))
+      //   {
+      //     document.getElementById('airport_ICAO').style.borderColor = "red";
+      //       missingVal = 1;
+      //       // summary += "Firstname is required.";
+      //       document.getElementById("V_airport_ICAO").innerHTML = "Only alphabets are allowed in ICAO.";
+      //   }
+      // }
+
+       if(phone != "")
+      {
+          document.getElementById('phone').style.borderColor = "white";
+          document.getElementById("V_phone").innerHTML = "";
+
+          if (!regexp2.test(phone))
+        {
+          document.getElementById('phone').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_phone").innerHTML = "Only Number are allowed in Phone No.";
+        }
+       } 
+
+
+       if(fax != "")
+      {
+          document.getElementById('fax').style.borderColor = "white";
+          document.getElementById("V_fax").innerHTML = "";
+
+          if (!regexp2.test(fax))
+        {
+          document.getElementById('fax').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_fax").innerHTML = "Only Number are allowed in Fax No.";
+        }
+       } 
+
+      if(email != "")
+      {
+          document.getElementById('email').style.borderColor = "white";
+          document.getElementById("V_email").innerHTML = "";
+
+          if (!re.test(email))
+        {
+          document.getElementById('email').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_email").innerHTML = "Please follow the email format (user@domain.com).";
+        }
+      }
+
       
       
       if (missingVal != 1)
       {
         document.getElementById('name').style.borderColor = "white";
+        document.getElementById('email').style.borderColor = "white";
+        document.getElementById('phone').style.borderColor = "white";
+        document.getElementById('fax').style.borderColor = "white";
        
         $("#submitAirline_Modal").modal();
         
@@ -472,7 +544,6 @@ function saveAirlineFunc()
       
   }
 </script>
-
 
 
 <script>
