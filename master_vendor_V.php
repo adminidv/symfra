@@ -106,8 +106,8 @@ else
     <div class="">
         <div class="btn-group btn-breadcrumb">
           <a href="usermodules.php" class="btn btn-info "><i class="glyphicon glyphicon-home"></i></a>
-          <a href="Usermodules.php" class="btn btn-info">CRM</a>
-          <a href="hr_add_emp_info.php" class="btn btn-info active">Master Vendor</a>
+          <a href="usermodules.php" class="btn btn-info">CRM</a>
+          <a href="master_vendor.php" class="btn btn-info active">Master Vendor</a>
         </div>
     </div>
   </div>
