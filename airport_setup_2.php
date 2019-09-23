@@ -97,6 +97,13 @@ while ($rowSrNo = mysqli_fetch_array($selectSrNo))
  $insertQuery = mysqli_query($con, "insert into  airport_setup(airport_name,airport_iata,airport_ICAO,country_name,city_name,cont_per_off,fax_no,email,website,status) values ('$airport_name','$airport_iata','$airport_ICAO','$country_name','$city_name','$cont_per_off','$fax_no','$email','$website','0')") or die(mysqli_error($con));
 
 header("Location: airport_setup_2.php");
+
+if (isset($_POST['submitBtn2'])) {
+  
+  header("Location: airport_setup_2.php");
+
+  }
+
 }
  ?>
 
@@ -218,8 +225,8 @@ header("Location: airport_setup_2.php");
     <div class="">
         <div class="btn-group btn-breadcrumb">
           <a href="usermodules.php" class="btn btn-info "><i class="glyphicon glyphicon-home"></i></a>
-          <a href="usermodules.php" class="btn btn-info">Setups</a>
-          <a href="airport_setup_2.php" class="btn btn-info active">Airport Setup</a>
+          <a href="Usermodules.php" class="btn btn-info">Setups</a>
+          <a href="hr_add_emp_info.php" class="btn btn-info active">Airport Setup</a>
         </div>
     </div>
   </div>
@@ -296,6 +303,32 @@ header("Location: airport_setup_2.php");
 			    </div>
 			 </div>
 
+       <!-- Modal Save-->
+       <div class="modal fade confirmTable-modal" id="cancelAirline_Modal" role="dialog">
+          <div class="modal-dialog">
+          
+            <!-- Modal Save-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Confirmation</h4>
+              </div>
+              <div class="modal-body">
+                <p>Are You Sure You Want to Cancel?</p>
+                <button type="submit" name="submitBtn2">Yes</button>
+                    <button type="button" name="btnDelete_N" data-dismiss="modal" >No</button>
+
+              </div>
+              <div class="modal-footer">
+                <p>Add Related content if needed</p>
+               
+              </div>
+            </div>
+            
+          </div>
+       </div>
+
+
 				       <!-- Modal Submit-->
 				       <div class="modal fade confirmTable-modal" id="submitAirline_Modal" role="dialog">
 				            <div class="modal-dialog">
@@ -319,128 +352,9 @@ header("Location: airport_setup_2.php");
 				            </div>
 				       </div>
 
-				       <div class="modal fade symfra_popup2" id="popupMEdit" role="dialog">
-            <div class="modal-dialog">
-              <!-- ADD Airport Details-->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  
-                <h4 class="modal-title">Add Representative Details</h4>
-                        </div>
-                        <div class="modal-body">
-                          <div class="input-fields">  
-                            <label>Name</label> 
-                            <input type="text" name="rep_name" id="rep_name" class="rep_name" placeholder="Organization Name">    
-                          </div>
+				       
 
-                          <div class="input-fields">  
-                            <label>Designation</label> 
-                            <select name="rep_desg" id="rep_desg" class="rep_desg" required>
-                                                <option value="Select">Select </option>
-                                                <!-- Drop Down list Country Name -->
-                                                <?php
-
-                                                  $selectcity = mysqli_query($con, "select * from designation");
-
-                                                  while ($rowcity = mysqli_fetch_array($selectcity))
-                                                  {
-                                                    echo '<option value="'.$rowcity['Desig_ID'].'">'.$rowcity['Desig_name'].'</option>';
-                                                  }
-
-                                                ?>
-
-                                            </select>      
-                          </div>
-
-                          <div class="input-fields">  
-                            <label>Official #</label> 
-                            <input type="text" name="rep_office_no" id="rep_office_no" class="rep_office_no" placeholder="Office Contact">    
-                          </div>
-                          <div class="input-fields">  
-                            <label>Personal #</label> 
-                            <input type="text" name="rep_phone_no" id="rep_phone_no" class="rep_phone_no" placeholder="Personal Contact">    
-                          </div>
-                          <div class="input-fields">  
-                            <label>Email</label> 
-                            <input type="text" name="email" id="email" class="email" placeholder="Email">    
-                          </div>
-                           <div class="input-fields">  
-                            <label>Active</label> 
-                            <input type="checkbox" name="status" id="status" class="status">    
-                          </div>
-
-                          <button type="submit" name="btnadd">Submit</button>
-
-                        </div>
-                      </div>
-                    </div>
-                </div>
-
-              <!-- Edit Airport Details -->
-      <div class="modal fade symfra_popup2" id="btn1" role="dialog">
-            <div class="modal-dialog">
-              <!-- Edit Airport Details-->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Add Representative Details</h4>
-                </div>
-                <div class="modal-body">
-                  <div class="input-fields hide"> 
-                    <label>SrNo</label> 
-                    <input type="text" name="SrNoV" id="SrNoV" class="SrNoV">    
-                  </div>
-
-                 <div class="modal-body">
-                          <div class="input-fields">  
-                            <label>Name</label> 
-                            <input type="text" name="rep_nameV" id="rep_nameV" class="rep_nameV" placeholder="Organization Name">    
-                          </div>
-
-                          <div class="input-fields">  
-                            <label>Designation</label> 
-                            <select name="rep_desgV" id="rep_desgV" class="rep_desgV" required>
-                                                <option value="Select">Select </option>
-                                                <!-- Drop Down list Country Name -->
-                                                <?php
-
-                                                  $selectcity = mysqli_query($con, "select * from designation");
-
-                                                  while ($rowcity = mysqli_fetch_array($selectcity))
-                                                  {
-                                                    echo '<option value="'.$rowcity['Desig_ID'].'">'.$rowcity['Desig_name'].'</option>';
-                                                  }
-
-                                                ?>
-
-                                            </select>    
-                          </div>
-
-                          <div class="input-fields">  
-                            <label>Official #</label> 
-                            <input type="text" name="rep_office_noV" id="rep_office_noV" class="rep_office_noV" placeholder="Office Contact">    
-                          </div>
-                          <div class="input-fields">  
-                            <label>Personal #</label> 
-                            <input type="text" name="rep_phone_noV" id="rep_phone_noV" class="rep_phone_noV" placeholder="Personal Contact">    
-                          </div>
-                          <div class="input-fields">  
-                            <label>Email</label> 
-                            <input type="text" name="emailV" id="emailV" class="emailV" placeholder="Email">    
-                          </div>
-                           <div class="input-fields">  
-                            <label>Active</label> 
-                            <input type="checkbox" name="statusV" id="statusV" class="status">    
-                          </div>
-
-                          <button type="submit" name="btnedit1">Submit</button>
-
-                        </div>
-                      </div>
-                    </div>
-                </div>   
-                </div>       		      
+               		      
 
          <div class="modal fade symfra_popup2" id="popupExport" role="dialog">
             <div class="modal-dialog">
@@ -479,6 +393,8 @@ header("Location: airport_setup_2.php");
        <p id="V_airport_name" style="color: red;"></p>
         <p id="V_airport_ICAO" style="color: red;"></p>
         <p id="V_email" style="color: red;"></p>
+        <p id="V_cont_per_off" style="color: red;"></p>
+        <p id="V_fax_no" style="color: red;"></p>
 							
 
 											  
@@ -492,7 +408,7 @@ header("Location: airport_setup_2.php");
 													</div>
 													<button type="button" id="btnConfirm_Su" onclick="FormValidation()" > <small>Submit</small></button>
                           <button type="button" name="btnConfirm_S" onclick="saveAirlineFunc();"> <small>Save</small></button>
-                          <button type="button" name="cancel"> <small>Cancel</small></button>       
+                          <button type="button" name="cancel" onclick="cancelAirlineFunc();"> <small>Cancel</small></button>       
                       </div>
                               
                               <div class="cls"></div>
@@ -568,7 +484,7 @@ header("Location: airport_setup_2.php");
                                                       </div>
                                                       <div class="input-label"><label >Fax No.</label></div>
                                                       <div class="input-feild">
-                                                              <input class=""  type="text" name="fax_no" id="fax_no" maxlength="14">
+                                                              <input class="fax_no"  type="text" name="fax_no" id="fax_no" maxlength="14">
                                                                 
                                                       </div>
 
@@ -616,7 +532,12 @@ header("Location: airport_setup_2.php");
 
       var airport_name=document.getElementById('airport_name').value;
       var airport_ICAO=document.getElementById('airport_ICAO').value;
-     var email=document.getElementById('email').value;
+      var email=document.getElementById('email').value;
+      var cont_per_off=document.getElementById('cont_per_off').value;
+      var fax_no=document.getElementById('fax_no').value;
+
+
+
      
      
       var summary = "Summary: ";
@@ -656,6 +577,35 @@ header("Location: airport_setup_2.php");
         }
       }
 
+       if(cont_per_off != "")
+      {
+          document.getElementById('cont_per_off').style.borderColor = "white";
+          document.getElementById("V_cont_per_off").innerHTML = "";
+
+          if (!regexp2.test(cont_per_off))
+        {
+          document.getElementById('cont_per_off').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_cont_per_off").innerHTML = "Only Number are allowed in Contact No.";
+        }
+       } 
+
+
+       if(fax_no != "")
+      {
+          document.getElementById('fax_no').style.borderColor = "white";
+          document.getElementById("V_fax_no").innerHTML = "";
+
+          if (!regexp2.test(fax_no))
+        {
+          document.getElementById('fax_no').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_fax_no").innerHTML = "Only Number are allowed in Fax No.";
+        }
+       } 
+
       if(email != "")
       {
           document.getElementById('email').style.borderColor = "white";
@@ -677,6 +627,8 @@ header("Location: airport_setup_2.php");
         document.getElementById('airport_name').style.borderColor = "white";
         document.getElementById('airport_ICAO').style.borderColor = "white";
         document.getElementById('email').style.borderColor = "white";
+        document.getElementById('cont_per_off').style.borderColor = "white";
+        document.getElementById('fax_no').style.borderColor = "white";
        
         $("#submitAirline_Modal").modal();
         
@@ -728,12 +680,13 @@ function saveAirlineFunc()
 	$("#saveAirline_Modal").modal();
 }
 </script>
-<!-- <script type="text/javascript">
-function submitAirlineFunc()
+
+<script type="text/javascript">
+function cancelAirlineFunc()
 {
-	$("#submitAirline_Modal").modal();
+	$("#cancelAirline_Modal").modal();
 }
-</script> -->
+</script>
 <script type="text/javascript">
 		function readURL(input) 
 		{
@@ -776,90 +729,7 @@ $("#scroltop").click(function() {
 </script>
 
 
-<script type="text/javascript">
-$(document).on('click', '.editData', function(){  
-  var employee_id = $(this).attr("id"); 
 
-      $.ajax({
-         url:"fatch_rep.php",  
-                method:"GET",  
-                data:{employee_id:employee_id},  
-                dataType:"json",  
-         success: function(data) {
-              $('#SrNoV').val(data.SrNo);  
-              //$('.cur_coun_nameV').html(data.cur_coun_name);
-              $('#rep_nameV').val(data.rep_name);  
-              $('#rep_office_noV').val(data.rep_office_no);    
-              $('#rep_phone_noV').val(data.rep_phone_no);  
-              $('#emailV').val(data.email);      
-
-              var checkif = data.status;
-              if (checkif == "Active") {
-                 $('#statusV').attr("checked", true);
-                 document.getElementByID("statusV").checked = true;
-              }
-              else
-              {
-                $('#statusV').attr("checked", false);
-              }
-              /*$('#employee_id').val(data.id); */
-              // $("#"+id).btnedit1();
-              // $("#btn1").modal('hide');
-              // alert('Running');
-               
-         }
-      });
-    
-});
-</script>
-<script type="text/javascript">
-$(document).on('click', '.editData', function(){  
-  var employee_id = $(this).attr("id"); 
-
-      $.ajax({
-         url:"fatch_rep2.php",  
-                method:"GET",  
-                data:{employee_id:employee_id},  
-                dataType:"text",  
-         success: function(data) {
-              /*$('#country_SrNoV').val(data.SrNo);  
-              $('#country_codeV').val(data.country_code);  
-              $('#country_nameV').val(data.country_name);  */
-              $('.rep_desgV').html(data);  
-              /*$('#employee_id').val(data.id); */
-              // $("#"+id).btnedit1();
-              // $("#btn1").modal('hide');
-              // alert('Running');
-              
-         }
-      });
-    
-});
-</script>
-<!-- <script type="text/javascript">
-$(document).on('click', '.editData', function(){  
-  var employee_id = $(this).attr("id"); 
-
-      $.ajax({
-         url:"fatch_airline3.php",  
-                method:"GET",  
-                data:{employee_id:employee_id},  
-                dataType:"text",  
-         success: function(data) {
-              /*$('#country_SrNoV').val(data.SrNo);  
-              $('#country_codeV').val(data.country_code);  
-              $('#country_nameV').val(data.country_name);  */
-              $('.airport_addChargesV').html(data);  
-              /*$('#employee_id').val(data.id); */
-              // $("#"+id).btnedit1();
-              // $("#btn1").modal('hide');
-              // alert('Running');
-              
-         }
-      });
-    
-});
-</script> -->
 <script src="js/jquery.dataTables.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 </body>
