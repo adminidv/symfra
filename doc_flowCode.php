@@ -39,7 +39,7 @@ if ($flowType == "Fields Flow")
 		echo $flowValues2 . "<br>";
 
 		// Inserting for second fields flow
-		$insertQuery = mysqli_query($con, "INSERT INTO docFlow (flowTitle, flowDept, flowForm, appSet, flowType, flowFields, flowValues, condtionType, flowStatus, flowFields2, flowValues2) VALUES ('$flowTitle', '$flowDept', '$flowForm', '$appSet', '$flowType', '$flowFields', '$flowValues', '$flowCondition', 'Active', '$flowFields2', '$flowValues2')") or die(mysqli_error($con));
+		$insertQuery = mysqli_query($con, "INSERT INTO docflow (flowTitle, flowDept, flowForm, appSet, flowType, flowFields, flowValues, condtionType, flowStatus, flowFields2, flowValues2) VALUES ('$flowTitle', '$flowDept', '$flowForm', '$appSet', '$flowType', '$flowFields', '$flowValues', '$flowCondition', 'Active', '$flowFields2', '$flowValues2')") or die(mysqli_error($con));
 
 		// Inserting for second fields flow
 		/*$insertQuery = mysqli_query("INSERT INTO docFlow (flowTitle, flowDept, flowForm, appSet, flowType, flowFields, flowValues, condtionType, flowStatus) VALUES '$', '$', '$', '$', '$', '$', '$' ");*/
@@ -60,7 +60,7 @@ if ($flowType == "Fields Flow")
 		echo $flowValues2 . "<br>";*/
 
 		// Inserting for first fields flow
-		$insertQuery = mysqli_query($con, "INSERT INTO docFlow (flowTitle, flowDept, flowForm, appSet, flowType, flowFields, flowValues, condtionType, flowStatus, flowFields2, flowValues2) VALUES ('$flowTitle', '$flowDept', '$flowForm', '$appSet', '$flowType', '$flowFields', '$flowValues', 'N/A', 'Active', 'N/A', 'N/A')") or die(mysqli_error($con));
+		$insertQuery = mysqli_query($con, "INSERT INTO docflow (flowTitle, flowDept, flowForm, appSet, flowType, flowFields, flowValues, condtionType, flowStatus, flowFields2, flowValues2) VALUES ('$flowTitle', '$flowDept', '$flowForm', '$appSet', '$flowType', '$flowFields', '$flowValues', 'N/A', 'Active', 'N/A', 'N/A')") or die(mysqli_error($con));
 	}
 }
 
@@ -79,7 +79,7 @@ else
 	// Inserting for second fields flow
 	// $insertQuery = mysqli_query($con, "INSERT INTO docFlow (flowTitle, flowDept, flowForm, appSet, flowType, flowStatus) VALUES ('$flowTitle', '$flowDept', '$flowForm', '$appSet', '$flowType', 'Active' )") or die(mysqli_error($con));
 
-	$insertQuery = mysqli_query($con, "INSERT INTO docFlow (flowTitle, flowDept, flowForm, appSet, flowType, flowFields, flowValues, condtionType, flowStatus, flowFields2, flowValues2) VALUES ('$flowTitle', '$flowDept', '$flowForm', '$appSet', '$flowType', 'N/A', 'N/A', 'N/A', 'Active', 'N/A', 'N/A')") or die(mysqli_error($con));
+	$insertQuery = mysqli_query($con, "INSERT INTO docflow (flowTitle, flowDept, flowForm, appSet, flowType, flowFields, flowValues, condtionType, flowStatus, flowFields2, flowValues2) VALUES ('$flowTitle', '$flowDept', '$flowForm', '$appSet', '$flowType', 'N/A', 'N/A', 'N/A', 'Active', 'N/A', 'N/A')") or die(mysqli_error($con));
 }
 
 
