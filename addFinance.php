@@ -15,7 +15,7 @@ if(isset($_POST["bnkNameS"]))
  $custMCode = $_POST["custMCodeS"];
  $query = '';
  $query .= '
-   INSERT INTO custFinanceDetails(bnkName, bnkBranch, bnkCity, bnkCountry, bnkAccN, bnkAcc, crDays, crAmount, custMCode) 
+   INSERT INTO custFinancedetails(bnkName, bnkBranch, bnkCity, bnkCountry, bnkAccN, bnkAcc, crDays, crAmount, custMCode) 
    VALUES("'.$bnkName.'", "'.$bnkBranch.'", "'.$bnkCity.'", "'.$bnkCountry.'", "'.$bnkAccN.'", "'.$bnkAcc.'", "'.$crDays.'", "'.$crAmount.'", "'.$custMCode.'"); 
    ';
  if($query != '')
