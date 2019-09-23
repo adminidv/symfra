@@ -17,7 +17,7 @@ $Quickhr = 'Hide';
 	<link rel="stylesheet" href="css/bootstrap.css" type="text/css">
 	<link rel="stylesheet" href="css/font-awesome.css" type="text/css">
 	<link rel="stylesheet" type="text/css" href="css/symfra_forms.css">
-    <link rel="stylesheet" type="text/css" href="css/main_box_widgets.css">
+  <link rel="stylesheet" type="text/css" href="css/main_box_widgets.css">
 	<link rel="stylesheet" type="text/css" href="css/usertable.css">
 	<link rel="stylesheet" type="text/css" href="css/sidebar.css">
 	<link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
