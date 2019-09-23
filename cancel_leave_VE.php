@@ -114,8 +114,8 @@ if(isset($_POST['submitBtn']))
     <div class="">
         <div class="btn-group btn-breadcrumb">
           <a href="#" class="btn btn-info "><i class="glyphicon glyphicon-home"></i></a>
-          <a href="Usermodules.php" class="btn btn-info">User Management</a>
-          <a href="add_department.php" class="btn btn-info active">Add Department</a>
+          <a href="usermodules.php" class="btn btn-info">User Management</a>
+          <a href="#" class="btn btn-info active">Add Department</a>
         </div>
     </div>
   </div>
