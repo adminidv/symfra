@@ -10,6 +10,6 @@ if(isset($GET["rel_id"]))
  
 }
 
-echo "bc";
+echo "Working";
 
 ?>
