@@ -711,10 +711,10 @@ if(isset($_POST['btnYes']))
   $auth_Name = $_POST['auth_Name'];
 
   // Inserting records to Authorization Set
-  $insertAuthSet = mysqli_query($con, "insert into authorizationSet (auth_Name) values ('$auth_Name')");
+  $insertAuthSet = mysqli_query($con, "insert into authorizationset (auth_Name) values ('$auth_Name')");
 
   // Inserting records to Authorization Details
-  $insertAuthDetails = mysqli_query($con, "insert into authDetails (auth_Name, add_U, update_U, delete_U, view_U, deptView, deptAdd, deptDelete, deptEdit, desigView, desigAdd, desigDelete, desigEdit, roleView, roleAdd, roleDelete, roleEdit, empView, empAdd, empDelete, empEdit, leaveView, leaveAdd, leaveDelete, leaveEdit, siView, siAdd, siEdit, siDelete, seView, seAdd, seEdit, seDelete, aiView, aiAdd, aiEdit, aiDelete, aeView, aeAdd, aeEdit, aeDelete) values ('$auth_Name', '$add_U', '$update_U', '$delete_U', '$view_U', '$deptView', '$deptAdd', '$deptDelete', '$deptEdit', '$desigView', '$desigAdd', '$desigDelete', '$desigEdit', '$roleView', '$roleAdd', '$roleDelete', '$roleEdit', '$empView', '$empAdd', '$empDelete', '$empEdit', '$leaveView', '$leaveAdd', '$leaveDelete', '$leaveEdit', '$siView', '$siAdd', '$siEdit', '$siDelete', '$seView', '$seAdd', '$seEdit', '$seDelete', '$aiView', '$aiAdd', '$aiEdit', '$aiDelete', '$aeView', '$aeAdd', '$aeEdit', '$aeDelete')");
+  $insertAuthDetails = mysqli_query($con, "insert into authdetails (auth_Name, add_U, update_U, delete_U, view_U, deptView, deptAdd, deptDelete, deptEdit, desigView, desigAdd, desigDelete, desigEdit, roleView, roleAdd, roleDelete, roleEdit, empView, empAdd, empDelete, empEdit, leaveView, leaveAdd, leaveDelete, leaveEdit, siView, siAdd, siEdit, siDelete, seView, seAdd, seEdit, seDelete, aiView, aiAdd, aiEdit, aiDelete, aeView, aeAdd, aeEdit, aeDelete) values ('$auth_Name', '$add_U', '$update_U', '$delete_U', '$view_U', '$deptView', '$deptAdd', '$deptDelete', '$deptEdit', '$desigView', '$desigAdd', '$desigDelete', '$desigEdit', '$roleView', '$roleAdd', '$roleDelete', '$roleEdit', '$empView', '$empAdd', '$empDelete', '$empEdit', '$leaveView', '$leaveAdd', '$leaveDelete', '$leaveEdit', '$siView', '$siAdd', '$siEdit', '$siDelete', '$seView', '$seAdd', '$seEdit', '$seDelete', '$aiView', '$aiAdd', '$aiEdit', '$aiDelete', '$aeView', '$aeAdd', '$aeEdit', '$aeDelete')");
 }
 
 ?>
