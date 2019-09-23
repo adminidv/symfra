@@ -2,7 +2,7 @@
 
 include 'manage/connection.php';
 // For search result field customization
- $selectAr = mysqli_query($con, 'SELECT * FROM airlineCustomize');
+ $selectAr = mysqli_query($con, 'SELECT * FROM airlinecustomize');
         while ($rowAr = mysqli_fetch_array($selectAr))
           {
             $SrNo_Ar = $rowAr['SrNo_Ar'];
