@@ -63,7 +63,7 @@ include 'manage/connection.php';
     <table>
         <thead>
             <tr>
-                                                <th>Country Name</th>
+                                  <th>Country Name</th>
                                   <th>Currency Name</th>
                                   <th>Currency Code</th>
                                   <th>Currency Symbol</th>
