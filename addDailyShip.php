@@ -27,7 +27,7 @@ if(isset($_POST['submitBtn']))
 	$shipHAWB = $_POST['shipHAWB'];
 	$shipStatus = $_POST['shipStatus'];
 
-	mysqli_query($con, "INSERT INTO expectedShip (shipDate, shipDay, shipperName, awbNo, shipAirline, shipPcs, shipWeight, finalPcs, f_GrWeight, f_ChWeight, shipDest, shipHAWB, shipStatus) VALUES ('$shipDate', '$shipDay', '$shipperName', '$awbNo', '$shipAirline', '$shipPcs', '$shipWeight', '$finalPcs', '$f_GrWeight', '$f_ChWeight', '$shipDest', '$shipHAWB', '$shipStatus') ");
+	mysqli_query($con, "INSERT INTO expectedship (shipDate, shipDay, shipperName, awbNo, shipAirline, shipPcs, shipWeight, finalPcs, f_GrWeight, f_ChWeight, shipDest, shipHAWB, shipStatus) VALUES ('$shipDate', '$shipDay', '$shipperName', '$awbNo', '$shipAirline', '$shipPcs', '$shipWeight', '$finalPcs', '$f_GrWeight', '$f_ChWeight', '$shipDest', '$shipHAWB', '$shipStatus') ");
 
     echo '<script type="text/javascript">'; 
     echo 'alert("Shipment added successfully.");';
@@ -88,8 +88,8 @@ if(isset($_POST['saveBtn2']))
     <div class="">
         <div class="btn-group btn-breadcrumb">
           <a href="#" class="btn btn-info "><i class="glyphicon glyphicon-home"></i></a>
-          <a href="Usermodules.php" class="btn btn-info">Operations</a>
-          <a href="add_user.php" class="btn btn-info active">Add Daily Expected Shipment</a>
+          <a href="usermodules.php" class="btn btn-info">Operations</a>
+          <a href="addDailyShip.php" class="btn btn-info active">Add Daily Expected Shipment</a>
         </div>
     </div>
   </div>
