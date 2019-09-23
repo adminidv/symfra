@@ -21,7 +21,7 @@ if(isset($_POST["totalCarrier"]))
  $query = '';
 
  $query .= '
-   INSERT INTO dueCarriers (mawb_No, totalCarrier, totalCAA, totalAWC, secCharges, secDD, totalSec, fuelCharges, fuelDD, totalFuel, scanCharges, scanDD, totalScan) 
+   INSERT INTO duecarriers (mawb_No, totalCarrier, totalCAA, totalAWC, secCharges, secDD, totalSec, fuelCharges, fuelDD, totalFuel, scanCharges, scanDD, totalScan) 
    VALUES("'.$mawb_no.'", "'.$totalCarrier.'", "'.$totalCAA.'", "'.$totalAWC.'", "'.$secCharges.'", "'.$secDD.'", "'.$totalSec.'", "'.$fuelCharges.'", "'.$fuelDD.'", "'.$totalFuel.'", "'.$scanCharges.'", "'.$scanDD.'", "'.$totalScan.'"); 
    ';
 
