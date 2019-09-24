@@ -141,18 +141,33 @@ if(isset($_POST['btnedit1']))
   {
     $initQuery .= ", mop_code='$mop_codeV_n'";
     $initChangeLog2 = ", '$mop_codeV_p', '$mop_codeV_n') ";
+
+     $finalChangeLog = $initChangeLog . $initChangeLog2;
+  // echo $finalChangeLog;
+
+  mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
   }
 
    if ($mop_descriptionV_n != $mop_descriptionV_p)
   {
     $initQuery .= ", mop_description='$mop_descriptionV_n'";
     $initChangeLog2 = ", '$mop_descriptionV_p', '$mop_descriptionV_n') ";
+
+     $finalChangeLog = $initChangeLog . $initChangeLog2;
+  // echo $finalChangeLog;
+
+  mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
   }
 
   if ($mop_p_cV_n != $mop_p_cV_p)
   {
     $initQuery .= ", mop_p_c='$mop_p_cV_n'";
     $initChangeLog2 = ", '$mop_p_cV_p', '$mop_p_cV_n') ";
+
+     $finalChangeLog = $initChangeLog . $initChangeLog2;
+  // echo $finalChangeLog;
+
+  mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
   }
 
   // if ($statusV_n != $statusV_p)
@@ -166,10 +181,7 @@ if(isset($_POST['btnedit1']))
 
   mysqli_query($con, $finalQuery) or die(mysqli_error($con));
 
-  $finalChangeLog = $initChangeLog . $initChangeLog2;
-  // echo $finalChangeLog;
-
-  mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+ 
    // $updateQuery12 = mysqli_query($con, "UPDATE mop_setup SET mop_code='$mop_codeV', mop_description='$mop_descriptionV',mop_p_c='$mop_p_cV',status ='$statusV' WHERE SrNo='$mop_SrNoV' ") or die(mysqli_error($con));
 
     $msg = "Record is inserted successfully.";
