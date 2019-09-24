@@ -54,7 +54,7 @@ if(isset($_POST['submitBtn']))
 	$user_status = $_POST['user_status'];
 	$user_active = $_POST['user_active'];
 
-	$user_region = $_POST['user_region'];
+	// $user_region = $_POST['user_region'];
 	$emerg_contact = $_POST['emerg_contact'];
 
 	$user_DOB = $_POST['user_DOB'];
@@ -176,7 +176,7 @@ if(isset($_POST['submitBtn']))
 	        // alert($msg3);
 
 	        // Inserting records to DB
-			$insertQuery = mysqli_query($con, "insert into users (user_ID, user_fName, user_mName, user_lName, userName, user_pswd, user_address, user_contact, user_email, dept_ID, desig_ID, Auth_ID, user_manager, user_status, user_active, user_region, emerg_contact, user_DOB, user_DOJ) values  ('$newID', '$user_fName', '$user_mName', '$user_lName', '$userName', '$user_pswd', '$user_address', '$user_contact', '$user_email', '$dept_ID', '$desig_ID', '$Auth_ID', '$user_manager', '$user_status', '$user_active', '$user_region', '$emerg_contact', '$user_DOB', '-')");
+			$insertQuery = mysqli_query($con, "insert into users (user_ID, user_fName, user_mName, user_lName, userName, user_pswd, user_address, user_contact, user_email, dept_ID, desig_ID, Auth_ID, user_manager, user_status, user_active, emerg_contact, user_DOB, user_DOJ) values  ('$newID', '$user_fName', '$user_mName', '$user_lName', '$userName', '$user_pswd', '$user_address', '$user_contact', '$user_email', '$dept_ID', '$desig_ID', '$Auth_ID', '$user_manager', '$user_status', '$user_active', '$emerg_contact', '$user_DOB', '-')");
 
             echo '<script type="text/javascript">'; 
 		    echo 'alert("User added successfully.");';
@@ -215,7 +215,7 @@ if(isset($_POST['submitBtn']))
 			  	// echo "The file has been uploaded.";
 
 			    // Inserting records to DB
-				$insertQuery = mysqli_query($con, "insert into users (user_ID, user_fName, user_mName, user_lName, userName, user_pswd, user_address, user_contact, user_email, dept_ID, desig_ID, Auth_ID, user_manager, user_status, user_active, user_region, emerg_contact, user_DOB, user_DOJ, userBr, user_img) values  ('$newID', '$user_fName', '$user_mName', '$user_lName', '$userName', '$user_pswd', '$user_address', '$user_contact', '$user_email', '$dept_ID', '$desig_ID', '$Auth_ID', '$user_manager', 'Need Approval', '$thisApproval', '$user_region', '$emerg_contact', '$user_DOB', '-', '$userBr', '$nameForTable')");
+				$insertQuery = mysqli_query($con, "insert into users (user_ID, user_fName, user_mName, user_lName, userName, user_pswd, user_address, user_contact, user_email, dept_ID, desig_ID, Auth_ID, user_manager, user_status, user_active, emerg_contact, user_DOB, user_DOJ, userBr, user_img) values  ('$newID', '$user_fName', '$user_mName', '$user_lName', '$userName', '$user_pswd', '$user_address', '$user_contact', '$user_email', '$dept_ID', '$desig_ID', '$Auth_ID', '$user_manager', 'Need Approval', '$thisApproval', '$emerg_contact', '$user_DOB', '-', '$userBr', '$nameForTable')");
 
 				// $userID = $_SESSION['user'];
 				$selectUsername = mysqli_query($con, "SELECT * FROM users WHERE user_ID='$userID' ");
@@ -265,7 +265,7 @@ if(isset($_POST['submitBtn']))
 			  	// echo "The file has been uploaded.";
 
 			    // Inserting records to DB
-				$insertQuery = mysqli_query($con, "insert into users (user_ID, user_fName, user_mName, user_lName, userName, user_pswd, user_address, user_contact, user_email, dept_ID, desig_ID, Auth_ID, user_manager, user_status, user_active, user_region, emerg_contact, user_DOB, user_DOJ, user_img) values  ('$newID', '$user_fName', '$user_mName', '$user_lName', '$userName', '$user_pswd', '$user_address', '$user_contact', '$user_email', '$dept_ID', '$desig_ID', '$Auth_ID', '$user_manager', '$user_status', '$user_active', '$user_region', '$emerg_contact', '$user_DOB', '-', '$nameForTable')");
+				$insertQuery = mysqli_query($con, "insert into users (user_ID, user_fName, user_mName, user_lName, userName, user_pswd, user_address, user_contact, user_email, dept_ID, desig_ID, Auth_ID, user_manager, user_status, user_active, emerg_contact, user_DOB, user_DOJ, user_img) values  ('$newID', '$user_fName', '$user_mName', '$user_lName', '$userName', '$user_pswd', '$user_address', '$user_contact', '$user_email', '$dept_ID', '$desig_ID', '$Auth_ID', '$user_manager', '$user_status', '$user_active', '$emerg_contact', '$user_DOB', '-', '$nameForTable')");
 
 				// echo "The record is inserted successfully.";
 
@@ -324,7 +324,7 @@ if(isset($_POST['saveBtn2']))
 	$user_status = $_POST['user_status'];
 	$user_active = $_POST['user_active'];
 
-	$user_region = $_POST['user_region'];
+	// $user_region = $_POST['user_region'];
 	$emerg_contact = $_POST['emerg_contact'];
 
 	$user_DOB = $_POST['user_DOB'];
@@ -463,7 +463,7 @@ if(isset($_POST['saveBtn2']))
 		        // echo "The file has been uploaded.";
 
 		        // Inserting records to DB
-				$insertQuery = mysqli_query($con, "insert into users (user_ID, user_fName, user_mName, user_lName, userName, user_pswd, user_address, user_contact, user_email, dept_ID, desig_ID, Auth_ID, user_manager, user_status, user_active, user_region, emerg_contact, user_DOB, user_DOJ, user_img) values  ('$newID', '$user_fName', '$user_mName', '$user_lName', '$userName', '$user_pswd', '$user_address', '$user_contact', '$user_email', '$dept_ID', '$desig_ID', '$Auth_ID', '$user_manager', '$user_status', 'Draft', '$user_region', '$emerg_contact', '$user_DOB', '-', '$nameForTable')");
+				$insertQuery = mysqli_query($con, "insert into users (user_ID, user_fName, user_mName, user_lName, userName, user_pswd, user_address, user_contact, user_email, dept_ID, desig_ID, Auth_ID, user_manager, user_status, user_active, emerg_contact, user_DOB, user_DOJ, user_img) values  ('$newID', '$user_fName', '$user_mName', '$user_lName', '$userName', '$user_pswd', '$user_address', '$user_contact', '$user_email', '$dept_ID', '$desig_ID', '$Auth_ID', '$user_manager', '$user_status', 'Draft', '$emerg_contact', '$user_DOB', '-', '$nameForTable')");
 
 				// echo "The record is inserted successfully.";
 
@@ -906,34 +906,28 @@ if(isset($_POST['saveBtn2']))
 										<textarea name="user_address" id="user_address" maxlength="50"></textarea>
 					 				</div>
 
-					 				<div class="input-label"><label >Region</label></div>
+									<div class="input-label"><label >Country</label></div>
 									<div class="input-feild">
-										<input  type="text" name="user_region" id="user_region" placeholder="Enter Your Region">
+										<select name="country" id="country" onchange="checkCities();">
+										   <option value="">Select</option>
+										   <?php
+
+										   $selectCountry = mysqli_query($con, "SELECT * FROM country_setup");
+										   while ($rowCountry = mysqli_fetch_array($selectCountry))
+										   {
+										   	echo '<option value="'.$rowCountry['country_name'].'">'.$rowCountry['country_name'].'</option>';
+										   }
+
+										   ?>
+										</select>
 									</div>
 
 									<div class="input-label"><label >City</label></div>
 									<div class="input-feild">
 										<select name="city" id="city">
 										   <option value="">Select</option>
-										   <option value="Karachi">Karachi</option>
-										   <option value="Hyderabad">Hyderabad</option>
-										   <option value="Lahore">Lahore</option>
-										   <option value="Islamabad">Islamabad</option>
 										</select>
 									</div>
-
-									<div class="input-label"><label >Country</label></div>
-									<div class="input-feild">
-										<select name="country" id="country">
-										   <option value="">Select</option>
-										   <option value="Pakistan">Pakistan</option>
-										   <option value="India">India</option>
-										   <option value="United Kingdom">United Kingdom</option>
-										   <option value="USA">USA</option>
-										</select>
-									</div>
-
-									
 
 								</div>
 		</div>		
@@ -1471,6 +1465,23 @@ function saveUserFunc()
 	  	alert("This file type is not supported.");
 	  }
 	});
+</script>
+
+<script type="text/javascript">
+	function checkCities()
+	{
+	  var bpCountry = document.getElementById("country").value;
+
+	  $.ajax({
+	     url:"checkCities.php",  
+	            method:"GET",  
+	            data:{bpCountry:bpCountry}, 
+	            dataType:"text", 
+	     success: function(data) {
+	         $('#city').html(data);
+	     }
+	  });
+	}
 </script>
 
 <script type="text/javascript">
