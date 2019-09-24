@@ -17,7 +17,7 @@ $loginUser= $_SESSION['user'];
 $todayDate = date("Y-m-d");
 
 // for Change log ID Edit
-$selectSrNo = mysqli_query($con, "SELECT * FROM pro_setup_commodity ORDER BY SrNo DESC LIMIT 1");
+$selectSrNo = mysqli_query($con, "SELECT * FROM destination_setup ORDER BY SrNo DESC LIMIT 1");
 while ($rowSrNo = mysqli_fetch_array($selectSrNo))
 {
   $SrNo = $rowSrNo['SrNo'];
@@ -32,7 +32,7 @@ $loginUser1= $_SESSION['user'];
 $todayDate1 = date("Y-m-d");
 
 // for Change log ID Add
-$selectSrNo = mysqli_query($con, "SELECT * FROM pro_setup_commodity ORDER BY SrNo DESC LIMIT 1");
+$selectSrNo = mysqli_query($con, "SELECT * FROM destination_setup ORDER BY SrNo DESC LIMIT 1");
 while ($rowSrNo = mysqli_fetch_array($selectSrNo))
 {
   $SrNo = $rowSrNo['SrNo'];
@@ -60,14 +60,14 @@ if(isset($_POST["btnDelete"]))
   $id = $_POST['user_check'];
   while (list($key, $val) = @each ($id))
   {
-    $selectStatus = mysqli_query($con, "SELECT * FROM destination_setup WHERE SrNo='".$val."' ");
+    $selectStatus = mysqli_query($con, "SELECT * FROM destination_setup WHERE dest_code='".$val."' ");
     while ($rowStatus = mysqli_fetch_array($selectStatus))
     {
       $currentStatus = $rowStatus['status'];
     }
     if ($currentStatus == "Active")
     {
-      mysqli_query($con, "UPDATE destination_setup SET status='Deactive' WHERE SrNo = '".$val."' ");
+      mysqli_query($con, "UPDATE destination_setup SET status='Deactive' WHERE dest_code = '".$val."' ");
     }
      header("Location: destination_setup_table.php");
 }
@@ -79,14 +79,14 @@ if(isset($_POST["btnDelete"]))
   $id = $_POST['user_check'];
   while (list($key, $val) = @each ($id))
   {
-    $selectStatus = mysqli_query($con, "SELECT * FROM destination_setup WHERE SrNo='".$val."' ");
+    $selectStatus = mysqli_query($con, "SELECT * FROM destination_setup WHERE dest_code='".$val."' ");
     while ($rowStatus = mysqli_fetch_array($selectStatus))
     {
       $currentStatus = $rowStatus['status'];
     }
      if ($currentStatus == "Deactive")
     {
-      mysqli_query($con, "UPDATE destination_setup SET status='Active' WHERE SrNo = '".$val."' ");
+      mysqli_query($con, "UPDATE destination_setup SET status='Active' WHERE dest_code = '".$val."' ");
     }
 
     header("Location: destination_setup_table.php");
@@ -667,7 +667,7 @@ if (isset($_POST['btnadd'])) {
             <ul>
               <li><button type="button" id="btnDelete_C1"><i class="fa fa-trash"></i>  Activate</button></li>
                <li><button type="button" id="btnDelete_C"><i class="fa fa-trash"></i>  Deactivate</button></li>
-              <li><button type="submit" id="btnExport_P"> <i class="fa fa-print"></i><a href="dest_print.php" target="_blank"> Print</a></button></li>
+              <!-- <li><button type="submit" id="btnExport_P"> <i class="fa fa-print"></i><a href="dest_print.php" target="_blank"> Print</a></button></li> -->
               <li><button type="button" id="exportBtn"><i class="fa fa-download"></i>  Export</button></li>
             </ul>
           </div>
