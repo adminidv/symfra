@@ -722,18 +722,18 @@ if(isset($_POST['btnYes']))
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Edit Authorization</title>
-	<link rel="shortcut icon" type="image/png" href="./images/favicon.png">
-	<link rel="stylesheet" href="css/bootstrap.css" type="text/css">
-	<link rel="stylesheet" href="css/font-awesome.css" type="text/css">
-	<link rel="stylesheet" type="text/css" href="css/symfra_forms.css">
+  <title>Edit Authorization</title>
+  <link rel="shortcut icon" type="image/png" href="./images/favicon.png">
+  <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+  <link rel="stylesheet" href="css/font-awesome.css" type="text/css">
+  <link rel="stylesheet" type="text/css" href="css/symfra_forms.css">
   <link rel="stylesheet" type="text/css" href="css/main_box_widgets.css">
-	<link rel="stylesheet" type="text/css" href="css/usertable.css">
-	<link rel="stylesheet" type="text/css" href="css/sidebar.css">
-	<link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
+  <link rel="stylesheet" type="text/css" href="css/usertable.css">
+  <link rel="stylesheet" type="text/css" href="css/sidebar.css">
+  <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
 
-	<link rel="stylesheet" href="css/symfra_popups.css" type="text/css">
-	<script src="js/jquery-3.3.1.js"></script>
+  <link rel="stylesheet" href="css/symfra_popups.css" type="text/css">
+  <script src="js/jquery-3.3.1.js"></script>
   <script src="/js/jquery-1.12.4.js"></script>
 
   <!-- Bread crumbs starting here -->
@@ -742,8 +742,8 @@ if(isset($_POST['btnYes']))
   <link rel="stylesheet" href="css/modules.css" type="text/css">
   <link rel="stylesheet" href="css/user_ribbon.css" type="text/css">
   <!-- Bread crumbs ending here -->
-	
-	<script src="js/sidebar.js"></script>
+  
+  <script src="js/sidebar.js"></script>
   <script src="js/jquery.min.js"></script>
 <style type="text/css">
 .authtable_subhdingnRow {
@@ -816,51 +816,51 @@ background-color: #c1c1c1 !important;
 </div>
 
 <div class=" add_user_sec main_widget_box">
-	<div class="">
-									<!-- <hr> -->
-		<form action="" method="POST" enctype="multipart/form-data">
+  <div class="">
+                  <!-- <hr> -->
+    <form action="" method="POST" enctype="multipart/form-data">
 
-	       <!-- Modal Two-->
-	       <div class="modal fade confirmTable-modal" id="submitModal" role="dialog">
-	            <div class="modal-dialog">
-	              <!-- Modal content-->
-	              <div class="modal-content">
-	                <div class="modal-header">
-	                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-	                  <h4 class="modal-title">Confirmation</h4>
-	                </div>
-	                <div class="modal-body">
-	                  <p>Are You Sure You Want to Submit?</p>
-	                  <button type="submit" name="btnYes" id="btnYes">Yes</button>
-	                      <button type="button" name="btnDelete_N" data-dismiss="modal" >No</button>
+         <!-- Modal Two-->
+         <div class="modal fade confirmTable-modal" id="submitModal" role="dialog">
+              <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Confirmation</h4>
+                  </div>
+                  <div class="modal-body">
+                    <p>Are You Sure You Want to Submit?</p>
+                    <button type="submit" name="btnYes" id="btnYes">Yes</button>
+                        <button type="button" name="btnDelete_N" data-dismiss="modal" >No</button>
 
-	                </div>
-	                <div class="modal-footer">
-	                  <p>Add Related content if needed</p>
-	                  <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-	                </div>
-	              </div>
-	            </div>
-	       </div>
+                  </div>
+                  <div class="modal-footer">
+                    <p>Add Related content if needed</p>
+                    <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                  </div>
+                </div>
+              </div>
+         </div>
 
       
-			 <label id="formSummary" style="color: red;"></label>
+       <label id="formSummary" style="color: red;"></label>
 
-				<div class="Bsic_usr_info widget_iner_box">
+        <div class="Bsic_usr_info widget_iner_box">
 
-								<div class="form_sec_action_btn col-md-12">
-										<div class="form_action_right_btn">
-						                      <!-- Go back button code starting here -->
-						                      <?php include('inc_widgets/backBtn.php'); ?>
-						                      <!-- Go back button code ending here -->
-										</div>
-										<button type="button" id="btnSubmimt" onclick="submitMod_F();"> <small>Submit</small></button>
-										<button type="button" name="submitBtn"> <small>Cancel</small></button>				
-								</div>
-												
-												<div class="cls"></div>
+                <div class="form_sec_action_btn col-md-12">
+                    <div class="form_action_right_btn">
+                                  <!-- Go back button code starting here -->
+                                  <?php include('inc_widgets/backBtn.php'); ?>
+                                  <!-- Go back button code ending here -->
+                    </div>
+                    <button type="button" id="btnSubmimt" onclick="submitMod_F();"> <small>Submit</small></button>
+                    <button type="button" name="submitBtn"> <small>Cancel</small></button>        
+                </div>
+                        
+                        <div class="cls"></div>
 
-								 <div class="col-md-6">
+                 <div class="col-md-6">
 
                                                 <div class="input-label"><label >Authorization Name </label></div>
                                                 <div class="input-feild">
@@ -870,31 +870,35 @@ background-color: #c1c1c1 !important;
                                  </div>
 
                                 <table  id="authtable" class="display nowrap no-footer" style="width:100%">
-										                          
-										                         <thead>
-										                                    <tr colspan="">
-										                                    	<th></th>
-											                                    <th>View</th>
-											                                    <th>Add</th>
-											                                    <th>Edit</th>
-											                                    <th>Delete</th>
+                                              
+                                             <thead>
+                                                        <tr colspan="">
+                                                          <th></th>
+                                                          <th>View</th>
+                                                          <th>Add</th>
+                                                          <th>Edit</th>
+                                                          <th>Delete</th>
 
-										                                    </tr>
-										                          </thead>
-										                          <tbody>
-										                                   	 <!-- authrow title_row -->
-										                                     <tr class="authtable_subhdingnRow">
-										                                     		<th rowspan="">Sale Orders</th>
-										                                     		<td></td>
-										                                      	<td></td>
-										                                     		<td></td>
-										                                      	<td></td>
-										                                   	 </tr>
+                                                        </tr>
+                                              </thead>
+                                              <tbody>
+                                                         <!-- authrow title_row -->
+                                                         <tr class="authtable_subhdingnRow">
+                                                            <th rowspan="">Sale Orders</th>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                         </tr>
 
-										                                   	 <tr>
-										                                     		<td>Sea Import</td>
+                                                         <tr>
+                                                            <td>Sea Import</td>
                                                             <?php
-                                                            if ($siView == '1')
+                                                            $selectAuth = mysqli_query($con, "SELECT * FROM authdetails WHERE SrNo='$auth_id' ");
+                                                            while ($rowAuth = mysqli_fetch_array($selectAuth))
+                                                            {
+
+                                                            if ($rowAuth['siView'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="siView" checked></td>';
                                                             }
@@ -905,7 +909,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($siAdd == '1')
+                                                            if ($rowAuth['siAdd'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="siAdd" checked></td>';
                                                             }
@@ -916,7 +920,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($siEdit == '1')
+                                                            if ($rowAuth['siEdit'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="siEdit" checked></td>';
                                                             }
@@ -927,7 +931,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($siDelete == '1')
+                                                            if ($rowAuth['siDelete'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="siDelete" checked></td>';
                                                             }
@@ -935,14 +939,20 @@ background-color: #c1c1c1 !important;
                                                             {
                                                               echo '<td><input type="checkbox" name="siDelete"></td>';
                                                             }
-                                                            ?>
-										                                     		
-										                                   	 </tr>
 
-										                                   	 <tr>
-										                                     		<td>Sea Export</td>
+                                                            }
+                                                            ?>
+                                                            
+                                                         </tr>
+
+                                                         <tr>
+                                                            <td>Sea Export</td>
                                                             <?php
-                                                            if ($seView == '1')
+                                                            $selectAuth = mysqli_query($con, "SELECT * FROM authdetails WHERE SrNo='$auth_id' ");
+                                                            while ($rowAuth = mysqli_fetch_array($selectAuth))
+                                                            {
+
+                                                            if ($rowAuth['seView'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="seView" checked></td>';
                                                             }
@@ -953,7 +963,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($seAdd == '1')
+                                                            if ($rowAuth['seAdd'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="seAdd" checked></td>';
                                                             }
@@ -964,7 +974,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($seEdit == '1')
+                                                            if ($rowAuth['seEdit'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="seEdit" checked></td>';
                                                             }
@@ -975,7 +985,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($seDelete == '1')
+                                                            if ($rowAuth['seDelete'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="seDelete" checked></td>';
                                                             }
@@ -983,14 +993,20 @@ background-color: #c1c1c1 !important;
                                                             {
                                                               echo '<td><input type="checkbox" name="seDelete"></td>';
                                                             }
+
+                                                            }
                                                             ?>
 
-										                                   	 </tr>
+                                                         </tr>
 
-										                                   	 <tr>
-										                                     		<td>Air Import</td>
+                                                         <tr>
+                                                            <td>Air Import</td>
                                                             <?php
-                                                            if ($aiView == '1')
+                                                            $selectAuth = mysqli_query($con, "SELECT * FROM authdetails WHERE SrNo='$auth_id' ");
+                                                            while ($rowAuth = mysqli_fetch_array($selectAuth))
+                                                            {
+
+                                                            if ($rowAuth['aiView'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="aiView" checked></td>';
                                                             }
@@ -1001,7 +1017,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($aiAdd == '1')
+                                                            if ($rowAuth['aiAdd'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="aiAdd" checked></td>';
                                                             }
@@ -1012,7 +1028,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($aiEdit == '1')
+                                                            if ($rowAuth['aiEdit'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="aiEdit" checked></td>';
                                                             }
@@ -1023,7 +1039,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($aiDelete == '1')
+                                                            if ($rowAuth['aiDelete'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="aiDelete" checked></td>';
                                                             }
@@ -1031,14 +1047,20 @@ background-color: #c1c1c1 !important;
                                                             {
                                                               echo '<td><input type="checkbox" name="aiDelete"></td>';
                                                             }
+
+                                                            }
                                                             ?>
 
-										                                   	 </tr>
+                                                         </tr>
 
-										                                   	 <tr>
-										                                     		<td>Air Export</td>
+                                                         <tr>
+                                                            <td>Air Export</td>
                                                             <?php
-                                                            if ($aeView == '1')
+                                                            $selectAuth = mysqli_query($con, "SELECT * FROM authdetails WHERE SrNo='$auth_id' ");
+                                                            while ($rowAuth = mysqli_fetch_array($selectAuth))
+                                                            {
+
+                                                            if ($rowAuth['aeView'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="aeView" checked></td>';
                                                             }
@@ -1049,7 +1071,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($aeAdd == '1')
+                                                            if ($rowAuth['aeAdd'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="aeAdd" checked></td>';
                                                             }
@@ -1060,7 +1082,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($aeEdit == '1')
+                                                            if ($rowAuth['aeEdit'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="aeEdit" checked></td>';
                                                             }
@@ -1071,7 +1093,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($aeDelete == '1')
+                                                            if ($rowAuth['aeDelete'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="aeDelete" checked></td>';
                                                             }
@@ -1079,23 +1101,29 @@ background-color: #c1c1c1 !important;
                                                             {
                                                               echo '<td><input type="checkbox" name="aeDelete"></td>';
                                                             }
+
+                                                            }
                                                             ?>
 
-										                                   	 </tr>
+                                                         </tr>
 
-										                                   	 <!-- authrow title_row -->
-										                                   	 <tr class="authtable_subhdingnRow">
-										                                     		<th rowspan="">Human Resources</th>
-										                                     		<td></td>
-										                                      	<td></td>
-										                                     		<td></td>
-										                                      	<td></td>
-										                                   	 </tr>
+                                                         <!-- authrow title_row -->
+                                                         <tr class="authtable_subhdingnRow">
+                                                            <th rowspan="">Human Resources</th>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                         </tr>
 
-										                                   	 <tr>
-										                                     		<td>Employee</td>
+                                                         <tr>
+                                                            <td>Employee</td>
                                                             <?php
-                                                            if ($empView == '1')
+                                                            $selectAuth = mysqli_query($con, "SELECT * FROM authdetails WHERE SrNo='$auth_id' ");
+                                                            while ($rowAuth = mysqli_fetch_array($selectAuth))
+                                                            {
+
+                                                            if ($rowAuth['empView'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="empView" checked></td>';
                                                             }
@@ -1106,7 +1134,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($empAdd == '1')
+                                                            if ($rowAuth['empAdd'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="empAdd" checked></td>';
                                                             }
@@ -1117,7 +1145,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($empEdit == '1')
+                                                            if ($rowAuth['empEdit'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="empEdit" checked></td>';
                                                             }
@@ -1128,7 +1156,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($empDelete == '1')
+                                                            if ($rowAuth['empDelete'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="empDelete" checked></td>';
                                                             }
@@ -1136,14 +1164,20 @@ background-color: #c1c1c1 !important;
                                                             {
                                                               echo '<td><input type="checkbox" name="empDelete"></td>';
                                                             }
+
+                                                            }
                                                             ?>
 
-										                                   	 </tr>
+                                                         </tr>
 
-										                                   	 <tr>
-										                                     		<td>Leaves</td>
+                                                         <tr>
+                                                            <td>Leaves</td>
                                                             <?php
-                                                            if ($leaveView == '1')
+                                                            $selectAuth = mysqli_query($con, "SELECT * FROM authdetails WHERE SrNo='$auth_id' ");
+                                                            while ($rowAuth = mysqli_fetch_array($selectAuth))
+                                                            {
+
+                                                            if ($rowAuth['leaveView'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="leaveView" checked></td>';
                                                             }
@@ -1154,7 +1188,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($leaveAdd == '1')
+                                                            if ($rowAuth['leaveAdd'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="leaveAdd" checked></td>';
                                                             }
@@ -1165,7 +1199,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($leaveEdit == '1')
+                                                            if ($rowAuth['leaveEdit'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="leaveEdit" checked></td>';
                                                             }
@@ -1176,7 +1210,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($leaveDelete == '1')
+                                                            if ($rowAuth['leaveDelete'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="leaveDelete" checked></td>';
                                                             }
@@ -1184,9 +1218,11 @@ background-color: #c1c1c1 !important;
                                                             {
                                                               echo '<td><input type="checkbox" name="leaveDelete"></td>';
                                                             }
+
+                                                            }
                                                             ?>
 
-										                                   	 </tr>
+                                                         </tr>
 
                                                          <!-- authrow title_row -->
                                                          <tr class="authtable_subhdingnRow">
@@ -1200,7 +1236,11 @@ background-color: #c1c1c1 !important;
                                                          <tr>
                                                             <td>User</td>
                                                             <?php
-                                                            if ($view_U == '1')
+                                                            $selectAuth = mysqli_query($con, "SELECT * FROM authdetails WHERE SrNo='$auth_id' ");
+                                                            while ($rowAuth = mysqli_fetch_array($selectAuth))
+                                                            {
+
+                                                            if ($rowAuth['view_U'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="view_U" checked></td>';
                                                             }
@@ -1211,7 +1251,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($add_U == '1')
+                                                            if ($rowAuth['add_U'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="add_U" checked></td>';
                                                             }
@@ -1222,7 +1262,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($update_U == '1')
+                                                            if ($rowAuth['update_U'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="update_U" checked></td>';
                                                             }
@@ -1233,13 +1273,15 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($delete_U == '1')
+                                                            if ($rowAuth['delete_U'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="delete_U" checked></td>';
                                                             }
                                                             else
                                                             {
                                                               echo '<td><input type="checkbox" name="delete_U"></td>';
+                                                            }
+
                                                             }
                                                             ?>
 
@@ -1248,7 +1290,11 @@ background-color: #c1c1c1 !important;
                                                          <tr>
                                                             <td>Deparment</td>
                                                             <?php
-                                                            if ($deptView == '1')
+                                                            $selectAuth = mysqli_query($con, "SELECT * FROM authdetails WHERE SrNo='$auth_id' ");
+                                                            while ($rowAuth = mysqli_fetch_array($selectAuth))
+                                                            {
+
+                                                            if ($rowAuth['deptView'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="deptView" checked></td>';
                                                             }
@@ -1259,7 +1305,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($deptAdd == '1')
+                                                            if ($rowAuth['deptAdd'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="deptAdd" checked></td>';
                                                             }
@@ -1270,7 +1316,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($deptEdit == '1')
+                                                            if ($rowAuth['deptEdit'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="deptEdit" checked></td>';
                                                             }
@@ -1281,13 +1327,15 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($deptDelete == '1')
+                                                            if ($rowAuth['deptDelete'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="deptDelete" checked></td>';
                                                             }
                                                             else
                                                             {
                                                               echo '<td><input type="checkbox" name="deptDelete"></td>';
+                                                            }
+
                                                             }
                                                             ?>
 
@@ -1296,7 +1344,11 @@ background-color: #c1c1c1 !important;
                                                          <tr>
                                                             <td>Designation</td>
                                                             <?php
-                                                            if ($desigView == '1')
+                                                            $selectAuth = mysqli_query($con, "SELECT * FROM authdetails WHERE SrNo='$auth_id' ");
+                                                            while ($rowAuth = mysqli_fetch_array($selectAuth))
+                                                            {
+
+                                                            if ($rowAuth['desigView'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="desigView" checked></td>';
                                                             }
@@ -1307,7 +1359,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($desigAdd == '1')
+                                                            if ($rowAuth['desigAdd'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="desigAdd" checked></td>';
                                                             }
@@ -1318,7 +1370,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($desigEdit == '1')
+                                                            if ($rowAuth['desigEdit'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="desigEdit" checked></td>';
                                                             }
@@ -1329,13 +1381,15 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($desigDelete == '1')
+                                                            if ($rowAuth['desigDelete'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="desigDelete" checked></td>';
                                                             }
                                                             else
                                                             {
                                                               echo '<td><input type="checkbox" name="desigDelete"></td>';
+                                                            }
+
                                                             }
                                                             ?>
 
@@ -1344,7 +1398,11 @@ background-color: #c1c1c1 !important;
                                                          <tr>
                                                             <td>Roles</td>
                                                             <?php
-                                                            if ($desigDelete == '1')
+                                                            $selectAuth = mysqli_query($con, "SELECT * FROM authdetails WHERE SrNo='$auth_id' ");
+                                                            while ($rowAuth = mysqli_fetch_array($selectAuth))
+                                                            {
+
+                                                            if ($rowAuth['roleView'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="roleView" checked></td>';
                                                             }
@@ -1355,7 +1413,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($desigDelete == '1')
+                                                            if ($rowAuth['roleAdd'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="roleAdd" checked></td>';
                                                             }
@@ -1366,7 +1424,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($desigDelete == '1')
+                                                            if ($rowAuth['roleEdit'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="roleEdit" checked></td>';
                                                             }
@@ -1377,13 +1435,15 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($desigDelete == '1')
+                                                            if ($rowAuth['roleDelete'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="roleDelete" checked></td>';
                                                             }
                                                             else
                                                             {
                                                               echo '<td><input type="checkbox" name="roleDelete"></td>';
+                                                            }
+
                                                             }
                                                             ?>
 
@@ -1401,7 +1461,11 @@ background-color: #c1c1c1 !important;
                                                          <tr>
                                                             <td>Customers</td>
                                                             <?php
-                                                            if ($custView == '1')
+                                                            $selectAuth = mysqli_query($con, "SELECT * FROM authdetails WHERE SrNo='$auth_id' ");
+                                                            while ($rowAuth = mysqli_fetch_array($selectAuth))
+                                                            {
+
+                                                            if ($rowAuth['custView'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="custView" checked></td>';
                                                             }
@@ -1412,7 +1476,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($custAdd == '1')
+                                                            if ($rowAuth['custAdd'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="custAdd" checked></td>';
                                                             }
@@ -1423,7 +1487,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($custEdit == '1')
+                                                            if ($rowAuth['custEdit'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="custEdit" checked></td>';
                                                             }
@@ -1434,13 +1498,15 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($custDelete == '1')
+                                                            if ($rowAuth['custDelete'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="custDelete" checked></td>';
                                                             }
                                                             else
                                                             {
                                                               echo '<td><input type="checkbox" name="custDelete"></td>';
+                                                            }
+
                                                             }
                                                             ?>
 
@@ -1449,7 +1515,11 @@ background-color: #c1c1c1 !important;
                                                          <tr>
                                                             <td>Vendors</td>
                                                             <?php
-                                                            if ($vendorView == '1')
+                                                            $selectAuth = mysqli_query($con, "SELECT * FROM authdetails WHERE SrNo='$auth_id' ");
+                                                            while ($rowAuth = mysqli_fetch_array($selectAuth))
+                                                            {
+
+                                                            if ($rowAuth['vendorView'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="vendorView" checked></td>';
                                                             }
@@ -1460,7 +1530,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($vendorAdd == '1')
+                                                            if ($rowAuth['vendorAdd'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="vendorAdd" checked></td>';
                                                             }
@@ -1471,7 +1541,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($vendorEdit == '1')
+                                                            if ($rowAuth['vendorEdit'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="vendorEdit" checked></td>';
                                                             }
@@ -1482,13 +1552,15 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($vendorDelete == '1')
+                                                            if ($rowAuth['vendorDelete'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="vendorDelete" checked></td>';
                                                             }
                                                             else
                                                             {
                                                               echo '<td><input type="checkbox" name="vendorDelete"></td>';
+                                                            }
+
                                                             }
                                                             ?>
 
@@ -1497,7 +1569,11 @@ background-color: #c1c1c1 !important;
                                                          <tr>
                                                             <td>Business Partners</td>
                                                             <?php
-                                                            if ($bpView == '1')
+                                                            $selectAuth = mysqli_query($con, "SELECT * FROM authdetails WHERE SrNo='$auth_id' ");
+                                                            while ($rowAuth = mysqli_fetch_array($selectAuth))
+                                                            {
+
+                                                            if ($rowAuth['bpView'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="bpView" checked></td>';
                                                             }
@@ -1508,7 +1584,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($bpAdd == '1')
+                                                            if ($rowAuth['bpAdd'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="bpAdd" checked></td>';
                                                             }
@@ -1519,7 +1595,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($bpEdit == '1')
+                                                            if ($rowAuth['bpEdit'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="bpEdit" checked></td>';
                                                             }
@@ -1530,13 +1606,15 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($bpDelete == '1')
+                                                            if ($rowAuth['bpDelete'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="bpDelete" checked></td>';
                                                             }
                                                             else
                                                             {
                                                               echo '<td><input type="checkbox" name="bpDelete"></td>';
+                                                            }
+
                                                             }
                                                             ?>
 
@@ -1556,7 +1634,11 @@ background-color: #c1c1c1 !important;
                                                          <tr>
                                                             <td>Airport</td>
                                                             <?php
-                                                            if ($airportView == '1')
+                                                            $selectAuth = mysqli_query($con, "SELECT * FROM authdetails WHERE SrNo='$auth_id' ");
+                                                            while ($rowAuth = mysqli_fetch_array($selectAuth))
+                                                            {
+
+                                                            if ($rowAuth['airportView'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="airportView" checked></td>';
                                                             }
@@ -1567,7 +1649,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($airportAdd == '1')
+                                                            if ($rowAuth['airportAdd'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="airportAdd" checked></td>';
                                                             }
@@ -1578,7 +1660,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($airportEdit == '1')
+                                                            if ($rowAuth['airportEdit'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="airportEdit" checked></td>';
                                                             }
@@ -1589,13 +1671,15 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($airportDelete == '1')
+                                                            if ($rowAuth['airportDelete'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="airportDelete" checked></td>';
                                                             }
                                                             else
                                                             {
                                                               echo '<td><input type="checkbox" name="airportDelete"></td>';
+                                                            }
+
                                                             }
                                                             ?>
 
@@ -1604,7 +1688,11 @@ background-color: #c1c1c1 !important;
                                                          <tr>
                                                             <td>Airline</td>
                                                             <?php
-                                                            if ($airlineView == '1')
+                                                            $selectAuth = mysqli_query($con, "SELECT * FROM authdetails WHERE SrNo='$auth_id' ");
+                                                            while ($rowAuth = mysqli_fetch_array($selectAuth))
+                                                            {
+
+                                                            if ($rowAuth['airlineView'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="airlineView" checked></td>';
                                                             }
@@ -1615,7 +1703,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($airlineAdd == '1')
+                                                            if ($rowAuth['airlineAdd'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="airlineAdd" checked></td>';
                                                             }
@@ -1626,7 +1714,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($airlineEdit == '1')
+                                                            if ($rowAuth['airlineEdit'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="airlineEdit" checked></td>';
                                                             }
@@ -1637,13 +1725,15 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($airlineDelete == '1')
+                                                            if ($rowAuth['airlineDelete'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="airlineDelete" checked></td>';
                                                             }
                                                             else
                                                             {
                                                               echo '<td><input type="checkbox" name="airlineDelete"></td>';
+                                                            }
+
                                                             }
                                                             ?>
 
@@ -1652,7 +1742,11 @@ background-color: #c1c1c1 !important;
                                                          <tr>
                                                             <td>Business</td>
                                                             <?php
-                                                            if ($businessView == '1')
+                                                            $selectAuth = mysqli_query($con, "SELECT * FROM authdetails WHERE SrNo='$auth_id' ");
+                                                            while ($rowAuth = mysqli_fetch_array($selectAuth))
+                                                            {
+
+                                                            if ($rowAuth['businessView'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="businessView" checked></td>';
                                                             }
@@ -1663,7 +1757,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($businessAdd == '1')
+                                                            if ($rowAuth['businessAdd'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="businessAdd" checked></td>';
                                                             }
@@ -1674,7 +1768,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($businessEdit == '1')
+                                                            if ($rowAuth['businessEdit'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="businessEdit" checked></td>';
                                                             }
@@ -1685,13 +1779,15 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($businessDelete == '1')
+                                                            if ($rowAuth['businessDelete'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="businessDelete" checked></td>';
                                                             }
                                                             else
                                                             {
                                                               echo '<td><input type="checkbox" name="businessDelete"></td>';
+                                                            }
+
                                                             }
                                                             ?>
 
@@ -1702,7 +1798,11 @@ background-color: #c1c1c1 !important;
                                                          <tr>
                                                             <td>City</td>
                                                             <?php
-                                                            if ($cityView == '1')
+                                                            $selectAuth = mysqli_query($con, "SELECT * FROM authdetails WHERE SrNo='$auth_id' ");
+                                                            while ($rowAuth = mysqli_fetch_array($selectAuth))
+                                                            {
+
+                                                            if ($rowAuth['cityView'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="cityView" checked></td>';
                                                             }
@@ -1713,7 +1813,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($cityAdd == '1')
+                                                            if ($rowAuth['cityAdd'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="cityAdd" checked></td>';
                                                             }
@@ -1724,7 +1824,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($cityEdit == '1')
+                                                            if ($rowAuth['cityEdit'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="cityEdit" checked></td>';
                                                             }
@@ -1735,13 +1835,15 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($cityDelete == '1')
+                                                            if ($rowAuth['cityDelete'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="cityDelete" checked></td>';
                                                             }
                                                             else
                                                             {
                                                               echo '<td><input type="checkbox" name="cityDelete"></td>';
+                                                            }
+
                                                             }
                                                             ?>
 
@@ -1750,7 +1852,11 @@ background-color: #c1c1c1 !important;
                                                          <tr>
                                                             <td>Commodity</td>
                                                             <?php
-                                                            if ($commodityView == '1')
+                                                            $selectAuth = mysqli_query($con, "SELECT * FROM authdetails WHERE SrNo='$auth_id' ");
+                                                            while ($rowAuth = mysqli_fetch_array($selectAuth))
+                                                            {
+
+                                                            if ($rowAuth['commodityView'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="commodityView" checked></td>';
                                                             }
@@ -1761,7 +1867,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($commodityAdd == '1')
+                                                            if ($rowAuth['commodityAdd'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="commodityAdd" checked></td>';
                                                             }
@@ -1772,7 +1878,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($commodityEdit == '1')
+                                                            if ($rowAuth['commodityEdit'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="commodityEdit" checked></td>';
                                                             }
@@ -1783,13 +1889,15 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($airlineDelete == '1')
+                                                            if ($rowAuth['commodityDelete'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="commodityDelete" checked></td>';
                                                             }
                                                             else
                                                             {
                                                               echo '<td><input type="checkbox" name="commodityDelete"></td>';
+                                                            }
+
                                                             }
                                                             ?>
 
@@ -1798,7 +1906,11 @@ background-color: #c1c1c1 !important;
                                                          <tr>
                                                             <td>Country</td>
                                                             <?php
-                                                            if ($countryView == '1')
+                                                            $selectAuth = mysqli_query($con, "SELECT * FROM authdetails WHERE SrNo='$auth_id' ");
+                                                            while ($rowAuth = mysqli_fetch_array($selectAuth))
+                                                            {
+
+                                                            if ($rowAuth['countryView'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="countryView" checked></td>';
                                                             }
@@ -1809,7 +1921,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($countryAdd == '1')
+                                                            if ($rowAuth['countryAdd'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="countryAdd" checked></td>';
                                                             }
@@ -1820,7 +1932,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($countryEdit == '1')
+                                                            if ($rowAuth['countryEdit'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="countryEdit" checked></td>';
                                                             }
@@ -1831,13 +1943,15 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($countryDelete == '1')
+                                                            if ($rowAuth['countryDelete'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="countryDelete" checked></td>';
                                                             }
                                                             else
                                                             {
                                                               echo '<td><input type="checkbox" name="countryDelete"></td>';
+                                                            }
+
                                                             }
                                                             ?>
 
@@ -1848,7 +1962,11 @@ background-color: #c1c1c1 !important;
                                                          <tr>
                                                             <td>Currency</td>
                                                             <?php
-                                                            if ($currencyView == '1')
+                                                            $selectAuth = mysqli_query($con, "SELECT * FROM authdetails WHERE SrNo='$auth_id' ");
+                                                            while ($rowAuth = mysqli_fetch_array($selectAuth))
+                                                            {
+
+                                                            if ($rowAuth['currencyView'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="currencyView" checked></td>';
                                                             }
@@ -1859,7 +1977,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($currencyAdd == '1')
+                                                            if ($rowAuth['currencyAdd'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="currencyAdd" checked></td>';
                                                             }
@@ -1870,7 +1988,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($currencyEdit == '1')
+                                                            if ($rowAuth['currencyEdit'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="currencyEdit" checked></td>';
                                                             }
@@ -1881,13 +1999,15 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($currencyDelete == '1')
+                                                            if ($rowAuth['currencyDelete'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="currencyDelete" checked></td>';
                                                             }
                                                             else
                                                             {
                                                               echo '<td><input type="checkbox" name="currencyDelete"></td>';
+                                                            }
+
                                                             }
                                                             ?>
 
@@ -1896,7 +2016,11 @@ background-color: #c1c1c1 !important;
                                                          <tr>
                                                             <td>Destination</td>
                                                             <?php
-                                                            if ($destinationView == '1')
+                                                            $selectAuth = mysqli_query($con, "SELECT * FROM authdetails WHERE SrNo='$auth_id' ");
+                                                            while ($rowAuth = mysqli_fetch_array($selectAuth))
+                                                            {
+
+                                                            if ($rowAuth['destinationView'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="destinationView" checked></td>';
                                                             }
@@ -1907,7 +2031,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($destinationAdd == '1')
+                                                            if ($rowAuth['destinationAdd'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="destinationAdd" checked></td>';
                                                             }
@@ -1918,7 +2042,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($destinationEdit == '1')
+                                                            if ($rowAuth['destinationEdit'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="destinationEdit" checked></td>';
                                                             }
@@ -1929,13 +2053,15 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($destinationDelete == '1')
+                                                            if ($rowAuth['destinationDelete'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="destinationDelete" checked></td>';
                                                             }
                                                             else
                                                             {
                                                               echo '<td><input type="checkbox" name="destinationDelete"></td>';
+                                                            }
+
                                                             }
                                                             ?>
 
@@ -1944,7 +2070,11 @@ background-color: #c1c1c1 !important;
                                                          <tr>
                                                             <td>Modes of Payment</td>
                                                             <?php
-                                                            if ($mopView == '1')
+                                                            $selectAuth = mysqli_query($con, "SELECT * FROM authdetails WHERE SrNo='$auth_id' ");
+                                                            while ($rowAuth = mysqli_fetch_array($selectAuth))
+                                                            {
+
+                                                            if ($rowAuth['mopView'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="mopView" checked></td>';
                                                             }
@@ -1955,7 +2085,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($mopAdd == '1')
+                                                            if ($rowAuth['mopAdd'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="mopAdd" checked></td>';
                                                             }
@@ -1966,7 +2096,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($mopEdit == '1')
+                                                            if ($rowAuth['mopEdit'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="mopEdit" checked></td>';
                                                             }
@@ -1977,13 +2107,15 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($mopDelete == '1')
+                                                            if ($rowAuth['mopDelete'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="mopDelete" checked></td>';
                                                             }
                                                             else
                                                             {
                                                               echo '<td><input type="checkbox" name="mopDelete"></td>';
+                                                            }
+
                                                             }
                                                             ?>
 
@@ -1994,7 +2126,11 @@ background-color: #c1c1c1 !important;
                                                          <tr>
                                                             <td>Region</td>
                                                             <?php
-                                                            if ($regionView == '1')
+                                                            $selectAuth = mysqli_query($con, "SELECT * FROM authdetails WHERE SrNo='$auth_id' ");
+                                                            while ($rowAuth = mysqli_fetch_array($selectAuth))
+                                                            {
+
+                                                            if ($rowAuth['regionView'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="regionView" checked></td>';
                                                             }
@@ -2005,7 +2141,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($regionAdd == '1')
+                                                            if ($rowAuth['regionAdd'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="regionAdd" checked></td>';
                                                             }
@@ -2016,7 +2152,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($regionEdit == '1')
+                                                            if ($rowAuth['regionEdit'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="regionEdit" checked></td>';
                                                             }
@@ -2024,10 +2160,12 @@ background-color: #c1c1c1 !important;
                                                             {
                                                               echo '<td><input type="checkbox" name="regionEdit"></td>';
                                                             }
+
+                                                            }
                                                             ?>
 
                                                             <?php
-                                                            if ($regionDelete == '1')
+                                                            if ($rowAuth['regionDelete'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="regionDelete" checked></td>';
                                                             }
@@ -2042,7 +2180,11 @@ background-color: #c1c1c1 !important;
                                                          <tr>
                                                             <td>Sector</td>
                                                             <?php
-                                                            if ($sectorView == '1')
+                                                            $selectAuth = mysqli_query($con, "SELECT * FROM authdetails WHERE SrNo='$auth_id' ");
+                                                            while ($rowAuth = mysqli_fetch_array($selectAuth))
+                                                            {
+
+                                                            if ($rowAuth['sectorView'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="sectorView" checked></td>';
                                                             }
@@ -2053,7 +2195,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($sectorAdd == '1')
+                                                            if ($rowAuth['sectorAdd'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="sectorAdd" checked></td>';
                                                             }
@@ -2064,7 +2206,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($sectorEdit == '1')
+                                                            if ($rowAuth['sectorEdit'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="sectorEdit" checked></td>';
                                                             }
@@ -2075,13 +2217,15 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($sectorDelete == '1')
+                                                            if ($rowAuth['sectorDelete'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="sectorDelete" checked></td>';
                                                             }
                                                             else
                                                             {
                                                               echo '<td><input type="checkbox" name="sectorDelete"></td>';
+                                                            }
+
                                                             }
                                                             ?>
 
@@ -2090,7 +2234,11 @@ background-color: #c1c1c1 !important;
                                                          <tr>
                                                             <td>Shipping Line</td>
                                                             <?php
-                                                            if ($slView == '1')
+                                                            $selectAuth = mysqli_query($con, "SELECT * FROM authdetails WHERE SrNo='$auth_id' ");
+                                                            while ($rowAuth = mysqli_fetch_array($selectAuth))
+                                                            {
+
+                                                            if ($rowAuth['slView'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="slView" checked></td>';
                                                             }
@@ -2101,7 +2249,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($slAdd == '1')
+                                                            if ($rowAuth['slAdd'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="slAdd" checked></td>';
                                                             }
@@ -2112,7 +2260,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($slEdit == '1')
+                                                            if ($rowAuth['slEdit'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="slEdit" checked></td>';
                                                             }
@@ -2123,13 +2271,15 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($slDelete == '1')
+                                                            if ($rowAuth['slDelete'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="slDelete" checked></td>';
                                                             }
                                                             else
                                                             {
                                                               echo '<td><input type="checkbox" name="slDelete"></td>';
+                                                            }
+
                                                             }
                                                             ?>
 
@@ -2139,7 +2289,11 @@ background-color: #c1c1c1 !important;
                                                             <tr>
                                                             <td>SPO</td>
                                                             <?php
-                                                            if ($spoView == '1')
+                                                            $selectAuth = mysqli_query($con, "SELECT * FROM authdetails WHERE SrNo='$auth_id' ");
+                                                            while ($rowAuth = mysqli_fetch_array($selectAuth))
+                                                            {
+
+                                                            if ($rowAuth['spoView'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="spoView" checked></td>';
                                                             }
@@ -2147,10 +2301,11 @@ background-color: #c1c1c1 !important;
                                                             {
                                                               echo '<td><input type="checkbox" name="spoView"></td>';
                                                             }
+                                                            
                                                             ?>
 
                                                             <?php
-                                                            if ($spoAdd == '1')
+                                                            if ($rowAuth['spoAdd'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="spoAdd" checked></td>';
                                                             }
@@ -2161,7 +2316,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($spoEdit == '1')
+                                                            if ($rowAuth['spoEdit'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="spoEdit" checked></td>';
                                                             }
@@ -2172,7 +2327,7 @@ background-color: #c1c1c1 !important;
                                                             ?>
 
                                                             <?php
-                                                            if ($spoDelete == '1')
+                                                            if ($rowAuth['spoDelete'] == '1')
                                                             {
                                                               echo '<td><input type="checkbox" name="spoDelete" checked></td>';
                                                             }
@@ -2180,26 +2335,28 @@ background-color: #c1c1c1 !important;
                                                             {
                                                               echo '<td><input type="checkbox" name="spoDelete"></td>';
                                                             }
+
+                                                            }
                                                             ?>
 
                                                          </tr>
 
                                                          
-										                          </tbody>
-								</table> 
+                                              </tbody>
+                </table> 
 
                 </div>
 
-								
-				</div>			
-										<div class="cls"></div>
-										<hr>
+                
+        </div>      
+                    <div class="cls"></div>
+                    <hr>
 
-			
-		</form>
-				
+      
+    </form>
+        
 
-	</div>
+  </div>
 </div>
 
 
@@ -2208,8 +2365,8 @@ background-color: #c1c1c1 !important;
 
   $(document).ready(function() {
      $('#authtable').DataTable({
-  		"ordering": false
-		} );
+      "ordering": false
+    } );
 } );
 
 </script>
