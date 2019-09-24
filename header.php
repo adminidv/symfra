@@ -20,7 +20,7 @@ $semiFinal3 = $dateTime->format("d/m/y");
 $final = $semiFinal3 . ' ' . $semiFinal2;
 // echo $final;
 
-$selectNote = mysqli_query($con, "SELECT * FROM notTable WHERE notOn='$userID' ");
+$selectNote = mysqli_query($con, "SELECT * FROM nottable WHERE notOn='$userID' ");
 while ($rowNote = mysqli_fetch_array($selectNote))
 {
   $noteRecord = $rowNote['notRecord'];
@@ -94,7 +94,7 @@ while ($rowNote = mysqli_fetch_array($selectNote))
           
           <?php
 
-          $selectNot = mysqli_query($con, "SELECT * FROM notTable WHERE notOn='$userID' ORDER BY SrNo DESC  ");
+          $selectNot = mysqli_query($con, "SELECT * FROM nottable WHERE notOn='$userID' ORDER BY SrNo DESC  ");
           $totalNot = mysqli_num_rows($selectNot);
 
           ?>
