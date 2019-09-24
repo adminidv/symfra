@@ -9,6 +9,8 @@ if (isset($_POST['submit'])) {
 
     $qurey = mysqli_query($con, "UPDATE users SET user_pswd='$user_pswd' where user_ID ='$user_ID' ");
 
+    header("Location: login_form3.php");
+
 }
 
 
