@@ -83,6 +83,15 @@ if(isset($_POST['submitBtn1']))
     $airExport = 0;
   }
 
+  if (isset($_POST['cmp_activeC']))
+  {
+    $cmp_activeC = "Active";
+  }
+  else
+  {
+    $cmp_activeC = "Deactive";
+  }
+
   $telCode = $_POST['telCodeC'];
   $telNumber = $_POST['telNumberC'];
   $cmpWebsite = $_POST['cmpWebsiteC'];
@@ -111,7 +120,7 @@ if(isset($_POST['submitBtn1']))
   else
   {
     // Inserting records to DB
-    $insertQuery = mysqli_query($con, "insert into custmaster (cmpType, legCode, newCode, cmpTitle, cmpStreet, cmpCity, cmpCountry, telCode, telNumber, cmpWebsite, cmpEmail, taxType, taxNo, SPO, seaImport, airImport, seaExport, airExport, cmpStatus, partyType, userBr) values  ('Company', '$legCode', '$custNewId', '$cmpTitle', '$cmpStreet', '$cmpCity', '$cmpCountry', '$telCode', '$telNumber', '$cmpWebsite', '$cmpEmail', '$taxType', '$taxNo', '$SPO', '$seaImport', '$airImport', '$seaExport', '$airExport', '1', 'cust', '$userBr')");
+    $insertQuery = mysqli_query($con, "insert into custmaster (cmpType, legCode, newCode, cmpTitle, cmpStreet, cmpCity, cmpCountry, telCode, telNumber, cmpWebsite, cmpEmail, taxType, taxNo, SPO, seaImport, airImport, seaExport, airExport, cmpStatus, partyType, userBr) values  ('Company', '$legCode', '$custNewId', '$cmpTitle', '$cmpStreet', '$cmpCity', '$cmpCountry', '$telCode', '$telNumber', '$cmpWebsite', '$cmpEmail', '$taxType', '$taxNo', '$SPO', '$seaImport', '$airImport', '$seaExport', '$airExport', '$cmp_activeC', 'cust', '$userBr')");
 
     $insertQuery2 = mysqli_query($con, "insert into chainlog (instance, formName, record_id,createBy, createDate) values ('$newID1', 'Customer', '$custNewId', '$loginUser', '$todayDate') ");
 
@@ -223,10 +232,53 @@ if(isset($_POST['submitBtn2']))
   $cmpStreet = $_POST['cmpStreet'];
   $cmpCity = $_POST['cmpCity'];
   $cmpCountry = $_POST['cmpCountry'];
-  $seaImport = $_POST['seaImport'];
+  /*$seaImport = $_POST['seaImport'];
   $airImport = $_POST['airImport'];
   $seaExport = $_POST['seaExport'];
-  $airExport = $_POST['airExport'];
+  $airExport = $_POST['airExport'];*/
+
+  if (isset($_POST['seaImport']))
+  {
+    $seaImport = 1;
+  }
+  else
+  {
+    $seaImport = 0;
+  }
+  if (isset($_POST['airImport']))
+  {
+    $airImport = 1;
+  }
+  else
+  {
+    $airImport = 0;
+  }
+  if (isset($_POST['seaExport']))
+  {
+    $seaExport = 1;
+  }
+  else
+  {
+    $seaExport = 0;
+  }
+  if (isset($_POST['airExport']))
+  {
+    $airExport = 1;
+  }
+  else
+  {
+    $airExport = 0;
+  }
+
+  if (isset($_POST['cmp_active']))
+  {
+    $cmp_active = "Active";
+  }
+  else
+  {
+    $cmp_active = "Deactive";
+  }
+
   $telCode = $_POST['telCode'];
   $telNumber = $_POST['telNumber'];
   $cmpWebsite = $_POST['cmpWebsite'];
@@ -255,7 +307,7 @@ if(isset($_POST['submitBtn2']))
   else
   {
     // Inserting records to DB
-    $insertQuery = mysqli_query($con, "insert into custmaster (cmpType, legCode, newCode, cmpTitle, cmpStreet, cmpCity, cmpCountry, telCode, telNumber, cmpWebsite, cmpEmail, taxType, taxNo, SPO, seaImport, airImport, seaExport, airExport, cmpStatus, partyType, userBr) values  ('Individual', '$legCode', '$custNewId', '$cmpTitle', '$cmpStreet', '$cmpCity', '$cmpCountry', '$telCode', '$telNumber', '$cmpWebsite', '$cmpEmail', '$taxType', '$taxNo', '$txtSPOC', '$seaImport', '$airImport', '$seaExport', '$airExport', '1', 'cust', '$userBr')");
+    $insertQuery = mysqli_query($con, "insert into custmaster (cmpType, legCode, newCode, cmpTitle, cmpStreet, cmpCity, cmpCountry, telCode, telNumber, cmpWebsite, cmpEmail, taxType, taxNo, SPO, seaImport, airImport, seaExport, airExport, cmpStatus, partyType, userBr) values  ('Individual', '$legCode', '$custNewId', '$cmpTitle', '$cmpStreet', '$cmpCity', '$cmpCountry', '$telCode', '$telNumber', '$cmpWebsite', '$cmpEmail', '$taxType', '$taxNo', '$txtSPOC', '$seaImport', '$airImport', '$seaExport', '$airExport', '$cmp_active', 'cust', '$userBr')");
 
     // Generating the alert
     $msg = "Individual is inserted successfully.";
@@ -692,6 +744,11 @@ if(isset($_POST['saveBtn2']))
                                                         </select>
                                                       </div>
 
+                                                      <div class="input-label"><label >Active</label></div>
+                                                      <div class="input-feild act_btn_user">
+                                                        <input type="checkbox" name="cmp_activeC" checked id="cmp_activeC" />
+                                                      </div>
+
 										</div>	 
 								</div>
 						</div>
@@ -798,9 +855,24 @@ if(isset($_POST['saveBtn2']))
                                                       <div class="input-label"><label >SPO </label></div> 
                                                       <div class="input-feild">
                                                         <select name="txtSPOC" id="txtSPOC">
-                                                            <option value="NTN Number">NTN Number</option>
-                                                            <option value="STRN Number">STRN Number</option>
+                                                            <option value="">Select</option>
+                                                            <?php
+
+                                                            $selectSPO = mysqli_query($con, "SELECT * FROM spo_setup");
+                                                            while ($rowSPO = mysqli_fetch_array($selectSPO))
+                                                            {
+
+                                                              echo '<option value="'.$rowSPO['SrNo'].'">'.$rowSPO['spo_name'].'</option>';
+
+                                                            }
+
+                                                            ?>
                                                         </select>
+                                                      </div>
+
+                                                      <div class="input-label"><label >Active</label></div>
+                                                      <div class="input-feild act_btn_user">
+                                                        <input type="checkbox" name="cmp_active" checked id="cmp_active" />
                                                       </div>
 										</div>	 
 								</div>
