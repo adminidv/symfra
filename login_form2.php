@@ -34,7 +34,7 @@ if (isset($_POST['submit'])) {
         <h5>Account Information</h5>
 
         <p>Your account has been created in Symfra. Please click on the given link to login with the following credentials:</p>
-        <a href='http://symfradev.idvtechnologies.com/symfra/changePassword.php?user_ID=".$user_ID."'>http://symfradev.idvtechnologies.com/symfra/changePassword.php</a>
+        <a href='http://symfrastaging.idvtechnologies.com/symfra/changePassword.php?user_ID=".$user_ID."'>http://symfrastaging.idvtechnologies.com/symfra/changePassword.php</a>
         <br>
         
 
@@ -52,6 +52,12 @@ if (isset($_POST['submit'])) {
         mail($to, $subject, $message, $headers);
     }
 
+    echo '<script type="text/javascript">
+            alert("An email has been generated to your email address.");
+          </script>';
+
+    header("Location: login_form3.php");
+
 ?>
 
 <!DOCTYPE html>
@@ -67,6 +73,7 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" type="text/css" href="assets/style.css">
     <link rel="shortcut icon" type="image/png" href="images/favicon.png">
 </head>
+
 <body>
         <!--Overall Form-->
         <div class="box">
