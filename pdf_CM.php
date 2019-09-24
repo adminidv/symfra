@@ -11,7 +11,7 @@ while ($rowBr = mysqli_fetch_array($selectBr))
 }
 
 /*$searchRecord = $_GET["searchRecord"];*/
-$run= mysqli_query($con, "SELECT * FROM custmaster WHERE userBr='$userBr' ");
+$run= mysqli_query($con, "SELECT * FROM custmaster WHERE userBr='$userBr' AND partyType='Customer' ");
 
 // Searching for search field customization
           $selectUM = mysqli_query($con, 'SELECT * FROM custmaster_cm');
