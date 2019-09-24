@@ -570,7 +570,7 @@ if(isset($_POST['saveBtn']))
 
                                         <div class="input-label"><label >Country</label></div>
                                         <div class="input-feild">
-                                                <select name="empCountry" id="empCountry">
+                                                <select name="empCountry" id="empCountry" onchange="checkCities();">
                                                         <option value="">Select</option>
                                                         <option value="Pakistan">Pakistan</option>
                                                         <option value="India">India</option>
@@ -583,75 +583,6 @@ if(isset($_POST['saveBtn']))
                                         <div class="input-feild">
                                                 <select name="empCity" id="empCity">
                                                         <option value="">Select</option>
-                                                        <option value="Karachi">Karachi</option>
-                                                        <option value="Lahore">Lahore</option>
-                                                        <option value="Faisalabad">Faisalabad</option>
-                                                        <option value="Rawalpindi">Rawalpindi</option>
-                                                        <option value="Multan">Multan</option>
-                                                        <option value="Gujranwala">Gujranwala</option>
-                                                        <option value="Hyderabad">Hyderabad</option>
-                                                        <option value="Peshawar">Peshawar</option>
-                                                        <option value="Islamabad">Islamabad</option>
-                                                        <option value="Quetta">Quetta</option>
-                                                        <option value="Sargodha">Sargodha</option>
-                                                        <option value="Sialkot">Sialkot</option>
-                                                        <option value="Bahawalpur">Bahawalpur</option>
-                                                        <option value="Sukkur">Sukkur</option>
-                                                        <option value="Kandhkot">Kandhkot</option>
-                                                        <option value="Shekhupura">Shekhupura</option>
-                                                        <option value="Mardan">Mardan</option>
-                                                        <option value="Gujrat">Gujrat</option>
-                                                        <option value="Larkana">Larkana</option>
-                                                        <option value="Kasur">Kasur</option>
-                                                        <option value="Rahim Yar Khan">Rahim Yar Khan</option>
-                                                        <option value="Sahiwal">Sahiwal</option>
-                                                        <option value="Okara">Okara</option>
-                                                        <option value="Wah Cantonment">Wah Cantonment</option>
-                                                        <option value="Dera Ghazi Khan">Dera Ghazi Khan</option>
-                                                        <option value="Mingora">Mingora</option>
-                                                        <option value="Mirpur Khas">Mirpur Khas</option>
-                                                        <option value="Chiniot">Chiniot</option>
-                                                        <option value="Nawabshah">Nawabshah</option>
-                                                        <option value="Kamoke">Kamoke</option>
-                                                        <option value="Burewala">Burewala</option>
-                                                        <option value="Jhelum">Jhelum</option>
-                                                        <option value="Sadiqabad">Sadiqabad</option>
-                                                        <option value="Khanewal">Khanewal</option>
-                                                        <option value="Hafizabad">Hafizabad</option>
-                                                        <option value="Kohat">Kohat</option>
-                                                        <option value="Jacobabad">Jacobabad</option>
-                                                        <option value="Shikarpur">Shikarpur</option>
-                                                        <option value="Muzaffargarh">Muzaffargarh</option>
-                                                        <option value="Khanpur">Khanpur</option>
-                                                        <option value="Gojra">Gojra</option>
-                                                        <option value="Bahawalnagar">Bahawalnagar</option>
-                                                        <option value="Abbottabad">Abbottabad</option>
-                                                        <option value="Muridke">Muridke</option>
-                                                        <option value="Pakpattan">Pakpattan</option>
-                                                        <option value="Khuzdar">Khuzdar</option>
-                                                        <option value="Jaranwala">Jaranwala</option>
-                                                        <option value="Chishtian">Chishtian</option>
-                                                        <option value="Daska">Daska</option>
-                                                        <option value="Mandi Bahauddin">Mandi Bahauddin</option>
-                                                        <option value="Ahmadpur East">Ahmadpur East</option>
-                                                        <option value="Kamalia">Kamalia</option>
-                                                        <option value="Tando Adam">Tando Adam</option>
-                                                        <option value="Khairpur">Khairpur</option>
-                                                        <option value="Dera Ismail Khan">Dera Ismail Khan</option>
-                                                        <option value="Vehari">Vehari</option>
-                                                        <option value="Nowshera">Nowshera</option>
-                                                        <option value="Dadu">Dadu</option>
-                                                        <option value="Wazirabad">Wazirabad</option>
-                                                        <option value="Khushab">Khushab</option>
-                                                        <option value="Charsada">Charsada</option>
-                                                        <option value="Swabi">Swabi</option>
-                                                        <option value="Chakwal">Chakwal</option>
-                                                        <option value=" Mianwali"> Mianwali</option>
-                                                        <option value="Tando Allahyar">Tando Allahyar</option>
-                                                        <option value="Kot Adu">Kot Adu</option>
-                                                        <option value="Farooka">Farooka</option>
-                                                        <option value="Chichawatni">Chichawatni</option>
-                                                        <option value="Vihari">Vihari</option>
                                                 </select>
                                         </div>
                                 </div>
@@ -1363,6 +1294,24 @@ $("#scroltop").click(function() {
           }
       }
   </script>
+
+
+<script type="text/javascript">
+  function checkCities()
+  {
+    var bpCountry = document.getElementById("empCountry").value;
+
+    $.ajax({
+       url:"checkCities.php",  
+              method:"GET",  
+              data:{bpCountry:bpCountry}, 
+              dataType:"text", 
+       success: function(data) {
+           $('#empCity').html(data);
+       }
+    });
+  }
+</script>
 
 </body>
 </html>
