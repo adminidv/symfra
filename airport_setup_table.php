@@ -651,7 +651,7 @@ if (isset($_POST['btnadd'])) {
 
                   <li><button type="button" id="btnDelete_C1"><i class="fa fa-trash"></i> Activate</button></li>
                   <li><button type="button" id="btnDelete_C"><i class="fa fa-trash"></i> Deactivate</button></li>
-                  <li><button type="submit" id="btnExport_P"> <i class="fa fa-print"></i><a href="airport_print.php" target="_blank"> Print</a></button></li>
+                  <!-- <li><button type="submit" id="btnExport_P"> <i class="fa fa-print"></i><a href="airport_print.php" target="_blank"> Print</a></button></li> -->
                   <li><button type="button" id="exportBtn"><i class="fa fa-download"></i>  Export</button></li>
                  
 
@@ -672,7 +672,7 @@ if (isset($_POST['btnadd'])) {
                                    <th>Office No.</th>
                                    <th>fax No.</th>
                                    <th>Email</th>
-                                   <th>Wesite</th>
+                                   <th>Website</th>
                                    <th>Status</th>
                                    <th>Edit</th>
                                    <th>View</th>
