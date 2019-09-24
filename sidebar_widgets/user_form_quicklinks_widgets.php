@@ -976,9 +976,9 @@ echo '<style type="text/css">
                       <li>
                         <a href="viewAuthorizations.php">All Roles </a>
                       </li>
-                      <li>
+                      <!-- <li>
                         <a href="customAuthorization.php?user_id=0">Custom Roles </a>
-                      </li>           
+                      </li>  -->          
                     </ul>
                   </div>
                 </li>
