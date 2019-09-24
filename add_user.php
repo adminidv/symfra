@@ -889,8 +889,8 @@ if(isset($_POST['saveBtn2']))
 
 									<div class="input-label"><label >Contact No.</label></div>	
 									<div class="input-feild">
-										<input type="text" name="user_contact" onkeypress="return numbersOnly(this, event);" onpaste="return false;" id="user_contact" maxlength="11" placeholder="Enter Number"><span class="steric">*</span>
-										<input type="text" name="emerg_contact" onkeypress="return numbersOnly(this, event);" onpaste="return false;" id="emerg_contact" maxlength="11" placeholder="Enter Emergency Number">
+										<input type="text" name="user_contact" onkeypress="return numbersOnly(this, event);" onpaste="return false;" id="user_contact" maxlength="11" minlength="11" placeholder="Enter Number"><span class="steric">*</span>
+										<input type="text" name="emerg_contact" onkeypress="return numbersOnly(this, event);" onpaste="return false;" id="emerg_contact" maxlength="11" minlength="11" placeholder="Enter Emergency Number">
 
 									</div>
 
