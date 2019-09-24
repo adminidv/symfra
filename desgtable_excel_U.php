@@ -14,7 +14,7 @@ require_once 'Classes/PHPExcel.php';
 $objPHPExcel = new PHPExcel();
 include 'manage/connection.php';
 
-$selectDesig = mysqli_query($con, "select * from designation ");
+$selectDesig = "select * from designation";
 $select = mysqli_query($con, $selectDesig);
 if(mysqli_num_rows($select) > 0)
 {
@@ -76,7 +76,7 @@ $file = 'test.xlsx';
   // php output instead of filename
   $file ->save('php://output');
 
-  header("Location: viewdesg.php");
+  header("Location: Designations.php");
 }
 
 
