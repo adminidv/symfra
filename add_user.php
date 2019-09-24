@@ -228,7 +228,7 @@ if(isset($_POST['submitBtn']))
 				// $userNot = $user_fName . ' ' . $user_lName;
 
 				// Inserting notification
-				$insertNot = mysqli_query($con, "INSERT INTO notTable (notTitle, notDateTime, notStatus, createdBy, notOn, notRecord) VALUES ('User Management', '$finalDate', 'Approval Pending', '$userNot', '$notOn', '$newID') ") or die(mysqli_error($con));
+				$insertNot = mysqli_query($con, "INSERT INTO nottable (notTitle, notDateTime, notStatus, createdBy, notOn, notRecord) VALUES ('User Management', '$finalDate', 'Approval Pending', '$userNot', '$notOn', '$newID') ") or die(mysqli_error($con));
 
 				// echo "The record is inserted successfully.";
 
