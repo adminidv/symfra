@@ -28,7 +28,7 @@ if(isset($_POST["btnDelete"]))
   }
   else if ($exportOptions == "excel")
   {
-    header("Location: desgtable_excel_U.php?searchRecord=$searchRecord");
+    header("Location: desgtable_excel_U.php");
   }
   else if ($exportOptions == "csv")
   {
