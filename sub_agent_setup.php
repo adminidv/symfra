@@ -224,7 +224,7 @@ if (isset($_POST['submitBtn'])) {
 
                   <div class="input-fields">  
                     <label>Representative Name</label> 
-                    <input type="text" name="rep_name" id="rep_name" placeholder="Enter Here Party Nmae !">    
+                    <input type="text" name="rep_name" id="rep_name" placeholder="Enter Here Party Name !">    
                   </div>
                    <div class="input-fields"> 
                     <label>Designation</label> 
@@ -278,7 +278,7 @@ if (isset($_POST['submitBtn'])) {
                   </div>
                   <div class="input-fields"> 
                  <label>Representative Name</label> 
-                    <input type="text" name="rep_nameV" id="rep_nameV" placeholder="Enter Here Party Nmae !">    
+                    <input type="text" name="rep_nameV" id="rep_nameV" placeholder="Enter Here Party Name !">    
                   </div>
                    <div class="input-fields"> 
                     <label>Designation</label> 
@@ -481,7 +481,7 @@ if (isset($_POST['submitBtn'])) {
                                                       </div> 
                                                        <div class="input-label"><label >Sub Party Agent</label></div>
                                                       <div class="input-feild">
-                                                              <input class="mini_input_field"  type="text" name="spar_name" maxlength="40" id="spar_name" placeholder="Enter Here Sub Party Nmae !"><span class="steric">*</span>
+                                                              <input class="mini_input_field"  type="text" name="spar_name" maxlength="40" id="spar_name" placeholder="Enter Here Sub Party Name !"><span class="steric">*</span>
                                                                 
                                                       </div>
 
