@@ -457,7 +457,7 @@ if (isset($_POST['submitBtn'])) {
                 <div class="modal-body">
                   <div class="input-fields"> 
                       <label>Options</label>  
-                      <select name="exportOptions" required>
+                      <select name="exportOptions" >
                           <option value="Select">Select </option>
                           <option value="excel">Export to Excel </option>
                           <option value="csv">Export to CSV </option>
@@ -543,7 +543,9 @@ if (isset($_POST['submitBtn'])) {
                                                       
                                                       <div class="input-label"><label >Party Name</label></div>  
                                                       <div class="input-feild">
-                                                             <select name="partyname" disabled id="partyname" class="partyname" required>
+                                                             <select name="partyname" disabled id="partyname" class="partyname" >
+
+                                                              <option><?php echo $partyname  ?></option>
                                                   <!-- <option value="Select">Select </option> -->
                                                   <!-- Drop Down list Country Name -->
                                                   <?php
@@ -570,14 +572,14 @@ if (isset($_POST['submitBtn'])) {
                                                       </div> 
                                                        <div class="input-label"><label >Sub Party Agent</label></div>
                                                       <div class="input-feild">
-                                                              <input class="mini_input_field" disabled type="text" name="subpartyname" id="subpartyname" value="subpartyname" placeholder="Enter Here Sub Party Nmae !">
+                                                              <input class="mini_input_field" disabled type="text" name="subpartyname" id="subpartyname" value="<?php echo $subpartyname ?>" placeholder="Enter Here Sub Party Nmae !">
                                                                 
                                                       </div>
 
                                                       <div class="input-label"><label >Country</label></div> 
                                              <div class="input-feild"> 
-                                             <select name="country" id="country" disabled class="country" required>
-                                                  
+                                             <select name="country" id="country" disabled class="country" >
+                                                  <option><?php echo $country  ?></option>
                                                   <!-- Drop Down list Country Name -->
                                                   <?php
 
@@ -595,7 +597,7 @@ if (isset($_POST['submitBtn'])) {
 
                                                     while ($rowcountry = mysqli_fetch_array($selectcountry))
                                                     {
-                                                      echo '<option value="'.$rowcountry['SrNo'].'">'.$rowcountry['country_name'].'</option>';
+                                                      echo '<option value="'.$rowcountry['country_name'].'">'.$rowcountry['country_name'].'</option>';
                                                     }
 
                                                   ?>
@@ -604,8 +606,8 @@ if (isset($_POST['submitBtn'])) {
                                                       </div>
                                                       <div class="input-label"><label >City</label></div> 
                                 <div class="input-feild">
-                                           <select name="city" id="city" disabled class="city" required>
-                                                <!-- <option value="Select">Select </option> -->
+                                           <select name="city" id="city" disabled class="city" >
+                                                <option><?php echo $city  ?></option>
                                                 <!-- Drop Down list Country Name -->
                                                 <?php
 
