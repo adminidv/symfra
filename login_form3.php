@@ -96,7 +96,7 @@ if(isset($_POST['submitBtn']))
 
 
                             <label class="label_text"  for="password">Password</label>     
-                            <input type="password" id="password" name="pswd" maxlength="30" minlength="6" placeholder="Enter Password" value="<?php if(isset($_COOKIE["pswd"])) { echo $_COOKIE["pswd"]; } ?>"><br>  
+                            <input type="password" id="password" name="pswd" maxlength="30" minlength="3" placeholder="Enter Password" value="<?php if(isset($_COOKIE["pswd"])) { echo $_COOKIE["pswd"]; } ?>"><br>  
                            
 
                             <label class="container">Remember Me 
