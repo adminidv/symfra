@@ -472,10 +472,17 @@ if(isset($_POST['saveBtn1']))
 				                                                      <input type="text" placeholder="Street" name="bpStreet" id="bpStreet" maxlength="30"><span class="steric">*</span>
                                                               <select name="bpCountry" id="bpCountry" onchange="checkCities();">
                                                                  <option value="">Select Country</option>
-                                                                 <option value="Pakistan">Pakistan</option>
-                                                                 <option value="India">India</option>
-                                                                 <option value="United Kingdom">United Kingdom</option>
-                                                                 <option value="USA">USA</option>
+                                                                 <?php
+
+                                                                  $selectCountry = mysqli_query($con, "SELECT * FROM country_setup");
+                                                                  while ($rowCountry = mysqli_fetch_array($selectCountry))
+                                                                  {
+
+                                                                    echo '<option value="'.$rowCountry['country_name'].'">'.$rowCountry['country_name'].'</option>';
+
+                                                                  }
+
+                                                                  ?>
                                                               </select><span class="steric">*</span>
                                                               <select name="bpCity" id="bpCity">
                                                                  <option value="">Select City</option>
