@@ -338,6 +338,9 @@ if(isset($_POST['btnYes']))
   if (isset($_POST['siView']))
   {
     $siView = 1;
+    /*echo '<script type="text/javascript">
+          alert("Working");
+        </script>';*/
   }
   if (isset($_POST['siAdd']))
   {
@@ -709,12 +712,13 @@ if(isset($_POST['btnYes']))
 
   // Setting the POST variables coming from form
   $auth_Name = $_POST['auth_Name'];
+  $auth_id = $_POST['auth_id'];
 
   // Inserting records to Authorization Set
-  $insertAuthSet = mysqli_query($con, "insert into authorizationset (auth_Name) values ('$auth_Name')");
+  // $insertAuthSet = mysqli_query($con, "insert into authorizationset (auth_Name) values ('$auth_Name')");
 
-  // Inserting records to Authorization Details
-  $insertAuthDetails = mysqli_query($con, "insert into authdetails (auth_Name, add_U, update_U, delete_U, view_U, deptView, deptAdd, deptDelete, deptEdit, desigView, desigAdd, desigDelete, desigEdit, roleView, roleAdd, roleDelete, roleEdit, empView, empAdd, empDelete, empEdit, leaveView, leaveAdd, leaveDelete, leaveEdit, siView, siAdd, siEdit, siDelete, seView, seAdd, seEdit, seDelete, aiView, aiAdd, aiEdit, aiDelete, aeView, aeAdd, aeEdit, aeDelete) values ('$auth_Name', '$add_U', '$update_U', '$delete_U', '$view_U', '$deptView', '$deptAdd', '$deptDelete', '$deptEdit', '$desigView', '$desigAdd', '$desigDelete', '$desigEdit', '$roleView', '$roleAdd', '$roleDelete', '$roleEdit', '$empView', '$empAdd', '$empDelete', '$empEdit', '$leaveView', '$leaveAdd', '$leaveDelete', '$leaveEdit', '$siView', '$siAdd', '$siEdit', '$siDelete', '$seView', '$seAdd', '$seEdit', '$seDelete', '$aiView', '$aiAdd', '$aiEdit', '$aiDelete', '$aeView', '$aeAdd', '$aeEdit', '$aeDelete')");
+  // Updating records Authorization Details
+  $updateAuth = mysqli_query($con, "UPDATE authdetails SET auth_Name='$auth_Name', add_U='$add_U', update_U='$update_U', delete_U='$delete_U', view_U='$view_U', deptView='$deptView', deptAdd='$deptAdd', deptDelete='$deptDelete', deptEdit='$deptEdit', desigView='$desigView', desigAdd='$desigAdd', desigDelete='$desigDelete', desigEdit='$desigEdit', roleView='$roleView', roleAdd='$roleAdd', roleDelete='$roleDelete', roleEdit='$roleEdit', empView='$empView', empAdd='$empAdd', empDelete='$empDelete', empEdit='$empEdit', leaveView='$leaveView', leaveAdd='$leaveAdd', leaveDelete='$leaveDelete', leaveEdit='$leaveEdit', siView='$siView', siAdd='$siAdd', siEdit='$siEdit', siDelete='$siDelete', seView='$seView', seAdd='$seAdd', seEdit='$seEdit', seDelete='$seDelete', aiView='$aiView', aiAdd='$aiAdd', aiEdit='$aiEdit', aiDelete='$aiDelete', aeView='$aeView', aeAdd='$aeAdd', aeEdit='$aeEdit', aeDelete='$aeDelete', custView='$custView', custAdd='$custAdd', custEdit='$custEdit', custDelete='$custDelete', vendorView='$vendorView', vendorAdd='$vendorAdd', vendorEdit='$vendorEdit', vendorDelete='$vendorDelete', bpView='$bpView', bpAdd='$bpAdd', bpEdit='$bpEdit', bpDelete='$bpDelete', airportView='$airportView', airportAdd='$airportAdd', airportEdit='$airportEdit', airportDelete='$airportDelete', airlineView='$airlineView', airlineAdd='$airlineAdd', airlineEdit='$airlineEdit', airlineDelete='$airlineDelete', businessView='$businessView', businessAdd='$businessAdd', businessEdit='$businessEdit', businessDelete='$businessDelete', cityView='$cityView', cityAdd='$cityAdd', cityEdit='$cityEdit', cityDelete='$cityDelete', commodityView='$commodityView', commodityAdd='$commodityAdd', commodityEdit='$commodityEdit', commodityDelete='$commodityDelete', countryView='$countryView', countryAdd='$countryAdd', countryEdit='$countryEdit', countryDelete='$countryDelete', currencyView='$currencyView', currencyAdd='$currencyAdd', currencyEdit='$currencyEdit', currencyDelete='$currencyDelete', destinationView='$destinationView', destinationAdd='$destinationAdd', destinationEdit='$destinationEdit', destinationDelete='$destinationDelete', mopView='$mopView', mopAdd='$mopAdd', mopEdit='$mopEdit', mopDelete='$mopDelete', regionView='$regionView', regionAdd='$regionAdd', regionEdit='$regionEdit', regionDelete='$regionDelete', sectorView='$sectorView', sectorAdd='$sectorAdd', sectorEdit='$sectorEdit', sectorDelete='$sectorDelete', slView='$slView', slAdd='$slAdd', slEdit='$slEdit', slDelete='$slDelete', spoView='$spoView', spoAdd='$spoAdd', spoEdit='$spoEdit', spoDelete='$spoDelete' WHERE SrNo='$auth_id' ");
 }
 
 ?>
@@ -861,6 +865,11 @@ background-color: #c1c1c1 !important;
                         <div class="cls"></div>
 
                  <div class="col-md-6">
+
+                                                <div class="input-label hidden"><label >Authorization ID </label></div>
+                                                <div class="input-feild hidden">
+                                                <input type="text" name="auth_id" id="auth_id" value="<?php echo $auth_id; ?>" required>
+                                                </div>
 
                                                 <div class="input-label"><label >Authorization Name </label></div>
                                                 <div class="input-feild">
