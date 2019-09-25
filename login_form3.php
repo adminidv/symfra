@@ -90,13 +90,13 @@ if(isset($_POST['submitBtn']))
                     <div class="col-md-12">
                         <form action="" method="POST"> 
                             <label class="label_text" for="username">Username</label>     
-                            <input type="text" id="username" name="username" placeholder="Enter Username" value="<?php if(isset($_COOKIE["username"])) { echo $_COOKIE["username"]; } ?>"><br>
+                            <input type="text" id="username" maxlength="30" name="username" placeholder="Enter Username" value="<?php if(isset($_COOKIE["username"])) { echo $_COOKIE["username"]; } ?>"><br>
 
                             
 
 
                             <label class="label_text"  for="password">Password</label>     
-                            <input type="password" id="password" name="pswd" placeholder="Enter Password" value="<?php if(isset($_COOKIE["pswd"])) { echo $_COOKIE["pswd"]; } ?>"><br>  
+                            <input type="password" id="password" name="pswd" maxlength="30" minlength="6" placeholder="Enter Password" value="<?php if(isset($_COOKIE["pswd"])) { echo $_COOKIE["pswd"]; } ?>"><br>  
                            
 
                             <label class="container">Remember Me 
