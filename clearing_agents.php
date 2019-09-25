@@ -13,11 +13,12 @@ $loginUser= $_SESSION['user'];
 // Today date func
 $todayDate = date("Y-m-d");
 
-$selectSrNo = mysqli_query($con, "SELECT * FROM airline_setup ORDER BY SrNo DESC LIMIT 1");
+$selectSrNo = mysqli_query($con, "SELECT * FROM clearing_agents ORDER BY SrNo DESC LIMIT 1");
 while ($rowSrNo = mysqli_fetch_array($selectSrNo))
 {
   $SrNo = $rowSrNo['SrNo'];
- 
+  $SnewID1 = $SrNo + 1;
+  $SrNo1 = $SnewID1;
 
 }
 
@@ -65,7 +66,7 @@ if (isset($_POST['submitBtn'])) {
 
 			// echo "The record is inserted successfully.";
 
- 			header("Location: clearing_agents_V1.php?id=" . $SrNo);
+ 			header("Location: clearing_agents_V1.php?id=" . $SrNo1);
 		
 	    }
 	
@@ -315,7 +316,7 @@ if (isset($_POST['submitBtn'])) {
 
 															<div class="input-label"><label >Country</label></div> 
 																<div class="input-feild"> 
-												                     <select name="country" id="country" class="country" >
+												                     <select name="country" id="country" class="country" onchange="checkCities();" >
 												                          <option value="Select">Select </option>
 												                          <!-- Drop Down list Country Name -->
 												                          <?php
@@ -431,7 +432,7 @@ function saveAirlineFunc()
    function FormValidation()
    {
     var regexp = /^[a-z]*$/i;
-    var regexp2 = /^[0-9]*$/i;
+     var regexp2 = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/i;
     var re = /\S+@\S+\.\S+/;
       var missingVal = 0;
 
@@ -550,6 +551,23 @@ function saveAirlineFunc()
 $("#scroltop").click(function() {
     $("html").animate({ scrollTop: 0 }, "slow");
   });
+</script>
+
+<script type="text/javascript">
+    function checkCities()
+    {
+      var bpCountry = document.getElementById("country").value;
+
+      $.ajax({
+         url:"checkCities.php",  
+                method:"GET",  
+                data:{bpCountry:bpCountry}, 
+                dataType:"text", 
+         success: function(data) {
+             $('#city').html(data);
+         }
+      });
+    }
 </script>
 
 
