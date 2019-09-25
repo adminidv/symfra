@@ -17,6 +17,7 @@ if ($user_id != 0)
     $Auth_ID = $rowUserAuth['Auth_ID'];
     $desigID = $rowUserAuth['desig_ID'];
     $departID = $rowUserAuth['dept_ID'];
+    $nameForAuth = $rowUserAuth['user_fName'];
   }
 
   $selectDesig = mysqli_query($con, "SELECT * from designation WHERE Desig_ID='$desigID' ");
@@ -42,6 +43,628 @@ if ($user_id != 0)
 
 else
 {
+
+}
+
+if(isset($_POST['btnYes']))
+{
+  $view_U = 0;
+  $add_U = 0;
+  $update_U = 0;
+  $delete_U = 0;
+  $deptView = 0;
+  $deptAdd = 0;
+  $deptEdit = 0;
+  $deptDelete = 0;
+  $desigView = 0;
+  $desigAdd = 0;
+  $desigEdit = 0;
+  $desigDelete = 0;
+  $roleView = 0;
+  $roleAdd = 0;
+  $roleEdit = 0;
+  $roleDelete = 0;
+  $empView = 0;
+  $empAdd = 0;
+  $empEdit = 0;
+  $empDelete = 0;
+  $leaveView = 0;
+  $leaveAdd = 0;
+  $leaveEdit = 0;
+  $leaveDelete = 0;
+  $siView = 0;
+  $siAdd = 0;
+  $siEdit = 0;
+  $siDelete = 0;
+  $seView = 0;
+  $seAdd = 0;
+  $seEdit = 0;
+  $seDelete = 0;
+  $aiView = 0;
+  $aiAdd = 0;
+  $aiEdit = 0;
+  $aiDelete = 0;
+  $aeView = 0;
+  $aeAdd = 0;
+  $aeEdit = 0;
+  $aeDelete = 0;
+  $custView = 0;
+  $custAdd = 0;
+  $custEdit = 0;
+  $custDelete = 0;
+  $vendorView = 0;
+  $vendorAdd = 0;
+  $vendorEdit = 0;
+  $vendorDelete = 0;
+  $bpView = 0;
+  $bpAdd = 0;
+  $bpEdit = 0;
+  $bpDelete = 0;
+
+  // Setups
+
+  $airportView = 0;
+  $airportAdd = 0;
+  $airportEdit = 0;
+  $airportDelete = 0;
+
+  $airlineView = 0;
+  $airlineAdd = 0;
+  $airlineEdit = 0;
+  $airlineDelete = 0;
+
+  $businessView = 0;
+  $businessAdd = 0;
+  $businessEdit = 0;
+  $businessDelete = 0;
+
+  $cityView = 0;
+  $cityAdd = 0;
+  $cityEdit = 0;
+  $cityDelete = 0;
+
+  $commodityView = 0;
+  $commodityAdd = 0;
+  $commodityEdit = 0;
+  $commodityDelete = 0;
+
+  $countryView = 0;
+  $countryAdd = 0;
+  $countryEdit = 0;
+  $countryDelete = 0;
+
+  $currencyView = 0;
+  $currencyAdd = 0;
+  $currencyEdit = 0;
+  $currencyDelete = 0;
+
+  $destinationView = 0;
+  $destinationAdd = 0;
+  $destinationEdit = 0;
+  $destinationDelete = 0;
+
+  $mopView = 0;
+  $mopAdd = 0;
+  $mopEdit = 0;
+  $mopDelete = 0;
+
+  $regionView = 0;
+  $regionAdd = 0;
+  $regionEdit = 0;
+  $regionDelete = 0;
+
+  $sectorView = 0;
+  $sectorAdd = 0;
+  $sectorEdit = 0;
+  $sectorDelete = 0;
+
+  $slView = 0;
+  $slAdd = 0;
+  $slEdit = 0;
+  $slDelete = 0;
+
+  $spoView = 0;
+  $spoAdd = 0;
+  $spoEdit = 0;
+  $spoDelete = 0;
+
+  if (isset($_POST['view_U']))
+  {
+    $view_U = 1;
+  }
+  if (isset($_POST['add_U']))
+  {
+    $add_U = 1;
+  }
+  if (isset($_POST['update_U']))
+  {
+    $update_U = 1;
+  }
+  if (isset($_POST['delete_U']))
+  {
+    $delete_U = 1;
+  }
+
+  if (isset($_POST['deptView']))
+  {
+    $deptView = 1;
+  }
+  if (isset($_POST['deptAdd']))
+  {
+    $deptAdd = 1;
+  }
+  if (isset($_POST['deptEdit']))
+  {
+    $deptEdit = 1;
+  }
+  if (isset($_POST['deptDelete']))
+  {
+    $deptDelete = 1;
+  }
+
+  if (isset($_POST['desigView']))
+  {
+    $desigView = 1;
+  }
+  if (isset($_POST['desigAdd']))
+  {
+    $desigAdd = 1;
+  }
+  if (isset($_POST['desigEdit']))
+  {
+    $desigEdit = 1;
+  }
+  if (isset($_POST['desigDelete']))
+  {
+    $desigDelete = 1;
+  }
+
+  if (isset($_POST['roleView']))
+  {
+    $roleView = 1;
+  }
+  if (isset($_POST['roleAdd']))
+  {
+    $roleAdd = 1;
+  }
+  if (isset($_POST['roleEdit']))
+  {
+    $roleEdit = 1;
+  }
+  if (isset($_POST['roleDelete']))
+  {
+    $roleDelete = 1;
+  }
+
+  if (isset($_POST['empView']))
+  {
+    $empView = 1;
+  }
+  if (isset($_POST['empAdd']))
+  {
+    $empAdd = 1;
+  }
+  if (isset($_POST['empEdit']))
+  {
+    $empEdit = 1;
+  }
+  if (isset($_POST['empDelete']))
+  {
+    $empDelete = 1;
+  }
+
+  if (isset($_POST['leaveView']))
+  {
+    $leaveView = 1;
+  }
+  if (isset($_POST['leaveAdd']))
+  {
+    $leaveAdd = 1;
+  }
+  if (isset($_POST['leaveEdit']))
+  {
+    $leaveEdit = 1;
+  }
+  if (isset($_POST['leaveDelete']))
+  {
+    $leaveDelete = 1;
+  }
+
+  ///////////////////////////////////
+
+  if (isset($_POST['siView']))
+  {
+    $siView = 1;
+  }
+  if (isset($_POST['siAdd']))
+  {
+    $siAdd = 1;
+  }
+  if (isset($_POST['siEdit']))
+  {
+    $siEdit = 1;
+  }
+  if (isset($_POST['siDelete']))
+  {
+    $siDelete = 1;
+  }
+
+  if (isset($_POST['seView']))
+  {
+    $seView = 1;
+  }
+  if (isset($_POST['seAdd']))
+  {
+    $seAdd = 1;
+  }
+  if (isset($_POST['seEdit']))
+  {
+    $seEdit = 1;
+  }
+  if (isset($_POST['seDelete']))
+  {
+    $seDelete = 1;
+  }
+
+  if (isset($_POST['aiView']))
+  {
+    $aiView = 1;
+  }
+  if (isset($_POST['aiAdd']))
+  {
+    $aiAdd = 1;
+  }
+  if (isset($_POST['aiEdit']))
+  {
+    $aiEdit = 1;
+  }
+  if (isset($_POST['aiDelete']))
+  {
+    $aiDelete = 1;
+  }
+
+  if (isset($_POST['aeView']))
+  {
+    $aeView = 1;
+  }
+  if (isset($_POST['aeAdd']))
+  {
+    $aeAdd = 1;
+  }
+  if (isset($_POST['aeEdit']))
+  {
+    $aeEdit = 1;
+  }
+  if (isset($_POST['aeDelete']))
+  {
+    $aeDelete = 1;
+  }
+
+  //
+
+  if (isset($_POST['custView']))
+  {
+    $custView = 1;
+  }
+  if (isset($_POST['custAdd']))
+  {
+    $custAdd = 1;
+  }
+  if (isset($_POST['custEdit']))
+  {
+    $custEdit = 1;
+  }
+  if (isset($_POST['custDelete']))
+  {
+    $custDelete = 1;
+  }
+
+  //
+
+  if (isset($_POST['vendorView']))
+  {
+    $vendorView = 1;
+  }
+  if (isset($_POST['vendorAdd']))
+  {
+    $vendorAdd = 1;
+  }
+  if (isset($_POST['vendorEdit']))
+  {
+    $vendorEdit = 1;
+  }
+  if (isset($_POST['vendorDelete']))
+  {
+    $vendorDelete = 1;
+  }
+
+  //
+
+  if (isset($_POST['bpView']))
+  {
+    $bpView = 1;
+  }
+  if (isset($_POST['bpAdd']))
+  {
+    $bpAdd = 1;
+  }
+  if (isset($_POST['bpEdit']))
+  {
+    $bpEdit = 1;
+  }
+  if (isset($_POST['bpDelete']))
+  {
+    $bpDelete = 1;
+  }
+
+  //
+
+  if (isset($_POST['airportView']))
+  {
+    $airportView = 1;
+  }
+  if (isset($_POST['airportAdd']))
+  {
+    $airportAdd = 1;
+  }
+  if (isset($_POST['airportEdit']))
+  {
+    $airportEdit = 1;
+  }
+  if (isset($_POST['airportDelete']))
+  {
+    $airportDelete = 1;
+  }
+
+  //
+
+  if (isset($_POST['airlineView']))
+  {
+    $airlineView = 1;
+  }
+  if (isset($_POST['airlineAdd']))
+  {
+    $airlineAdd = 1;
+  }
+  if (isset($_POST['airlineEdit']))
+  {
+    $airlineEdit = 1;
+  }
+  if (isset($_POST['airlineDelete']))
+  {
+    $airlineDelete = 1;
+  }
+
+  //
+
+  if (isset($_POST['businessView']))
+  {
+    $businessView = 1;
+  }
+  if (isset($_POST['businessAdd']))
+  {
+    $businessAdd = 1;
+  }
+  if (isset($_POST['businessEdit']))
+  {
+    $businessEdit = 1;
+  }
+  if (isset($_POST['businessDelete']))
+  {
+    $businessDelete = 1;
+  }
+
+  //
+
+  if (isset($_POST['cityView']))
+  {
+    $cityView = 1;
+  }
+  if (isset($_POST['cityAdd']))
+  {
+    $cityAdd = 1;
+  }
+  if (isset($_POST['cityEdit']))
+  {
+    $cityEdit = 1;
+  }
+  if (isset($_POST['cityDelete']))
+  {
+    $cityDelete = 1;
+  }
+
+  //
+
+  if (isset($_POST['commodityView']))
+  {
+    $commodityView = 1;
+  }
+  if (isset($_POST['commodityAdd']))
+  {
+    $commodityAdd = 1;
+  }
+  if (isset($_POST['commodityEdit']))
+  {
+    $commodityEdit = 1;
+  }
+  if (isset($_POST['commodityDelete']))
+  {
+    $commodityDelete = 1;
+  }
+
+  //
+
+  if (isset($_POST['countryView']))
+  {
+    $countryView = 1;
+  }
+  if (isset($_POST['countryAdd']))
+  {
+    $countryAdd = 1;
+  }
+  if (isset($_POST['countryEdit']))
+  {
+    $countryEdit = 1;
+  }
+  if (isset($_POST['countryDelete']))
+  {
+    $countryDelete = 1;
+  }
+
+  //
+
+  if (isset($_POST['currencyView']))
+  {
+    $currencyView = 1;
+  }
+  if (isset($_POST['currencyAdd']))
+  {
+    $currencyAdd = 1;
+  }
+  if (isset($_POST['currencyEdit']))
+  {
+    $currencyEdit = 1;
+  }
+  if (isset($_POST['currencyDelete']))
+  {
+    $currencyDelete = 1;
+  }
+
+  //
+
+  if (isset($_POST['destinationView']))
+  {
+    $destinationView = 1;
+  }
+  if (isset($_POST['destinationAdd']))
+  {
+    $destinationAdd = 1;
+  }
+  if (isset($_POST['destinationEdit']))
+  {
+    $destinationEdit = 1;
+  }
+  if (isset($_POST['currencyDelete']))
+  {
+    $destinationDelete = 1;
+  }
+
+  //
+
+  if (isset($_POST['mopView']))
+  {
+    $mopView = 1;
+  }
+  if (isset($_POST['mopAdd']))
+  {
+    $mopAdd = 1;
+  }
+  if (isset($_POST['mopEdit']))
+  {
+    $mopEdit = 1;
+  }
+  if (isset($_POST['mopDelete']))
+  {
+    $mopDelete = 1;
+  }
+
+  //
+
+  if (isset($_POST['regionView']))
+  {
+    $regionView = 1;
+  }
+  if (isset($_POST['regionAdd']))
+  {
+    $regionAdd = 1;
+  }
+  if (isset($_POST['regionEdit']))
+  {
+    $regionEdit = 1;
+  }
+  if (isset($_POST['regionDelete']))
+  {
+    $regionDelete = 1;
+  }
+
+  //
+
+  if (isset($_POST['sectorView']))
+  {
+    $sectorView = 1;
+  }
+  if (isset($_POST['sectorAdd']))
+  {
+    $sectorAdd = 1;
+  }
+  if (isset($_POST['sectorEdit']))
+  {
+    $sectorEdit = 1;
+  }
+  if (isset($_POST['sectorDelete']))
+  {
+    $sectorDelete = 1;
+  }
+
+  //
+
+  if (isset($_POST['slView']))
+  {
+    $slView = 1;
+  }
+  if (isset($_POST['slAdd']))
+  {
+    $slAdd = 1;
+  }
+  if (isset($_POST['slEdit']))
+  {
+    $slEdit = 1;
+  }
+  if (isset($_POST['slDelete']))
+  {
+    $slDelete = 1;
+  }
+
+  //
+
+  if (isset($_POST['spoView']))
+  {
+    $spoView = 1;
+  }
+  if (isset($_POST['spoAdd']))
+  {
+    $spoAdd = 1;
+  }
+  if (isset($_POST['spoEdit']))
+  {
+    $spoEdit = 1;
+  }
+  if (isset($_POST['spoDelete']))
+  {
+    $spoDelete = 1;
+  }
+
+  // Setting the POST variables coming from form
+  $auth_Name = $_POST['auth_Name'] . '-' . $nameForAuth;
+
+  // Inserting records to Authorization Set
+  $insertAuthSet = mysqli_query($con, "insert into authorizationset (auth_Name) values ('$auth_Name')");
+
+  $insertAuthDetails = mysqli_query($con, "insert into authdetails (auth_Name, add_U, update_U, delete_U, view_U, deptView, deptAdd, deptDelete, deptEdit, desigView, desigAdd, desigDelete, desigEdit, roleView, roleAdd, roleDelete, roleEdit, empView, empAdd, empDelete, empEdit, leaveView, leaveAdd, leaveDelete, leaveEdit, siView, siAdd, siEdit, siDelete, seView, seAdd, seEdit, seDelete, aiView, aiAdd, aiEdit, aiDelete, aeView, aeAdd, aeEdit, aeDelete, custView, custAdd, custEdit, custDelete, vendorView, vendorAdd, vendorEdit, vendorDelete, bpView, bpAdd, bpEdit, bpDelete, airportView, airportAdd, airportEdit, airportDelete, airlineView, airlineAdd, airlineEdit, airlineDelete, businessView, businessAdd, businessEdit, businessDelete, cityView, cityAdd, cityEdit, cityDelete, commodityView, commodityAdd, commodityEdit, commodityDelete, countryView, countryAdd, countryEdit, countryDelete, currencyView, currencyAdd, currencyEdit, currencyDelete, destinationView, destinationAdd, destinationEdit, destinationDelete, mopView, mopAdd, mopEdit, mopDelete, regionView, regionAdd, regionEdit, regionDelete, sectorView, sectorAdd, sectorEdit, sectorDelete, slView, slAdd, slEdit, slDelete, spoView, spoAdd, spoEdit, spoDelete) values ('$auth_Name', '$add_U', '$update_U', '$delete_U', '$view_U', '$deptView', '$deptAdd', '$deptDelete', '$deptEdit', '$desigView', '$desigAdd', '$desigDelete', '$desigEdit', '$roleView', '$roleAdd', '$roleDelete', '$roleEdit', '$empView', '$empAdd', '$empDelete', '$empEdit', '$leaveView', '$leaveAdd', '$leaveDelete', '$leaveEdit', '$siView', '$siAdd', '$siEdit', '$siDelete', '$seView', '$seAdd', '$seEdit', '$seDelete', '$aiView', '$aiAdd', '$aiEdit', '$aiDelete', '$aeView', '$aeAdd', '$aeEdit', '$aeDelete', '$custView', '$custAdd', '$custEdit', '$custDelete', '$vendorView', '$vendorAdd', '$vendorEdit', '$vendorDelete', '$bpView', '$bpAdd', '$bpEdit', '$bpDelete', '$airportView', '$airportAdd', '$airportEdit', '$airportDelete', '$airlineView', '$airlineAdd', '$airlineEdit', '$airlineDelete', '$businessView', '$businessAdd', '$businessEdit', '$businessDelete', '$cityView', '$cityAdd', '$cityEdit', '$cityDelete', '$commodityView', '$commodityAdd', '$commodityEdit', '$commodityDelete', '$countryView', '$countryAdd', '$countryEdit', '$countryDelete', '$currencyView', '$currencyAdd', '$currencyEdit', '$currencyDelete', '$destinationView', '$destinationAdd', '$destinationEdit', '$destinationDelete', '$mopView', '$mopAdd', '$mopEdit', '$mopDelete', '$regionView', '$regionAdd', '$regionEdit', '$regionDelete', '$sectorView', '$sectorAdd', '$sectorEdit', '$sectorDelete', '$slView', '$slAdd', '$slEdit', '$slDelete', '$spoView', '$spoAdd', '$spoEdit', '$spoDelete')");
+
+  // Updating the user Auth
+  $selectLastID = mysqli_query($con, "SELECT * FROM authdetails ORDER BY SrNo DESC LIMIT 1");
+  $rowLastID = mysqli_fetch_array($selectLastID, MYSQLI_ASSOC);
+
+  $newAuthID = $rowLastID['SrNo'];
+  // $newAuthID = $_POST['auth_id'] + 1;
+  $user_id = $_POST['authUser'];
+
+  $updateUserAuth = mysqli_query($con, "UPDATE users SET Auth_ID='$newAuthID' WHERE user_ID='$user_id' ");
+
+  header("Location: customAuthorization.php?user_id=" . $user_id);
+
+  // $updateAuth = mysqli_query($con, "UPDATE authdetails SET auth_Name='$auth_Name', add_U='$add_U', update_U='$update_U', delete_U='$delete_U', view_U='$view_U', deptView='$deptView', deptAdd='$deptAdd', deptDelete='$deptDelete', deptEdit='$deptEdit', desigView='$desigView', desigAdd='$desigAdd', desigDelete='$desigDelete', desigEdit='$desigEdit', roleView='$roleView', roleAdd='$roleAdd', roleDelete='$roleDelete', roleEdit='$roleEdit', empView='$empView', empAdd='$empAdd', empDelete='$empDelete', empEdit='$empEdit', leaveView='$leaveView', leaveAdd='$leaveAdd', leaveDelete='$leaveDelete', leaveEdit='$leaveEdit', siView='$siView', siAdd='$siAdd', siEdit='$siEdit', siDelete='$siDelete', seView='$seView', seAdd='$seAdd', seEdit='$seEdit', seDelete='$seDelete', aiView='$aiView', aiAdd='$aiAdd', aiEdit='$aiEdit', aiDelete='$aiDelete', aeView='$aeView', aeAdd='$aeAdd', aeEdit='$aeEdit', aeDelete='$aeDelete', custView='$custView', custAdd='$custAdd', custEdit='$custEdit', custDelete='$custDelete', vendorView='$vendorView', vendorAdd='$vendorAdd', vendorEdit='$vendorEdit', vendorDelete='$vendorDelete', bpView='$bpView', bpAdd='$bpAdd', bpEdit='$bpEdit', bpDelete='$bpDelete', airportView='$airportView', airportAdd='$airportAdd', airportEdit='$airportEdit', airportDelete='$airportDelete', airlineView='$airlineView', airlineAdd='$airlineAdd', airlineEdit='$airlineEdit', airlineDelete='$airlineDelete', businessView='$businessView', businessAdd='$businessAdd', businessEdit='$businessEdit', businessDelete='$businessDelete', cityView='$cityView', cityAdd='$cityAdd', cityEdit='$cityEdit', cityDelete='$cityDelete', commodityView='$commodityView', commodityAdd='$commodityAdd', commodityEdit='$commodityEdit', commodityDelete='$commodityDelete', countryView='$countryView', countryAdd='$countryAdd', countryEdit='$countryEdit', countryDelete='$countryDelete', currencyView='$currencyView', currencyAdd='$currencyAdd', currencyEdit='$currencyEdit', currencyDelete='$currencyDelete', destinationView='$destinationView', destinationAdd='$destinationAdd', destinationEdit='$destinationEdit', destinationDelete='$destinationDelete', mopView='$mopView', mopAdd='$mopAdd', mopEdit='$mopEdit', mopDelete='$mopDelete', regionView='$regionView', regionAdd='$regionAdd', regionEdit='$regionEdit', regionDelete='$regionDelete', sectorView='$sectorView', sectorAdd='$sectorAdd', sectorEdit='$sectorEdit', sectorDelete='$sectorDelete', slView='$slView', slAdd='$slAdd', slEdit='$slEdit', slDelete='$slDelete', spoView='$spoView', spoAdd='$spoAdd', spoEdit='$spoEdit', spoDelete='$spoDelete' WHERE Auth_ID='$Auth_ID' ");
 
 }
 
@@ -190,6 +813,10 @@ background-color: #c1c1c1 !important;
 												<div class="cls"></div>
 
 								 <div class="col-md-6">
+                                                <div class="input-label hidden"><label >Authorization ID </label></div>
+                                                <div class="input-feild hidden">
+                                                <input type="text" name="auth_id" id="auth_id" value="<?php echo $Auth_ID; ?>" required>
+                                                </div>
 
                                                 <div class="input-label"><label >User</label></div>
                                                 <div class="input-feild">
@@ -234,7 +861,7 @@ background-color: #c1c1c1 !important;
                                                 <div class="input-label"><label >Role</label></div>
                                                 <div class="input-feild">
                                                   <select name="auth_Name" id="auth_Name" disabled>
-                                                    <option value="">Select</option>
+                                                    
                                                      <?php
 
                                                      if ($user_id != 0)
@@ -245,6 +872,11 @@ background-color: #c1c1c1 !important;
                                                         $auth_Name2 = $rowAuth2['auth_Name'];
                                                         echo '<option value="'.$Auth_ID.'">'.$auth_Name2.'</option>';
                                                       }
+                                                     }
+
+                                                     else
+                                                     {
+                                                      echo '<option value="">Select</option>';
                                                      }
 
                                                       $selectAuth3 = mysqli_query($con, "SELECT * FROM authdetails ");
@@ -285,7 +917,7 @@ background-color: #c1c1c1 !important;
                                                   if ($user_id != 0)
                                                   {
                                                   ?>
-                                                    <input type="text" name="userDepart" id="userDepart" disabled value="<?php echo $auth_Name; ?>">
+                                                    <input type="text" name="userDepart" id="userDepart" disabled value="<?php echo $userDepart; ?>">
                                                   <?php
                                                   }
                                                   else

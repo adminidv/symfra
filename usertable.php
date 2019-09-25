@@ -91,7 +91,7 @@ if(isset($_POST["btnCustom_U"]))
   $updateUM = mysqli_query($con, "UPDATE tableview_um SET userID_UM = '$userID_UM', userName_UM='$userName_UM', userAddress_UM='$userAddress_UM', userContact_UM='$userContact_UM', userEmail_UM='$userEmail_UM', userDept_UM='$userDept_UM', userDesig_UM='$userDesig_UM', userRole_UM='$userRole_UM', userRegion_UM='$userRegion_UM', userDOB_UM='$userDOB_UM', userDOJ_UM='$userDOJ_UM', userDOL_UM='$userDOL_UM' WHERE SrNo= '1' ");
 
   $clause = " WHERE user_active='Active' AND ";//Initial clause
-  $searchRecord="SELECT * FROM `users` WHERE user_active='Active' ";
+  $searchRecord="SELECT * FROM `users` WHERE user_active='Active' OR user_active='Deactived' ";
 
       // if user is giving the middle name
       if(!empty($_POST['user_mName']))
@@ -171,88 +171,194 @@ if(isset($_POST["btnCustom_U"]))
   // header('Location: usertable.php');
 }
 
-else if(isset($_POST["btnDelete"]))
+else if(isset($_POST["btnActivate"]))
 {
-  $id = $_POST['user_check'];
-  while (list($key, $val) = @each ($id))
+  if (isset($_POST["user_check"]))
   {
-    mysqli_query($con, "DELETE FROM users WHERE user_ID = '$val' ");
+    $id = $_POST['user_check'];
+    while (list($key, $val) = @each ($id))
+    {
+      mysqli_query($con, "UPDATE users SET user_active='Active' WHERE user_ID = '$val' ");
+    }
+
+    $clause = " WHERE ";//Initial clause
+    $searchRecord="SELECT * FROM `users`  ";
+
+        // if user is giving the middle name
+        if(!empty($_POST['user_mName']))
+        {
+            $user_mName = $_POST['user_mName'];
+            $searchRecord .= $clause."`user_lName` LIKE '%$user_mName%'";
+            $user_mName = 1;
+        }
+        else
+        {
+          $user_mName = 0;
+        }
+
+        // if user is giving the first name
+        if(!empty($_POST['user_fName']))
+        {
+            if($user_mName == 1)
+            {
+              $clause = " AND ";
+            }
+            $user_fName = $_POST['user_fName'];
+            $searchRecord .= $clause."`user_fName` LIKE '%$user_fName%'";
+            $fNameStatus = 1;
+        }
+        else
+        {
+          $fNameStatus = 0;
+        }
+
+        // if user is selecting any department
+        if(!empty($_POST['dept_list']))
+        {
+            if($fNameStatus == 1 OR $user_mName == 1)
+            {
+              $clause = " AND ";
+            }
+            foreach($_POST['dept_list'] as $c)
+            {
+                if(!empty($c)){
+                    $searchRecord .= $clause."`dept_ID` = '{$c}'";
+                    $clause = " OR ";
+                }   
+            }
+            $deptStatus = 1;
+        }
+        else
+        {
+          $deptStatus = 0;
+        }
+
+        // if user is selecting any designation
+        if(!empty($_POST['desig_list']))
+        {
+            if($deptStatus == 1 OR $fNameStatus == 1 OR $user_mName == 1)
+            {
+              $clause = " AND ";
+            }
+            foreach($_POST['desig_list'] as $d)
+            {
+                if(!empty($d))
+                {
+                    $searchRecord .= $clause."`desig_ID` LIKE '%{$d}%'";
+                    $clause = " OR ";
+                }   
+            }
+        }
+        else
+        {
+          // echo "Nothing Selected.";
+        }
+    // echo $sql; //Remove after testing
+    $searchQuery = mysqli_query($con, $searchRecord);
   }
 
-  $clause = " WHERE ";//Initial clause
-  $searchRecord="SELECT * FROM `users`  ";
+  else
+  {
+    echo '<script type="text/javascript">'; 
+    echo 'alert("Please select something to activate.");'; 
+    echo 'window.location.href = "usertable.php";';
+    echo '</script>';
+  }
+}
 
-      // if user is giving the middle name
-      if(!empty($_POST['user_mName']))
-      {
-          $user_mName = $_POST['user_mName'];
-          $searchRecord .= $clause."`user_lName` LIKE '%$user_mName%'";
-          $user_mName = 1;
-      }
-      else
-      {
-        $user_mName = 0;
-      }
+else if(isset($_POST["btnDeactivate"]))
+{
+  if (isset($_POST["user_check"]))
+  {
+    $id = $_POST['user_check'];
+    while (list($key, $val) = @each ($id))
+    {
+      mysqli_query($con, "UPDATE users SET user_active='Deactived' WHERE user_ID = '$val' ");
+    }
 
-      // if user is giving the first name
-      if(!empty($_POST['user_fName']))
-      {
-          if($user_mName == 1)
-          {
-            $clause = " AND ";
-          }
-          $user_fName = $_POST['user_fName'];
-          $searchRecord .= $clause."`user_fName` LIKE '%$user_fName%'";
-          $fNameStatus = 1;
-      }
-      else
-      {
-        $fNameStatus = 0;
-      }
+    $clause = " WHERE ";//Initial clause
+    $searchRecord="SELECT * FROM `users`  ";
 
-      // if user is selecting any department
-      if(!empty($_POST['dept_list']))
-      {
-          if($fNameStatus == 1 OR $user_mName == 1)
-          {
-            $clause = " AND ";
-          }
-          foreach($_POST['dept_list'] as $c)
-          {
-              if(!empty($c)){
-                  $searchRecord .= $clause."`dept_ID` = '{$c}'";
-                  $clause = " OR ";
-              }   
-          }
-          $deptStatus = 1;
-      }
-      else
-      {
-        $deptStatus = 0;
-      }
+        // if user is giving the middle name
+        if(!empty($_POST['user_mName']))
+        {
+            $user_mName = $_POST['user_mName'];
+            $searchRecord .= $clause."`user_lName` LIKE '%$user_mName%'";
+            $user_mName = 1;
+        }
+        else
+        {
+          $user_mName = 0;
+        }
 
-      // if user is selecting any designation
-      if(!empty($_POST['desig_list']))
-      {
-          if($deptStatus == 1 OR $fNameStatus == 1 OR $user_mName == 1)
-          {
-            $clause = " AND ";
-          }
-          foreach($_POST['desig_list'] as $d)
-          {
-              if(!empty($d))
-              {
-                  $searchRecord .= $clause."`desig_ID` LIKE '%{$d}%'";
-                  $clause = " OR ";
-              }   
-          }
-      }
-      else
-      {
-        // echo "Nothing Selected.";
-      }
-  // echo $sql; //Remove after testing
-  $searchQuery = mysqli_query($con, $searchRecord);
+        // if user is giving the first name
+        if(!empty($_POST['user_fName']))
+        {
+            if($user_mName == 1)
+            {
+              $clause = " AND ";
+            }
+            $user_fName = $_POST['user_fName'];
+            $searchRecord .= $clause."`user_fName` LIKE '%$user_fName%'";
+            $fNameStatus = 1;
+        }
+        else
+        {
+          $fNameStatus = 0;
+        }
+
+        // if user is selecting any department
+        if(!empty($_POST['dept_list']))
+        {
+            if($fNameStatus == 1 OR $user_mName == 1)
+            {
+              $clause = " AND ";
+            }
+            foreach($_POST['dept_list'] as $c)
+            {
+                if(!empty($c)){
+                    $searchRecord .= $clause."`dept_ID` = '{$c}'";
+                    $clause = " OR ";
+                }   
+            }
+            $deptStatus = 1;
+        }
+        else
+        {
+          $deptStatus = 0;
+        }
+
+        // if user is selecting any designation
+        if(!empty($_POST['desig_list']))
+        {
+            if($deptStatus == 1 OR $fNameStatus == 1 OR $user_mName == 1)
+            {
+              $clause = " AND ";
+            }
+            foreach($_POST['desig_list'] as $d)
+            {
+                if(!empty($d))
+                {
+                    $searchRecord .= $clause."`desig_ID` LIKE '%{$d}%'";
+                    $clause = " OR ";
+                }   
+            }
+        }
+        else
+        {
+          // echo "Nothing Selected.";
+        }
+    // echo $sql; //Remove after testing
+    $searchQuery = mysqli_query($con, $searchRecord);
+  }
+
+  else
+  {
+    echo '<script type="text/javascript">'; 
+    echo 'alert("Please select something to deactivate.");'; 
+    echo 'window.location.href = "usertable.php";';
+    echo '</script>';
+  }
 }
 
 else if(isset($_POST["btnEdit"]))
@@ -477,7 +583,7 @@ else if(isset($_POST["btnExport_D"]))
 else
 {
   $clause = " WHERE ";//Initial clause
-  $searchRecord="SELECT * FROM `users` WHERE user_active='Active'  ";
+  $searchRecord="SELECT * FROM `users` WHERE user_active='Active' OR user_active='Deactived' ";
 
       // if user is giving the middle name
       if(!empty($_POST['user_mName']))
@@ -732,6 +838,44 @@ else
 					<h4>User Info Table</h4>
 				</div>
         <form action="" method="POST">
+
+          <div class="confirmTable-modal modal fade" id="activateTable_C" role="dialog">
+            <div class="modal-dialog">
+                  <div class="modal-content pop_up_content">
+                      <div class="modal-header pop_up-header">
+                        <button type="button" class="close pop_close_btn" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title pop_title">Confirmation</h4>
+                      </div>
+                      <div class="modal-body Popup_bdy">
+                        <div class="input-feild">
+                            <p>Do you really want to activate selected records?</p>
+                            
+                        </div>
+                        <button type="submit" name="btnActivate">Yes</button>
+                        <button type="button" name="btnDelete_N" data-dismiss="modal" >No</button>
+                      </div>
+                 </div>
+              </div>
+          </div>
+
+          <div class="confirmTable-modal modal fade" id="deactivateTable_C" role="dialog">
+            <div class="modal-dialog">
+                  <div class="modal-content pop_up_content">
+                      <div class="modal-header pop_up-header">
+                        <button type="button" class="close pop_close_btn" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title pop_title">Confirmation</h4>
+                      </div>
+                      <div class="modal-body Popup_bdy">
+                        <div class="input-feild">
+                            <p>Do you really want to deactivate selected records?</p>
+                            
+                        </div>
+                        <button type="submit" name="btnDeactivate">Yes</button>
+                        <button type="button" name="btnDelete_N" data-dismiss="modal" >No</button>
+                      </div>
+                 </div>
+              </div>
+          </div>
 
           <!-- Table Customization -->
           <?php
@@ -1025,7 +1169,8 @@ else
                <div id="tblebtn">
                   <ul>
                     <li><button type="button" id="myBtn"> <i class="fa fa-pencil"></i> Edit</button></li>
-                    <li><button type="button" id="btnDelete_C"><i class="fa fa-trash"></i>  Delete</button></li>
+                    <li><button type="button" id="btnActivate_C"><i class="fa fa-trash"></i>  Activate</button></li>
+                    <li><button type="button" id="btnDeactivate_C"><i class="fa fa-trash"></i>  Deactivate</button></li>
                     <!-- <li><button type="submit" id="btnExport_P"> <i class="fa fa-print"></i><a href="printtable_U.php?searchRecord=<?php echo $searchRecord ?>" target="_blank"> Print</a></button></li> -->
                     <!-- <li><button type="submit" id="btnExport"> <i class="fa fa-pencil"></i><a href="downloadtable_U.php?searchRecord=<?php echo $searchRecord ?>"> Export to Excel</a></button></li> -->
                     <!-- <li><button type="submit" id="btnExportCSV"> <i class="fa fa-pencil"></i><a href="downloadtableCSV_U.php?searchRecord=<?php echo $searchRecord ?>" target="_blank"> Export to CSV</a></button></li> -->
@@ -1151,7 +1296,7 @@ else
                                   ?>
                                   <th>View</th>
                                   <th>Edit</th>
-                                  <th>Delete</th>
+                                  <th>Activate/Deactivate</th>
                               </tr>
     					         </thead>
             					        <tbody>
@@ -1194,6 +1339,7 @@ else
                                                             $dob = $searchRow['user_DOB'];
                                                             $dol = $searchRow['user_DOL'];
                                                             $region = $searchRow['user_region'];
+                                                            $user_active = $searchRow['user_active'];
 
                                                            // $user_arr[] = array($userName,$email,$contact,$address,$dept_name,$Desig_name,$role_Name, $doj);
 
@@ -1311,7 +1457,28 @@ else
                                                             ?>
                                                             <td><a href="searchResult_U.php?user_id=<?php echo $searchRow['user_ID']; ?>">View</td>
                                                             <td><a href="searchResult_UE.php?user_id=<?php echo $searchRow['user_ID']; ?>">Edit</td>
-                                                            <td><a href="#" data-toggle="modal" data-target="#deleteTable_C2" >Delete</td>
+                                                            
+
+                                                            <?php
+                                                            if ($user_active == "Active")
+                                                            {
+                                                            ?>
+
+                                                            <td><a href="deleteUser_Code.php?id=<?php echo $id; ?>" >Deactivate</td>
+
+                                                            <?php
+                                                            }
+
+                                                            else
+                                                            {
+                                                            ?>
+
+                                                            <td><a href="deleteUser_CodeI.php?id=<?php echo $id; ?>" >Activate</td>
+
+                                                            <?php
+                                                            }
+                                                            ?>
+
                                                         </tr>
                                                         <?php
                                                           }
@@ -1511,6 +1678,22 @@ $(document).ready(function(){
     </script>
 
 <script src="js/bootstrap.min.js"></script>
+
+<script>
+$(document).ready(function(){
+  $("#btnActivate_C").click(function(){
+    $("#activateTable_C").modal();
+  });
+});
+</script>
+
+<script>
+$(document).ready(function(){
+  $("#btnDeactivate_C").click(function(){
+    $("#deactivateTable_C").modal();
+  });
+});
+</script>
 
 </body>
 </html>
