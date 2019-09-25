@@ -93,7 +93,7 @@ while ($rowSrNo = mysqli_fetch_array($selectSrNo))
 
 
 
-	if (isset($_POST['submitBtn'])) {
+  if (isset($_POST['submitBtn'])) {
   $airport_name = $_POST['airport_name'];
   $airport_iata = $_POST['airport_iata'];
   $airport_ICAO = $_POST['airport_ICAO'];
@@ -309,27 +309,27 @@ header("Location: airport_setup_2.php");
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Airport Setup</title>
-	<link rel="shortcut icon" type="image/png" href="./images/favicon.png">
-	<link rel="stylesheet" href="css/bootstrap.css" type="text/css">
-	<link rel="stylesheet" href="css/font-awesome.css" type="text/css">
-	<link rel="stylesheet" type="text/css" href="css/symfra_forms.css">
+  <title>Airport Setup</title>
+  <link rel="shortcut icon" type="image/png" href="./images/favicon.png">
+  <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+  <link rel="stylesheet" href="css/font-awesome.css" type="text/css">
+  <link rel="stylesheet" type="text/css" href="css/symfra_forms.css">
   <link rel="stylesheet" type="text/css" href="css/crm.css">
   <link rel="stylesheet" type="text/css" href="css/main_box_widgets.css">
-	<link rel="stylesheet" type="text/css" href="css/usertable.css">
-	<link rel="stylesheet" type="text/css" href="css/sidebar.css">
-	<link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
+  <link rel="stylesheet" type="text/css" href="css/usertable.css">
+  <link rel="stylesheet" type="text/css" href="css/sidebar.css">
+  <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
 
-	<link rel="stylesheet" href="css/symfra_popups.css" type="text/css">
-	<script src="js/jquery-3.3.1.js"></script>
+  <link rel="stylesheet" href="css/symfra_popups.css" type="text/css">
+  <script src="js/jquery-3.3.1.js"></script>
 
   <!-- Bread crumbs starting here -->
   <link rel="stylesheet" href="css/breadCrumb.css" type="text/css">
   <link rel="shortcut icon" type="image/png" href="images/favicon.png">
   <link rel="stylesheet" href="css/user_ribbon.css" type="text/css">
   <!-- Bread crumbs ending here -->
-	
-  	<script src="js/sidebar.js"></script>
+  
+    <script src="js/sidebar.js"></script>
     <script src="js/jquery.min.js"></script>
     
 
@@ -473,9 +473,9 @@ header("Location: airport_setup_2.php");
 </div>
 
 <div class="  main_widget_box">
-	<div class="">
-									<!-- <hr> -->
-			<form action="" method="POST" enctype="multipart/form-data">
+  <div class="">
+                  <!-- <hr> -->
+      <form action="" method="POST" enctype="multipart/form-data">
 
 
 <!-- Show Log Chain -->
@@ -579,55 +579,102 @@ header("Location: airport_setup_2.php");
               </div>
       </div>
 
-				     	 <!-- Modal_one-->
-			 <div class="modal fade confirmTable-modal" id="saveAirline_Modal" role="dialog">
-			    <div class="modal-dialog">
-			    
-			      <!-- Modal content-->
-			      <div class="modal-content">
-			        <div class="modal-header">
-			          <button type="button" class="close" data-dismiss="modal">&times;</button>
-			          <h4 class="modal-title">Confirmation</h4>
-			        </div>
-			        <div class="modal-body">
-			          <p>Are You Sure You Want to Save?</p>
-			          <button type="submit" name="submitBtn1">Yes</button>
-	                  <button type="button" name="btnDelete_N" data-dismiss="modal" >No</button>
+               <!-- Modal_one-->
+       <div class="modal fade confirmTable-modal" id="saveAirline_Modal" role="dialog">
+          <div class="modal-dialog">
+          
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Confirmation</h4>
+              </div>
+              <div class="modal-body">
+                <p>Are You Sure You Want to Save?</p>
+                <button type="submit" name="submitBtn1">Yes</button>
+                    <button type="button" name="btnDelete_N" data-dismiss="modal" >No</button>
 
-			        </div>
-			        <div class="modal-footer">
-			        	<p>Add Related content if needed</p>
-			          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-			        </div>
-			      </div>
-			      
-			    </div>
-			 </div>
+              </div>
+              <div class="modal-footer">
+                <p>Add Related content if needed</p>
+                <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+              </div>
+            </div>
+            
+          </div>
+       </div>
 
-				       <!-- Modal Two-->
-				       <div class="modal fade confirmTable-modal" id="submitAirline_Modal" role="dialog">
-				            <div class="modal-dialog">
-				              <!-- Modal content-->
-				              <div class="modal-content">
-				                <div class="modal-header">
-				                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-				                  <h4 class="modal-title">Confirmation</h4>
-				                </div>
-				                <div class="modal-body">
-				                  <p>Are You Sure You Want to Submit?</p>
-				                  <button type="submit" name="submitBtn">Yes</button>
-				                      <button type="button" name="btnDelete_N" data-dismiss="modal" >No</button>
+               <!-- Modal Two-->
+               <div class="modal fade confirmTable-modal" id="submitAirline_Modal" role="dialog">
+                    <div class="modal-dialog">
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Confirmation</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>Are You Sure You Want to Submit?</p>
+                          <button type="submit" name="submitBtn">Yes</button>
+                              <button type="button" name="btnDelete_N" data-dismiss="modal" >No</button>
 
-				                </div>
-				                <div class="modal-footer">
-				                  <p>Add Related content if needed</p>
-				                  <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-				                </div>
-				              </div>
-				            </div>
-				       </div>
+                        </div>
+                        <div class="modal-footer">
+                          <p>Add Related content if needed</p>
+                          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                        </div>
+                      </div>
+                    </div>
+               </div>
 
-				       <div class="modal fade symfra_popup2" id="popupMEdit" role="dialog">
+               <!-- valdition submit popup -->
+               <div class="modal fade confirmTable-modal" id="submit_Modal" role="dialog">
+                    <div class="modal-dialog">
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Confirmation</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>Are You Sure You Want to Submit?</p>
+                          <button type="submit" name="btnadd">Yes</button>
+                              <button type="button" name="btnDelete_N" data-dismiss="modal" >No</button>
+
+                        </div>
+                        <div class="modal-footer">
+                          <p>Add Related content if needed</p>
+                          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                        </div>
+                      </div>
+                    </div>
+               </div>
+
+               <!-- valdition Edit popup -->
+               <div class="modal fade confirmTable-modal" id="Edit_Modal" role="dialog">
+                    <div class="modal-dialog">
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Confirmation</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>Are You Sure You Want to Submit?</p>
+                          <button type="submit" name="btnedit1">Yes</button>
+                              <button type="button" name="btnDelete_N" data-dismiss="modal" >No</button>
+
+                        </div>
+                        <div class="modal-footer">
+                          <p>Add Related content if needed</p>
+                          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                        </div>
+                      </div>
+                    </div>
+               </div>
+
+
+          <div class="modal fade symfra_popup2" id="popupMEdit4" role="dialog">
             <div class="modal-dialog">
               <!-- ADD Airport Details-->
               <div class="modal-content">
@@ -637,42 +684,49 @@ header("Location: airport_setup_2.php");
                 <h4 class="modal-title">Add Representative Details</h4>
                         </div>
                         <div class="modal-body">
-                          <div class="input-fields">  
-                            <label>Name</label> 
-                            <input type="text" name="rep_name" id="rep_name" class="rep_name" placeholder="Organization Name">    
-                          </div>
 
-                         <div class="input-fields"> 
-                    <label>Designation</label> 
-                    <input type="text" name="rep_desg" id="rep_desgs" placeholder="Enter Here Sub Party Name!">    
-                  </div>
+                           <!-- For Validation Box Red Popup -->
+                   <h4><label id="formSummary1" style="color: red;"></label></h4>
+                 <p id="V_rep_name" style="color: red;"></p>
+                  <p id="V_rep_desg" style="color: red;"></p>
+                  <p id="V_rep_email" style="color: red;"></p>
+
+                            <div class="input-fields">  
+                              <label>Name</label> 
+                              <input type="text" name="rep_name" id="rep_name" class="rep_name" maxlength="40" placeholder="Organization Name"><span class="steric">*</span>
+                            </div>
+
+                          <div class="input-fields"> 
+                            <label>Designation</label> 
+                            <input type="text" name="rep_desg" id="rep_desg" maxlength="30" placeholder="Enter Here Sub Party Name!">    
+                          </div>
 
                           <div class="input-fields">  
                             <label>Official #</label> 
-                            <input type="text" name="rep_office_no" id="rep_office_no" class="rep_office_no" placeholder="Office Contact">    
+                            <input type="text" name="rep_office_no" id="rep_office_no" class="rep_office_no" maxlength="14" placeholder="Office Contact">    
                           </div>
                           <div class="input-fields">  
                             <label>Personal #</label> 
-                            <input type="text" name="rep_phone_no" id="rep_phone_no" class="rep_phone_no" placeholder="Personal Contact">    
+                            <input type="text" name="rep_phone_no" id="rep_phone_no" class="rep_phone_no" maxlength="14" placeholder="Personal Contact">    
                           </div>
                           <div class="input-fields">  
                             <label>Email</label> 
-                            <input type="text" name="rep_email" id="rep_email" class="rep_email" placeholder="Email">    
+                            <input type="text" name="rep_email" id="rep_email" class="rep_email" maxlength="50" placeholder="Email">    
                           </div>
                            <div class="input-fields">  
                             <label>Active</label> 
                             <input type="checkbox" name="status" id="status" class="status">    
                           </div>
 
-                          <button type="submit" name="btnadd">Submit</button>
+                          <button type="submit" name="btnadd" onclick="FormValidation2(); return false;">Submit</button>
 
                         </div>
                       </div>
                     </div>
-                </div>
+        </div>
 
               <!-- Edit Airport Details -->
-      <div class="modal fade symfra_popup2" id="btn1" role="dialog">
+          <div class="modal fade symfra_popup2" id="btn1" role="dialog">
             <div class="modal-dialog">
               <!-- Edit Airport Details-->
               <div class="modal-content">
@@ -687,94 +741,72 @@ header("Location: airport_setup_2.php");
                   </div>
 
                  <div class="modal-body">
-                          <div class="input-fields">  
-                            <label>Name</label> 
-                            <input type="text" name="rep_nameV" id="rep_nameV" class="rep_nameV" placeholder="Organization Name">    
-                          </div>
 
-                         <div class="input-fields"> 
-                    <label>Designation</label> 
-                    <input type="text" name="rep_desgV" id="rep_desgV" placeholder="Enter Here Sub Party Name!">    
-                  </div>
+                  <!-- For Validation Box Red Popup -->
+                   <h4><label id="formSummary2" style="color: red;"></label></h4>
+                  <p id="EV_rep_nameV" style="color: red;"></p>
+                  <p id="EV_rep_desgV" style="color: red;"></p>
+                  <p id="EV_rep_emailV" style="color: red;"></p>
+
+                            <div class="input-fields">  
+                              <label>Name</label> 
+                              <input type="text" name="rep_nameV" id="rep_nameV" class="rep_nameV" maxlength="40" placeholder="Organization Name"><span class="steric">*</span>    
+                            </div>
+
+                           <div class="input-fields"> 
+                            <label>Designation</label> 
+                            <input type="text" name="rep_desgV" id="rep_desgV" maxlength="30" placeholder="Enter Here Sub Party Name!">    
+                           </div>
 
                           <div class="input-fields">  
                             <label>Official #</label> 
-                            <input type="text" name="rep_office_noV" id="rep_office_noV" class="rep_office_noV" placeholder="Office Contact">    
+                            <input type="text" name="rep_office_noV" id="rep_office_noV" class="rep_office_noV" maxlength="14" placeholder="Office Contact">    
                           </div>
                           <div class="input-fields">  
                             <label>Personal #</label> 
-                            <input type="text" name="rep_phone_noV" id="rep_phone_noV" class="rep_phone_noV" placeholder="Personal Contact">    
+                            <input type="text" name="rep_phone_noV" id="rep_phone_noV" class="rep_phone_noV" maxlength="14" placeholder="Personal Contact">    
                           </div>
                           <div class="input-fields">  
                             <label>Email</label> 
-                            <input type="text" name="rep_emailV" id="rep_emailV" class="rep_emailV" placeholder="Email">    
+                            <input type="text" name="rep_emailV" id="rep_emailV" class="rep_emailV" maxlength="50" placeholder="Email">    
                           </div>
                            <div class="input-fields">  
                             <label>Active</label> 
                             <input type="checkbox" name="statusV" id="statusV" class="status">    
                           </div>
 
-                          <button type="submit" name="btnedit1">Submit</button>
+                           <button type="submit" name="btnedit2" onclick="FormValidation4(); return false;">Submit</button>
 
                         </div>
                       </div>
                     </div>
                 </div>   
-                </div>       		      
-
-         <div class="modal fade symfra_popup2" id="popupExport" role="dialog">
-            <div class="modal-dialog">
-
-              <!-- Export Options -->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Export Options</h4>
-                </div>
-                <div class="modal-body">
-                  <div class="input-fields"> 
-                      <label>Options</label>  
-                      <select name="exportOptions" required>
-                          <option value="Select">Select </option>
-                          <option value="excel">Export to Excel </option>
-                          <option value="csv">Export to CSV </option>
-                          <option value="pdf">Export to PDF </option>
-                      </select>  
-                  </div>
-
-                  <button type="submit" name="btnExport_D" >Submit</button>
-
-                </div>
-                <div class="modal-footer">
-                  <p>Add Related content if needed</p>
-                  <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-                </div>
-              </div>
-              
-            </div>
-      </div>
+          </div>                
 
 
-						<h4><label id="formSummary" style="color: red;"></label></h4>
+          
+
+            
+            <h4><label id="formSummary" style="color: red;"></label></h4>
              <p id="V_airport_name" style="color: red;"></p>
               <p id="V_airport_ICAO" style="color: red;"></p>
               <p id="V_email" style="color: red;"></p>
               <p id="V_cont_per_off" style="color: red;"></p>
               <p id="V_fax_no" style="color: red;"></p>
-							
+              
 
-											  
-								<div class=" widget_iner_box">
+                        
+                <div class=" widget_iner_box">
 
-											<div class="form_sec_action_btn col-md-12">
-													<div class="form_action_right_btn">
-										                      <!-- Go back button code starting here -->
-										                      <?php include('inc_widgets/backBtn.php'); ?>
-										                      <!-- Go back button code ending here -->
-													</div>
+                      <div class="form_sec_action_btn col-md-12">
+                          <div class="form_action_right_btn">
+                                          <!-- Go back button code starting here -->
+                                          <?php include('inc_widgets/backBtn.php'); ?>
+                                          <!-- Go back button code ending here -->
+                          </div>
                           <!-- log change btn -->
                           <button type="button" name="saveBtn" onclick="logUserFunc();" > <small>Log Chain</small></button>
-													<button type="button" id="btnConfirm_Su" onclick="FormValidation()" > <small>Submit</small></button>
+                          <button type="button" id="btnConfirm_Su" onclick="FormValidation()" > <small>Submit</small></button>
                           <button type="button" name="btnConfirm_S" onclick="saveAirlineFunc();"> <small>Save</small></button>
                           <button type="button" name="cancel"> <small>Cancel</small></button>       
                       </div>
@@ -896,7 +928,7 @@ header("Location: airport_setup_2.php");
                         <div class="cls"></div>
                         <hr>
 
-								
+                
 
 
           <div id="representative" class="tab-pane fade in ">
@@ -997,12 +1029,12 @@ header("Location: airport_setup_2.php");
                 </div>                    
           </div>
           
-											
-								
-		</form>
-				
+                      
+                
+    </form>
+        
 
-	</div>
+  </div>
 
 </div>
 
@@ -1024,7 +1056,7 @@ header("Location: airport_setup_2.php");
              }
          }
      }
-   </script>
+</script>
 
 <script>
 
@@ -1032,8 +1064,7 @@ header("Location: airport_setup_2.php");
     $('#airlinechargestble').DataTable({
        "scrollX": true
    });
-} );
-
+ } );
 </script>
 
 <script>
@@ -1042,9 +1073,9 @@ header("Location: airport_setup_2.php");
     $('#dpttable').DataTable({
        "scrollX": true
    });
-} );
-
+ } );
 </script>
+
 <script>
 
   $(document).ready(function() {
@@ -1052,24 +1083,23 @@ header("Location: airport_setup_2.php");
        "scrollX": true,
 
    });
-} );
-
+ } );
 </script>
 
 <script>
-$(document).ready(function(){
-  $("#btnDelete_C").click(function(){
-    $("#deleteTable_C").modal();
+  $(document).ready(function(){
+    $("#btnDelete_C").click(function(){
+      $("#deleteTable_C").modal();
+    });
   });
-});
 </script>
 
 <script>
-$(document).ready(function(){
-  $("#btnDelete_C1").click(function(){
-    $("#deleteTable_C1").modal();
+  $(document).ready(function(){
+    $("#btnDelete_C1").click(function(){
+      $("#deleteTable_C1").modal();
+    });
   });
-});
 </script>
 
 <script type="text/javascript">
@@ -1187,66 +1217,240 @@ $(document).ready(function(){
         document.getElementById("formSummary").textContent="Error: ";
       }
       
+   }
+</script>
+
+<script type="text/javascript">
+   function FormValidation2()
+   {
+
+     var regexp3 = /^[a-z\S, ]*$/i;
+    var regexp = /^[a-z]*$/i;
+    var regexp2 = /^[0-9]*$/i;
+    var re = /\S+@\S+\.\S+/;
+      var missingVal = 0;
+
+      var rep_name=document.getElementById('rep_name').value;
+      var rep_desg=document.getElementById('rep_desg').value;
+      var rep_email=document.getElementById('rep_email').value;
+     
+      var summary = "Summary: ";
+
+
+      //  if(rep_desg == "")
+      // {
+      //   document.getElementById('rep_desg').style.borderColor = "red";
+      //       missingVal = 1;
+      //       // summary += " Contact number required.";
+      //       document.getElementById("V_rep_desg").innerHTML = "Designation is required.";
+      // }
+      if(rep_desg != "")
+      {
+          document.getElementById('rep_desg').style.borderColor = "white";
+          document.getElementById("V_rep_desg").innerHTML = "";
+
+          if (!regexp3.test(rep_desg))
+        {
+          document.getElementById('rep_desg').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_rep_desg").innerHTML = "Only alphabets are allowed in Designation.";
+        }
+      }
+
+
+       if(rep_name == "")
+      {
+        document.getElementById('rep_name').style.borderColor = "red";
+            missingVal = 1;
+            // summary += " Contact number required.";
+            document.getElementById("V_rep_name").innerHTML = "Name is required.";
+      }
+       if(rep_name != "")
+      {
+          document.getElementById('rep_name').style.borderColor = "white";
+          document.getElementById("V_rep_name").innerHTML = "";
+
+          if (!regexp.test(rep_name))
+        {
+          document.getElementById('rep_name').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_rep_name").innerHTML = "Only alphabets are allowed in Name.";
+        }
+      }
+
+      
+      if(rep_email != "")
+      {
+          document.getElementById('rep_email').style.borderColor = "white";
+          document.getElementById("V_rep_email").innerHTML = "";
+
+          if (!re.test(rep_email))
+        {
+          document.getElementById('rep_email').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_rep_email").innerHTML = "Please follow the email format (user@domain.com).";
+        }
+      }
+
+
+     
+
+      
+      
+      if (missingVal != 1)
+      {
+        document.getElementById('rep_name').style.borderColor = "white";
+        document.getElementById('rep_desg').style.borderColor = "white";
+        document.getElementById('rep_desg').style.borderColor = "white";
+       
+        $("#submit_Modal").modal();
+        
+      }
+
+      if (missingVal == 1)
+      {
+        document.getElementById("formSummary1").textContent="Error: ";
+      }
+   }
+</script>
+
+<script type="text/javascript">
+   function FormValidation4()
+   {
+
+    var regexp3 = /^[a-z\S, ]*$/i;
+    var regexp = /^[a-z]*$/i;
+    var regexp2 = /^[0-9]*$/i;
+    var re = /\S+@\S+\.\S+/;
+      var missingVal = 0;
+
+      var rep_nameV=document.getElementById('rep_nameV').value;
+      var rep_desgV=document.getElementById('rep_desgV').value;
+      var rep_emailV=document.getElementById('rep_emailV').value;
+     
+      var summary = "Summary: ";
+
+      if(rep_desgV != "")
+      {
+          document.getElementById('rep_desgV').style.borderColor = "white";
+          document.getElementById("EV_rep_desgV").innerHTML = "";
+
+          if (!regexp3.test(rep_desgV))
+        {
+          document.getElementById('rep_desgV').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("EV_rep_desgV").innerHTML = "Only alphabets are allowed in Designation.";
+        }
+      }
+
+
+      if(rep_nameV == "")
+      {
+        document.getElementById('rep_nameV').style.borderColor = "red";
+            missingVal = 1;
+            // summary += " Contact number required.";
+            document.getElementById("EV_rep_nameV").innerHTML = "Name is required.";
+      }
+       if(rep_nameV != "")
+      {
+          document.getElementById('rep_nameV').style.borderColor = "white";
+          document.getElementById("EV_rep_nameV").innerHTML = "";
+
+          if (!regexp.test(rep_nameV))
+        {
+          document.getElementById('rep_nameV').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("EV_rep_nameV").innerHTML = "Only alphabets are allowed in Name.";
+        }
+      }
+
+      
+      if(rep_emailV != "")
+      {
+          document.getElementById('rep_emailV').style.borderColor = "white";
+          document.getElementById("EV_rep_emailV").innerHTML = "";
+
+          if (!re.test(rep_emailV))
+        {
+          document.getElementById('rep_emailV').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("EV_rep_emailV").innerHTML = "Please follow the email format (user@domain.com).";
+        }
+      }
+
+
+     
+
+      
+      
+      if (missingVal != 1)
+      {
+        document.getElementById('rep_nameV').style.borderColor = "white";
+        document.getElementById('rep_desgV').style.borderColor = "white";
+        document.getElementById('rep_emailV').style.borderColor = "white";
+       
+        $("#Edit_Modal").modal();
+        
+      }
+
+      if (missingVal == 1)
+      {
+        document.getElementById("formSummary2").textContent="Error: ";
+      }
+   }
+</script>
+
+<script type="text/javascript">
+  function saveAirlineFunc()
+  {
+    $("#saveAirline_Modal").modal();
   }
 </script>
 
 <script type="text/javascript">
-function saveAirlineFunc()
-{
-	$("#saveAirline_Modal").modal();
-}
+    function readURL(input) 
+    {
+          if (input.files && input.files[0])
+          {
+              var reader = new FileReader();
+
+              reader.onload = function (e)
+              {
+                  $('#blah')
+                      .attr('src', e.target.result)
+                      .width(185)
+                      .height(185);
+              };
+
+              reader.readAsDataURL(input.files[0]);
+          }
+      }
 </script>
-<!-- <script type="text/javascript">
-function submitAirlineFunc()
-{
-	$("#submitAirline_Modal").modal();
-}
-</script> -->
-<script type="text/javascript">
-		function readURL(input) 
-		{
-	        if (input.files && input.files[0])
-	        {
-	            var reader = new FileReader();
 
-	            reader.onload = function (e)
-	            {
-	                $('#blah')
-	                    .attr('src', e.target.result)
-	                    .width(185)
-	                    .height(185);
-	            };
-
-	            reader.readAsDataURL(input.files[0]);
-	        }
-    	}
-	</script>
-	<script>
-$(document).ready(function(){
+<script>
+ $(document).ready(function(){
   $("#myBtn").click(function(){
-    $("#popupMEdit").modal();
+    $("#popupMEdit4").modal();
   });
-});
-</script>
-<script>
-$(document).ready(function(){
-  $("#exportBtn").click(function(){
-    $("#popupExport").modal();
-  });
-});
+ });
 </script>
 
-
 <script>
-$("#scroltop").click(function() {
+ $("#scroltop").click(function() {
     $("html").animate({ scrollTop: 0 }, "slow");
   });
 </script>
 
 
 <script type="text/javascript">
-$(document).on('click', '.editData', function(){  
-  var employee_id = $(this).attr("id"); 
+ $(document).on('click', '.editData', function(){  
+   var employee_id = $(this).attr("id"); 
 
       $.ajax({
          url:"fatch_rep.php",  
@@ -1270,72 +1474,21 @@ $(document).on('click', '.editData', function(){
               {
                 $('#statusV').attr("checked", false);
               }
-              /*$('#employee_id').val(data.id); */
-              // $("#"+id).btnedit1();
-              // $("#btn1").modal('hide');**
-              // alert('Running');
+              
                
          }
       });
     
-});
+ });
 </script>
 
-<!-- java script -->
-        <script type="text/javascript">
-        function logUserFunc()
-        {
-          $("#logUser_Modal").modal();
-        }
-        </script>
-<!-- <script type="text/javascript">
-$(document).on('click', '.editData', function(){  
-  var employee_id = $(this).attr("id"); 
+<script type="text/javascript">
+  function logUserFunc()
+  {
+  $("#logUser_Modal").modal();
+  }
+</script>
 
-      $.ajax({
-         url:"fatch_rep2.php",  
-                method:"GET",  
-                data:{employee_id:employee_id},  
-                dataType:"text",  
-         success: function(data) {
-              /*$('#country_SrNoV').val(data.SrNo);  
-              $('#country_codeV').val(data.country_code);  
-              $('#country_nameV').val(data.country_name);  */
-              $('.rep_desgV').html(data);  
-              /*$('#employee_id').val(data.id); */
-              // $("#"+id).btnedit1();
-              // $("#btn1").modal('hide');
-              // alert('Running');
-              
-         }
-      });
-    
-});
-</script> -->
-<!-- <script type="text/javascript">
-$(document).on('click', '.editData', function(){  
-  var employee_id = $(this).attr("id"); 
-
-      $.ajax({
-         url:"fatch_airline3.php",  
-                method:"GET",  
-                data:{employee_id:employee_id},  
-                dataType:"text",  
-         success: function(data) {
-              /*$('#country_SrNoV').val(data.SrNo);  
-              $('#country_codeV').val(data.country_code);  
-              $('#country_nameV').val(data.country_name);  */
-              $('.airport_addChargesV').html(data);  
-              /*$('#employee_id').val(data.id); */
-              // $("#"+id).btnedit1();
-              // $("#btn1").modal('hide');
-              // alert('Running');
-              
-         }
-      });
-    
-});
-</script> -->
 <script src="js/jquery.dataTables.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 </body>
