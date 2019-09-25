@@ -674,10 +674,17 @@ if(isset($_POST['saveBtn2']))
 				                                                      <input  type="text" placeholder="Street" name="cmpStreetC" id="cmpStreetC" maxlength="30"><span class="steric">*</span>
 				                                                      <select name="cmpCountryC" id="cmpCountryC" onchange="checkCities();">
                                                                  <option value="">Select Country</option>
-                                                                 <option value="Pakistan">Pakistan</option>
-                                                                 <option value="India">India</option>
-                                                                 <option value="United Kingdom">United Kingdom</option>
-                                                                 <option value="USA">USA</option>
+                                                                 <?php
+
+                                                                  $selectCountry = mysqli_query($con, "SELECT * FROM country_setup");
+                                                                  while ($rowCountry = mysqli_fetch_array($selectCountry))
+                                                                  {
+
+                                                                    echo '<option value="'.$rowCountry['country_name'].'">'.$rowCountry['country_name'].'</option>';
+
+                                                                  }
+
+                                                                  ?>
                                                               </select><span class="steric">*</span>
                                                               <select name="cmpCityC" id="cmpCityC">
                                                                  
@@ -800,10 +807,17 @@ if(isset($_POST['saveBtn2']))
 				                                                      <input  type="text" name="cmpStreet" id="cmpStreet" placeholder="Street" maxlength="30"><span class="steric">*</span>
                                                               <select name="cmpCountry" id="cmpCountry" onchange="checkCities2();">
                                                                  <option value="">Select Country</option>
-                                                                 <option value="Pakistan">Pakistan</option>
-                                                                 <option value="India">India</option>
-                                                                 <option value="United Kingdom">United Kingdom</option>
-                                                                 <option value="USA">USA</option>
+                                                                 <?php
+
+                                                                  $selectCountry = mysqli_query($con, "SELECT * FROM country_setup");
+                                                                  while ($rowCountry = mysqli_fetch_array($selectCountry))
+                                                                  {
+
+                                                                    echo '<option value="'.$rowCountry['country_name'].'">'.$rowCountry['country_name'].'</option>';
+
+                                                                  }
+
+                                                                  ?>
                                                               </select><span class="steric">*</span>
                                                               <select name="cmpCity" id="cmpCity">
                                                                 
