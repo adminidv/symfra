@@ -621,7 +621,7 @@ if(isset($_POST['btnYes']))
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Declaring Authorization</title>
+	<title>Declaring Role</title>
 	<link rel="shortcut icon" type="image/png" href="./images/favicon.png">
 	<link rel="stylesheet" href="css/bootstrap.css" type="text/css">
 	<link rel="stylesheet" href="css/font-awesome.css" type="text/css">
@@ -669,7 +669,7 @@ background-color: #c1c1c1 !important;
         <div class="btn-group btn-breadcrumb">
           <a href="usermodules.php" class="btn btn-info "><i class="glyphicon glyphicon-home"></i></a>
           <a href="usermodules.php" class="btn btn-info">Human Resource</a>
-          <a href="assigning_authorization.php" class="btn btn-info active">Declare Authorization</a>
+          <a href="assigning_authorization.php" class="btn btn-info active">Declare Role</a>
         </div>
     </div>
   </div>
