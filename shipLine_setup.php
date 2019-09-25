@@ -312,7 +312,7 @@ if (isset($_POST['submitBtn'])) {
 
 															<div class="input-label"><label >Country</label></div> 
 																<div class="input-feild"> 
-												                     <select name="country" id="country" class="country" required>
+												                     <select name="country" id="country" class="country" onchange="checkCities();">
 												                          <option value="Select">Select </option>
 												                          <!-- Drop Down list Country Name -->
 												                          <?php
@@ -436,6 +436,24 @@ function submitAirlineFunc()
 $("#scroltop").click(function() {
     $("html").animate({ scrollTop: 0 }, "slow");
   });
+</script>
+
+<script type="text/javascript">
+    function checkCities()
+    {
+      var bpCountry = document.getElementById("country").value;
+
+      $.ajax({
+         url:"checkCities.php",  
+                method:"GET",  
+                data:{bpCountry:bpCountry}, 
+                dataType:"text", 
+         success: function(data) {
+             $('#city').html(data);
+         }
+      });
+    }
+
 </script>
 
 
