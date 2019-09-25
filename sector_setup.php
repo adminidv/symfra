@@ -354,12 +354,56 @@ if (isset($_POST['btnadd'])) {
       <div class="form_sec_action_btn col-md-12">
          
           <button type="button" id="myBtn">  <small>Add Sector</small></button>
-          <button type="button" name="saveBtn" onclick="logUserFunc();"> <small>Log Chain</small></button>
+          <button type="button" name="saveBtn" onclick="logUserFunc();"> <small>Change Logs</small></button>
       </div>
          
-       <!-- For Validation Box Red Popup -->
-         <h4><label id="formSummary" style="color: red;"></label></h4>
-       <p id="V_sector_name" style="color: red;"></p>
+
+         <!-- Modal Two-->
+               <div class="modal fade confirmTable-modal" id="popupMEdit2" role="dialog">
+                    <div class="modal-dialog">
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Confirmation</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>Are You Sure You Want to Submit?</p>
+                          <button type="submit" name="btnadd">Yes</button>
+                              <button type="button" name="btnDelete_N" data-dismiss="modal" >No</button>
+
+                        </div>
+                        <div class="modal-footer">
+                          <p>Add Related content if needed</p>
+                          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                        </div>
+                      </div>
+                    </div>
+               </div>
+         
+         <!-- Modal Two-->
+               <div class="modal fade confirmTable-modal" id="popupMEdit3" role="dialog">
+                    <div class="modal-dialog">
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Confirmation</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>Are You Sure You Want to Submit?</p>
+                          <button type="submit" name="btnedit1">Yes</button>
+                              <button type="button" name="btnDelete_N" data-dismiss="modal" >No</button>
+
+                        </div>
+                        <div class="modal-footer">
+                          <p>Add Related content if needed</p>
+                          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                        </div>
+                      </div>
+                    </div>
+               </div>
+         
 
       <!-- Add Sector -->
       <div class="modal fade symfra_popup2" id="popupMEdit" role="dialog">
@@ -371,6 +415,11 @@ if (isset($_POST['btnadd'])) {
                   <h4 class="modal-title">Sector Details</h4>
                 </div>
                 <div class="modal-body">
+
+                   <!-- For Validation Box Red Popup -->
+         <h4><label id="formSummary" style="color: red;"></label></h4>
+       <p id="V_sector_name" style="color: red;"></p>
+
                    <div class="input-fields"> 
                     <label>Sector Name</label> 
                     <input type="text" name="sector_name" id="sector_name" maxlength="30" placeholder="Enter Here Sector Name!" maxlength="30" ><span class="steric">*</span>     
@@ -380,9 +429,8 @@ if (isset($_POST['btnadd'])) {
                     <label>Active</label> 
                     <input type="checkbox" name="status" id="status" >    
                   </div>
-                  <button type="submit" name="btnadd" >Submit</button>
-
-                  <button type="submit" name="btnadd2" class="btnadd2" id="btnadd2" onclick="addMore(); return false;">Add More</button>
+                   <button type="submit" name="btnadd1" onclick="FormValidation(); return false;">Submit</button>
+                  <button type="submit" name="btnadd2" class="btnadd2" id="btnadd2" onclick="FormValidation2(); return false;">Add More</button>
 
                    <!-- <button type="submit" name="btnadd" onclick="FormValidation()" >Submit</button>
 
@@ -408,6 +456,11 @@ if (isset($_POST['btnadd'])) {
                   <h4 class="modal-title">Edit Sector</h4>
                 </div>
                 <div class="modal-body">
+
+                  <!-- For Validation Box Red Popup -->
+         <h4><label id="formSummary2" style="color: red;"></label></h4>
+       <p id="EV_sector_nameV_p" style="color: red;"></p>
+
                   <div class="input-fields hide"> 
                     <label>SrNo</label> 
                     <input type="text" name="sector_SrNoV" id="sector_SrNoV" >
@@ -415,7 +468,7 @@ if (isset($_POST['btnadd'])) {
                   </div>
                    <div class="input-fields"> 
                     <label>Sector Name</label> 
-                    <input type="text" name="sector_nameV_p" id="sector_nameV_p" class="sector_nameV_p" maxlength="30" >
+                    <input type="text" name="sector_nameV_p" id="sector_nameV_p" class="sector_nameV_p" maxlength="30" ><span class="steric">*</span>
                        
                   </div>
 
@@ -423,8 +476,7 @@ if (isset($_POST['btnadd'])) {
                     <label>Active</label> 
                     <input type="checkbox" name="statusV" id="statusV" >   
                   </div>
-                  <button type="submit" name="btnedit1" >Submit</button>
-                  <!-- <button type="submit" name="btnedit1" onclick="FormValidation()" >Submit</button> -->
+                  <button type="submit" name="btnedit2" onclick="FormValidation3(); return false;">Submit</button>
                 </div>
                 <div class="modal-footer">
                   <p>Add Related content if needed</p>
@@ -513,7 +565,7 @@ if (isset($_POST['btnadd'])) {
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Log Chain Details</h4>
+                  <h4 class="modal-title">Change Logs Details</h4>
                 </div>
 
                   <table id="dpttable1" class="display nowrap no-footer" style="width:100%">
@@ -753,6 +805,52 @@ $(document).on('click', '.editData', function(){
       });
 
   }
+
+   function FormValidation2()
+   {
+    var regexp = /^[a-z]*$/i;
+    var regexp2 = /^[0-9]*$/i;
+    var re = /\S+@\S+\.\S+/;
+      var missingVal = 0;
+
+      var sector_name=document.getElementById('sector_name').value;
+     
+     
+      var summary = "Summary: ";
+
+      if(sector_name == "")
+      {
+          document.getElementById('sector_name').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_sector_name").innerHTML = "Sector Name is required.";
+      }
+      if(sector_name != "")
+      {
+          document.getElementById('sector_name').style.borderColor = "white";
+          document.getElementById("V_sector_name").innerHTML = "";
+
+      }
+
+      
+     
+
+      
+      
+      if (missingVal != 1)
+      {
+        document.getElementById('sector_name').style.borderColor = "white";
+       
+        addMore();
+        
+      }
+
+      if (missingVal == 1)
+      {
+        document.getElementById("formSummary").textContent="Error: ";
+      }
+      
+  }
 </script>
 
 <!-- addmore ajaxpopup -->
@@ -803,14 +901,14 @@ $(document).on('click', '.editData', function(){
      
       var summary = "Summary: ";
 
-      if(pro_name == "")
+      if(sector_name == "")
       {
           document.getElementById('sector_name').style.borderColor = "red";
           missingVal = 1;
           // summary += "Firstname is required.";
-          document.getElementById("V_sector_name").innerHTML = "Commodity Code is required.";
+          document.getElementById("V_sector_name").innerHTML = "Sector Name is required.";
       }
-      if(pro_name != "")
+      if(sector_name != "")
       {
           document.getElementById('sector_name').style.borderColor = "white";
           document.getElementById("V_sector_name").innerHTML = "";
@@ -824,9 +922,9 @@ $(document).on('click', '.editData', function(){
       
       if (missingVal != 1)
       {
-        document.getElementById('pro_name').style.borderColor = "white";
+        document.getElementById('sector_name').style.borderColor = "white";
        
-        $("#popupMEdit").modal();
+        $("#popupMEdit2").modal();
         
       }
 
@@ -837,6 +935,50 @@ $(document).on('click', '.editData', function(){
       
   }
 </script>
+
+<script type="text/javascript">
+   function FormValidation3()
+   {
+    var regexp = /^[a-z]*$/i;
+    var regexp2 = /^[0-9]*$/i;
+    var re = /\S+@\S+\.\S+/;
+      var missingVal = 0;
+
+      var sector_nameV_p=document.getElementById('sector_nameV_p').value;
+     
+     
+      var summary = "Summary: ";
+
+      if(sector_nameV_p == "")
+      {
+          document.getElementById('sector_nameV_p').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("EV_sector_nameV_p").innerHTML = "Sector Name is required.";
+      }
+      if(sector_nameV_p != "")
+      {
+          document.getElementById('sector_nameV_p').style.borderColor = "white";
+          document.getElementById("EV_sector_nameV_p").innerHTML = "";
+
+      }
+
+      if (missingVal != 1)
+      {
+        document.getElementById('sector_nameV_p').style.borderColor = "white";
+       
+        $("#popupMEdit3").modal();
+        
+      }
+
+      if (missingVal == 1)
+      {
+        document.getElementById("formSummary2").textContent="Error: ";
+      }
+      
+  }
+</script>
+
 <script type="text/javascript">
 function logUserFunc()
 {
