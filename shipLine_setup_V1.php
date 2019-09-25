@@ -1,6 +1,5 @@
 <?php 
 include('manage/connection.php');
-include("manage/session.php");
 $advSearch = 'Unhide';
 $ribbon = 'Default';
 $subRibbon = 'addUser';
