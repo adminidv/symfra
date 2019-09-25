@@ -11,7 +11,8 @@ $selectcoun = mysqli_query($con, "select * from country_setup");
 
 if(isset($_POST['btnedit1']))
 {
-  // $empNo = $_POST['empNo'];
+
+
   $country_codeV = $_POST['country_codeV'];
   $country_nameV = $_POST['country_nameV'];
   $country_SrNoV = $_POST['country_SrNoV'];
@@ -266,7 +267,7 @@ if (isset($_POST['submitBtn'])) {
 
                   <div class="input-fields"> 
                     <label>Country Code</label> 
-                    <input type="text" name="country_code" id="country_code" required placeholder="Enter Here Country Code!">    
+                    <input type="text" name="country_code" id="country_code" maxlength="30" placeholder="Enter Here Country Code!">    
                   </div>
                    <div class="input-fields"> 
                     <label>Country Name</label> 
@@ -329,7 +330,7 @@ if (isset($_POST['submitBtn'])) {
 
                   <div class="input-fields">  
                     <label>Country Name</label> 
-                    <input type="text" name="country_nameV" id="country_nameV" >   
+                    <input type="text" name="country_nameV" id="country_nameV" maxlength="30" >   
                   </div>
                   <div class="input-fields">  
                      <label>Region</label>  
