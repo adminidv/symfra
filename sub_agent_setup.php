@@ -15,11 +15,12 @@ $loginUser= $_SESSION['user'];
 // Today date func
 $todayDate = date("Y-m-d");
 
-$selectSrNo = mysqli_query($con, "SELECT * FROM airline_setup ORDER BY SrNo DESC LIMIT 1");
+$selectSrNo = mysqli_query($con, "SELECT * FROM sub_agents_parties_setup ORDER BY SrNo DESC LIMIT 1");
 while ($rowSrNo = mysqli_fetch_array($selectSrNo))
 {
   $SrNo = $rowSrNo['SrNo'];
- 
+  $SnewID1 = $SrNo + 1;
+  $SrNo1 = $SnewID1;
 
 }
 
@@ -71,7 +72,7 @@ if (isset($_POST['submitBtn'])) {
   }
   alert($msg);
 
- header("Location: sub_agent_setup_V1.php?id=" . $SrNo);
+ header("Location: sub_agent_setup_V1.php?id=" . $SrNo1);
 
 }
 ?>
@@ -211,110 +212,7 @@ if (isset($_POST['submitBtn'])) {
 
          
 
-      <!-- Add Representative -->
-      <div class="modal fade symfra_popup2" id="popupMEdit" role="dialog">
-            <div class="modal-dialog">
-              <!-- ADD Representative-->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Representative Details</h4>
-                </div>
-                <div class="modal-body">
-
-                  <div class="input-fields">  
-                    <label>Representative Name</label> 
-                    <input type="text" name="rep_name" id="rep_name" placeholder="Enter Here Party Name !">    
-                  </div>
-                   <div class="input-fields"> 
-                    <label>Designation</label> 
-                    <input type="text" name="rep_desg" id="rep_desg" placeholder="Enter Here Sub Party Name!">    
-                  </div>
-                  
-
-                  
-                  <div class="input-fields">  
-                    <label>Office No.</label> 
-                    <input type="text" name="rep_office_no" id="rep_office_no" placeholder="Enter Here Phone Number !">    
-                  </div>
-                 
-                  <div class="input-fields">  
-                    <label>Phone No.</label> 
-                    <input type="text" name="rep_phone_no" id="rep_phone_no" placeholder="Enter Here Fax Number !">    
-                  </div>
-                  <div class="input-fields">  
-                    <label>Email</label> 
-                    <input type="text" name="email" id="email" placeholder="Enter Here Email !">    
-                  </div>
-                  
-                   <div class="input-fields">  
-                    <label>Active</label> 
-                    <input type="checkbox" name="status" id="status">    
-                  </div>
-                  <button type="submit" name="btnadd" >Submit</button>
-                </div>
-                <div class="modal-footer">
-                  <p>Add Related content if needed</p>
-                  <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-                </div>
-              </div>
-              
-            </div>
-        </div>
-         <!-- Edit Representative-->
-      <div class="modal fade symfra_popup2" id="btn1" role="dialog">
-            <div class="modal-dialog">
-              <!-- Edit Representative -->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Edit Representative Details</h4>
-                </div>
-                <div class="modal-body">
-                  <div class="input-fields hide"> 
-                    <label>SrNo</label> 
-                    <input type="text" name="agent_SrNoV" id="agent_SrNoV" class="agent_SrNoV" >
-                       
-                  </div>
-                  <div class="input-fields"> 
-                 <label>Representative Name</label> 
-                    <input type="text" name="rep_nameV" id="rep_nameV" placeholder="Enter Here Party Name !">    
-                  </div>
-                   <div class="input-fields"> 
-                    <label>Designation</label> 
-                    <input type="text" name="rep_desgV" id="rep_desgV" placeholder="Enter Here Sub Party Name!">    
-                  </div>
-                  
-
-                  
-                  <div class="input-fields">  
-                    <label>Office No.</label> 
-                    <input type="text" name="rep_office_noV" id="rep_office_noV" placeholder="Enter Here Phone Number !">    
-                  </div>
-                 
-                  <div class="input-fields">  
-                    <label>Phone No.</label> 
-                    <input type="text" name="rep_phone_noV" id="rep_phone_noV" placeholder="Enter Here Fax Number !">    
-                  </div>
-                  <div class="input-fields">  
-                    <label>Email</label> 
-                    <input type="text" name="emailV" id="emailV" placeholder="Enter Here Email !">    
-                  </div>
-                 
-                   <div class="input-fields">  
-                    <label>Active</label> 
-                    <input type="checkbox" name="statusV" id="statusV">    
-                  </div>
-                  <button type="submit" name="btnedit1" >Submit</button>
-                </div>
-                <div class="modal-footer">
-                  <p>Add Related content if needed</p>
-                  <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-                </div>
-              </div>
-              
-            </div>
-        </div>
+     
                   <div class="modal fade confirmTable-modal" id="save_Modal" role="dialog">
           <div class="modal-dialog">
           
@@ -363,37 +261,6 @@ if (isset($_POST['submitBtn'])) {
                </div>
                
 
-      <div class="modal fade symfra_popup2" id="popupExport" role="dialog">
-            <div class="modal-dialog">
-
-              <!-- Export Options -->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Export Options</h4>
-                </div>
-                <div class="modal-body">
-                  <div class="input-fields"> 
-                      <label>Options</label>  
-                      <select name="exportOptions" required>
-                          <option value="Select">Select </option>
-                          <option value="excel">Export to Excel </option>
-                          <option value="csv">Export to CSV </option>
-                          <option value="pdf">Export to PDF </option>
-                      </select>  
-                  </div>
-
-                  <button type="submit" name="btnExport_D" >Submit</button>
-
-                </div>
-                <div class="modal-footer">
-                  <p>Add Related content if needed</p>
-                  <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-                </div>
-              </div>
-              
-            </div>
-      </div>
 
       
       <div class="confirmTable-modal modal fade" id="deleteTable_C" role="dialog">
@@ -437,7 +304,12 @@ if (isset($_POST['submitBtn'])) {
    <h4><label id="formSummary" style="color: red;"></label></h4>
        <p id="V_partyname" style="color: red;"></p>
         <p id="V_spar_name" style="color: red;"></p>
-        <!-- <p id="V_email" style="color: red;"></p> -->
+        <p id="V_email" style="color: red;"></p>
+        <p id="V_phone" style="color: red;"></p>
+        <p id="V_fax" style="color: red;"></p>
+        <p id="V_export_reg_no" style="color: red;"></p>
+        <p id="V_sales_tax_no" style="color: red;"></p>
+        <p id="V_ntn_no" style="color: red;"></p>
 
               
 
@@ -464,7 +336,7 @@ if (isset($_POST['submitBtn'])) {
                                                       
                                                       <div class="input-label"><label >Party Name</label></div>  
                                                       <div class="input-feild">
-                                                             <select name="partyname" id="partyname" class="partyname" required>
+                                                             <select name="partyname" id="partyname" class="partyname" >
                                                   <option value="">Select </option>
                                                   <?php
 
@@ -472,7 +344,7 @@ if (isset($_POST['submitBtn'])) {
 
                                                     while ($rowParty = mysqli_fetch_array($selectparty))
                                                     {
-                                                      echo '<option value="'.$rowParty['SrNo'].'">'.$rowParty['cmpTitle'].'</option>';
+                                                      echo '<option value="'.$rowParty['cmpTitle'].'">'.$rowParty['cmpTitle'].'</option>';
                                                     }
 
                                                   ?>
@@ -487,7 +359,7 @@ if (isset($_POST['submitBtn'])) {
 
                                                       <div class="input-label"><label >Country</label></div> 
                                              <div class="input-feild"> 
-                                             <select name="country_name" id="country_name" class="country_name" required onchange="checkCities();">
+                                             <select name="country_name" id="country_name" class="country_name"  onchange="checkCities();">
                                                   <option value="">Select </option>
                                                   <!-- Drop Down list Country Name -->
                                                   <?php
@@ -505,7 +377,7 @@ if (isset($_POST['submitBtn'])) {
                                                       </div>
                                                       <div class="input-label"><label >City</label></div> 
                                 <div class="input-feild">
-                                           <select name="city_name" id="city_name" class="city_name" required>
+                                           <select name="city_name" id="city_name" class="city_name" >
                                                 <option value="">Select </option>
                                                 <!-- Drop Down list Country Name -->
                                                 <?php
@@ -618,13 +490,17 @@ function saveFunc()
    function FormValidation()
    {
     var regexp = /^[a-z]*$/i;
-    var regexp2 = /^[0-9]*$/i;
+    var regexp2 = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/i;
     var re = /\S+@\S+\.\S+/;
       var missingVal = 0;
 
       var partyname=document.getElementById('partyname').value;
       var spar_name=document.getElementById('spar_name').value;
-     // var email=document.getElementById('email').value;
+      var email=document.getElementById('email').value;
+      var phone=document.getElementById('phone').value;
+      var fax=document.getElementById('fax').value;
+      var export_reg_no=document.getElementById('export_reg_no').value;
+      var sales_tax_no=document.getElementById('sales_tax_no').value;
      
      
       var summary = "Summary: ";
@@ -633,7 +509,7 @@ function saveFunc()
       {
           document.getElementById('partyname').style.borderColor = "red";
           missingVal = 1;
-          // summary += "Firstname is required.";
+          // summary += "Firstname is .";
           document.getElementById("V_partyname").innerHTML = "Firstname is required.";
       }
       if(partyname != "")
@@ -647,7 +523,7 @@ function saveFunc()
       {
           document.getElementById('spar_name').style.borderColor = "red";
           missingVal = 1;
-          // summary += "Firstname is required.";
+          // summary += "Firstname is .";
           document.getElementById("V_spar_name").innerHTML = "Sub Agent is required.";
       }
       if(spar_name != "")
@@ -658,19 +534,90 @@ function saveFunc()
          
       }
 
-      // if(email != "")
-      // {
-      //     document.getElementById('email').style.borderColor = "white";
-      //     document.getElementById("V_email").innerHTML = "";
+       if(phone != "")
+      {
+          document.getElementById('phone').style.borderColor = "white";
+          document.getElementById("V_phone").innerHTML = "";
 
-      //     if (!re.test(email))
-      //   {
-      //     document.getElementById('email').style.borderColor = "red";
-      //       missingVal = 1;
-      //       // summary += "Firstname is required.";
-      //       document.getElementById("V_email").innerHTML = "Please follow the email format (user@domain.com).";
-      //   }
-      // }
+          if (!regexp2.test(phone))
+        {
+          document.getElementById('phone').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is .";
+            document.getElementById("V_phone").innerHTML = "Only Number are allow.";
+        }
+      }
+
+       if(fax != "")
+      {
+          document.getElementById('fax').style.borderColor = "white";
+          document.getElementById("V_faxe").innerHTML = "";
+
+          if (!regexp2.test(fax))
+        {
+          document.getElementById('fax').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is .";
+            document.getElementById("V_fax").innerHTML = "Only Number are allow.";
+        }
+      }
+
+      if(export_reg_no != "")
+      {
+          document.getElementById('export_reg_no').style.borderColor = "white";
+          document.getElementById("V_export_reg_no").innerHTML = "";
+
+          if (!regexp2.test(export_reg_no))
+        {
+          document.getElementById('export_reg_no').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is .";
+            document.getElementById("V_export_reg_no").innerHTML = "Only Number are allow.";
+        }
+      }
+
+      if(sales_tax_no != "")
+      {
+          document.getElementById('sales_tax_no').style.borderColor = "white";
+          document.getElementById("V_sales_tax_no").innerHTML = "";
+
+          if (!regexp2.test(sales_tax_no))
+        {
+          document.getElementById('sales_tax_no').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is .";
+            document.getElementById("V_sales_tax_no").innerHTML = "Only Number are allow.";
+        }
+      }
+
+       if(ntn_no != "")
+      {
+          document.getElementById('ntn_no').style.borderColor = "white";
+          document.getElementById("V_ntn_no").innerHTML = "";
+
+          if (!regexp2.test(ntn_no))
+        {
+          document.getElementById('ntn_no').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is .";
+            document.getElementById("V_ntn_no").innerHTML = "Only Number are allow.";
+        }
+      }
+
+
+      if(email != "")
+      {
+          document.getElementById('email').style.borderColor = "white";
+          document.getElementById("V_email").innerHTML = "";
+
+          if (!re.test(email))
+        {
+          document.getElementById('email').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is .";
+            document.getElementById("V_email").innerHTML = "Please follow the email format (user@domain.com).";
+        }
+      }
 
       
       
@@ -678,7 +625,12 @@ function saveFunc()
       {
         document.getElementById('partyname').style.borderColor = "white";
         document.getElementById('spar_name').style.borderColor = "white";
-        // document.getElementById('email').style.borderColor = "white";
+         document.getElementById('email').style.borderColor = "white";
+         document.getElementById('phone').style.borderColor = "white";
+         document.getElementById('fax').style.borderColor = "white";
+         document.getElementById('export_reg_no').style.borderColor = "white";
+         document.getElementById('sales_tax_no').style.borderColor = "white";
+         document.getElementById('ntn_no').style.borderColor = "white";
        
         $("#submit_Modal").modal();
         
@@ -693,9 +645,10 @@ function saveFunc()
 </script>
 
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
-    <script type="text/javascript">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+
+<script type="text/javascript">
         $("body").on("click", "#btnExport", function () {
             html2canvas($('#usrtble')[0], {
                 onrendered: function (canvas) {
@@ -710,98 +663,8 @@ function saveFunc()
                 }
             });
         });
-    </script>
-<!-- <script type="text/javascript">
-$(document).on('click', '.editData', function(){  
-  var employee_id = $(this).attr("id"); 
+</script>
 
-      $.ajax({
-         url:"fatch_agent.php",  
-                method:"GET",  
-                data:{employee_id:employee_id},  
-                dataType:"json",  
-         success: function(data) {
-              $('#SrNoV').val(data.SrNo);  
-              //$('.cur_coun_nameV').html(data.cur_coun_name);
-              $('#par_nameV').val(data.par_name);  
-              $('#spar_nameV').val(data.spar_name);  
-              $('#addressV').val(data.address);    
-              $('#phoneV').val(data.phone); 
-              $('#fax_noV').val(data.fax_no);
-               $('#emailV').val(data.email);  
-              $('#websiteV').val(data.website); 
-               $('#export_noV').val(data.export_no);  
-              $('#sale_taxV').val(data.sale_tax);   
-              $('#ntn_noV').val(data.ntn_no);  
-
-              var checkif = data.status;
-              if (checkif == "Active") {
-                 $('#statusV').attr("checked", true);
-                 document.getElementByID("statusV").checked = true;
-              }
-              else
-              {
-                $('#statusV').attr("checked", false);
-              }
-              /*$('#employee_id').val(data.id); */
-              // $("#"+id).btnedit1();
-              // $("#btn1").modal('hide');
-              // alert('Running');
-               
-         }
-      });
-    
-});
-</script> -->
-<!-- <script type="text/javascript">
-$(document).on('click', '.editData', function(){  
-  var employee_id = $(this).attr("id"); 
-
-      $.ajax({
-         url:"fatch_agent2.php",  
-                method:"GET",  
-                data:{employee_id:employee_id},  
-                dataType:"text",  
-         success: function(data) {
-              /*$('#country_SrNoV').val(data.SrNo);  
-              $('#country_codeV').val(data.country_code);  
-              $('#country_nameV').val(data.country_name);  */
-              $('.country_nameV').html(data);  
-              /*$('#employee_id').val(data.id); */
-              // $("#"+id).btnedit1();
-              // $("#btn1").modal('hide');
-              // alert('Running');
-              
-         }
-      });
-    
-});
-</script> -->
-
-<!-- <script type="text/javascript">
-$(document).on('click', '.editData', function(){  
-  var employee_id = $(this).attr("id"); 
-
-      $.ajax({
-         url:"fatch_agent3.php",  
-                method:"GET",  
-                data:{employee_id:employee_id},  
-                dataType:"text",  
-         success: function(data) {
-              /*$('#country_SrNoV').val(data.SrNo);  
-              $('#country_codeV').val(data.country_code);  
-              $('#country_nameV').val(data.country_name);  */
-              $('.city_nameV').html(data);  
-              /*$('#employee_id').val(data.id); */
-              // $("#"+id).btnedit1();
-              // $("#btn1").modal('hide');
-              // alert('Running');
-              
-         }
-      });
-    
-});
-</script> -->
 
 
 <script type="text/javascript">
