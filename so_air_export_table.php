@@ -887,7 +887,7 @@ else
       <?php include('inc_widgets/backBtn.php'); ?>
       <!-- Go back button code ending here -->
     </div>
-      <button type="button" id="btnAddEmp" onclick="addEmp();">  <small>Add Job Entry</small></button>
+      
   </div>
 
       <div class="col-md-12">
