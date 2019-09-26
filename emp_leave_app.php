@@ -12,28 +12,33 @@ if(!isset($_POST['checkLeaves']))
 {
 	$userNo = $_GET['empNo'];
 
-	// Fetching user info according to employee
-	$qry= "SELECT * FROM empinfo WHERE empNo = '$userNo'";
-	$run= mysqli_query($con , $qry);
-	$row = mysqli_fetch_array($run, MYSQLI_ASSOC);
-
-	if ($userNo==$row['empNo'])
+	if ($userNo != 0)
 	{
-	  $empName = $row['empName'];
-	  $empDept = $row['empDept'];
-	  $empDesig = $row['empDesig'];
-	}
-	else
-	{
-	  $msg = 'Got some error ';
+		// Fetching user info according to employee
+		$qry= "SELECT * FROM empinfo WHERE empNo = '$userNo'";
+		$run= mysqli_query($con , $qry);
+		$row = mysqli_fetch_array($run, MYSQLI_ASSOC);
 
-	  function alert($msg)
-	  {
-	    echo "<script type='text/javascript'>alert('$msg');</script>";
-	  }
-	  
-	  alert($msg);
+		if ($userNo==$row['empNo'])
+		{
+		  $empName = $row['empName'];
+		  $empDept = $row['empDept'];
+		  $empDesig = $row['empDesig'];
+		}
+		else
+		{
+		  $msg = 'Got some error ';
+
+		  function alert($msg)
+		  {
+		    echo "<script type='text/javascript'>alert('$msg');</script>";
+		  }
+		  
+		  alert($msg);
+		}
 	}
+
+	
 }
 
 $allow = '0';
@@ -532,6 +537,9 @@ table#usertable input {
 
                                                 <?php
 
+                                                if ($userNo != 0)
+                                                {
+
                                                 if ($allow == '1')
                                                 {
                                                 
@@ -562,9 +570,64 @@ table#usertable input {
 
                                                 }
 
+                                                }
+
                                                 ?>
 
+                                                <?php
+
+                                                if ($userNo == 0)
+                                                {
+
+                                                if ($allow == '1')
+                                                {
                                                 
+                                                ?>
+
+                                                <div class="input-feild">
+	                                                <select name="selectEmp" id="selectEmp" >
+	                                                	<?php
+
+	                                                	$selectAllEmp = mysqli_query($con, "SELECT * FROM empinfo");
+	                                                	while ($rowAllEmp = mysqli_fetch_array($selectAllEmp))
+	                                                	{
+	                                                		echo '<option value="'.$rowAllEmp['empNo'].'">'.$rowAllEmp['empFName']. ' ' .$rowAllEmp['empLName'].'</option>';
+	                                                	}
+
+	                                                	?>
+	                                                </select>
+                                                </div>
+
+                                                <?php
+
+                                                }
+
+                                                else
+                                                {
+
+                                                ?>
+
+                                                <div class="input-feild">
+	                                                <select name="selectEmp" id="selectEmp" >
+                                                        <?php
+
+	                                                	$selectAllEmp = mysqli_query($con, "SELECT * FROM empinfo");
+	                                                	while ($rowAllEmp = mysqli_fetch_array($selectAllEmp))
+	                                                	{
+	                                                		echo '<option value="'.$rowAllEmp['empNo'].'">'.$rowAllEmp['empFName']. ' ' .$rowAllEmp['empLName'].'</option>';
+	                                                	}
+
+	                                                	?>
+	                                                </select>
+                                                </div>
+
+                                                <?php
+
+                                                }
+
+                                                }
+
+                                                ?>
 
                                                 <?php
 
