@@ -99,6 +99,7 @@ if(isset($_POST['submitBtn1']))
   $taxType = $_POST['taxTypeC'];
   $taxNo = $_POST['taxNoC'];
   $SPO = $_POST['txtSPO'];
+  $businessSector = $_POST['businessSector'];
 
   // Checking if legacy code is already inserted
   $selectLegacy = mysqli_query($con, "SELECT * FROM custmaster WHERE legCode='$legCode' ");
@@ -120,7 +121,7 @@ if(isset($_POST['submitBtn1']))
   else
   {
     // Inserting records to DB
-    $insertQuery = mysqli_query($con, "insert into custmaster (cmpType, legCode, newCode, cmpTitle, cmpStreet, cmpCity, cmpCountry, telCode, telNumber, cmpWebsite, cmpEmail, taxType, taxNo, SPO, seaImport, airImport, seaExport, airExport, cmpStatus, partyType, userBr) values  ('Company', '$legCode', '$custNewId', '$cmpTitle', '$cmpStreet', '$cmpCity', '$cmpCountry', '$telCode', '$telNumber', '$cmpWebsite', '$cmpEmail', '$taxType', '$taxNo', '$SPO', '$seaImport', '$airImport', '$seaExport', '$airExport', '$cmp_activeC', 'cust', '$userBr')");
+    $insertQuery = mysqli_query($con, "insert into custmaster (cmpType, legCode, newCode, cmpTitle, cmpStreet, cmpCity, cmpCountry, telCode, telNumber, cmpWebsite, cmpEmail, taxType, taxNo, SPO, seaImport, airImport, seaExport, airExport, cmpStatus, businessSector, partyType, userBr) values  ('Company', '$legCode', '$custNewId', '$cmpTitle', '$cmpStreet', '$cmpCity', '$cmpCountry', '$telCode', '$telNumber', '$cmpWebsite', '$cmpEmail', '$taxType', '$taxNo', '$SPO', '$seaImport', '$airImport', '$seaExport', '$airExport', '$cmp_activeC', '$businessSector', 'cust', '$userBr')");
 
     $insertQuery2 = mysqli_query($con, "insert into chainlog (instance, formName, record_id,createBy, createDate) values ('$newID1', 'Customer', '$custNewId', '$loginUser', '$todayDate') ");
 
@@ -286,6 +287,7 @@ if(isset($_POST['submitBtn2']))
   $taxType = $_POST['taxType'];
   $taxNo = $_POST['taxNo'];
   $txtSPOC = $_POST['txtSPOC'];
+  $businessSectorC = $_POST['businessSectorC'];
 
   // Checking if legacy code is already inserted
   $selectLegacy = mysqli_query($con, "SELECT * FROM custmaster WHERE legCode='$legCode' ");
@@ -307,7 +309,7 @@ if(isset($_POST['submitBtn2']))
   else
   {
     // Inserting records to DB
-    $insertQuery = mysqli_query($con, "insert into custmaster (cmpType, legCode, newCode, cmpTitle, cmpStreet, cmpCity, cmpCountry, telCode, telNumber, cmpWebsite, cmpEmail, taxType, taxNo, SPO, seaImport, airImport, seaExport, airExport, cmpStatus, partyType, userBr) values  ('Individual', '$legCode', '$custNewId', '$cmpTitle', '$cmpStreet', '$cmpCity', '$cmpCountry', '$telCode', '$telNumber', '$cmpWebsite', '$cmpEmail', '$taxType', '$taxNo', '$txtSPOC', '$seaImport', '$airImport', '$seaExport', '$airExport', '$cmp_active', 'cust', '$userBr')");
+    $insertQuery = mysqli_query($con, "insert into custmaster (cmpType, legCode, newCode, cmpTitle, cmpStreet, cmpCity, cmpCountry, telCode, telNumber, cmpWebsite, cmpEmail, taxType, taxNo, SPO, seaImport, airImport, seaExport, airExport, cmpStatus, businessSectorC, partyType, userBr) values  ('Individual', '$legCode', '$custNewId', '$cmpTitle', '$cmpStreet', '$cmpCity', '$cmpCountry', '$telCode', '$telNumber', '$cmpWebsite', '$cmpEmail', '$taxType', '$taxNo', '$txtSPOC', '$seaImport', '$airImport', '$seaExport', '$airExport', '$cmp_active', '$businessSectorC', 'cust', '$userBr')");
 
     // Generating the alert
     $msg = "Individual is inserted successfully.";
@@ -700,7 +702,7 @@ if(isset($_POST['saveBtn2']))
 
 				                                                   <input type="checkbox" name="seaExportC" id="seaExportC" value="Sea Export"><label>Sea Export</label><br>
 				                                                   <input type="checkbox" name="airExportC" id="airExportC" value="Air Export"><label>Air Export</label>
-				                                              	</div>
+				                                              </div>
 
 										</div>
 										<div class="col-md-6">
@@ -749,6 +751,24 @@ if(isset($_POST['saveBtn2']))
 
                                                           ?>
                                                         </select>
+                                                      </div>
+
+                                                      <div class="input-label"><label >Business Sector </label></div> 
+                                                      <div class="input-feild">
+                                                        <select name="businessSector" id="businessSector">
+                                                          <option value="">Select</option>
+                                                          <?php
+
+                                                          $selectBS = mysqli_query($con, "SELECT * FROM business_setup");
+                                                          while ($rowBS = mysqli_fetch_array($selectBS))
+                                                          {
+
+                                                            echo '<option value="'.$rowBS['bus_sec_name'].'">'.$rowBS['bus_sec_name'].'</option>';
+
+                                                          }
+
+                                                          ?>
+                                                        </select><span class="steric">*</span>
                                                       </div>
 
                                                       <div class="input-label"><label >Active</label></div>
@@ -882,6 +902,24 @@ if(isset($_POST['saveBtn2']))
 
                                                             ?>
                                                         </select>
+                                                      </div>
+
+                                                      <div class="input-label"><label >Business Sector </label></div> 
+                                                      <div class="input-feild">
+                                                        <select name="businessSectorC" id="businessSectorC">
+                                                          <option value="">Select</option>
+                                                          <?php
+
+                                                          $selectBS = mysqli_query($con, "SELECT * FROM business_setup");
+                                                          while ($rowBS = mysqli_fetch_array($selectBS))
+                                                          {
+
+                                                            echo '<option value="'.$rowBS['bus_sec_name'].'">'.$rowBS['bus_sec_name'].'</option>';
+
+                                                          }
+
+                                                          ?>
+                                                        </select><span class="steric">*</span>
                                                       </div>
 
                                                       <div class="input-label"><label >Active</label></div>

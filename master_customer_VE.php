@@ -34,6 +34,7 @@ if ($custID==$row['newCode'])
   $taxType_p = $row['taxType'];
   $taxNo_p = $row['taxNo'];
   $SPO_p = $row['SPO'];
+  $businessSector_p = $row['businessSector'];
   $seaImport_p = $row['seaImport'];
   $airImport_p = $row['airImport'];
   $seaExport_p = $row['seaExport'];
@@ -947,6 +948,25 @@ if(isset($_POST['btnedit1']))
 			                                                            ?>
 			                                                        </select>
 			                                                     </div>
+
+                                                          <div class="input-label"><label >Business Sector </label></div> 
+                                                          <div class="input-feild">
+                                                            <select name="businessSector" id="businessSector">
+                                                              <?php
+
+                                                              echo '<option value="'.$businessSector_p.'">'.$businessSector_p.'</option>';
+
+                                                              $selectBS = mysqli_query($con, "SELECT * FROM business_setup");
+                                                              while ($rowBS = mysqli_fetch_array($selectBS))
+                                                              {
+
+                                                                echo '<option value="'.$rowBS['bus_sec_name'].'">'.$rowBS['bus_sec_name'].'</option>';
+
+                                                              }
+
+                                                              ?>
+                                                            </select>
+                                                          </div>
 										</div>	 
 								</div>
 						</div>
