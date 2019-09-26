@@ -110,6 +110,15 @@ if(isset($_POST['btnedit1']))
     $statusV_n='Deactive';
   }
 
+  $selectPrev = mysqli_query($con, "SELECT * FROM mop_setup WHERE SrNo='$mop_SrNoV' ");
+  while ($rowPrev = mysqli_fetch_array($selectPrev))
+  {
+    $mop_codeV_p = $rowPrev['mop_code'];
+    $mop_descriptionV_p = $rowPrev['mop_description'];
+    $mop_p_cV_p = $rowPrev['mop_p_c'];
+    $statusV_p = $rowPrev['status'];
+  }
+
 
   $clause = " WHERE SrNo='$mop_SrNoV'";
   $initQuery = "UPDATE mop_setup SET SrNo='$mop_SrNoV' ";
@@ -170,11 +179,18 @@ if(isset($_POST['btnedit1']))
   mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
   }
 
-  // if ($statusV_n != $statusV_p)
-  // {
-  //   $initQuery .= ", status='$statusV_n'";
-  //   $initChangeLog2 = ", '$statusV_p', '$statusV_n') ";
-  // }
+  if ($statusV_n != $statusV_p)
+  {
+    $initQuery .= ", status='$statusV_n'";
+    $initChangeLog2 = ", '$statusV_p', '$statusV_n') ";
+
+     $finalChangeLog = $initChangeLog . $initChangeLog2;
+  // echo $finalChangeLog;
+
+  mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+  }
+
+  
 
   $finalQuery = $initQuery . $clause;
   // echo $finalQuery . "<br>";
@@ -182,7 +198,6 @@ if(isset($_POST['btnedit1']))
   mysqli_query($con, $finalQuery) or die(mysqli_error($con));
 
  
-   // $updateQuery12 = mysqli_query($con, "UPDATE mop_setup SET mop_code='$mop_codeV', mop_description='$mop_descriptionV',mop_p_c='$mop_p_cV',status ='$statusV' WHERE SrNo='$mop_SrNoV' ") or die(mysqli_error($con));
 
     $msg = "Record is inserted successfully.";
   function alert($msg)
@@ -191,7 +206,7 @@ if(isset($_POST['btnedit1']))
   }
   alert($msg);
 
-  header("Location: mop_setup_table.php");
+   header("Location: mop_setup_table.php");
 }
 
  // Export
@@ -410,6 +425,30 @@ if (isset($_POST['submitBtn1'])) {
                       </div>
                     </div>
                </div>
+
+
+          <!-- Modal Two-->
+               <div class="modal fade confirmTable-modal" id="popupMEdit4" role="dialog">
+                    <div class="modal-dialog">
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Confirmation</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>Are You Sure You Want to Submit?</p>
+                          <button type="submit" name="btnedit1">Yes</button>
+                              <button type="button" name="btnDelete_N" data-dismiss="modal" >No</button>
+
+                        </div>
+                        <div class="modal-footer">
+                          <p>Add Related content if needed</p>
+                          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                        </div>
+                      </div>
+                    </div>
+               </div>
       
 
       <!-- Add MOP -->
@@ -472,32 +511,40 @@ if (isset($_POST['submitBtn1'])) {
                   <h4 class="modal-title">Edit MOP</h4>
                 </div>
                 <div class="modal-body">
+
+                   <!-- For Validation Box Red Popup -->
+                   <h4><label id="formSummary2" style="color: red;"></label></h4>
+                 <p id="EV_mop_codeV_p" style="color: red;"></p>
+                  <p id="EV_mop_descriptionV_p" style="color: red;"></p>
+                 <p id="EV_mop_p_cV_p" style="color: red;"></p>
+
                   <div class="input-fields hide"> 
                     <label>SrNo</label> 
-                    <input type="text" name="mop_SrNoV" id="mop_SrNoV" >
+                    <input type="text" name="mop_SrNoV" id="mop_SrNoV" class="mop_SrNoV" >
                        </div>
                   <div class="input-fields"> 
                     <label>MOP Code</label> 
-                    <input type="text" name="mop_codeV_p" id="mop_codeV_p" maxlength="5" placeholder="Enter Here SPO Name!">    
+                    <input type="text" name="mop_codeV_p" id="mop_codeV_p" maxlength="5" placeholder="Enter Here SPO Name!"><span class="steric">*</span>     
                   </div>
 
                   <div class="input-fields">  
                     <label>MOP Description</label> 
-                    <input type="text" name="mop_descriptionV_p" id="mop_descriptionV_p" maxlength="40" placeholder="Enter Here SPO Description !">    
+                    <input type="text" name="mop_descriptionV_p" id="mop_descriptionV_p" maxlength="40" placeholder="Enter Here SPO Description !"><span class="steric">*</span>     
                   </div>
                   <div class="input-fields">  
                     <label>PP/CC</label> 
                     <select name="mop_p_cV_p" id="mop_p_cV_p" class="mop_p_cV_p">
                       <option value="PP">PP</option>
                       <option value="CC">CC</option>
-                    </select>
+                    </select><span class="steric">*</span> 
                         
                   </div>
                   <div class="input-fields">  
                     <label>Active</label> 
                     <input type="checkbox" name="statusV_p" id="statusV_p">    
                   </div>
-                  <button type="submit" name="btnedit1" >Submit</button>
+                   <button type="submit" name="btnadd" onclick="FormValidation3(); return false;">Submit</button>
+                  <!-- <button type="submit" name="btnedit1" >Submit</button> -->
                 </div>
                 <div class="modal-footer">
                   <p>Add Related content if needed</p>
@@ -1018,6 +1065,84 @@ $(document).on('click', '.editData', function(){
       
   }
 </script>
+
+<script type="text/javascript">
+   function FormValidation3()
+   {
+    var regexp = /^[a-z]*$/i;
+    var regexp2 = /^[0-9]*$/i;
+    var re = /\S+@\S+\.\S+/;
+      var missingVal = 0;
+
+      var mop_codeV_p=document.getElementById('mop_codeV_p').value;
+      var mop_descriptionV_p=document.getElementById('mop_descriptionV_p').value;
+      var mop_p_cV_p=document.getElementById('mop_p_cV_p').value;
+     
+      var summary = "Summary: ";
+
+      if(mop_codeV_p == "")
+      {
+          document.getElementById('mop_codeV_p').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("EV_mop_codeV_p").innerHTML = "Commodity Code is required.";
+      }
+      if(mop_codeV_p != "")
+      {
+          document.getElementById('mop_codeV_p').style.borderColor = "white";
+          document.getElementById("EV_mop_codeV_p").innerHTML = "";
+
+      }
+
+      
+      if(mop_descriptionV_p == "")
+      {
+          document.getElementById('mop_descriptionV_p').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("EV_mop_descriptionV_p").innerHTML = "Commodity Code is required.";
+      }
+      if(mop_descriptionV_p != "")
+      {
+          document.getElementById('mop_descriptionV_p').style.borderColor = "white";
+          document.getElementById("EV_mop_descriptionV_p").innerHTML = "";
+
+      }
+
+      if(mop_p_cV_p == "")
+      {
+          document.getElementById('mop_p_cV_p').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("EV_mop_p_cV_p").innerHTML = "Commodity Code is required.";
+      }
+      if(mop_p_cV_p != "")
+      {
+          document.getElementById('mop_p_cV_p').style.borderColor = "";
+          document.getElementById("EV_mop_p_cV_p").innerHTML = "";
+
+      }
+
+      
+      
+      if (missingVal != 1)
+      {
+        document.getElementById('mop_codeV_p').style.borderColor = "white";
+        document.getElementById('mop_descriptionV_p').style.borderColor = "white";
+        document.getElementById('mop_p_cV_p').style.borderColor = "";
+       
+        $("#popupMEdit4").modal();
+        
+      }
+
+      if (missingVal == 1)
+      {
+        document.getElementById("formSummary2").textContent="Error: ";
+      }
+      
+  }
+</script>
+
 <script type="text/javascript">
 function logUserFunc()
 {
