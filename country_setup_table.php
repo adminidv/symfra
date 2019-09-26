@@ -7,26 +7,146 @@ $subRibbon = 'addUser';
 $Quick = 'Hide';
 $Quickhr = '';
 
+// For Change log Edit
+$userID = $_SESSION['user'];
+//login user
+$loginUser= $_SESSION['user'];
+// Today date func
+$todayDate = date("Y-m-d");
+
+// for Change log ID Edit
+$selectSrNo = mysqli_query($con, "SELECT * FROM city_setup ORDER BY SrNo DESC LIMIT 1");
+while ($rowSrNo = mysqli_fetch_array($selectSrNo))
+{
+  $SrNo = $rowSrNo['SrNo'];
+  
+}
+
+
+// Add Change log
+//login user
+$loginUser1= $_SESSION['user'];
+// Today date func
+$todayDate1 = date("Y-m-d");
+
+// for Change log ID Add
+$selectSrNo = mysqli_query($con, "SELECT * FROM country_setup ORDER BY SrNo DESC LIMIT 1");
+while ($rowSrNo = mysqli_fetch_array($selectSrNo))
+{
+  $SrNo = $rowSrNo['SrNo'];
+  $newSrNo1 = $SrNo + 1;
+  $SrNo1 = $newSrNo1;
+
+}
+
+// For Change Log Record
+$selectLastID1 = mysqli_query($con, "SELECT * FROM chainlog WHERE record_id = '$SrNo' ORDER BY instance DESC LIMIT 1  ");
+$rowLastID1 = mysqli_fetch_array($selectLastID1, MYSQLI_ASSOC);
+
+$lastID1 = $rowLastID1['instance'];
+$newID1 = $lastID1 + 1;
+$instance = $newID1;
+
 $selectcoun = mysqli_query($con, "select * from country_setup");
 
 if(isset($_POST['btnedit1']))
 {
-
-
-  $country_codeV = $_POST['country_codeV'];
-  $country_nameV = $_POST['country_nameV'];
-  $country_SrNoV = $_POST['country_SrNoV'];
-  $country_regionV = $_POST['country_regionV'];
-   if (isset($_POST['statusV'])) {
+  $country_codeV = $_POST['country_codeV_p'];
+  $country_nameV = $_POST['country_nameV_p'];
+  $country_SrNoV = $_POST['country_SrNoV_p'];
+  $country_regionV = $_POST['country_regionV_p'];
+  if (isset($_POST['statusV_p'])) {
     $statusV='Active';
 
   }
   else
   {
-    $statusV='Inactive';
+    $statusV='Deactive';
   }
 
-  $updateQuery12 = mysqli_query($con, "UPDATE country_setup SET country_code='$country_codeV', country_name='$country_nameV', country_region='$country_regionV',status='$status' WHERE SrNo='$country_SrNoV' ") or die(mysqli_error($con));
+  $selectPrev = mysqli_query($con, "SELECT * FROM country_setup WHERE SrNo='$country_SrNoV' ");
+  while ($rowPrev = mysqli_fetch_array($selectPrev))
+  {
+    $country_code_p = $rowPrev['country_code'];
+    $country_name_p = $rowPrev['country_name'];
+    $country_region_p = $rowPrev['country_region'];
+    $status_p = $rowPrev['status'];
+  }
+
+  $clause = " WHERE SrNo='$country_SrNoV'";
+  $initQuery = "UPDATE country_setup SET SrNo='$country_SrNoV' ";
+
+  $selectLastID1 = mysqli_query($con, "SELECT * FROM chainlog WHERE record_id = '$SrNo' ORDER BY instance DESC LIMIT 1  ");
+  $rowLastID1 = mysqli_fetch_array($selectLastID1, MYSQLI_ASSOC);
+
+  $lastID1 = $rowLastID1['instance'];
+  $newID1 = $lastID1 + 1;
+  $instance = $newID1;
+
+  $selectCreate = mysqli_query($con, "SELECT * FROM chainlog WHERE record_id = '$SrNo' ");
+  while ($rowCreate = mysqli_fetch_array($selectCreate))
+  {
+    if ($rowCreate['createBy'] != "")
+    {
+      $createBy = $rowCreate['createBy'];
+    }
+    if ($rowCreate['createDate'] != "")
+    {
+      $createDate = $rowCreate['createDate'];
+    }
+  }
+
+  $initChangeLog = "INSERT INTO chainlog (instance, formName, record_id, createBy, createDate, updateBy, updateDate, perValue, newValue)";
+  $initChangeLog .= " VALUES ('$newID1', 'Country', '$SrNo', '$createBy', '$createDate', '$loginUser', '$todayDate'";
+
+  if ($country_codeV != $country_code_p)
+  {
+    $initQuery .= ", country_code='$country_codeV'";
+    $initChangeLog2 = ", '$country_code_p','$country_codeV')";
+
+    $finalChangeLog = $initChangeLog . $initChangeLog2;
+    // echo $finalChangeLog;
+
+    mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+  }
+
+  if ($country_nameV != $country_name_p)
+  {
+    $initQuery .= ", country_name='$country_nameV'";
+    $initChangeLog2 = ", '$country_name_p','$country_nameV')";
+
+    $finalChangeLog = $initChangeLog . $initChangeLog2;
+    // echo $finalChangeLog;
+
+    mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+  }
+
+  if ($country_regionV != $country_region_p)
+  {
+    $initQuery .= ", country_region='$country_regionV'";
+    $initChangeLog2 = ", '$country_region_p','$country_regionV')";
+
+    $finalChangeLog = $initChangeLog . $initChangeLog2;
+    // echo $finalChangeLog;
+
+    mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+  }
+
+  if ($statusV != $status_p)
+  {
+    $initQuery .= ", status='$statusV'";
+    $initChangeLog2 = ", '$status_p','$statusV')";
+
+    $finalChangeLog = $initChangeLog . $initChangeLog2;
+    // echo $finalChangeLog;
+
+    mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+  }
+
+  $finalQuery = $initQuery . $clause;
+  // echo $finalQuery . "<br>";
+
+  mysqli_query($con, $finalQuery) or die(mysqli_error($con));
 
   $msg = "Record is inserted successfully.";
   function alert($msg)
@@ -36,6 +156,207 @@ if(isset($_POST['btnedit1']))
   alert($msg);
 
   header("Location: country_setup_table.php");
+}
+
+else if(isset($_POST["btnActivate"]))
+{
+  if (isset($_POST["user_check"]))
+  {
+    $id = $_POST['user_check'];
+    // echo count($id);
+    while (list($key, $val) = @each ($id))
+    {
+      // mysqli_query($con, "UPDATE custmaster SET cmpStatus= '2' WHERE newCode = '$val' ");
+      mysqli_query($con, "UPDATE country_setup SET status='Active' WHERE SrNo = '$val' ");
+      // header("Location: ");
+    }
+
+    $clause = " WHERE ";//Initial clause
+    $searchRecord="SELECT * FROM `users` WHERE userBr='$userBr' ";
+
+        // if user is giving the middle name
+        if(!empty($_POST['user_mName']))
+        {
+            $user_mName = $_POST['user_mName'];
+            $searchRecord .= $clause."`user_mName` LIKE '%$user_mName%'";
+            $user_mName = 1;
+        }
+        else
+        {
+          $user_mName = 0;
+        }
+
+        // if user is giving the first name
+        if(!empty($_POST['user_fName']))
+        {
+            if($user_mName == 1)
+            {
+              $clause = " AND ";
+            }
+            $user_fName = $_POST['user_fName'];
+            $searchRecord .= $clause."`user_fName` LIKE '%$user_fName%'";
+            $fNameStatus = 1;
+        }
+        else
+        {
+          $fNameStatus = 0;
+        }
+
+        // if user is selecting any department
+        if(!empty($_POST['dept_list']))
+        {
+            if($fNameStatus == 1 OR $user_mName == 1)
+            {
+              $clause = " AND ";
+            }
+            foreach($_POST['dept_list'] as $c)
+            {
+                if(!empty($c)){
+                    $searchRecord .= $clause."`dept_ID` = '{$c}'";
+                    $clause = " OR ";
+                }   
+            }
+            $deptStatus = 1;
+        }
+        else
+        {
+          $deptStatus = 0;
+        }
+
+        // if user is selecting any designation
+        if(!empty($_POST['desig_list']))
+        {
+            if($deptStatus == 1 OR $fNameStatus == 1 OR $user_mName == 1)
+            {
+              $clause = " AND ";
+            }
+            foreach($_POST['desig_list'] as $d)
+            {
+                if(!empty($d))
+                {
+                    $searchRecord .= $clause."`desig_ID` LIKE '%{$d}%'";
+                    $clause = " OR ";
+                }   
+            }
+        }
+        else
+        {
+          // echo "Nothing Selected.";
+        }
+    // echo $sql; //Remove after testing
+    $search = " SELECT * FROM  country_setup";
+    $searchQuery = mysqli_query($con, $search);
+    header("Location: country_setup_table.php");
+  }
+
+  else
+  {
+    echo '<script type="text/javascript">'; 
+    echo 'alert("Please select something to activate.");'; 
+    echo 'window.location.href = "country_setup_table.php";';
+    echo '</script>';
+  }
+  
+}
+
+else if(isset($_POST["btnDeactivate"]))
+{
+  if (isset($_POST["user_check"]))
+  {
+    $id = $_POST['user_check'];
+    while (list($key, $val) = @each ($id))
+    {
+      // mysqli_query($con, "UPDATE custmaster SET cmpStatus= '2' WHERE newCode = '$val' ");
+      mysqli_query($con, "UPDATE country_setup SET status='Deactive' WHERE SrNo = '$val' ");
+      // header("Location: ");
+    }
+
+    $clause = " WHERE ";//Initial clause
+    $searchRecord="SELECT * FROM `users` ";
+
+        // if user is giving the middle name
+        if(!empty($_POST['user_mName']))
+        {
+            $user_mName = $_POST['user_mName'];
+            $searchRecord .= $clause."`user_mName` LIKE '%$user_mName%'";
+            $user_mName = 1;
+        }
+        else
+        {
+          $user_mName = 0;
+        }
+
+        // if user is giving the first name
+        if(!empty($_POST['user_fName']))
+        {
+            if($user_mName == 1)
+            {
+              $clause = " AND ";
+            }
+            $user_fName = $_POST['user_fName'];
+            $searchRecord .= $clause."`user_fName` LIKE '%$user_fName%'";
+            $fNameStatus = 1;
+        }
+        else
+        {
+          $fNameStatus = 0;
+        }
+
+        // if user is selecting any department
+        if(!empty($_POST['dept_list']))
+        {
+            if($fNameStatus == 1 OR $user_mName == 1)
+            {
+              $clause = " AND ";
+            }
+            foreach($_POST['dept_list'] as $c)
+            {
+                if(!empty($c)){
+                    $searchRecord .= $clause."`dept_ID` = '{$c}'";
+                    $clause = " OR ";
+                }   
+            }
+            $deptStatus = 1;
+        }
+        else
+        {
+          $deptStatus = 0;
+        }
+
+        // if user is selecting any designation
+        if(!empty($_POST['desig_list']))
+        {
+            if($deptStatus == 1 OR $fNameStatus == 1 OR $user_mName == 1)
+            {
+              $clause = " AND ";
+            }
+            foreach($_POST['desig_list'] as $d)
+            {
+                if(!empty($d))
+                {
+                    $searchRecord .= $clause."`desig_ID` LIKE '%{$d}%'";
+                    $clause = " OR ";
+                }   
+            }
+        }
+        else
+        {
+          // echo "Nothing Selected.";
+        }
+    // echo $sql; //Remove after testing
+    $search = " SELECT * FROM  country_setup";
+    $searchQuery = mysqli_query($con, $search);
+    header("Location: country_setup_table.php");
+  }
+
+  else
+  {
+    echo '<script type="text/javascript">'; 
+    echo 'alert("Please select something to deactivate.");'; 
+    echo 'window.location.href = "country_setup_table.php";';
+    echo '</script>';
+  }
+
 }
 
  // Export
@@ -65,6 +386,10 @@ if(isset($_POST['btnedit1']))
 
 
 if (isset($_POST['submitBtn'])) {
+  $instance =$instance;
+  $record_id =$SrNo1;
+  $createBy =$loginUser;
+  $createDate =$todayDate;
   $country_code=$_POST['country_code'];
   $country_name=$_POST['country_name'];
   $country_region =$_POST['country_region'];
@@ -74,10 +399,12 @@ if (isset($_POST['submitBtn'])) {
   }
   else
   {
-    $status='Inactive';
+    $status='Deactive';
   }
 
  $insertQuery = mysqli_query($con, "insert into country_setup (country_code,country_name,country_region,status ) values ('$country_code', '$country_name','$country_region','$status')");
+
+ $insertQuery2 = mysqli_query($con, "insert into chainlog (instance, formName, record_id,createBy, createDate) values ('$newID1', 'Country', '$SrNo1', '$loginUser1', '$todayDate1') ");
 
  $msg = "Record is inserted successfully.";
   function alert($msg)
@@ -205,6 +532,29 @@ if (isset($_POST['submitBtn'])) {
 <form action="" method="POST">
 <div class="leave-manage-sec  main_widget_box ">
 
+  <!-- Modal Two-->
+               <div class="modal fade confirmTable-modal" id="popupMEdit2" role="dialog">
+                    <div class="modal-dialog">
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Confirmation</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>Are You Sure You Want to Submit?</p>
+                          <button type="submit" name="btnedit1">Yes</button>
+                              <button type="button" name="btnDelete_N" data-dismiss="modal" >No</button>
+
+                        </div>
+                        <div class="modal-footer">
+                          <p>Add Related content if needed</p>
+                          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                        </div>
+                      </div>
+                    </div>
+               </div>
+
    <!-- Modal Two-->
                <div class="modal fade confirmTable-modal" id="submitCountry" role="dialog">
                     <div class="modal-dialog">
@@ -227,6 +577,44 @@ if (isset($_POST['submitBtn'])) {
                       </div>
                     </div>
                </div>
+
+               <div class="confirmTable-modal modal fade" id="activateTable_C" role="dialog">
+            <div class="modal-dialog">
+                  <div class="modal-content pop_up_content">
+                      <div class="modal-header pop_up-header">
+                        <button type="button" class="close pop_close_btn" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title pop_title">Confirmation</h4>
+                      </div>
+                      <div class="modal-body Popup_bdy">
+                        <div class="input-feild">
+                            <p>Do you really want to activate selected records?</p>
+                            
+                        </div>
+                        <button type="submit" name="btnActivate">Yes</button>
+                        <button type="button" name="btnDelete_N" data-dismiss="modal" >No</button>
+                      </div>
+                 </div>
+              </div>
+          </div>
+
+          <div class="confirmTable-modal modal fade" id="deactivateTable_C" role="dialog">
+            <div class="modal-dialog">
+                  <div class="modal-content pop_up_content">
+                      <div class="modal-header pop_up-header">
+                        <button type="button" class="close pop_close_btn" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title pop_title">Confirmation</h4>
+                      </div>
+                      <div class="modal-body Popup_bdy">
+                        <div class="input-feild">
+                            <p>Do you really want to deactivate selected records?</p>
+                            
+                        </div>
+                        <button type="submit" name="btnDeactivate">Yes</button>
+                        <button type="button" name="btnDelete_N" data-dismiss="modal" >No</button>
+                      </div>
+                 </div>
+              </div>
+          </div>
   
 
       <div class="form_sec_action_btn col-md-12">
@@ -247,7 +635,71 @@ if (isset($_POST['submitBtn'])) {
       <div class="form_sec_action_btn col-md-12">
          
           <button type="button" id="myBtn">  <small>Add Country</small></button>
+          <button type="button" name="saveBtn" onclick="logUserFunc();"> <small>Change Logs</small></button>
       </div>
+
+      <!-- Show Log Chain -->
+      <div class="modal fade symfra_popup2" id="logUser_Modal" role="dialog">
+            <div class="modal-dialog">
+              <!-- Show Log Chain -->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Change Logs Details</h4>
+                </div>
+
+                  <table id="dpttable1" class="display nowrap no-footer" style="width:100%">
+                     
+                     <thead>
+                      <tr>
+                      <th>SrNo</th>
+                      <th>Instance</th>
+                      <th>Record ID</th>
+                      <th>Created By</th>
+                      <th>Created Date</th>
+                      <th>Update By</th>
+                      <th>Update Date</th>
+                      <th>Pervious Value</th>
+                      <th>New Value</th>
+                      </tr>
+
+                     </thead>
+                     <tbody>
+                      <?php
+
+                              include 'manage/connection.php';
+
+                              $selectchainlog = mysqli_query($con, "select * from chainlog where formName = 'Country' ");
+
+                              ?>
+                          <?php
+
+                                while ($rowchainlog = mysqli_fetch_array($selectchainlog))
+                                {
+                                ?>
+
+                      <tr>
+                      <td><?php echo $rowchainlog['SrNo']; ?></td>
+                      <td><?php echo $rowchainlog['instance']; ?></td>
+                      <td><?php echo $rowchainlog['record_id']; ?></td>
+                      <td><?php echo $rowchainlog['createBy']; ?></td>
+                      <td><?php echo $rowchainlog['createDate']; ?></td>
+                      <td><?php echo $rowchainlog['updateBy']; ?></td>
+                      <td><?php echo $rowchainlog['updateDate']; ?></td>
+                      <td><?php echo $rowchainlog['perValue']; ?></td>
+                      <td><?php echo $rowchainlog['newValue']; ?></td>
+                      </tr>
+                      <?php
+                     }
+                     ?>
+                     </tbody>
+
+                  </table>
+                
+              </div>
+              
+            </div>
+        </div>
          
 
       <!-- Add Region -->
@@ -319,22 +771,22 @@ if (isset($_POST['submitBtn'])) {
                 <div class="modal-body">
                   <div class="input-fields hide"> 
                     <label>Country SrNo</label> 
-                    <input type="text" name="country_SrNoV" id="country_SrNoV" >
+                    <input type="text" name="country_SrNoV_p" id="country_SrNoV_p" >
                        
                   </div>
                    <div class="input-fields"> 
                     <label>Country Code</label> 
-                    <input type="text" name="country_codeV" id="country_codeV" >
+                    <input type="text" name="country_codeV_p" id="country_codeV_p" >
                        
                   </div>
 
                   <div class="input-fields">  
                     <label>Country Name</label> 
-                    <input type="text" name="country_nameV" id="country_nameV" maxlength="30" >   
+                    <input type="text" name="country_nameV_p" id="country_nameV_p" maxlength="30" >   
                   </div>
                   <div class="input-fields">  
                      <label>Region</label>  
-                      <select name="country_regionV" id="country_regionV" class="country_regionV">
+                      <select name="country_regionV_p" id="country_regionV_p" class="country_regionV_p">
                           <?php
 
                             $selectregion = mysqli_query($con, "select * from region_setup");
@@ -351,9 +803,9 @@ if (isset($_POST['submitBtn'])) {
                   </div>
                   <div class="input-fields">  
                     <label>Active</label> 
-                    <input type="checkbox" name="statusV" id="statusV">    
+                    <input type="checkbox" name="statusV_p" id="statusV_p">
                   </div>
-                  <button type="submit" name="btnedit1" >Submit</button>
+                  <button type="submit" name="btnedit2" onclick="FormValidation3(); return false;" >Submit</button>
                 </div>
                 <div class="modal-footer">
                   <p>Add Related content if needed</p>
@@ -445,8 +897,9 @@ if (isset($_POST['submitBtn'])) {
                 <ul>
                 
 
-                  <li><button type="button" id="btnDelete_C"><i class="fa fa-trash"></i>  Delete</button></li>
-                  <li><button type="submit" id="btnExport_P"> <i class="fa fa-print"></i><a href="country_print.php" target="_blank"> Print</a></button></li>
+                  <!-- <li><button type="button" id="btnDelete_C"><i class="fa fa-trash"></i>  Delete</button></li> -->
+                  <li><button type="button" id="btnActivate_C"><i class="fa fa-trash"></i>  Activate</button></li>
+                  <li><button type="button" id="btnDeactivate_C"><i class="fa fa-trash"></i>  Deactivate</button></li>
                   <li><button type="button" id="exportBtn"><i class="fa fa-download"></i>  Export</button></li>
                  
 
@@ -469,20 +922,39 @@ if (isset($_POST['submitBtn'])) {
                                    </tr>
                         </thead>
                         <tbody>
-                          
+
                           <?php
 
                                 while ($rowcoun= mysqli_fetch_array($selectcoun))
                                 {
+                                  $contID = $rowcoun['SrNo'];
                                 ?>
-                        <tr>
-                          <?php echo '<td><input type="checkbox" name="user_check[]" value="'. $rowcoun['country_code'] .' " /></td>'; ?>
+                        <tr id="<?php echo $rowcoun['SrNo']; ?>">
+                          <?php echo '<td><input type="checkbox" name="user_check[]" value="'. $rowcoun['SrNo'] .' " /></td>'; ?>
                           <td><?php echo $rowcoun['country_code']; ?></td>
                           <td><?php echo $rowcoun['country_name']; ?></td>
                           <td><?php echo $rowcoun['country_region']; ?></td>
                           <td><?php echo $rowcoun['status']; ?></td>
                           <td><a href="#" class="editData" data-toggle="modal" id="<?php echo $rowcoun['country_code']; ?>" data-target="#btn1" >Edit</td> 
-                          <td><a href="#" data-toggle="modal" data-target="#deleteTable_C2" >Delete</td>
+                          <?php
+                          if ($rowcoun['status'] == "Active")
+                          {
+                          ?>
+
+                          <td><a href="deleteConutry.php?contID=<?php echo $contID; ?>" >Deactivate</td>
+
+                          <?php
+                          }
+
+                          else
+                          {
+                          ?>
+
+                          <td><a href="deleteConutry.php?contID=<?php echo $contID; ?>" >Activate</td>
+
+                          <?php
+                          }
+                          ?>
                         </tr>
                         <?php
                          }
@@ -553,14 +1025,23 @@ $(document).on('click', '.editData', function(){
                 data:{employee_id:employee_id},  
                 dataType:"json",  
          success: function(data) {
-              $('#country_SrNoV').val(data.SrNo);  
-              $('#country_codeV').val(data.country_code);  
-              $('#country_nameV').val(data.country_name);  
-              $('.country_regionV').html(data.country_region);  
+              $('#country_SrNoV_p').val(data.SrNo);  
+              $('#country_codeV_p').val(data.country_code);  
+              $('#country_nameV_p').val(data.country_name);  
+              $('.country_regionV_p').html(data.country_region);  
               /*$('#employee_id').val(data.id); */
               // $("#"+id).btnedit1();
               // $("#btn1").modal('hide');
               // alert('Running');
+              var checkif = data.status;
+              if (checkif == "Active") {
+                 $('#statusV_p').attr("checked", true);
+                 document.getElementByID("statusV_p").checked = true;
+              }
+              else
+              {
+                $('#statusV_p').attr("checked", false);
+              }
               
          }
       });
@@ -581,7 +1062,7 @@ $(document).on('click', '.editData', function(){
               /*$('#country_SrNoV').val(data.SrNo);  
               $('#country_codeV').val(data.country_code);  
               $('#country_nameV').val(data.country_name);  */
-              $('.country_regionV').html(data);  
+              $('.country_regionV_p').html(data);  
               /*$('#employee_id').val(data.id); */
               // $("#"+id).btnedit1();
               // $("#btn1").modal('hide');
@@ -887,6 +1368,93 @@ $(".remove").click(function(){
         document.getElementById("formSummary").textContent="Error: ";
       }
       
+  }
+</script>
+
+<script type="text/javascript">
+   function FormValidation3()
+   {
+    var regexp = /^[a-z]*$/i;
+    var regexp2 = /^[0-9]*$/i;
+    var re = /\S+@\S+\.\S+/;
+      var missingVal = 0;
+
+      var country_codeV=document.getElementById('country_codeV_p').value;
+      var country_nameV=document.getElementById('country_nameV_p').value;
+
+      var summary = "Summary: ";
+
+      if(country_codeV == "")
+      {
+          document.getElementById('country_codeV_p').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_country_code").innerHTML = "Code is required.";
+      }
+      if(country_codeV != "")
+      {
+          document.getElementById('country_codeV_p').style.borderColor = "white";
+          document.getElementById("V_country_code").innerHTML = "";
+      }
+
+      if(country_nameV == "")
+      {
+          document.getElementById('country_nameV_p').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_country_name").innerHTML = "Name is required.";
+      }
+      if(country_nameV != "")
+      {
+          document.getElementById('country_nameV_p').style.borderColor = "white";
+          document.getElementById("V_country_name").innerHTML = "";
+
+        if (!regexp.test(country_nameV))
+        {
+          document.getElementById('country_nameV_p').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_country_name").innerHTML = "Only alphabets are allowed in Conutry Name.";
+        }
+      }
+
+      if (missingVal != 1)
+      {
+        document.getElementById('country_codeV_p').style.borderColor = "white";
+        document.getElementById('country_nameV_p').style.borderColor = "white";
+       
+        $("#popupMEdit2").modal();
+        
+      }
+
+      if (missingVal == 1)
+      {
+        document.getElementById("formSummary").textContent="Error: ";
+      }
+      
+  }
+</script>
+
+<script>
+$(document).ready(function(){
+  $("#btnActivate_C").click(function(){
+    $("#activateTable_C").modal();
+  });
+});
+</script>
+
+<script>
+$(document).ready(function(){
+  $("#btnDeactivate_C").click(function(){
+    $("#deactivateTable_C").modal();
+  });
+});
+</script>
+
+<script type="text/javascript">
+  function logUserFunc()
+  {
+  $("#logUser_Modal").modal();
   }
 </script>
 
