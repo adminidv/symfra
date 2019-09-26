@@ -103,13 +103,21 @@ if(isset($_POST['btnedit1']))
   $bus_sec_nameV_n = $_POST['bus_sec_nameV_p'];
   $commoditiesV_n = $_POST['commoditiesV_p'];
 
-   if (isset($_POST['statusV'])) {
-    $statusV='Active';
+   if (isset($_POST['statusV_p'])) {
+    $statusV_n='Active';
 
   }
   else
   {
-    $statusV='Deactive';
+    $statusV_n='Deactive';
+  }
+
+   $selectPrev = mysqli_query($con, "SELECT * FROM business_setup WHERE SrNo='$bus_SrNoV' ");
+  while ($rowPrev = mysqli_fetch_array($selectPrev))
+  {
+    $commoditiesV_p = $rowPrev['commodities'];
+    $bus_sec_nameV_p = $rowPrev['bus_sec_name'];
+    $statusV_p = $rowPrev['status'];
   }
 
   $clause = " WHERE SrNo='$bus_SrNoV'";
@@ -142,12 +150,33 @@ if(isset($_POST['btnedit1']))
   {
     $initQuery .= ", bus_sec_name='$bus_sec_nameV_n'";
     $initChangeLog2 = ", '$bus_sec_nameV_p', '$bus_sec_nameV_n') ";
+
+     $finalChangeLog = $initChangeLog . $initChangeLog2;
+  // echo $finalChangeLog;
+
+  mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
   }
 
    if ($commoditiesV_n != $commoditiesV_p)
   {
     $initQuery .= ", commodities='$commoditiesV_n'";
     $initChangeLog2 = ", '$commoditiesV_p', '$commoditiesV_n') ";
+
+     $finalChangeLog = $initChangeLog . $initChangeLog2;
+  // echo $finalChangeLog;
+
+  mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+  }
+
+  if ($statusV_n != $statusV_p)
+  {
+    $initQuery .= ", status='$statusV_n'";
+    $initChangeLog2 = ", '$statusV_p', '$statusV_n') ";
+
+     $finalChangeLog = $initChangeLog . $initChangeLog2;
+  // echo $finalChangeLog;
+
+  mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
   }
 
   $finalQuery = $initQuery . $clause;
@@ -155,10 +184,7 @@ if(isset($_POST['btnedit1']))
 
   mysqli_query($con, $finalQuery) or die(mysqli_error($con));
 
-  $finalChangeLog = $initChangeLog . $initChangeLog2;
-  // echo $finalChangeLog;
-
-  mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+ 
  
 
 // // update qury
@@ -364,14 +390,11 @@ if (isset($_POST['btnadd'])) {
          -->
          
           <button type="button" id="myBtn">  <small>Add Business</small></button>
-          <button type="button" name="saveBtn" onclick="logUserFunc();"> <small>Log Chain</small></button>
+          <button type="button" name="saveBtn" onclick="logUserFunc();"> <small>Change Logs</small></button>
       </div>
          
 
-         <!-- For Validation Box Red Popup -->
-         <h4><label id="formSummary" style="color: red;"></label></h4>
-       <p id="V_bus_sec_name" style="color: red;"></p>
-        <p id="V_commodities" style="color: red;"></p>
+         
 
 
       <!-- Add City Modal -->
@@ -380,14 +403,22 @@ if (isset($_POST['btnadd'])) {
               <!-- ADD City Modal-->
               <div class="modal-content">
                 <div class="modal-header">
+
+                  
+
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
                   <h4 class="modal-title">Business Details</h4>
                 </div>
                 <div class="modal-body">
 
+                  <!-- For Validation Box Red Popup -->
+             <h4><label id="formSummary" style="color: red;"></label></h4>
+           <p id="V_bus_sec_name" style="color: red;"></p>
+            <!-- <p id="V_commodities" style="color: red;"></p> -->
+
                   <div class="input-fields">  
                     <label>Business Name</label> 
-                    <input type="text" name="bus_sec_name" id="bus_sec_name" placeholder="Enter Here Business Name !">    
+                    <input type="text" name="bus_sec_name" id="bus_sec_name" maxlength="30" placeholder="Enter Here Business Name !"><span class="steric">*</span>    
                   </div>
                    
 
@@ -416,8 +447,8 @@ if (isset($_POST['btnadd'])) {
                     <label>Active</label> 
                     <input type="checkbox" name="status" id="status">    
                   </div>
-                    <button type="submit" name="btnadd">Submit</button>
-                    <button type="submit" name="btnadd2" class="btnadd2" id="btnadd2" onclick="addMore(); return false;">Add More</button>
+                    <button type="submit" name="btnadd1" onclick="FormValidation(); return false;">Submit</button>
+                    <button type="submit" name="btnadd2" class="btnadd2" id="btnadd2" onclick="FormValidation2(); return false;">Add More</button>
                     <button type="submit" name="btnCancel" class="btnCancel" id="btnCancel" >Cancel</button>
                 </div>
                 <div class="modal-footer">
@@ -434,10 +465,19 @@ if (isset($_POST['btnadd'])) {
               <!-- Edit City Modal -->
               <div class="modal-content">
                 <div class="modal-header">
+
+                  
+
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
                   <h4 class="modal-title">Edit Business Details</h4>
                 </div>
                 <div class="modal-body">
+
+                  <!-- For Validation Box Red Popup -->
+         <h4><label id="formSummary2" style="color: red;"></label></h4>
+       <p id="EV_bus_sec_nameV_p" style="color: red;"></p>
+        <!-- <p id="EV_commoditiesV_p" style="color: red;"></p> -->
+
                   <div class="input-fields hide"> 
                     <label>SrNo</label> 
                     <input type="text" name="bus_SrNoV" id="bus_SrNoV" >
@@ -445,14 +485,14 @@ if (isset($_POST['btnadd'])) {
                   </div>
 
                  <div class="input-fields">  
-                    <label>Business Name</label><span class="steric">*</span>  
-                    <input type="text" name="bus_sec_nameV_p" id="bus_sec_nameV_p" class="bus_sec_nameV_p" placeholder="Enter Here Business Name !">   
+                    <label>Business Name</label>  
+                    <input type="text" name="bus_sec_nameV_p" id="bus_sec_nameV_p" class="bus_sec_nameV_p" maxlength="30" placeholder="Enter Here Business Name !"><span class="steric">*</span>   
                   </div>  
                   </div>
                    
 
                    <div class="input-fields"> 
-                    <label>Commodity</label><span class="steric">*</span>   
+                    <label>Commodity</label>  
                      <select name="commoditiesV_p" id="commoditiesV_p" class="commoditiesV_p" >    
                   </div>
                           <option value="Select">Select </option>
@@ -473,11 +513,11 @@ if (isset($_POST['btnadd'])) {
 
                    <div class="input-fields">  
                     <label>Active</label> 
-                    <input type="checkbox" name="statusV" id="statusV">    
+                    <input type="checkbox" name="statusV_p" id="statusV_p">    
                   </div>
 
-                  
-                  <button type="submit" name="btnedit1" >Submit</button>
+                  <button type="submit" name="btnadd1" onclick="FormValidation3(); return false;">Submit</button>
+                  <!-- <button type="submit" name="btnedit3" >Submit</button> -->
                 </div>
                 <div class="modal-footer">
                   <p>Add Related content if needed</p>
@@ -487,6 +527,53 @@ if (isset($_POST['btnadd'])) {
               
             </div>
         </div>
+
+        <!-- Modal Two-->
+               <div class="modal fade confirmTable-modal" id="popupMEdit1" role="dialog">
+                    <div class="modal-dialog">
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Confirmation</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>Are You Sure You Want to Submit?</p>
+                          <button type="submit" name="btnadd">Yes</button>
+                              <button type="button" name="btnDelete_N" data-dismiss="modal" >No</button>
+
+                        </div>
+                        <div class="modal-footer">
+                          <p>Add Related content if needed</p>
+                          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                        </div>
+                      </div>
+                    </div>
+               </div>
+
+
+        <!-- Modal Two-->
+               <div class="modal fade confirmTable-modal" id="popupMEdit2" role="dialog">
+                    <div class="modal-dialog">
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Confirmation</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>Are You Sure You Want to Submit?</p>
+                          <button type="submit" name="btnedit1">Yes</button>
+                              <button type="button" name="btnDelete_N" data-dismiss="modal" >No</button>
+
+                        </div>
+                        <div class="modal-footer">
+                          <p>Add Related content if needed</p>
+                          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                        </div>
+                      </div>
+                    </div>
+               </div>
 
       <div class="modal fade symfra_popup2" id="popupExport" role="dialog">
             <div class="modal-dialog">
@@ -566,7 +653,7 @@ if (isset($_POST['btnadd'])) {
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Log Chain Details</h4>
+                  <h4 class="modal-title">Change Logs Details</h4>
                 </div>
 
                   <table id="dpttable1" class="display nowrap no-footer" style="width:100%">
@@ -705,8 +792,8 @@ if (isset($_POST['btnadd'])) {
     var re = /\S+@\S+\.\S+/;
       var missingVal = 0;
 
-      var pro_name=document.getElementById('pro_name').value;
-      var pro_description=document.getElementById('pro_description').value;
+      var bus_sec_name=document.getElementById('bus_sec_name').value;
+      // var pro_description=document.getElementById('pro_description').value;
      
      
       var summary = "Summary: ";
@@ -726,28 +813,28 @@ if (isset($_POST['btnadd'])) {
       }
 
       
-      if(commodities == "")
-      {
-          document.getElementById('commodities').style.borderColor = "red";
-          missingVal = 1;
-          // summary += "Firstname is required.";
-          document.getElementById("V_commodities").innerHTML = "Commodity Code is required.";
-      }
-      if(commodities != "")
-      {
-          document.getElementById('commodities').style.borderColor = "white";
-          document.getElementById("V_commodities").innerHTML = "";
+      // if(commodities == "")
+      // {
+      //     document.getElementById('commodities').style.borderColor = "red";
+      //     missingVal = 1;
+      //     // summary += "Firstname is required.";
+      //     document.getElementById("V_commodities").innerHTML = "Commodity Code is required.";
+      // }
+      // if(commodities != "")
+      // {
+      //     document.getElementById('commodities').style.borderColor = "white";
+      //     document.getElementById("V_commodities").innerHTML = "";
 
-      }
+      // }
 
       
       
       if (missingVal != 1)
       {
         document.getElementById('bus_sec_name').style.borderColor = "white";
-        document.getElementById('commodities').style.borderColor = "white";
+        // document.getElementById('commodities').style.borderColor = "white";
        
-        $("#popupMEdit").modal();
+        $("#popupMEdit1").modal();
         
       }
 
@@ -759,139 +846,204 @@ if (isset($_POST['btnadd'])) {
   }
 </script>
 
+<script type="text/javascript">
+   function FormValidation3()
+   {
+    var regexp = /^[a-z]*$/i;
+    var regexp2 = /^[0-9]*$/i;
+    var re = /\S+@\S+\.\S+/;
+      var missingVal = 0;
 
-<script>
-$(document).ready(function(){
-  $("#exportBtn").click(function(){
-    $("#popupExport").modal();
-  });
-});
+      var bus_sec_nameV_p=document.getElementById('bus_sec_nameV_p').value;
+      // var pro_description=document.getElementById('pro_description').value;
+     
+     
+      var summary = "Summary: ";
+
+      if(bus_sec_nameV_p == "")
+      {
+          document.getElementById('bus_sec_nameV_p').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("EV_bus_sec_nameV_p").innerHTML = "Business Code is required.";
+      }
+      if(bus_sec_nameV_p != "")
+      {
+          document.getElementById('bus_sec_nameV_p').style.borderColor = "white";
+          document.getElementById("EV_bus_sec_nameV_p").innerHTML = "";
+
+      }
+
+      
+      // if(commodities == "")
+      // {
+      //     document.getElementById('commodities').style.borderColor = "red";
+      //     missingVal = 1;
+      //     // summary += "Firstname is required.";
+      //     document.getElementById("V_commodities").innerHTML = "Commodity Code is required.";
+      // }
+      // if(commodities != "")
+      // {
+      //     document.getElementById('commodities').style.borderColor = "white";
+      //     document.getElementById("V_commodities").innerHTML = "";
+
+      // }
+
+      
+      
+      if (missingVal != 1)
+      {
+        document.getElementById('bus_sec_nameV_p').style.borderColor = "white";
+        // document.getElementById('commodities').style.borderColor = "white";
+       
+        $("#popupMEdit2").modal();
+        
+      }
+
+      if (missingVal == 1)
+      {
+        document.getElementById("formSummary2").textContent="Error: ";
+      }
+      
+  }
 </script>
 
 <script>
-$(document).ready(function(){
-  $("#btnDelete_C").click(function(){
-    $("#deleteTable_C").modal();
+  $(document).ready(function(){
+    $("#exportBtn").click(function(){
+      $("#popupExport").modal();
+    });
   });
-});
 </script>
 
 <script>
-$(document).ready(function(){
-  $("#btnDelete_C1").click(function(){
-    $("#deleteTable_C1").modal();
+  $(document).ready(function(){
+    $("#btnDelete_C").click(function(){
+      $("#deleteTable_C").modal();
+    });
   });
-});
 </script>
 
 <script>
-$(document).ready(function(){
-  $("#myBtn").click(function(){
-    $("#popupMEdit").modal();
+  $(document).ready(function(){
+    $("#btnDelete_C1").click(function(){
+      $("#deleteTable_C1").modal();
+    });
   });
-});
 </script>
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
-    <script type="text/javascript">
-        $("body").on("click", "#btnExport", function () {
-            html2canvas($('#usrtble')[0], {
-                onrendered: function (canvas) {
-                    var data = canvas.toDataURL();
-                    var docDefinition = {
-                        content: [{
-                            image: data,
-                            width: 500
-                        }]
-                    };
-                    pdfMake.createPdf(docDefinition).download("Table.pdf");
-                }
-            });
+<script>
+  $(document).ready(function(){
+    $("#myBtn").click(function(){
+      $("#popupMEdit").modal();
+    });
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+
+<script type="text/javascript">
+    $("body").on("click", "#btnExport", function () {
+        html2canvas($('#usrtble')[0], {
+            onrendered: function (canvas) {
+                var data = canvas.toDataURL();
+                var docDefinition = {
+                    content: [{
+                        image: data,
+                        width: 500
+                    }]
+                };
+                pdfMake.createPdf(docDefinition).download("Table.pdf");
+            }
         });
-    </script>
-<script type="text/javascript">
-$(document).on('click', '.editData', function(){  
-  var employee_id = $(this).attr("id"); 
-
-      $.ajax({
-         url:"fatch_business.php",  
-                method:"GET",  
-                data:{employee_id:employee_id},  
-                dataType:"json",  
-         success: function(data) {
-              $('#bus_SrNoV').val(data.SrNo);  
-              //$('.cur_coun_nameV').html(data.cur_coun_name);
-              $('#bus_sec_nameV_p').val(data.bus_sec_name);  
-              $('.commoditiesV_p').html(data.commodities);    
-
-              var checkif = data.status;
-              if (checkif == "Active") {
-                 $('#statusV').attr("checked", true);
-                 document.getElementByID("statusV").checked = true;
-              }
-              else
-              {
-                $('#statusV').attr("checked", false);
-              }
-              /*$('#employee_id').val(data.id); */
-              // $("#"+id).btnedit1();
-              // $("#btn1").modal('hide');
-              // alert('Running');
-               
-         }
-      });
-    
-});
+    });
 </script>
-<script type="text/javascript">
-$(document).on('click', '.editData', function(){  
-  var employee_id = $(this).attr("id"); 
 
-      $.ajax({
-         url:"fatch_business2.php",  
-                method:"GET",  
-                data:{employee_id:employee_id},  
-                dataType:"text",  
-         success: function(data) {
-              /*$('#country_SrNoV').val(data.SrNo);  
-              $('#country_codeV').val(data.country_code);  
-              $('#country_nameV').val(data.country_name);  */
-              $('.commoditiesV_p').html(data);  
-              /*$('#employee_id').val(data.id); */
-              // $("#"+id).btnedit1();
-              // $("#btn1").modal('hide');
-              // alert('Running');
-              
-         }
-      });
-    
-});
+<script type="text/javascript">
+  $(document).on('click', '.editData', function(){  
+    var employee_id = $(this).attr("id"); 
+
+        $.ajax({
+           url:"fatch_business.php",  
+                  method:"GET",  
+                  data:{employee_id:employee_id},  
+                  dataType:"json",  
+           success: function(data) {
+                $('#bus_SrNoV').val(data.SrNo);  
+                //$('.cur_coun_nameV').html(data.cur_coun_name);
+                $('#bus_sec_nameV_p').val(data.bus_sec_name);  
+                $('.commoditiesV_p').html(data.commodities);    
+
+                var checkif = data.status;
+                if (checkif == "Active") {
+                   $('#statusV').attr("checked", true);
+                   document.getElementByID("statusV").checked = true;
+                }
+                else
+                {
+                  $('#statusV').attr("checked", false);
+                }
+                /*$('#employee_id').val(data.id); */
+                // $("#"+id).btnedit1();
+                // $("#btn1").modal('hide');
+                // alert('Running');
+                 
+           }
+        });
+      
+  });
 </script>
 
 
+<script type="text/javascript">
+  $(document).on('click', '.editData', function(){  
+    var employee_id = $(this).attr("id"); 
+
+        $.ajax({
+           url:"fatch_business2.php",  
+                  method:"GET",  
+                  data:{employee_id:employee_id},  
+                  dataType:"text",  
+           success: function(data) {
+                /*$('#country_SrNoV').val(data.SrNo);  
+                $('#country_codeV').val(data.country_code);  
+                $('#country_nameV').val(data.country_name);  */
+                $('.commoditiesV_p').html(data);  
+                /*$('#employee_id').val(data.id); */
+                // $("#"+id).btnedit1();
+                // $("#btn1").modal('hide');
+                // alert('Running');
+                
+           }
+        });
+      
+  });
+</script>
+
+
 
 <script type="text/javascript">
-$(".remove").click(function(){
-  var id = $(this).parents("tr").attr("id");
+  $(".remove").click(function(){
+    var id = $(this).parents("tr").attr("id");
 
-      $.ajax({
-         url: 'deletedepartCode_U.php?dept_ID=<?php echo $dept_ID; ?>',
-         type: 'GET',
-         data: {id: id},
-         error: function() {
+        $.ajax({
+           url: 'deletedepartCode_U.php?dept_ID=<?php echo $dept_ID; ?>',
+           type: 'GET',
+           data: {id: id},
+           error: function() {
 
-            alert('Something is wrong');
-         },
-         success: function(data) { 
-              $("#"+id).remove();
-              $("#deleteTable_C2").modal('hide');
-              alert('Running');
-               
-         }
-      });
-    
-});
+              alert('Something is wrong');
+           },
+           success: function(data) { 
+                $("#"+id).remove();
+                $("#deleteTable_C2").modal('hide');
+                alert('Running');
+                 
+           }
+        });
+      
+  });
 </script>
 
 <!-- addmore ajaxpopup -->
@@ -915,6 +1067,66 @@ $(".remove").click(function(){
             }
       });
 
+  }
+
+   function FormValidation2()
+   {
+    var regexp = /^[a-z]*$/i;
+    var regexp2 = /^[0-9]*$/i;
+    var re = /\S+@\S+\.\S+/;
+      var missingVal = 0;
+
+      var bus_sec_name=document.getElementById('bus_sec_name').value;
+      // var pro_description=document.getElementById('pro_description').value;
+     
+     
+      var summary = "Summary: ";
+
+      if(bus_sec_name == "")
+      {
+          document.getElementById('bus_sec_name').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_bus_sec_name").innerHTML = "Business Code is required.";
+      }
+      if(bus_sec_name != "")
+      {
+          document.getElementById('bus_sec_name').style.borderColor = "white";
+          document.getElementById("V_bus_sec_name").innerHTML = "";
+
+      }
+
+      
+      // if(commodities == "")
+      // {
+      //     document.getElementById('commodities').style.borderColor = "red";
+      //     missingVal = 1;
+      //     // summary += "Firstname is required.";
+      //     document.getElementById("V_commodities").innerHTML = "Commodity Code is required.";
+      // }
+      // if(commodities != "")
+      // {
+      //     document.getElementById('commodities').style.borderColor = "white";
+      //     document.getElementById("V_commodities").innerHTML = "";
+
+      // }
+
+      
+      
+      if (missingVal != 1)
+      {
+        document.getElementById('bus_sec_name').style.borderColor = "white";
+        // document.getElementById('commodities').style.borderColor = "white";
+       
+        addMore();
+        
+      }
+
+      if (missingVal == 1)
+      {
+        document.getElementById("formSummary").textContent="Error: ";
+      }
+      
   }
 </script>
 
@@ -953,10 +1165,10 @@ $(".remove").click(function(){
 </script>
 
 <script type="text/javascript">
-function logUserFunc()
-{
-  $("#logUser_Modal").modal();
-}
+  function logUserFunc()
+  {
+    $("#logUser_Modal").modal();
+  }
 </script>
 
 
