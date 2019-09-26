@@ -97,7 +97,7 @@ if(isset($_POST["btnDelete"]))
 if(isset($_POST['btnedit1']))
 {
 
-  $spo_descriptionV_n = $_POST['spo_descriptionV_p'];
+  // $spo_descriptionV_n = $_POST['spo_descriptionV_p'];
   $spo_nameV_n = $_POST['spo_nameV_p'];
   $spo_SrNoV = $_POST['spo_SrNoV'];
   if (isset($_POST['statusV_p'])) {
@@ -107,6 +107,13 @@ if(isset($_POST['btnedit1']))
   else
   {
     $statusV_n='Deactive';
+  }
+
+    $selectPrev = mysqli_query($con, "SELECT * FROM spo_setup WHERE SrNo='$spo_SrNoV' ");
+  while ($rowPrev = mysqli_fetch_array($selectPrev))
+  {
+    $spo_nameV_p = $rowPrev['spo_name'];
+    $statusV_p = $rowPrev['status'];
   }
 
 
@@ -136,16 +143,16 @@ if(isset($_POST['btnedit1']))
   $initChangeLog = "INSERT INTO chainlog (instance, formName, record_id, createBy, createDate, updateBy, updateDate, perValue, newValue)";
   $initChangeLog .= " VALUES ('$newID1', 'SPO', '$SrNo', '$createBy', '$createDate', '$loginUser', '$todayDate'";
 
-  if ($spo_descriptionV_n != $spo_descriptionV_p)
-  {
-    $initQuery .= ", spo_description='$spo_descriptionV_n'";
-    $initChangeLog2 = ", '$spo_descriptionV_p', '$spo_descriptionV_n')";
+  // if ($spo_descriptionV_n != $spo_descriptionV_p)
+  // {
+  //   $initQuery .= ", spo_description='$spo_descriptionV_n'";
+  //   $initChangeLog2 = ", '$spo_descriptionV_p', '$spo_descriptionV_n')";
 
-     $finalChangeLog = $initChangeLog . $initChangeLog2;
-  // echo $finalChangeLog;
+  //    $finalChangeLog = $initChangeLog . $initChangeLog2;
+  // // echo $finalChangeLog;
 
-  mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
-  }
+  // mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+  // }
 
    if ($spo_nameV_n != $spo_nameV_p)
   {
@@ -222,11 +229,11 @@ if(isset($_POST['btnedit1']))
 
 if (isset($_POST['submitBtn1'])) {
 
-   $instance =$instance;
+  $instance =$instance;
   $record_id =$SrNo1;
   $createBy =$loginUser;
   $createDate =$todayDate;
-  $spo_description = $_POST['spo_description'];
+  // $spo_description = $_POST['spo_description'];
   $spo_name= $_POST['spo_name'];
   if (isset($_POST['status'])) {
     $status='Active';
@@ -238,7 +245,7 @@ if (isset($_POST['submitBtn1'])) {
   }
 
     
- $insertQuery = mysqli_query($con, "insert into spo_setup (spo_name,spo_description, status) values ('$spo_name','$spo_description' ,'$status')");
+ $insertQuery = mysqli_query($con, "insert into spo_setup (spo_name, status) values ('$spo_name','$status')");
 
   $insertQuery2 = mysqli_query($con, "insert into chainlog (instance, formName, record_id,createBy, createDate) values ('$newID1', 'SPO', '$SrNo1', '$loginUser1', '$todayDate1') ");
  
@@ -454,13 +461,13 @@ if (isset($_POST['submitBtn1'])) {
 
                    <div class="input-fields"> 
                     <label>SPO Name</label> 
-                    <input type="text" name="spo_name" id="spo_name" placeholder="Enter Here SPO Name!"><span class="steric">*</span>    
+                    <input type="text" name="spo_name" id="spo_name" placeholder="Enter Here SPO Name!" maxlength="40"><span class="steric">*</span>    
                   </div>
 
-                  <div class="input-fields">  
+                  <!-- <div class="input-fields">  
                     <label>SPO Description</label> 
                     <input type="text" name="spo_description" id="spo_description" maxlength="40" placeholder="Enter Here SPO Description !"><span class="steric">*</span>    
-                  </div>
+                  </div> -->
                   <div class="input-fields">  
                     <label>Active</label> 
                     <input type="checkbox" name="status" id="status">    
@@ -502,13 +509,13 @@ if (isset($_POST['submitBtn1'])) {
                        </div>
                   <div class="input-fields"> 
                     <label>SPO Name</label> 
-                    <input type="text" name="spo_nameV_p" id="spo_nameV_p" placeholder="Enter Here SPO Name!"><span class="steric">*</span>     
+                    <input type="text" name="spo_nameV_p" id="spo_nameV_p" maxlength="40" placeholder="Enter Here SPO Name!"><span class="steric">*</span>     
                   </div>
 
-                  <div class="input-fields">  
+                  <!-- <div class="input-fields">  
                     <label>SPO Description</label> 
                     <input type="text" name="spo_descriptionV_p" id="spo_descriptionV_p" maxlength="40" placeholder="Enter Here SPO Description !"><span class="steric">*</span>     
-                  </div>
+                  </div> -->
                   <div class="input-fields">  
                     <label>Active</label> 
                     <input type="checkbox" name="statusV_p" id="statusV_p">    
@@ -685,7 +692,7 @@ if (isset($_POST['submitBtn1'])) {
                                   <tr>
                                    <th><input type="checkbox" onchange="checkAll(this)" name="chk[]" /></th>
                                   <th>SPO Name</th>
-                                  <th>SPO Description</th>
+                                  <!-- <th>SPO Description</th> -->
                                   <th>Status</th>
                                   <th>Edit</th>
                                   <th>Action</th>
@@ -702,7 +709,7 @@ if (isset($_POST['submitBtn1'])) {
                         <tr>
                           <?php echo '<td><input type="checkbox" name="user_check[]" value="'. $rowspo['SrNo'] .' " /></td>'; ?>
                           <td><?php echo $rowspo['spo_name']; ?></td>
-                          <td><?php echo $rowspo['spo_description']; ?></td>
+                          <!-- <td><?php echo $rowspo['spo_description']; ?></td> -->
                           <td><?php echo $rowspo['status']; ?></td>
                           <td><a href="#" class="editData" data-toggle="modal" id="<?php echo $rowspo['SrNo']; ?>" data-target="#btn1" >Edit</td> 
                           <?php
@@ -805,7 +812,7 @@ $(document).ready(function(){
            success: function(data) {
                 $('#spo_SrNoV').val(data.SrNo);  
                 $('#spo_nameV_p').val(data.spo_name);  
-                $('#spo_descriptionV_p').val(data.spo_description);  
+                // $('#spo_descriptionV_p').val(data.spo_description);  
 
                  var checkif = data.status;
                 if (checkif == "Active") {
@@ -842,7 +849,7 @@ $(document).ready(function(){
               
               alert("Done");
               document.getElementById("spo_name").value = "";
-              document.getElementById("spo_description").value = "";
+              // document.getElementById("spo_description").value = "";
              
             }
       });
@@ -857,7 +864,7 @@ $(document).ready(function(){
       var missingVal = 0;
 
       var spo_name=document.getElementById('spo_name').value;
-      var spo_description=document.getElementById('spo_description').value;
+      // var spo_description=document.getElementById('spo_description').value;
      
       var summary = "Summary: ";
 
@@ -876,19 +883,19 @@ $(document).ready(function(){
       }
 
       
-      if(spo_description == "")
-      {
-          document.getElementById('spo_description').style.borderColor = "red";
-          missingVal = 1;
-          // summary += "Firstname is required.";
-          document.getElementById("V_spo_description").innerHTML = "Spo Description is required.";
-      }
-      if(spo_description != "")
-      {
-          document.getElementById('spo_description').style.borderColor = "white";
-          document.getElementById("V_spo_description").innerHTML = "";
+      // if(spo_description == "")
+      // {
+      //     document.getElementById('spo_description').style.borderColor = "red";
+      //     missingVal = 1;
+      //     // summary += "Firstname is required.";
+      //     document.getElementById("V_spo_description").innerHTML = "Spo Description is required.";
+      // }
+      // if(spo_description != "")
+      // {
+      //     document.getElementById('spo_description').style.borderColor = "white";
+      //     document.getElementById("V_spo_description").innerHTML = "";
 
-      }
+      // }
 
      
       
@@ -896,7 +903,7 @@ $(document).ready(function(){
       if (missingVal != 1)
       {
         document.getElementById('spo_name').style.borderColor = "white";
-        document.getElementById('spo_description').style.borderColor = "white";
+        // document.getElementById('spo_description').style.borderColor = "white";
         //document.getElementById('mop_p_c').style.borderColor = "white";
        
          addMore();
@@ -962,7 +969,7 @@ $(document).ready(function(){
       var missingVal = 0;
 
       var spo_name=document.getElementById('spo_name').value;
-      var spo_description=document.getElementById('spo_description').value;
+      // var spo_description=document.getElementById('spo_description').value;
      
       var summary = "Summary: ";
 
@@ -981,19 +988,19 @@ $(document).ready(function(){
       }
 
       
-      if(spo_description == "")
-      {
-          document.getElementById('spo_description').style.borderColor = "red";
-          missingVal = 1;
-          // summary += "Firstname is required.";
-          document.getElementById("V_spo_description").innerHTML = "Spo Description is required.";
-      }
-      if(spo_description != "")
-      {
-          document.getElementById('spo_description').style.borderColor = "white";
-          document.getElementById("V_spo_description").innerHTML = "";
+      // if(spo_description == "")
+      // {
+      //     document.getElementById('spo_description').style.borderColor = "red";
+      //     missingVal = 1;
+      //     // summary += "Firstname is required.";
+      //     document.getElementById("V_spo_description").innerHTML = "Spo Description is required.";
+      // }
+      // if(spo_description != "")
+      // {
+      //     document.getElementById('spo_description').style.borderColor = "white";
+      //     document.getElementById("V_spo_description").innerHTML = "";
 
-      }
+      // }
 
      
 
@@ -1002,7 +1009,7 @@ $(document).ready(function(){
       if (missingVal != 1)
       {
         document.getElementById('spo_name').style.borderColor = "white";
-        document.getElementById('spo_description').style.borderColor = "white";
+        // document.getElementById('spo_description').style.borderColor = "white";
        
         $("#popupMEdit1").modal();
         
@@ -1025,7 +1032,7 @@ $(document).ready(function(){
       var missingVal = 0;
 
       var spo_nameV_p=document.getElementById('spo_nameV_p').value;
-      var spo_descriptionV_p=document.getElementById('spo_descriptionV_p').value;
+      // var spo_descriptionV_p=document.getElementById('spo_descriptionV_p').value;
      
       var summary = "Summary: ";
 
@@ -1044,19 +1051,19 @@ $(document).ready(function(){
       }
 
       
-      if(spo_descriptionV_p == "")
-      {
-          document.getElementById('spo_descriptionV_p').style.borderColor = "red";
-          missingVal = 1;
-          // summary += "Firstname is required.";
-          document.getElementById("EV_spo_descriptionV_p").innerHTML = "Spo Description is required.";
-      }
-      if(spo_descriptionV_p != "")
-      {
-          document.getElementById('spo_descriptionV_p').style.borderColor = "white";
-          document.getElementById("EV_spo_descriptionV_p").innerHTML = "";
+      // if(spo_descriptionV_p == "")
+      // {
+      //     document.getElementById('spo_descriptionV_p').style.borderColor = "red";
+      //     missingVal = 1;
+      //     // summary += "Firstname is required.";
+      //     document.getElementById("EV_spo_descriptionV_p").innerHTML = "Spo Description is required.";
+      // }
+      // if(spo_descriptionV_p != "")
+      // {
+      //     document.getElementById('spo_descriptionV_p').style.borderColor = "white";
+      //     document.getElementById("EV_spo_descriptionV_p").innerHTML = "";
 
-      }
+      // }
 
      
 
@@ -1065,7 +1072,7 @@ $(document).ready(function(){
       if (missingVal != 1)
       {
         document.getElementById('spo_nameV_p').style.borderColor = "white";
-        document.getElementById('spo_descriptionV_p').style.borderColor = "white";
+        // document.getElementById('spo_descriptionV_p').style.borderColor = "white";
        
         $("#popupMEdit2").modal();
         

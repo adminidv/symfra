@@ -64,7 +64,7 @@ include 'manage/connection.php';
         <thead>
             <tr>
                                    <th>SPO Name</th>
-                                  <th>SPO Description</th>
+                                  <!-- <th>SPO Description</th> -->
                                   <th>Status</th>
 
                                    </tr>
@@ -80,7 +80,7 @@ include 'manage/connection.php';
                         <tr>
                           
                           <td><?php echo $rowspo['spo_name']; ?></td>
-                          <td><?php echo $rowspo['spo_description']; ?></td>
+                          <!-- <td><?php echo $rowspo['spo_description']; ?></td> -->
                           <td><?php echo $rowspo['status']; ?></td>
                         </tr>
 

@@ -45,7 +45,7 @@ $selectspo= mysqli_query($con, "SELECT * FROM  spo_setup");
                    <tr>
                                    <!-- <th><input type="checkbox" onchange="checkAll(this)" name="chk[]" />Select All </th> -->
                                    <th>SPO Name</th>
-                                  <th>SPO Description</th>
+                                  <!-- <th>SPO Description</th> -->
                                   <th>Status</th>
 
                                    </tr>
@@ -60,7 +60,7 @@ $selectspo= mysqli_query($con, "SELECT * FROM  spo_setup");
                         <tr>
                           
                           <td><?php echo $rowspo['spo_name']; ?></td>
-                          <td><?php echo $rowspo['spo_description']; ?></td>
+                          <!-- <td><?php echo $rowspo['spo_description']; ?></td> -->
                           <td><?php echo $rowspo['status']; ?></td>
                         </tr>
 
