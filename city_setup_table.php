@@ -7,6 +7,48 @@ $subRibbon = 'addUser';
 $Quick = 'Hide';
 $Quickhr = '';
 
+
+
+// For Change log Edit
+$userID = $_SESSION['user'];
+//login user
+$loginUser= $_SESSION['user'];
+// Today date func
+$todayDate = date("Y-m-d");
+
+// for Change log ID Edit
+$selectSrNo = mysqli_query($con, "SELECT * FROM city_setup ORDER BY SrNo DESC LIMIT 1");
+while ($rowSrNo = mysqli_fetch_array($selectSrNo))
+{
+  $SrNo = $rowSrNo['SrNo'];
+  
+}
+
+
+// Add Change log
+//login user
+$loginUser1= $_SESSION['user'];
+// Today date func
+$todayDate1 = date("Y-m-d");
+
+// for Change log ID Add
+$selectSrNo = mysqli_query($con, "SELECT * FROM city_setup ORDER BY SrNo DESC LIMIT 1");
+while ($rowSrNo = mysqli_fetch_array($selectSrNo))
+{
+  $SrNo = $rowSrNo['SrNo'];
+  $newSrNo1 = $SrNo + 1;
+  $SrNo1 = $newSrNo1;
+
+}
+
+// For Change Log Record
+$selectLastID1 = mysqli_query($con, "SELECT * FROM chainlog WHERE record_id = '$SrNo' ORDER BY instance DESC LIMIT 1  ");
+  $rowLastID1 = mysqli_fetch_array($selectLastID1, MYSQLI_ASSOC);
+
+  $lastID1 = $rowLastID1['instance'];
+  $newID1 = $lastID1 + 1;
+  $instance = $newID1;
+
 // fatch data in currency setup
  $selectCity = mysqli_query($con, "select * from   city_setup ");
 
@@ -55,23 +97,128 @@ if(isset($_POST['btnedit1']))
 {
   // $empNo = $_POST['empNo'];
   $city_SrNoV= $_POST['city_SrNoV'];
-  $city_codeV = $_POST['city_codeV'];
-  $city_nameV = $_POST['city_nameV'];
-  $country_nameV = $_POST['country_nameV'];
-  $city_tel_codeV = $_POST['city_tel_codeV'];
+  $city_codeV_n = $_POST['city_codeV_p'];
+  $city_nameV_n = $_POST['city_nameV_p'];
+  $country_nameV_n = $_POST['country_nameV_p'];
+  $city_tel_codeV_n = $_POST['city_tel_codeV_p'];
 
-   if (isset($_POST['statusV'])) {
-    $statusV='Active';
+   if (isset($_POST['statusV_p'])) {
+    $statusV_n='Active';
 
   }
   else
   {
-    $statusV='Deactive';
+    $statusV_n='Deactive';
   }
+
+  $selectPrev = mysqli_query($con, "SELECT * FROM city_setup WHERE SrNo='$city_SrNoV' ");
+  while ($rowPrev = mysqli_fetch_array($selectPrev))
+  {
+    $city_codeV_p = $rowPrev['city_code'];
+    $city_nameV_p = $rowPrev['city_name'];
+    $country_nameV_p = $rowPrev['country_name'];
+    $city_tel_codeV_p = $rowPrev['city_tel_code'];
+    $statusV_p = $rowPrev['status'];
+  }
+
+   $clause = " WHERE SrNo='$city_SrNoV'";
+  $initQuery = "UPDATE city_setup SET SrNo='$city_SrNoV' ";
+
+  $selectLastID1 = mysqli_query($con, "SELECT * FROM chainlog WHERE record_id = '$SrNo' ORDER BY instance DESC LIMIT 1  ");
+  $rowLastID1 = mysqli_fetch_array($selectLastID1, MYSQLI_ASSOC);
+
+  $lastID1 = $rowLastID1['instance'];
+  $newID1 = $lastID1 + 1;
+  $instance = $newID1;
+
+  $selectCreate = mysqli_query($con, "SELECT * FROM chainlog WHERE record_id = '$SrNo' ");
+  while ($rowCreate = mysqli_fetch_array($selectCreate))
+  {
+    if ($rowCreate['createBy'] != "")
+    {
+      $createBy = $rowCreate['createBy'];
+    }
+    if ($rowCreate['createDate'] != "")
+    {
+      $createDate = $rowCreate['createDate'];
+    }
+  }
+
+  $initChangeLog = "INSERT INTO chainlog (instance, formName, record_id, createBy, createDate, updateBy, updateDate, perValue, newValue)";
+  $initChangeLog .= " VALUES ('$newID1', 'City', '$SrNo', '$createBy', '$createDate', '$loginUser', '$todayDate'";
+
+  if ($city_codeV_n != $city_codeV_p)
+  {
+    $initQuery .= ", city_code='$city_codeV_n'";
+    $initChangeLog2 = ", '$city_codeV_p','$city_codeV_n')";
+
+     $finalChangeLog = $initChangeLog . $initChangeLog2;
+  // echo $finalChangeLog;
+
+  mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+  }
+
+   if ($city_nameV_n != $city_nameV_p)
+  {
+    $initQuery .= ", city_name='$city_nameV_n'";
+    $initChangeLog2 = ",'$city_nameV_p','$city_nameV_n') ";
+
+     $finalChangeLog = $initChangeLog . $initChangeLog2;
+  // echo $finalChangeLog;
+
+  mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+  }
+
+  if ($country_nameV_n != $country_nameV_p)
+  {
+    $initQuery .= ", country_name='$country_nameV_n'";
+    $initChangeLog2 = ",'$country_nameV_p','$country_nameV_n') ";
+
+     $finalChangeLog = $initChangeLog . $initChangeLog2;
+  // echo $finalChangeLog;
+
+  mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+  }
+
+ 
+
+  if ($city_tel_codeV_n != $city_tel_codeV_p)
+  {
+    $initQuery .= ", city_tel_code='$city_tel_codeV_n'";
+    $initChangeLog2 = ",'$city_tel_codeV_p','$city_tel_codeV_n') ";
+
+     $finalChangeLog = $initChangeLog . $initChangeLog2;
+  // echo $finalChangeLog;
+
+  mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+  }
+
+   if ($statusV_n != $statusV_p)
+  {
+    $initQuery .= ", status='$statusV_n'";
+    $initChangeLog2 = ",'$statusV_p','$statusV_n') ";
+
+     $finalChangeLog = $initChangeLog . $initChangeLog2;
+  // echo $finalChangeLog;
+
+  mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+  }
+
+  // if ($statusV_n != $statusV_p)
+  // {
+  //   $initQuery .= ", status='$statusV_n'";
+  //   $initChangeLog2 = ", '$statusV_p', '$statusV_n') ";
+  // }
+
+  $finalQuery = $initQuery . $clause;
+  // echo $finalQuery . "<br>";
+
+  mysqli_query($con, $finalQuery) or die(mysqli_error($con));
+
  
 
 // update qury
-   $updateQuery12 = mysqli_query($con, "UPDATE  city_setup SET city_code='$city_codeV',city_name='$city_nameV',country_name='$country_nameV',city_tel_code='$city_tel_codeV',status='$statusV' WHERE SrNo='$city_SrNoV' ") or die(mysqli_error($con));
+   // $updateQuery12 = mysqli_query($con, "UPDATE  city_setup SET city_code='$city_codeV',city_name='$city_nameV',country_name='$country_nameV',city_tel_code='$city_tel_codeV',status='$statusV' WHERE SrNo='$city_SrNoV' ") or die(mysqli_error($con));
 
     $msg = "Record is inserted successfully.";
   function alert($msg)
@@ -110,6 +257,11 @@ if(isset($_POST['btnedit1']))
 // click Add Currency btn
 
 if (isset($_POST['submitBtn'])) {
+
+  $instance =$instance;
+  $record_id =$SrNo1;
+  $createBy =$loginUser;
+  $createDate =$todayDate;
   $city_code = $_POST['city_code'];
   $city_name = $_POST['city_name'];
   $country_name = $_POST['country_name'];
@@ -124,6 +276,8 @@ if (isset($_POST['submitBtn'])) {
   }
 //  insert qurey
  $insertQuery = mysqli_query($con, "insert into city_setup (city_code,city_name,country_name,city_tel_code, status) values ('$city_code','$city_name' ,'$country_name','$city_tel_code','$status')");
+
+  $insertQuery2 = mysqli_query($con, "insert into chainlog (instance, formName, record_id,createBy, createDate) values ('$newID1', 'City', '$SrNo1', '$loginUser1', '$todayDate1') ");
  
  header("Location: city_setup_table.php");
 
@@ -266,6 +420,30 @@ if (isset($_POST['submitBtn'])) {
                       </div>
                     </div>
                </div>
+
+
+                <!-- Modal Two-->
+               <div class="modal fade confirmTable-modal" id="popupMEdit2" role="dialog">
+                    <div class="modal-dialog">
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Confirmation</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>Are You Sure You Want to Submit?</p>
+                          <button type="submit" name="btnedit1">Yes</button>
+                              <button type="button" name="btnDelete_N" data-dismiss="modal" >No</button>
+
+                        </div>
+                        <div class="modal-footer">
+                          <p>Add Related content if needed</p>
+                          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                        </div>
+                      </div>
+                    </div>
+               </div>
   
 
       <div class="form_sec_action_btn col-md-12">
@@ -288,6 +466,7 @@ if (isset($_POST['submitBtn'])) {
          -->
          
           <button type="button" id="myBtn">  <small>Add City</small></button>
+          <button type="button" name="saveBtn" onclick="logUserFunc();"> <small>Change Logs</small></button>
       </div>
          
 
@@ -313,7 +492,7 @@ if (isset($_POST['submitBtn'])) {
                   </div>
                    <div class="input-fields"> 
                     <label>City Name</label> 
-                    <input type="text" name="city_name" id="city_name" maxlength="30" placeholder="Enter Here City Name">    
+                    <input type="text" name="city_name" id="city_name" maxlength="30" placeholder="Enter Here City Name"><span class="steric">*</span>    
                   </div>
 
                    <div class="input-fields"> 
@@ -332,7 +511,7 @@ if (isset($_POST['submitBtn'])) {
 
                           ?>
 
-                      </select>      
+                      </select><span class="steric">*</span>      
                   </div>
 
                   
@@ -366,6 +545,12 @@ if (isset($_POST['submitBtn'])) {
                   <h4 class="modal-title">Edit City Details</h4>
                 </div>
                 <div class="modal-body">
+
+                  <h4><label id="formSummary2" style="color: red;"></label></h4>
+                  <p id="EV_city_codeV_p" style="color: red;"></p>
+                  <p id="EV_city_nameV_p" style="color: red;"></p>
+                  <p id="EV_city_tel_codeV_p" style="color: red;"></p>
+
                   <div class="input-fields hide"> 
                     <label>SrNo</label> 
                     <input type="text" name="city_SrNoV" id="city_SrNoV" >
@@ -374,16 +559,16 @@ if (isset($_POST['submitBtn'])) {
 
                   <div class="input-fields">  
                     <label>City Code</label> 
-                    <input type="text" name="city_codeV" id="city_codeV" placeholder="Enter Here City Code !">    
+                    <input type="text" name="city_codeV_p" id="city_codeV_p" maxlength="5" placeholder="Enter Here City Code !">    
                   </div>
                    <div class="input-fields"> 
                     <label>City Name</label> 
-                    <input type="text" name="city_nameV" id="city_nameV" placeholder="Enter Here City Name!">    
+                    <input type="text" name="city_nameV_p" id="city_nameV_p" maxlength="30" placeholder="Enter Here City Name!"><span class="steric">*</span>    
                   </div>
 
                    <div class="input-fields"> 
                     <label>Country Name</label> 
-                     <select name="country_nameV" id="country_nameV" class="country_nameV" required>
+                     <select name="country_nameV_p" id="country_nameV_p" class="country_nameV_p" required>
                           <option value="Select">Select </option>
                           <!-- Drop Down list Country Name -->
                           <?php
@@ -397,21 +582,21 @@ if (isset($_POST['submitBtn'])) {
 
                           ?>
 
-                      </select>      
+                      </select><span class="steric">*</span>      
                   </div>
 
                   
                   <div class="input-fields">  
                     <label>City Telephone Code</label> 
-                    <input type="text" name="city_tel_codeV" id="city_tel_codeV" placeholder="Enter Here Telephone Code">
+                    <input type="text" name="city_tel_codeV_p" id="city_tel_codeV_p" maxlength="5" placeholder="Enter Here Telephone Code">
                   </div>
                    <div class="input-fields">  
                     <label>Active</label> 
-                    <input type="checkbox" name="statusV" id="statusV">    
+                    <input type="checkbox" name="statusV_p" id="statusV_p" class="statusV_p">    
                   </div>
 
-                  
-                  <button type="submit" name="btnedit1" >Submit</button>
+                  <button type="submit" name="btnedit2" onclick="FormValidation3(); return false;">Submit</button>
+                  <!-- <button type="submit" name="btnedit1" >Submit</button> -->
                 </div>
                 <div class="modal-footer">
                   <p>Add Related content if needed</p>
@@ -422,6 +607,69 @@ if (isset($_POST['submitBtn'])) {
             </div>
         </div>
       </div>
+
+      <!-- Show Log Chain -->
+      <div class="modal fade symfra_popup2" id="logUser_Modal" role="dialog">
+            <div class="modal-dialog">
+              <!-- Show Log Chain -->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Change Logs Details</h4>
+                </div>
+
+                  <table id="dpttable1" class="display nowrap no-footer" style="width:100%">
+                     
+                     <thead>
+                      <tr>
+                      <th>SrNo</th>
+                      <th>Instance</th>
+                      <th>Record ID</th>
+                      <th>Created By</th>
+                      <th>Created Date</th>
+                      <th>Update By</th>
+                      <th>Update Date</th>
+                      <th>Pervious Value</th>
+                      <th>New Value</th>
+                      </tr>
+
+                     </thead>
+                     <tbody>
+                      <?php
+
+                              include 'manage/connection.php';
+
+                              $selectchainlog = mysqli_query($con, "select * from chainlog where formName = 'City' ");
+
+                              ?>
+                          <?php
+
+                                while ($rowchainlog = mysqli_fetch_array($selectchainlog))
+                                {
+                                ?>
+
+                      <tr>
+                      <td><?php echo $rowchainlog['SrNo']; ?></td>
+                      <td><?php echo $rowchainlog['instance']; ?></td>
+                      <td><?php echo $rowchainlog['record_id']; ?></td>
+                      <td><?php echo $rowchainlog['createBy']; ?></td>
+                      <td><?php echo $rowchainlog['createDate']; ?></td>
+                      <td><?php echo $rowchainlog['updateBy']; ?></td>
+                      <td><?php echo $rowchainlog['updateDate']; ?></td>
+                      <td><?php echo $rowchainlog['perValue']; ?></td>
+                      <td><?php echo $rowchainlog['newValue']; ?></td>
+                      </tr>
+                      <?php
+                     }
+                     ?>
+                     </tbody>
+
+                  </table>
+                
+              </div>
+              
+            </div>
+        </div>
 
       <div class="modal fade symfra_popup2" id="popupExport" role="dialog">
             <div class="modal-dialog">
@@ -508,7 +756,7 @@ if (isset($_POST['submitBtn'])) {
 
                   <li><button type="button" id="btnDelete_C"><i class="fa fa-trash"></i> Deactivate</button></li>
                    <li><button type="button" id="btnDelete_C1"><i class="fa fa-trash"></i> Activate</button></li>
-                  <li><button type="submit" id="btnExport_P"> <i class="fa fa-print"></i><a href="city_print.php" target="_blank"> Print</a></button></li>
+                  
                   <li><button type="button" id="exportBtn"><i class="fa fa-download"></i>  Export</button></li>
                  
 
@@ -642,23 +890,20 @@ $(document).on('click', '.editData', function(){
          success: function(data) {
               $('#city_SrNoV').val(data.SrNo);  
               //$('.cur_coun_nameV').html(data.cur_coun_name);
-              $('#city_codeV').val(data.city_code);  
-              $('#city_nameV').val(data.city_name);  
-              $('#city_tel_codeV').val(data.city_tel_code);    
+              $('#city_codeV_p').val(data.city_code);  
+              $('#city_nameV_p').val(data.city_name);  
+              $('#city_tel_codeV_p').val(data.city_tel_code);    
 
               var checkif = data.status;
               if (checkif == "Active") {
-                 $('#statusV').attr("checked", true);
-                 document.getElementByID("statusV").checked = true;
+                 $('#statusV_p').attr("checked", true);
+                 document.getElementByID("statusV_p").checked = true;
               }
               else
               {
-                $('#statusV').attr("checked", false);
+                $('#statusV_p').attr("checked", false);
               }
-              /*$('#employee_id').val(data.id); */
-              // $("#"+id).btnedit1();
-              // $("#btn1").modal('hide');
-              // alert('Running');
+             
                
          }
       });
@@ -678,7 +923,7 @@ $(document).on('click', '.editData', function(){
               /*$('#country_SrNoV').val(data.SrNo);  
               $('#country_codeV').val(data.country_code);  
               $('#country_nameV').val(data.country_name);  */
-              $('.country_nameV').html(data);  
+              $('.country_nameV_p').html(data);  
               /*$('#employee_id').val(data.id); */
               // $("#"+id).btnedit1();
               // $("#btn1").modal('hide');
@@ -776,7 +1021,7 @@ $(".remove").click(function(){
           document.getElementById('city_tel_code').style.borderColor = "white";
           document.getElementById("V_city_tel_code").innerHTML = "";
 
-        if (!regexp.test(city_tel_code))
+        if (!regexp2.test(city_tel_code))
         {
           document.getElementById('city_tel_code').style.borderColor = "red";
           missingVal = 1;
@@ -798,6 +1043,94 @@ $(".remove").click(function(){
       if (missingVal == 1)
       {
         document.getElementById("formSummary").textContent="Error: ";
+      }
+      
+  }
+</script>
+
+<script type="text/javascript">
+   function FormValidation3()
+   {
+    var regexp = /^[a-z]*$/i;
+    var regexp2 = /^[0-9]*$/i;
+    var re = /\S+@\S+\.\S+/;
+      var missingVal = 0;
+
+      var city_codeV_p=document.getElementById('city_codeV_p').value;
+      var city_nameV_p=document.getElementById('city_nameV_p').value;
+      var country_nameV_p=document.getElementById('country_nameV_p').value;
+      var city_tel_codeV_p=document.getElementById('city_tel_codeV_p').value;
+
+      var summary = "Summary: ";
+
+      if(city_codeV_p == "")
+      {
+          document.getElementById('city_codeV_p').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("EV_city_codeV_p").innerHTML = "Code is required.";
+      }
+      if(city_codeV_p != "")
+      {
+          document.getElementById('city_codeV_p').style.borderColor = "white";
+          document.getElementById("EV_city_codeV_p").innerHTML = "";
+      }
+
+      if(city_nameV_p == "")
+      {
+          document.getElementById('city_nameV_p').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("EV_city_nameV_p").innerHTML = "Name is required.";
+      }
+      if(city_nameV_p != "")
+      {
+          document.getElementById('city_nameV_p').style.borderColor = "white";
+          document.getElementById("EV_city_nameV_p").innerHTML = "";
+
+        if (!regexp.test(city_nameV_p))
+        {
+          document.getElementById('city_nameV_p').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("EV_city_nameV_p").innerHTML = "Only alphabets are allowed in City Name.";
+        }
+      }
+
+      if(city_tel_codeV_p == "")
+      {
+          document.getElementById('city_tel_codeV_p').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("EV_city_tel_codeV_p").innerHTML = "Telephone code is required.";
+      }
+      if(city_tel_codeV_p != "")
+      {
+          document.getElementById('city_tel_codeV_p').style.borderColor = "white";
+          document.getElementById("EV_city_tel_codeV_p").innerHTML = "";
+
+        if (!regexp2.test(city_tel_codeV_p))
+        {
+          document.getElementById('city_tel_codeV_p').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("EV_city_tel_codeV_p").innerHTML = "Only numbers are allowed in Telephone Code.";
+        }
+      }
+
+      if (missingVal != 1)
+      {
+        document.getElementById('city_codeV_p').style.borderColor = "white";
+        document.getElementById('city_nameV_p').style.borderColor = "white";
+        document.getElementById('city_tel_codeV_p').style.borderColor = "white";
+       
+        $("#popupMEdit2").modal();
+        
+      }
+
+      if (missingVal == 1)
+      {
+        document.getElementById("formSummary2").textContent="Error: ";
       }
       
   }
@@ -832,7 +1165,7 @@ $(".remove").click(function(){
 
    function FormValidation2()
    {
-    var regexp = /^[a-z]*$/i;
+    var regexp = /^[a-z\S, ]*$/i;
     var regexp2 = /^[0-9]*$/i;
     var re = /\S+@\S+\.\S+/;
       var missingVal = 0;
@@ -947,100 +1280,14 @@ $(".remove").click(function(){
 
 </script>
 
-<script>
-  var tables = document.getElementsByTagName('table');
-  for (var i=0; i<tables.length;i++){
-   resizableGrid(tables[i]);
+<script type="text/javascript">
+  function logUserFunc()
+  {
+  $("#logUser_Modal").modal();
   }
-
-  function resizableGrid(table) {
-   var row = table.getElementsByTagName('tr')[0],
-   cols = row ? row.children : undefined;
-   if (!cols) return;
-  
-   table.style.overflow = 'hidden';
-  
-   var tableHeight = table.offsetHeight;
-  
-   for (var i=0;i<cols.length;i++){
-    var div = createDiv(tableHeight);
-    cols[i].appendChild(div);
-    cols[i].style.position = 'relative';
-    setListeners(div);
-   }
-
-   function setListeners(div){
-    var pageX,curCol,nxtCol,curColWidth,nxtColWidth;
-
-    div.addEventListener('mousedown', function (e) {
-     curCol = e.target.parentElement;
-     nxtCol = curCol.nextElementSibling;
-     pageX = e.pageX;
-  
-     var padding = paddingDiff(curCol);
-  
-     curColWidth = curCol.offsetWidth - padding;
-     if (nxtCol)
-      nxtColWidth = nxtCol.offsetWidth - padding;
-    });
-
-    // div.addEventListener('mouseover', function (e) {
-    //  e.target.style.borderRight = '2px solid #0000ff';
-    // })
-
-    // div.addEventListener('mouseout', function (e) {
-    //  e.target.style.borderRight = '';
-    // })
-
-    document.addEventListener('mousemove', function (e) {
-     if (curCol) {
-      var diffX = e.pageX - pageX;
-  
-      if (nxtCol)
-       nxtCol.style.width = (nxtColWidth - (diffX))+'px';
-
-      curCol.style.width = (curColWidth + diffX)+'px';
-     }
-    });
-
-    document.addEventListener('mouseup', function (e) {
-     curCol = undefined;
-     nxtCol = undefined;
-     pageX = undefined;
-     nxtColWidth = undefined;
-     curColWidth = undefined
-    });
-   }
-  
-   function createDiv(height){
-    var div = document.createElement('div');
-    div.style.top = 0;
-    div.style.right = 0;
-    div.style.width = '5px';
-    div.style.position = 'absolute';
-    div.style.cursor = 'col-resize';
-    div.style.userSelect = 'none';
-    div.style.height = height + 'px';
-    return div;
-   }
-  
-   function paddingDiff(col){
-  
-    if (getStyleVal(col,'box-sizing') == 'border-box'){
-     return 0;
-    }
-  
-    var padLeft = getStyleVal(col,'padding-left');
-    var padRight = getStyleVal(col,'padding-right');
-    return (parseInt(padLeft) + parseInt(padRight));
-
-   }
-
-   function getStyleVal(elm,css){
-    return (window.getComputedStyle(elm, null).getPropertyValue(css))
-   }
-  };
 </script>
+
+
 
 
 <script src="js/jquery.dataTables.min.js"></script>
