@@ -38,13 +38,13 @@ while ($rowspo = mysqli_fetch_array($select))
 {
    
     $spo_name = $rowspo['spo_name'];
-    $spo_description = $rowspo['spo_description'];
+    // $spo_description = $rowspo['spo_description'];
     $status = $rowspo['status'];
     
 
     $a = 'A' . $iii;
     $b = 'B' . $iii;
-    $c = 'C' . $iii;
+    // $c = 'C' . $iii;
    
 
     /*$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(7); 
@@ -58,12 +58,12 @@ while ($rowspo = mysqli_fetch_array($select))
     $objPHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth(20); 
     $objPHPExcel->getActiveSheet()->getColumnDimension('J')->setWidth(20);*/
     $objPHPExcel ->getActiveSheet() ->setCellValue('A1', 'SPO Name')
-    ->setCellValue('B1', 'SPO Description')
-    ->setCellValue('C1', 'Status');
+    // ->setCellValue('B1', 'SPO Description')
+    ->setCellValue('B1', 'Status');
 
     $objPHPExcel ->getActiveSheet() ->setCellValue($a, $spo_name)
-    ->setCellValue($b, $spo_description)
-    ->setCellValue($c, $status);
+    // ->setCellValue($b, $spo_description)
+    ->setCellValue($b, $status);
 
     
 
