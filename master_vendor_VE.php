@@ -40,6 +40,8 @@ if ($vndID==$row['newCode'])
   $cmpEmail_p = $row['cmpEmail'];
   $taxType_p = $row['taxType'];
   $taxNo_p = $row['taxNo'];
+  $SPO_p = $row['SPO'];
+  $businessSector_p = $row['businessSector'];
   $seaImport_p = $row['seaImport'];
   $airImport_p = $row['airImport'];
   $seaExport_p = $row['seaExport'];
@@ -717,7 +719,7 @@ if(isset($_POST['updateBtn']))
 				                                           		</div>  
 
 				                                           		<div class="input-label"><label >Tax Number </label></div> 
-																<div class="input-feild">
+																                      <div class="input-feild">
 				                                                      <select class="mini_select_field" name="taxType" id="taxType">
 				                                                      		<option value="<?php echo $taxType_p; ?>"><?php echo $taxType_p; ?></option>
 				                                                      		<option value="NTN NUmber">NTN Number</option>
@@ -725,6 +727,44 @@ if(isset($_POST['updateBtn']))
 				                                                      </select>
 				                                                      <input class="mini_input_field" type="number" name="taxNo" id="taxNo" value="<?php echo $taxNo_p; ?>">
 				                                           		</div>
+
+                                                      <div class="input-label"><label >SPO </label></div> 
+                                                          <div class="input-feild">
+                                                            <select name="txtSPO" id="txtSPO">
+                                                              <option value="<?php echo $SPOName_p; ?>"><?php echo $SPOName_p; ?></option>
+
+                                                              <?php
+
+                                                                  $selectSPO = mysqli_query($con, "SELECT * FROM spo_setup");
+                                                                  while ($rowSPO = mysqli_fetch_array($selectSPO))
+                                                                  {
+
+                                                                    echo '<option value="'.$rowSPO['SrNo'].'">'.$rowSPO['spo_name'].'</option>';
+
+                                                                  }
+
+                                                                  ?>
+                                                              </select>
+                                                           </div>
+
+                                                          <div class="input-label"><label >Business Sector </label></div> 
+                                                          <div class="input-feild">
+                                                            <select name="businessSector" id="businessSector">
+                                                              <?php
+
+                                                              echo '<option value="'.$businessSector_p.'">'.$businessSector_p.'</option>';
+
+                                                              $selectBS = mysqli_query($con, "SELECT * FROM business_setup");
+                                                              while ($rowBS = mysqli_fetch_array($selectBS))
+                                                              {
+
+                                                                echo '<option value="'.$rowBS['bus_sec_name'].'">'.$rowBS['bus_sec_name'].'</option>';
+
+                                                              }
+
+                                                              ?>
+                                                            </select>
+                                                          </div>
 										</div>	 
 								</div>
 												<div class="cls"></div>
