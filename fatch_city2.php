@@ -12,7 +12,8 @@
 	// $row = mysqli_fetch_array($updateQuery1);
 	while ($row2 = mysqli_fetch_array($updateQuery1)) 
 	{
-	    echo "<option value=".$row2['country_name'].">".$row2['country_name']."</option>";
+	    // echo "<option value='".$row2['country_name'].">".$row2['country_name']."</option>";
+	    echo '<option value="'.$row2['country_name'].'">'.$row2['country_name'].'</option>';
 
 	    $selectCountry = $row2['country_name'];
 	}
@@ -23,7 +24,7 @@
 
 	while ($row3 = mysqli_fetch_array($updateQuery2)) 
 	{
-	    echo "<option value=".$row3['country_name'].">".$row3['country_name']."</option>";
+	    echo '<option value="'.$row3['country_name'].'">'.$row3['country_name'].'</option>';
 	}
 
 	// echo json_encode($row);  
