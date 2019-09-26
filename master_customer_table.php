@@ -478,24 +478,24 @@ else if(isset($_POST["btnEdit"]))
 {
   if (isset($_POST["user_check"]))
   {
-    $dept_ID_E = $_POST['dept_ID_E'];
-    $desig_ID_E = $_POST['desig_ID_E'];
+    $businessSector_E = $_POST['businessSector_E'];
+    $custType_E = $_POST['custType_E'];
     $id = $_POST['user_check'];
     while (list($key, $val) = @each ($id))
     {
-      if ($dept_ID_E != "Select" && $desig_ID_E != "Select")
+      if ($businessSector_E != "Select" && $custType_E != "Select")
       {
-        mysqli_query($con, "UPDATE users SET dept_ID='$dept_ID_E', desig_ID='$desig_ID_E' WHERE user_ID = '$val' ");
+        mysqli_query($con, "UPDATE custmaster SET businessSector='$businessSector_E', partyType='$custType_E' WHERE newCode = '$val' ");
       }
 
-      else if ($dept_ID_E == "Select" && $desig_ID_E != "Select")
+      else if ($businessSector_E == "Select" && $custType_E != "Select")
       {
-        mysqli_query($con, "UPDATE users SET desig_ID='$desig_ID_E' WHERE user_ID = '$val' ");
+        mysqli_query($con, "UPDATE custmaster SET partyType='$custType_E' WHERE newCode = '$val' ");
       }
 
-      else if ($dept_ID_E != "Select" && $desig_ID_E == "Select")
+      else if ($businessSector_E != "Select" && $custType_E == "Select")
       {
-        mysqli_query($con, "UPDATE users SET dept_ID='$dept_ID_E' WHERE user_ID = '$val' ");
+        mysqli_query($con, "UPDATE custmaster SET businessSector='$businessSector_E' WHERE newCode = '$val' ");
       }
 
       //echo $val;
@@ -823,6 +823,12 @@ else
    </script>
 
 <style type="text/css">
+
+.input-fields.input-feild-checkboxs label {
+    display: inline-block;
+    margin: 0 !important;
+}
+
 #popupMEdit .modal-content {
     width: 700px;
 }
@@ -1333,43 +1339,47 @@ else
                 </div>
                 <div class="modal-body">
                   <div class="input-fields"> 
-                      <label>Department</label>  
-                      <select name="dept_ID_E" required>
-                          <option value="Select">Select </option>
-                          <?php
-
-                            $selectDept_E = mysqli_query($con, "select * from department");
-
-                            while ($rowDept_E = mysqli_fetch_array($selectDept_E))
-                            {
-                              echo '<option value="'.$rowDept_E['dept_ID'].'">'.$rowDept_E['dept_name'].'</option>';
-                            }
-
-                            ?>
-
+                      <label>Customer Type</label>  
+                      <select name="custType_E">
+                        <option value="Select">Select </option>
+                        <option value="cust">Customer </option>
+                        <option value="vnd">Vendor </option>
+                        <option value="bp">Business Partner </option>
                       </select>  
                   </div>
+
+                  
+
                   <div class="input-fields"> 
-                      <label>Designation</label>  
-                      <select name="desig_ID_E" required>
+                      <label>Business Sector</label>  
+                      <select name="businessSector_E">
                           <option value="Select">Select </option>
                           <?php
 
-                            $selectDesig_E = mysqli_query($con, "select * from designation");
+                          $selectBS = mysqli_query($con, "SELECT * FROM business_setup");
+                          while ($rowBS = mysqli_fetch_array($selectBS))
+                          {
+                            echo '<option value="'.$rowBS['bus_sec_name'].'">'.$rowBS['bus_sec_name'].'</option>';
+                          }
 
-                            while ($rowDesig_E = mysqli_fetch_array($selectDesig_E))
-                            {
-                              echo '<option value="'.$rowDesig_E['Desig_ID'].'">'.$rowDesig_E['Desig_name'].'</option>';
-                            }
+                          ?>
 
-                            ?>
+                      </select>
+                  </div>
 
-                      </select>  
+                  <div class="input-fields input-feild-checkboxs"> 
+                      <br>
+                      <label>Business Area:</label><br><br>
+                      <input type="checkbox" name="seaImport_E" value="Sea Import" > <label>Sea Import</label> <br> 
+                      <input type="checkbox" name="seaExport_E" value="Sea Export" > <label>Sea Export</label> <br>  
+                      <input type="checkbox" name="airImport_E" value="Air Import" > <label>Air Import</label> <br>
+                      <input type="checkbox" name="airExport_E" value="Air Export" > <label>Air Export</label> <br>
                   </div>
 
                   <button type="submit" name="btnEdit" >Submit</button>
 
-                </div>
+                </div> 
+
                 <div class="modal-footer">
                   <p>Add Related content if needed</p>
                   <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
