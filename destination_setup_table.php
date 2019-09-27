@@ -376,7 +376,7 @@ if (isset($_POST['btnadd'])) {
       <div class="form_sec_action_btn col-md-12">
          
           <button type="button" id="myBtn">  <small>Add Destination</small></button>
-          <button type="button" name="saveBtn" onclick="logUserFunc();"> <small>Log Chain</small></button>
+          <button type="button" name="saveBtn" onclick="logUserFunc();"> <small>Change Logs</small></button>
       </div>
          
        <!-- For Validation Box Red Popup -->
