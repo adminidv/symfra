@@ -791,7 +791,7 @@ echo '<style type="text/css">
                       ?>
 
                       <li>
-                        <a href="pro_setup_table.php">Commodity</a>
+                        <a href="commodity_setup.php">Commodity</a>
                       </li>
 
                       <?php
