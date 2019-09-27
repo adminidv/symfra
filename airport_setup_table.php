@@ -92,6 +92,13 @@ $Quickhr = '';
 /////////////////////////////////////////////////////////////////////
 
 // multi Deactived
+if(isset($_POST["myBtn"]))
+{
+  header("Location: airport_setup_2.php");
+}
+
+
+// multi Deactived
 if(isset($_POST["btnDelete"]))
 {
   $id = $_POST['user_check'];
@@ -365,7 +372,7 @@ if (isset($_POST['btnadd'])) {
           Add Currency Button click btn Add currency
          -->
          
-          <button type="button" id="myBtn">  <small>Add Airport</small></button>
+          <button type="submit" id="myBtn" name="myBtn">  <small>Add Airport</small></button>
       </div>
          
 
@@ -756,13 +763,13 @@ $(document).ready(function(){
 });
 </script>
 
-<script>
+<!-- <script>
 $(document).ready(function(){
   $("#myBtn").click(function(){
     $("#popupMEdit").modal();
   });
 });
-</script>
+</script> -->
 
 
 
