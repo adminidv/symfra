@@ -1148,6 +1148,8 @@ if(isset($_POST['btnedit1']))
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#home">Finance Details</a></li>
                         <li><a data-toggle="tab" href="#menu1">Representative Details </a></li>
+                        <li><a data-toggle="tab" href="#">Attachment details </a></li>
+
                     </ul>
                 </div>
 	                <div class="tab-content">
