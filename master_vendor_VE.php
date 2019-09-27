@@ -774,6 +774,8 @@ if(isset($_POST['updateBtn']))
                   <ul class="nav nav-tabs">
                       <li class="active"><a data-toggle="tab" href="#home">Finance Details</a></li>
                       <li><a data-toggle="tab" href="#menu1">Representative Details </a></li>
+                      <li><a data-toggle="tab" href="#">Attachment details </a></li>
+
                   </ul>
 
                 <div class="tab-content">
