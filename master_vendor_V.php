@@ -381,8 +381,8 @@ else
 																<div class="input-feild">
 				                                                      <select class="mini_select_field" name="taxType" disabled id="taxType">
 				                                                      		<option value="<?php echo $taxType; ?>"><?php echo $taxType; ?></option>
-				                                                      		<option value="NTN NUmber">NTN Number</option>
-				                                                      		<option value="STRN NUmber">STRN Number</option>
+				                                                      		<option value="NTN Number">NTN Number</option>
+				                                                      		<option value="STRN Number">STRN Number</option>
 				                                                      </select>
 				                                                      <input class="mini_input_field" type="number" disabled name="taxNo" id="taxNo" value="<?php echo $taxNo; ?>">
 				                                           		</div>
