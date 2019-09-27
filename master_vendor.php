@@ -517,8 +517,8 @@ if(isset($_POST['saveBtn1']))
 				                                           		<div class="input-label"><label >Tax Number </label></div> 
 																                      <div class="input-feild">
 				                                                      <select class="mini_select_field" name="taxType" id="taxType">
-				                                                      		<option value="NTN NUmber">NTN NUmber</option>
-				                                                      		<option value="STRN NUmber">STRN NUmber</option>
+				                                                      		<option value="NTN Number">NTN Number</option>
+				                                                      		<option value="STRN Number">STRN Number</option>
 				                                                      </select>
 				                                                      <input class="mini_input_field" type="text" name="taxNo" id="taxNo" maxlength="11">
 				                                           		</div>
