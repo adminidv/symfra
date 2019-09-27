@@ -104,6 +104,16 @@ if(isset($_POST['btnedit1']))
   {
     $statusV='Deactive';
   }
+
+
+
+  $selectPrev = mysqli_query($con, "SELECT * FROM sector_setup WHERE SrNo='$sector_SrNoV' ");
+  while ($rowPrev = mysqli_fetch_array($selectPrev))
+  {
+    $sector_nameV_p = $rowPrev['sector_name'];
+    $statusV_p = $rowPrev['status'];
+  }
+
   
   $clause = " WHERE SrNo='$sector_SrNoV'";
   $initQuery = "UPDATE sector_setup SET SrNo='$sector_SrNoV' ";
