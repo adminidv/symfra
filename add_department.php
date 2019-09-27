@@ -131,6 +131,9 @@ if(isset($_POST['submitBtn']))
 										
 		<div class="dpt_form widget_iner_box">
 
+
+
+
 						<form action="" method="POST">
 
 							<!-- Modal_one-->
@@ -164,8 +167,13 @@ if(isset($_POST['submitBtn']))
 			                      <?php include('inc_widgets/backBtn.php'); ?>
 			                      <!-- Go back button code ending here -->
 								</div>
+								<button type="button" name="btnDept" id="btnDept">Submit</button>
 										
 							</div>
+
+
+
+
 										
 					<div class="cls"></div>
 
