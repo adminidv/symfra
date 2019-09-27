@@ -1123,58 +1123,10 @@ else
                                 echo '<input type="checkbox" name="taxNo_VM" > <label>Company City</label> <br>';
                               }
 
-                              if ($seaImport_VM == 1)
-                              {
-                                echo '<input type="checkbox" name="seaImport_VM" checked> <label>Company Country</label> <br>';
-                              }
-                              else
-                              {
-                                echo '<input type="checkbox" name="seaImport_VM" > <label>Company Country</label> <br>';
-                              }
-
-                              if ($airImport_VM == 1)
-                              {
-                                echo '<input type="checkbox" name="airImport_VM" checked> <label>Tel Code. .</label> <br>';
-                              }
-                              else
-                              {
-                                echo '<input type="checkbox" name="airImport_VM" > <label>Tel Code.</label> <br>';
-                              }
-                              if ($seaExport_VM == 1)
-                              {
-                                echo '<input type="checkbox" name="seaExport_VM" checked> <label>Air Export</label> <br>';
-                              }
-                              else
-                              {
-                                echo '<input type="checkbox" name="seaExport_VM" > <label>Air Export</label> <br>';
-                              }
-
-                              if ($airExport_VM == 1)
-                              {
-                                echo '<input type="checkbox" name="airExport_VM" checked> <label>Rep Name</label> <br>';
-                              }
-                              else
-                              {
-                                echo '<input type="checkbox" name="airExport_VM" > <label>Rep Name</label> <br>';
-                              }
-
-                              if ($repName_VM == 1)
-                              {
-                                echo '<input type="checkbox" name="repName_VM" checked> <label>Rep Desg</label> <br>';
-                              }
-                              else
-                              {
-                                echo '<input type="checkbox" name="repName_VM" > <label>Rep Desg</label> <br>';
-                              }
-                              if ($repDesig_VM == 1)
-                              {
-                                echo '<input type="checkbox" name="repDesig_VM" checked> <label>Company Status</label> <br>';
-                              }
-                              else
-                              {
-                                echo '<input type="checkbox" name="repDesig_VM" > <label>Company Status</label> <br>';
-                              }
+                             
                               echo '</div>';
+                              echo '<div class="col-md-4">';
+
 
                               if ($repOffCell_VM == 1)
                               {
@@ -1228,6 +1180,11 @@ else
                               {
                                 echo '<input type="checkbox" name="fnCity_VM" > <label>Sea Import</label> <br>';
                               }
+
+                              echo '</div>';
+
+                              echo '<div class="col-md-4">';
+
                               if ($fnCountry_VM == 1)
                               {
                                 echo '<input type="checkbox" name="fnCountry_VM" checked> <label>Air Import</label> <br>';
@@ -1280,7 +1237,69 @@ else
                                 echo '<input type="checkbox" name="cmpStatus_VM" > <label>Finance Credit Amount</label> <br>';
                               }
                               
+                              echo '</div>';
+
+
+                              echo '<div class="col-md-4">';
+
+                               if ($seaImport_VM == 1)
+                              {
+                                echo '<input type="checkbox" name="seaImport_VM" checked> <label>Company Country</label> <br>';
+                              }
+                              else
+                              {
+                                echo '<input type="checkbox" name="seaImport_VM" > <label>Company Country</label> <br>';
+                              }
+
+                              if ($airImport_VM == 1)
+                              {
+                                echo '<input type="checkbox" name="airImport_VM" checked> <label>Tel Code. .</label> <br>';
+                              }
+                              else
+                              {
+                                echo '<input type="checkbox" name="airImport_VM" > <label>Tel Code.</label> <br>';
+                              }
+                              if ($seaExport_VM == 1)
+                              {
+                                echo '<input type="checkbox" name="seaExport_VM" checked> <label>Air Export</label> <br>';
+                              }
+                              else
+                              {
+                                echo '<input type="checkbox" name="seaExport_VM" > <label>Air Export</label> <br>';
+                              }
+
+                              if ($airExport_VM == 1)
+                              {
+                                echo '<input type="checkbox" name="airExport_VM" checked> <label>Rep Name</label> <br>';
+                              }
+                              else
+                              {
+                                echo '<input type="checkbox" name="airExport_VM" > <label>Rep Name</label> <br>';
+                              }
+
+                              if ($repName_VM == 1)
+                              {
+                                echo '<input type="checkbox" name="repName_VM" checked> <label>Rep Desg</label> <br>';
+                              }
+                              else
+                              {
+                                echo '<input type="checkbox" name="repName_VM" > <label>Rep Desg</label> <br>';
+                              }
+                              if ($repDesig_VM == 1)
+                              {
+                                echo '<input type="checkbox" name="repDesig_VM" checked> <label>Company Status</label> <br>';
+                              }
+                              else
+                              {
+                                echo '<input type="checkbox" name="repDesig_VM" > <label>Company Status</label> <br>';
+                              }
+                              echo '</div>';
+
+
                               ?>
+
+
+                              <div class="cls"></div>
                             
                             <button type="submit" name="btnCustom_U">Submit</button>
 
