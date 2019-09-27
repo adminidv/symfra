@@ -717,7 +717,7 @@ if (isset($_POST['submitBtn1'])) {
                                   <th>PP/CC</th>
                                   <th>Status</th>
                                   <th>Edit</th>
-                                  <th>Delete</th>
+                                  <th>Action</th>
 
                                    </tr>
                         </thead>
