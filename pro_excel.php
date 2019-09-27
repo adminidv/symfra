@@ -81,7 +81,7 @@ $file = 'test.xlsx';
   // php output instead of filename
   $file ->save('php://output');
 
-  header("Location: pro_setup_table.php");
+  header("Location: commodity_setup.php");
 }
 
 
