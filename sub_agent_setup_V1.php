@@ -692,10 +692,15 @@ if (isset($_POST['submitBtn'])) {
                
   <div id="representative" class="tab-pane fade in ">
 
-                 
+                           
 
 
-                <div class="col-md-12">  
+
+                <div class="col-md-12"> 
+
+                <div class="user_table-title">
+                <h4>Add Representative</h4>
+              </div> 
                   <div class="leave-manage-sec-table widget_iner_box ">
                     <div class="form_sec_action_btn col-md-12">
         <!-- 
