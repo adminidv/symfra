@@ -97,13 +97,20 @@ if(isset($_POST['btnedit1']))
 
   $SrNoV= $_POST['SrNoV'];
   $nameV_n = $_POST['nameV_p'];
-   if (isset($_POST['statusV'])) {
-    $statusV='Active';
+   if (isset($_POST['statusV_p'])) {
+    $statusV_n='Active';
 
   }
   else
   {
-    $statusV='Deactive';
+    $statusV_n='Deactive';
+  }
+
+  $selectPrev = mysqli_query($con, "SELECT * FROM container_setup WHERE SrNo='$SrNoV' ");
+  while ($rowPrev = mysqli_fetch_array($selectPrev))
+  {
+    $nameV_p = $rowPrev['nameV'];
+    $statusV_p = $rowPrev['statusV'];
   }
  
 
@@ -137,6 +144,24 @@ if(isset($_POST['btnedit1']))
   {
     $initQuery .= ", name='$nameV_n'";
     $initChangeLog2 = ", '$nameV_p', '$nameV_n') ";
+
+    $finalChangeLog = $initChangeLog . $initChangeLog2;
+  // echo $finalChangeLog;
+
+  mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+
+  }
+
+   if ($statusV_n != $statusV_p)
+  {
+    $initQuery .= ", status='$statusV_n'";
+    $initChangeLog2 = ", '$statusV_p', '$statusV_n') ";
+
+    $finalChangeLog = $initChangeLog . $initChangeLog2;
+  // echo $finalChangeLog;
+
+  mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+
   }
 
   
@@ -145,11 +170,7 @@ if(isset($_POST['btnedit1']))
 
   mysqli_query($con, $finalQuery) or die(mysqli_error($con));
 
-  $finalChangeLog = $initChangeLog . $initChangeLog2;
-  // echo $finalChangeLog;
-
-  mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
-
+  
 // // update qury
 //    $updateQuery12 = mysqli_query($con, "UPDATE  container_setup SET name='$nameV',status='$statusV' WHERE SrNo='$SrNoV' ") or die(mysqli_error($con));
 
@@ -356,12 +377,52 @@ if (isset($_POST['btnadd'])) {
       <button type="button" name="saveBtn" onclick="logUserFunc();"> <small>Log Chain</small></button>
       </div>
 
+       <!-- Modal Two-->
+               <div class="modal fade confirmTable-modal" id="popupMEdit2" role="dialog">
+                    <div class="modal-dialog">
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Confirmation</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>Are You Sure You Want to Submit?</p>
+                          <button type="submit" name="btnadd">Yes</button>
+                              <button type="button" name="btnDelete_N" data-dismiss="modal" >No</button>
+
+                        </div>
+                        <div class="modal-footer">
+                          <p>Add Related content if needed</p>
+                          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                        </div>
+                      </div>
+                    </div>
+               </div>
       
-         
-        <!-- For Validation Box Red Popup -->
-         <h4><label id="formSummary" style="color: red;"></label></h4>
-       <p id="V_name" style="color: red;"></p>
-         
+              <!-- Modal Two-->
+               <div class="modal fade confirmTable-modal" id="popupMEdit3" role="dialog">
+                    <div class="modal-dialog">
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Confirmation</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>Are You Sure You Want to Submit?</p>
+                          <button type="submit" name="btnedit1">Yes</button>
+                              <button type="button" name="btnDelete_N" data-dismiss="modal" >No</button>
+
+                        </div>
+                        <div class="modal-footer">
+                          <p>Add Related content if needed</p>
+                          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                        </div>
+                      </div>
+                    </div>
+               </div>
+        
 
       <!-- Add Currency -->
       <div class="modal fade symfra_popup2" id="popupMEdit" role="dialog">
@@ -374,18 +435,24 @@ if (isset($_POST['btnadd'])) {
                 </div>
                 <div class="modal-body">
                    
+                   <!-- For Validation Box Red Popup -->
+         <h4><label id="formSummary" style="color: red;"></label></h4>
+       <p id="V_name" style="color: red;"></p>
+         
 
                   <div class="input-fields">  
                     <label>Container Name</label> 
-                    <input type="text" name="name" id="name" maxlength="10" placeholder="Enter Container name">    
+                    <input type="text" name="name" id="name" maxlength="10" placeholder="Enter Container name"><span class="steric">*</span>    
                   </div>
                   
                    <div class="input-fields">  
                     <label>Active</label> 
-                    <input type="checkbox" name="status" id="status">    
+                    <input type="checkbox" name="status" id="status" class="status">    
                   </div>
-                  <button type="submit" name="btnadd" >Submit</button>
-                  <button type="submit" name="btnadd2" class="btnadd2" id="btnadd2" onclick="addMore(); return false;"  >Add More</button>
+
+                  
+                  <button type="submit" name="btnadd1" onclick="FormValidation(); return false;">Submit</button>
+                    <button type="submit" name="btnadd2" class="btnadd2" id="btnadd2" onclick="FormValidation2(); return false;">Add More</button>
                 </div>
                 <div class="modal-footer">
                   <p>Add Related content if needed</p>
@@ -405,6 +472,10 @@ if (isset($_POST['btnadd'])) {
                   <h4 class="modal-title">Edit Currency Details</h4>
                 </div>
                 <div class="modal-body">
+
+                  <h4><label id="formSummary2" style="color: red;"></label></h4>
+       <p id="EV_nameV_p" style="color: red;"></p>
+
                   <div class="input-fields hide"> 
                     <label>SrNo</label> 
                     <input type="text" name="SrNoV" id="SrNoV" >
@@ -412,16 +483,17 @@ if (isset($_POST['btnadd'])) {
                   </div>
                   <div class="input-fields">  
                     <label>Container Name</label> 
-                    <input type="text" name="nameV_p" id="nameV_p" maxlength="10" placeholder="Enter Container name">    
+                    <input type="text" name="nameV_p" id="nameV_p" maxlength="10" placeholder="Enter Container name"><span class="steric">*</span>    
                   </div>
                    <div class="input-fields"> 
                     <label>Active</label> 
-                    <input type="checkbox" name="statusV" id="statusV" >
+                    <input type="checkbox" name="statusV_p" id="statusV_p" class="statusV_p" >
                        
                   </div>
 
-                  
-                  <button type="submit" name="btnedit1" >Submit</button>
+                  <button type="submit" name="btnadd1" onclick="FormValidation3(); return false;">Submit</button>
+                    
+                  <!-- <button type="submit" name="btnedit1" >Submit</button> -->
                 </div>
                 <div class="modal-footer">
                   <p>Add Related content if needed</p>
@@ -710,12 +782,12 @@ $(document).on('click', '.editData', function(){
               $('#nameV_p').val(data.name);  
               var checkif = data.status;
               if (checkif == "Active") {
-                 $('#statusV').attr("checked", true);
-                 document.getElementByID("statusV").checked = true;
+                 $('#statusV_p').attr("checked", true);
+                 document.getElementByID("statusV_p").checked = true;
               }
               else
               {
-                $('#statusV').attr("checked", false);
+                $('#statusV_p').attr("checked", false);
               }
               /*$('#employee_id').val(data.id); */
               // $("#"+id).btnedit1();
@@ -767,23 +839,68 @@ $(document).on('click', '.editData', function(){
 
 <script type="text/javascript">
   function addMore() {
-  var pro_name = document.getElementById("pro_name").value;
-  var pro_description = document.getElementById("pro_description").value;
+  var name = document.getElementById("name").value;
+  // var pro_description = document.getElementById("pro_description").value;
 
       $.ajax({
          url:"addMoreContainer.php",
          method:"GET",
-         data:{pro_name:pro_name, pro_description:pro_description},
+         data:{name:name},
          dataType:"text",
          success: function(data) {
               
               alert("Done");
-              document.getElementById("pro_name").value = "";
-              document.getElementById("pro_description").value = "";
+              document.getElementById("name").value = "";
+              // document.getElementById("pro_description").value = "";
              
             }
       });
 
+  }
+
+  function FormValidation2()
+   {
+    var regexp = /^[a-z]*$/i;
+    var regexp2 = /^[0-9]*$/i;
+    var re = /\S+@\S+\.\S+/;
+      var missingVal = 0;
+
+      var name=document.getElementById('name').value;
+     
+     
+      var summary = "Summary: ";
+
+      if(name == "")
+      {
+          document.getElementById('name').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_name").innerHTML = "Commodity Code is required.";
+      }
+      if(name != "")
+      {
+          document.getElementById('name').style.borderColor = "white";
+          document.getElementById("V_name").innerHTML = "";
+
+      }
+
+    
+
+      
+      
+      if (missingVal != 1)
+      {
+        document.getElementById('name').style.borderColor = "white";
+       
+         addMore();
+        
+      }
+
+      if (missingVal == 1)
+      {
+        document.getElementById("formSummary").textContent="Error: ";
+      }
+      
   }
 </script>
 
@@ -824,7 +941,7 @@ $(document).on('click', '.editData', function(){
       {
         document.getElementById('name').style.borderColor = "white";
        
-        $("#popupMEdit").modal();
+        $("#popupMEdit2").modal();
         
       }
 
@@ -835,6 +952,54 @@ $(document).on('click', '.editData', function(){
       
   }
 </script>
+
+<script type="text/javascript">
+   function FormValidation3()
+   {
+    var regexp = /^[a-z]*$/i;
+    var regexp2 = /^[0-9]*$/i;
+    var re = /\S+@\S+\.\S+/;
+      var missingVal = 0;
+
+      var nameV_p=document.getElementById('nameV_p').value;
+     
+     
+      var summary = "Summary: ";
+
+      if(nameV_p == "")
+      {
+          document.getElementById('nameV_p').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("EV_nameV_p").innerHTML = "Commodity Code is required.";
+      }
+      if(nameV_p != "")
+      {
+          document.getElementById('nameV_p').style.borderColor = "white";
+          document.getElementById("EV_nameV_p").innerHTML = "";
+
+      }
+
+    
+
+      
+      
+      if (missingVal != 1)
+      {
+        document.getElementById('nameV_p').style.borderColor = "white";
+       
+        $("#popupMEdit3").modal();
+        
+      }
+
+      if (missingVal == 1)
+      {
+        document.getElementById("formSummary2").textContent="Error: ";
+      }
+      
+  }
+</script>
+
 <script type="text/javascript">
 function logUserFunc()
 {
