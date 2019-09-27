@@ -773,6 +773,19 @@ echo '<style type="text/css">
                       ?>
 
                       <?php
+                      if ($cityView == '1')
+                      {
+                      ?>
+
+                      <li>
+                        <a href="clearing_agents_table.php">Clearing Agent</a>
+                      </li>
+
+                      <?php
+                      }
+                      ?>
+
+                      <?php
                       if ($commodityView == '1')
                       {
                       ?>
