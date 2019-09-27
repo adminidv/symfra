@@ -1061,6 +1061,50 @@ else
                                 echo '<input type="checkbox" name="foreignAgent_cus" > <label>Foreign Agent</label> <br>';
                               }
 
+
+                               if ($flightDate_cus == 1)
+                              {
+                                echo '<input type="checkbox" name="flightDate_cus" checked> <label>Flight Date</label> <br>';
+                              }
+                              else
+                              {
+                                echo '<input type="checkbox" name="flightDate_cus" > <label>Flight Date</label> <br>';
+                              }
+
+                              if ($saleRem_cus == 1)
+                              {
+                                echo '<input type="checkbox" name="saleRem_cus" checked> <label>Remarks</label> <br>';
+                              }
+                              else
+                              {
+                                echo '<input type="checkbox" name="saleRem_cus" > <label>Remarks</label> <br>';
+                              }
+                              
+
+                              if ($totalBefDisc_cus == 1)
+                              {
+                                echo '<input type="checkbox" name="totalBefDisc_cus" checked> <label>Total Bef. Disc.</label> <br>';
+                              }
+                              else
+                              {
+                                echo '<input type="checkbox" name="totalBefDisc_cus" > <label>Total Bef. Disc.</label> <br>';
+                              }
+
+                              if ($saleDisc_cus == 1)
+                              {
+                                echo '<input type="checkbox" name="saleDisc_cus" checked> <label>Sale Disc.</label> <br>';
+                              }
+                              else
+                              {
+                                echo '<input type="checkbox" name="saleDisc_cus" > <label>Sale Disc.</label> <br>';
+                              }
+
+                              echo '</div>';
+
+                              echo '<div class="col-md-4">';
+
+
+
                               if ($saleNom_cus == 1)
                               {
                                 echo '<input type="checkbox" name="saleNom_cus" checked> <label>Nomination</label> <br>';
@@ -1106,11 +1150,6 @@ else
                                 echo '<input type="checkbox" name="mblNo_cus" > <label>MBL No.</label> <br>';
                               }
 
-                              echo '</div>';
-
-                              ///////////////////////////////////////////////////////////////////
-
-                              echo '<div class="col-md-4">';
 
                               if ($mblDate_cus == 1)
                               {
@@ -1121,8 +1160,7 @@ else
                                 echo '<input type="checkbox" name="mblDate_cus" > <label>MBL Date </label> <br>';
                               }
 
-                              echo '</div>';
-
+                              
                               if ($salePcs_cus == 1)
                               {
                                 echo '<input type="checkbox" name="salePcs_cus" checked> <label>Pcs.</label> <br>';
@@ -1159,6 +1197,34 @@ else
                                 echo '<input type="checkbox" name="saleComm_cus" > <label>Commodity</label> <br>';
                               }
 
+
+                              if ($saleTax_cus == 1)
+                              {
+                                echo '<input type="checkbox" name="saleTax_cus" checked> <label>Sale Tax</label> <br>';
+                              }
+                              else
+                              {
+                                echo '<input type="checkbox" name="saleTax_cus" > <label>Sale Tax</label> <br>';
+                              }
+
+                              if ($saleTotal_cus == 1)
+                              {
+                                echo '<input type="checkbox" name="saleTotal_cus" checked> <label>Sale Total</label> <br>';
+                              }
+                              else
+                              {
+                                echo '<input type="checkbox" name="saleTotal_cus" > <label>Sale Total</label> <br>';
+                              }
+
+                              if ($saleReason_cus == 1)
+                              {
+                                echo '<input type="checkbox" name="saleReason_cus" checked> <label>Sale Reason</label> <br>';
+                              }
+                              else
+                              {
+                                echo '<input type="checkbox" name="saleReason_cus" > <label>Sale Reason</label> <br>';
+                              }
+
                               if ($chWeight_cus == 1)
                               {
                                 echo '<input type="checkbox" name="chWeight_cus" checked> <label>Charge Weight</label> <br>';
@@ -1167,6 +1233,12 @@ else
                               {
                                 echo '<input type="checkbox" name="chWeight_cus" > <label>Charge Weight</label> <br>';
                               }
+
+                              echo '</div>';
+
+                              echo '<div class="col-md-4">';
+
+                              
 
                               if ($saleRate_cus == 1)
                               {
@@ -1213,6 +1285,7 @@ else
                                 echo '<input type="checkbox" name="saleDest_cus" > <label>Destination</label> <br>';
                               }
 
+
                               if ($shipLine_cus == 1)
                               {
                                 echo '<input type="checkbox" name="shipLine_cus" checked> <label>Shipping Line</label> <br>';
@@ -1249,83 +1322,7 @@ else
                                 echo '<input type="checkbox" name="flightNo_cus" > <label>Flight No.</label> <br>';
                               }
 
-                              if ($flightDate_cus == 1)
-                              {
-                                echo '<input type="checkbox" name="flightDate_cus" checked> <label>Flight Date</label> <br>';
-                              }
-                              else
-                              {
-                                echo '<input type="checkbox" name="flightDate_cus" > <label>Flight Date</label> <br>';
-                              }
-
-                              if ($saleRem_cus == 1)
-                              {
-                                echo '<input type="checkbox" name="saleRem_cus" checked> <label>Remarks</label> <br>';
-                              }
-                              else
-                              {
-                                echo '<input type="checkbox" name="saleRem_cus" > <label>Remarks</label> <br>';
-                              }
-
-                              echo '</div>';
-
-                              ////////////////////////////////////////////
-
-                              echo '<div class="col-md-4">';
-
-                              if ($totalBefDisc_cus == 1)
-                              {
-                                echo '<input type="checkbox" name="totalBefDisc_cus" checked> <label>Total Bef. Disc.</label> <br>';
-                              }
-                              else
-                              {
-                                echo '<input type="checkbox" name="totalBefDisc_cus" > <label>Total Bef. Disc.</label> <br>';
-                              }
-
-                              if ($saleDisc_cus == 1)
-                              {
-                                echo '<input type="checkbox" name="saleDisc_cus" checked> <label>Sale Disc.</label> <br>';
-                              }
-                              else
-                              {
-                                echo '<input type="checkbox" name="saleDisc_cus" > <label>Sale Disc.</label> <br>';
-                              }
-
-                              if ($saleTax_cus == 1)
-                              {
-                                echo '<input type="checkbox" name="saleTax_cus" checked> <label>Sale Tax</label> <br>';
-                              }
-                              else
-                              {
-                                echo '<input type="checkbox" name="saleTax_cus" > <label>Sale Tax</label> <br>';
-                              }
-
-                              if ($saleTotal_cus == 1)
-                              {
-                                echo '<input type="checkbox" name="saleTotal_cus" checked> <label>Sale Total</label> <br>';
-                              }
-                              else
-                              {
-                                echo '<input type="checkbox" name="saleTotal_cus" > <label>Sale Total</label> <br>';
-                              }
-
-                              if ($saleReason_cus == 1)
-                              {
-                                echo '<input type="checkbox" name="saleReason_cus" checked> <label>Sale Reason</label> <br>';
-                              }
-                              else
-                              {
-                                echo '<input type="checkbox" name="saleReason_cus" > <label>Sale Reason</label> <br>';
-                              }
-
-                             
-
-
-
-
-
-
-                              if ($saleLength_cus == 1)
+                               if ($saleLength_cus == 1)
                               {
                                 echo '<input type="checkbox" name="saleLength_cus" checked> <label>Sale Length</label> <br>';
                               }
@@ -1360,9 +1357,7 @@ else
                               {
                                 echo '<input type="checkbox" name="saleVolWt_cus" > <label>Volumetic Weight</label> <br>';
                               }
-
-                              echo '</div>';
-                              
+                              echo '</div>';              
                               
                               ?>
                           
