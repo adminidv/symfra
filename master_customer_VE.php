@@ -1144,128 +1144,133 @@ if(isset($_POST['btnedit1']))
 						
 						<div class="cls"></div>
 										<hr>
-				<div class="acount_info widget_iner_box">
-                  <ul class="nav nav-tabs">
-                      <li class="active"><a data-toggle="tab" href="#home">Finance Details</a></li>
-                      <li><a data-toggle="tab" href="#menu1">Representative Details </a></li>
-                  </ul>
+				          <div class="acount_info widget_iner_box">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#home">Finance Details</a></li>
+                        <li><a data-toggle="tab" href="#menu1">Representative Details </a></li>
+                    </ul>
                 </div>
 	                <div class="tab-content">
 	                  
 	                  <div id="home" class="tab-pane fade in active">
 
-		                    <div class="container">
-		                      <br />
-		                      <div align="right">
-		                        <button type="button" id="eduHist" onclick="eduHistory();">Add New</button>
-		                      </div>
-		                      <br />
-		                     <!--  <div class="table-responsive" id="image_table">
-		                          
-		                      </div> -->
-		                    </div>
+		                    <div class="col-md-12">
+                            <div class="widget_iner_box">
+                              <div class="col-md-12">
+      		                      <br />
+      		                      <div align="right">
+      		                        <button type="button" id="eduHist" onclick="eduHistory();"> <small> Add New</small></button>
+      		                      </div>
+      		                      <br />
+                              </div>  
+    		                     <!--  <div class="table-responsive" id="image_table">
+    		                          
+    		                      </div> -->
+    		                    </div>
+                        </div>
 	                      
-		                       <div class="table-responsive" id="financeTable">
+		                    <div class="table-responsive" id="financeTable">
 		                              
-		                       </div>
+		                    </div>
 	                  </div>
 
-	                    <div id="menu1" class="tab-pane fade in ">
+	                 <div id="menu1" class="tab-pane fade in ">
 
                  
 
 
-              <div class="col-md-12">  
-                <div class="leave-manage-sec-table widget_iner_box ">
-                  <div class="form_sec_action_btn col-md-12">
-                    <button type="button"  id="myBtn">  <small>Add Representative</small></button>
-                  </div>
-
-                      <div class="tbleDrpdown">
-                        <div id="tblebtn">
-                          <ul>
-                              <li><button type="button"  id="btnDelete_C1"><i class="fa fa-trash"></i> Activate</button></li>
-                              <li><button type="button"  id="btnDelete_C"><i class="fa fa-trash"></i> Deactivate</button></li>
-                             
-                              
-                          </ul>
+                    <div class="col-md-12">  
+                      <div class="leave-manage-sec-table widget_iner_box ">
+                        <div class="form_sec_action_btn col-md-12">
+                          <button type="button"  id="myBtn">  <small>Add Representative</small></button>
                         </div>
-                      </div>
 
-        
-                      <table  id="dpttable_rEp" class="display nowrap no-footer" style="width:100%">
-                                        
-                           <thead>
-                                      <tr>
-                                       <th><input type="checkbox" onchange="checkAll(this)" name="chk[]" /></th>
-                                       <th>Representative Name</th>
-                                       <th>Representative Designation</th>
-                                       <th>Office No.</th>
-                                       <th>Phone No.</th>
-                                       <th>Email</th>
-                                       <th>Status</th>
-                                       <th>Edit</th>
-                                       <th>Action</th>
+                            <div class="tbleDrpdown">
+                              <div id="tblebtn">
+                                <ul>
+                                    <li><button type="button"  id="btnDelete_C1"><i class="fa fa-trash"></i> Activate</button></li>
+                                    <li><button type="button"  id="btnDelete_C"><i class="fa fa-trash"></i> Deactivate</button></li>
+                                   
+                                    
+                                </ul>
+                              </div>
+                            </div>
 
-                                       </tr>
-                            </thead>
-                              <tbody>
-                                          
-                                     
-                                                    <?php
+              
+                            <table  id="dpttable_rEp" class="display nowrap no-footer" style="width:100%">
+                                              
+                                 <thead>
+                                            <tr>
+                                             <th><input type="checkbox" onchange="checkAll(this)" name="chk[]" /></th>
+                                             <th>Representative Name</th>
+                                             <th>Representative Designation</th>
+                                             <th>Office No.</th>
+                                             <th>Phone No.</th>
+                                             <th>Email</th>
+                                             <th>Status</th>
+                                             <th>Edit</th>
+                                             <th>Action</th>
 
-                                                $expload = $custID."-Cust";
-                                                $selectairport = mysqli_query($con, " SELECT * FROM represent_setup where userNo='$expload' ");
-                                                while ($rowairport= mysqli_fetch_array($selectairport))
-                                                {
-                                                  $rep_name =$rowairport['rep_name'];
-                                                  $rep_desg =$rowairport['rep_desg'];
-                                                  $rep_office_no =$rowairport['rep_office_no'];
-                                                  $rep_phone_no =$rowairport['rep_phone_no'];
-                                                  $email =$rowairport['email'];
-                                                  $status =$rowairport['status'];
-                                                                                                   
-
-                                                ?>
-                                    <tr>
-                                          <?php echo '<td><input type="checkbox" name="user_check[]" value="'. $rowairport['SrNo'] .' " /></td>'; ?>
-                                          <td><?php echo $rep_name ?></td>
-                                          <td><?php echo $rep_desg ?></td>
-                                          <td><?php echo $rep_office_no ?></td>
-                                          <td><?php echo $rep_phone_no ?></td>
-                                          <td><?php echo $email ?></td>
-                                          <td><?php echo $status ?></td>
-                                          <td><a href="#" class="editData"  data-toggle="modal" id="<?php echo $rowairport['SrNo']; ?>" data-target="#btn1" >Edit</td> 
-                                          <?php
-                                          if ($rowairport['status'] == "Active")
-                                          {
-                                          ?>
-                                          <td><a href="deleteRep_Code.php?id=<?php echo $rowairport['SrNo']; ?>&SrNo=<?php echo $SrNo; ?>" >Deactivate</td>
-                                          <?php
-                                          }
-                                          ?>
-
-                                          <?php
-                                          if ($rowairport['status'] == "Deactive")
-                                          {
-                                          ?>
-                                          <td><a href="deleteRep_CodeI.php?id=<?php echo $rowairport['SrNo']; ?>&SrNo=<?php echo $SrNo; ?>" >Activate</td>
-                                          <?php
-                                          }
-                                          ?>
-                                    </tr>
-                                        <?php
-                                         }
-                                       
-                                          ?>
+                                             </tr>
+                                  </thead>
+                                    <tbody>
+                                                
                                            
+                                                          <?php
 
-                              </tbody>  
-                      </table>
-                  </div> 
-                                 
-                </div>                    
-          </div>
+                                                      $expload = $custID."-Cust";
+                                                      $selectairport = mysqli_query($con, " SELECT * FROM represent_setup where userNo='$expload' ");
+                                                      while ($rowairport= mysqli_fetch_array($selectairport))
+                                                      {
+                                                        $rep_name =$rowairport['rep_name'];
+                                                        $rep_desg =$rowairport['rep_desg'];
+                                                        $rep_office_no =$rowairport['rep_office_no'];
+                                                        $rep_phone_no =$rowairport['rep_phone_no'];
+                                                        $email =$rowairport['email'];
+                                                        $status =$rowairport['status'];
+                                                                                                         
+
+                                                      ?>
+                                          <tr>
+                                                <?php echo '<td><input type="checkbox" name="user_check[]" value="'. $rowairport['SrNo'] .' " /></td>'; ?>
+                                                <td><?php echo $rep_name ?></td>
+                                                <td><?php echo $rep_desg ?></td>
+                                                <td><?php echo $rep_office_no ?></td>
+                                                <td><?php echo $rep_phone_no ?></td>
+                                                <td><?php echo $email ?></td>
+                                                <td><?php echo $status ?></td>
+                                                <td><a href="#" class="editData"  data-toggle="modal" id="<?php echo $rowairport['SrNo']; ?>" data-target="#btn1" >Edit</td> 
+                                                <?php
+                                                if ($rowairport['status'] == "Active")
+                                                {
+                                                ?>
+                                                <td><a href="deleteRep_Code.php?id=<?php echo $rowairport['SrNo']; ?>&SrNo=<?php echo $SrNo; ?>" >Deactivate</td>
+                                                <?php
+                                                }
+                                                ?>
+
+                                                <?php
+                                                if ($rowairport['status'] == "Deactive")
+                                                {
+                                                ?>
+                                                <td><a href="deleteRep_CodeI.php?id=<?php echo $rowairport['SrNo']; ?>&SrNo=<?php echo $SrNo; ?>" >Activate</td>
+                                                <?php
+                                                }
+                                                ?>
+                                          </tr>
+                                              <?php
+                                               }
+                                             
+                                                ?>
+                                                 
+
+                                    </tbody>  
+                            </table>
+                        </div> 
+                                       
+                      </div>                    
+                    </div>
+
 	                </div>
 
 
