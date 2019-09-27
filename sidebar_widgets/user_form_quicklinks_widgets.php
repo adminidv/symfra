@@ -311,7 +311,7 @@ echo '<style type="text/css">
                       ?>
 
                       <li>
-                        <a href="master_customer.php" target="_blank">Add Master Customer  </a>
+                        <a href="master_customer.php" >Add Master Customer  </a>
                       </li>
 
                       <?php
@@ -324,7 +324,7 @@ echo '<style type="text/css">
                       ?>
 
                       <li>
-                        <a href="master_customer_table.php" target="_blank">View Master Customer  </a>
+                        <a href="master_customer_table.php" >View Master Customer  </a>
                       </li>
 
                       <?php
@@ -337,7 +337,7 @@ echo '<style type="text/css">
                       ?>
 
                       <li>
-                        <a href="master_vendor.php" target="_blank">Add Master Vendor  </a>
+                        <a href="master_vendor.php" >Add Master Vendor  </a>
                       </li>
 
                       <?php
@@ -350,7 +350,7 @@ echo '<style type="text/css">
                       ?>
 
                       <li>
-                        <a href="master_vendor_table.php" target="_blank">View Master Vendor  </a>
+                        <a href="master_vendor_table.php" >View Master Vendor  </a>
                       </li>
 
                       <?php
@@ -363,7 +363,7 @@ echo '<style type="text/css">
                       ?>
 
                       <li>
-                        <a href="master_bp.php" target="_blank">Add Master BP  </a>
+                        <a href="master_bp.php" >Add Master BP  </a>
                       </li>
 
                       <?php
@@ -376,7 +376,7 @@ echo '<style type="text/css">
                       ?>
 
                       <li>
-                        <a href="master_bp_table.php" target="_blank">View Master BP  </a>
+                        <a href="master_bp_table.php" >View Master BP  </a>
                       </li>
 
                       <?php
@@ -384,22 +384,22 @@ echo '<style type="text/css">
                       ?>
 
                       <li>
-                        <a href="customer_activity.php" target="_blank">Activity </a>
+                        <a href="customer_activity.php" >Activity </a>
                       </li>
                       <li>
                         <a href="#" target="_blank">Generation Wizard </a>
                       </li>
                       <li>
-                        <a href="customer_campaign.php" target="_blank">Compaign </a>
+                        <a href="customer_campaign.php" >Compaign </a>
                       </li>
                       <li>
-                        <a href="customer_opportunity.php" target="_blank">Opportunity </a>
+                        <a href="customer_opportunity.php" >Opportunity </a>
                       </li>
                       <li>
-                        <a href="customer_quotation.php" target="_blank">Sales Quotation </a>
+                        <a href="customer_quotation.php" >Sales Quotation </a>
                       </li>
                       <li>
-                        <a href="#" target="_blank">CRM Activty </a>
+                        <a href="#" >CRM Activty </a>
                       </li>
                      
                     </ul>
@@ -421,41 +421,41 @@ echo '<style type="text/css">
                    <div class="sidebar-submenu">
                     <ul>
                       <li>
-                        <a href="CoA.php" target="_blank">Chart of Accounts </a>
+                        <a href="CoA.php" >Chart of Accounts </a>
                       </li>
                       <li>
-                        <a href="editcoa.php" target="_blank">Edit Chart of Accounts </a>
+                        <a href="editcoa.php" >Edit Chart of Accounts </a>
                       </li>
                       <li>
-                        <a href="account_code_generator.php" target="_blank">Account Code Generator</a>
+                        <a href="account_code_generator.php" >Account Code Generator</a>
                       </li>
                       <li>
-                        <a href="journal_entry.php" target="_blank">Journal Entry</a>
+                        <a href="journal_entry.php" >Journal Entry</a>
                       </li>
                       <li>
-                        <a href="posting_template.php" target="_blank">Posting Template </a>
+                        <a href="posting_template.php" >Posting Template </a>
                       </li>
                       <li>
-                        <a href="exchange_rate_differences.php" target="_blank">Exchange Rate Difference </a>
+                        <a href="exchange_rate_differences.php" >Exchange Rate Difference </a>
                       </li>
                       <li>
-                        <a href="journal_voucher.php" target="_blank">Journal Voucher </a>
+                        <a href="journal_voucher.php" >Journal Voucher </a>
                       </li>
                       <li>
-                        <a href="recurring_posting.php" target="_blank">Recuring Posting</a>
+                        <a href="recurring_posting.php" >Recuring Posting</a>
                       </li>
                       <li>
-                        <a href="#" target="_blank">Reverse Transaction </a>
+                        <a href="#" >Reverse Transaction </a>
                       </li>
                        <li>
-                        <a href="conversion_difference.php" target="_blank">Conversion Difference </a>
+                        <a href="conversion_difference.php" >Conversion Difference </a>
                       </li>
                        <li>
-                        <a href="1099_editing.php" target="_blank">1099 Editing </a>
+                        <a href="1099_editing.php" >1099 Editing </a>
                       </li>
 
                        <li>
-                        <a href="financial_report_template.php" target="_blank">Financial Report Template </a>
+                        <a href="financial_report_template.php" >Financial Report Template </a>
                       </li>
 
                       <li>
