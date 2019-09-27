@@ -7,6 +7,45 @@ $subRibbon = 'addUser';
 $Quick = 'Hide';
 $Quickhr = '';
 
+// For Change log Edit
+$userID = $_SESSION['user'];
+//login user
+$loginUser= $_SESSION['user'];
+// Today date func
+$todayDate = date("Y-m-d");
+
+// for Change log ID Edit
+$selectSrNo = mysqli_query($con, "SELECT * FROM currency_setup ORDER BY SrNo DESC LIMIT 1");
+while ($rowSrNo = mysqli_fetch_array($selectSrNo))
+{
+  $SrNo = $rowSrNo['SrNo'];
+  
+}
+
+// Add Change log
+//login user
+$loginUser1= $_SESSION['user'];
+// Today date func
+$todayDate1 = date("Y-m-d");
+
+// for Change log ID Add
+$selectSrNo = mysqli_query($con, "SELECT * FROM currency_setup ORDER BY SrNo DESC LIMIT 1");
+while ($rowSrNo = mysqli_fetch_array($selectSrNo))
+{
+  $SrNo = $rowSrNo['SrNo'];
+  $newSrNo1 = $SrNo + 1;
+  $SrNo1 = $newSrNo1;
+
+}
+
+// For Change Log Record
+$selectLastID1 = mysqli_query($con, "SELECT * FROM chainlog WHERE record_id = '$SrNo' ORDER BY instance DESC LIMIT 1  ");
+$rowLastID1 = mysqli_fetch_array($selectLastID1, MYSQLI_ASSOC);
+
+$lastID1 = $rowLastID1['instance'];
+$newID1 = $lastID1 + 1;
+$instance = $newID1;
+
 // fatch data in currency setup
  $selectCurrency = mysqli_query($con, "select * from currency_setup ");
 
@@ -60,27 +99,312 @@ if(isset($_POST['btnedit1']))
   $cur_codeV = $_POST['cur_codeV'];
   $cur_symbolV = $_POST['cur_symbolV'];
 
-   if (isset($_POST['statusV'])) {
+  if (isset($_POST['statusV'])) {
     $statusV='Active';
-
   }
   else
   {
     $statusV='Deactive';
   }
- 
 
-// update qury
-   $updateQuery12 = mysqli_query($con, "UPDATE  currency_setup SET cur_coun_name='$cur_coun_nameV',cur_name='$cur_nameV',cur_code='$cur_codeV',cur_symbol='$cur_symbolV',status='$statusV' WHERE SrNo='$cur_SrNoV' ") or die(mysqli_error($con));
-
-    $msg = "Record is inserted successfully.";
-  function alert($msg)
+  $selectPrev = mysqli_query($con, "SELECT * FROM currency_setup WHERE SrNo='$cur_SrNoV' ");
+  while ($rowPrev = mysqli_fetch_array($selectPrev))
   {
-    echo "<script type='text/javascript'>alert('$msg');</script>";
+    $cur_coun_name_p = $rowPrev['cur_coun_name'];
+    $cur_name_p = $rowPrev['cur_name'];
+    $cur_code_p = $rowPrev['cur_code'];
+    $cur_symbol_p = $rowPrev['cur_symbol'];
+    $status_p = $rowPrev['status'];
   }
-  alert($msg);
+
+  $clause = " WHERE SrNo='$cur_SrNoV'";
+  $initQuery = "UPDATE currency_setup SET SrNo='$cur_SrNoV' ";
+
+  $selectLastID1 = mysqli_query($con, "SELECT * FROM chainlog WHERE record_id = '$SrNo' ORDER BY instance DESC LIMIT 1  ");
+  $rowLastID1 = mysqli_fetch_array($selectLastID1, MYSQLI_ASSOC);
+
+  $lastID1 = $rowLastID1['instance'];
+  $newID1 = $lastID1 + 1;
+  $instance = $newID1;
+
+  $selectCreate = mysqli_query($con, "SELECT * FROM chainlog WHERE record_id = '$SrNo' ");
+  while ($rowCreate = mysqli_fetch_array($selectCreate))
+  {
+    if ($rowCreate['createBy'] != "")
+    {
+      $createBy = $rowCreate['createBy'];
+    }
+    if ($rowCreate['createDate'] != "")
+    {
+      $createDate = $rowCreate['createDate'];
+    }
+  }
+
+  $initChangeLog = "INSERT INTO chainlog (instance, formName, record_id, createBy, createDate, updateBy, updateDate, perValue, newValue)";
+  $initChangeLog .= " VALUES ('$newID1', 'Currency', '$SrNo', '$createBy', '$createDate', '$loginUser', '$todayDate'";
+
+  if ($cur_coun_nameV != $cur_coun_name_p)
+  {
+    $initQuery .= ", cur_coun_name='$cur_coun_nameV'";
+    $initChangeLog2 = ", '$cur_coun_name_p','$cur_coun_nameV')";
+
+    $finalChangeLog = $initChangeLog . $initChangeLog2;
+    // echo $finalChangeLog;
+
+    mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+  }
+
+  if ($cur_nameV != $cur_name_p)
+  {
+    $initQuery .= ", cur_name='$cur_nameV'";
+    $initChangeLog2 = ", '$cur_name_p','$cur_nameV')";
+
+    $finalChangeLog = $initChangeLog . $initChangeLog2;
+    // echo $finalChangeLog;
+
+    mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+  }
+
+  if ($cur_codeV != $cur_code_p)
+  {
+    $initQuery .= ", cur_code='$cur_codeV'";
+    $initChangeLog2 = ", '$cur_code_p','$cur_codeV')";
+
+    $finalChangeLog = $initChangeLog . $initChangeLog2;
+    // echo $finalChangeLog;
+
+    mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+  }
+
+  if ($cur_symbolV != $cur_symbol_p)
+  {
+    $initQuery .= ", cur_symbol='$cur_symbolV'";
+    $initChangeLog2 = ", '$cur_symbol_p','$cur_symbolV')";
+
+    $finalChangeLog = $initChangeLog . $initChangeLog2;
+    // echo $finalChangeLog;
+
+    mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+  }
+
+  if ($statusV != $status_p)
+  {
+    $initQuery .= ", status='$statusV'";
+    $initChangeLog2 = ", '$status_p','$statusV')";
+
+    $finalChangeLog = $initChangeLog . $initChangeLog2;
+    // echo $finalChangeLog;
+
+    mysqli_query($con, $finalChangeLog) or die(mysqli_error($con));
+  }
+
+  $finalQuery = $initQuery . $clause;
+  // echo $finalQuery . "<br>";
+
+  mysqli_query($con, $finalQuery) or die(mysqli_error($con));
 
   header("Location: currency_setup.php");
+}
+
+else if(isset($_POST["btnActivate"]))
+{
+  if (isset($_POST["user_check"]))
+  {
+    $id = $_POST['user_check'];
+    // echo count($id);
+    while (list($key, $val) = @each ($id))
+    {
+      // mysqli_query($con, "UPDATE custmaster SET cmpStatus= '2' WHERE newCode = '$val' ");
+      mysqli_query($con, "UPDATE currency_setup SET status='Active' WHERE SrNo = '$val' ");
+      // header("Location: ");
+    }
+
+    $clause = " WHERE ";//Initial clause
+    $searchRecord="SELECT * FROM `users` WHERE userBr='$userBr' ";
+
+        // if user is giving the middle name
+        if(!empty($_POST['user_mName']))
+        {
+            $user_mName = $_POST['user_mName'];
+            $searchRecord .= $clause."`user_mName` LIKE '%$user_mName%'";
+            $user_mName = 1;
+        }
+        else
+        {
+          $user_mName = 0;
+        }
+
+        // if user is giving the first name
+        if(!empty($_POST['user_fName']))
+        {
+            if($user_mName == 1)
+            {
+              $clause = " AND ";
+            }
+            $user_fName = $_POST['user_fName'];
+            $searchRecord .= $clause."`user_fName` LIKE '%$user_fName%'";
+            $fNameStatus = 1;
+        }
+        else
+        {
+          $fNameStatus = 0;
+        }
+
+        // if user is selecting any department
+        if(!empty($_POST['dept_list']))
+        {
+            if($fNameStatus == 1 OR $user_mName == 1)
+            {
+              $clause = " AND ";
+            }
+            foreach($_POST['dept_list'] as $c)
+            {
+                if(!empty($c)){
+                    $searchRecord .= $clause."`dept_ID` = '{$c}'";
+                    $clause = " OR ";
+                }   
+            }
+            $deptStatus = 1;
+        }
+        else
+        {
+          $deptStatus = 0;
+        }
+
+        // if user is selecting any designation
+        if(!empty($_POST['desig_list']))
+        {
+            if($deptStatus == 1 OR $fNameStatus == 1 OR $user_mName == 1)
+            {
+              $clause = " AND ";
+            }
+            foreach($_POST['desig_list'] as $d)
+            {
+                if(!empty($d))
+                {
+                    $searchRecord .= $clause."`desig_ID` LIKE '%{$d}%'";
+                    $clause = " OR ";
+                }   
+            }
+        }
+        else
+        {
+          // echo "Nothing Selected.";
+        }
+    // echo $sql; //Remove after testing
+    $search = " SELECT * FROM  country_setup";
+    $searchQuery = mysqli_query($con, $search);
+    header("Location: currency_setup.php");
+  }
+
+  else
+  {
+    echo '<script type="text/javascript">'; 
+    echo 'alert("Please select something to activate.");'; 
+    echo 'window.location.href = "currency_setup.php";';
+    echo '</script>';
+  }
+  
+}
+
+else if(isset($_POST["btnDeactivate"]))
+{
+  if (isset($_POST["user_check"]))
+  {
+    $id = $_POST['user_check'];
+    while (list($key, $val) = @each ($id))
+    {
+      // mysqli_query($con, "UPDATE custmaster SET cmpStatus= '2' WHERE newCode = '$val' ");
+      mysqli_query($con, "UPDATE currency_setup SET status='Deactive' WHERE SrNo = '$val' ");
+      // header("Location: ");
+    }
+
+    $clause = " WHERE ";//Initial clause
+    $searchRecord="SELECT * FROM `users` ";
+
+        // if user is giving the middle name
+        if(!empty($_POST['user_mName']))
+        {
+            $user_mName = $_POST['user_mName'];
+            $searchRecord .= $clause."`user_mName` LIKE '%$user_mName%'";
+            $user_mName = 1;
+        }
+        else
+        {
+          $user_mName = 0;
+        }
+
+        // if user is giving the first name
+        if(!empty($_POST['user_fName']))
+        {
+            if($user_mName == 1)
+            {
+              $clause = " AND ";
+            }
+            $user_fName = $_POST['user_fName'];
+            $searchRecord .= $clause."`user_fName` LIKE '%$user_fName%'";
+            $fNameStatus = 1;
+        }
+        else
+        {
+          $fNameStatus = 0;
+        }
+
+        // if user is selecting any department
+        if(!empty($_POST['dept_list']))
+        {
+            if($fNameStatus == 1 OR $user_mName == 1)
+            {
+              $clause = " AND ";
+            }
+            foreach($_POST['dept_list'] as $c)
+            {
+                if(!empty($c)){
+                    $searchRecord .= $clause."`dept_ID` = '{$c}'";
+                    $clause = " OR ";
+                }   
+            }
+            $deptStatus = 1;
+        }
+        else
+        {
+          $deptStatus = 0;
+        }
+
+        // if user is selecting any designation
+        if(!empty($_POST['desig_list']))
+        {
+            if($deptStatus == 1 OR $fNameStatus == 1 OR $user_mName == 1)
+            {
+              $clause = " AND ";
+            }
+            foreach($_POST['desig_list'] as $d)
+            {
+                if(!empty($d))
+                {
+                    $searchRecord .= $clause."`desig_ID` LIKE '%{$d}%'";
+                    $clause = " OR ";
+                }   
+            }
+        }
+        else
+        {
+          // echo "Nothing Selected.";
+        }
+    // echo $sql; //Remove after testing
+    $search = " SELECT * FROM  country_setup";
+    $searchQuery = mysqli_query($con, $search);
+    header("Location: currency_setup.php");
+  }
+
+  else
+  {
+    echo '<script type="text/javascript">'; 
+    echo 'alert("Please select something to deactivate.");'; 
+    echo 'window.location.href = "currency_setup.php";';
+    echo '</script>';
+  }
+
 }
 
  // Export
@@ -110,6 +434,10 @@ if(isset($_POST['btnedit1']))
 // click Add Currency btn
 
 if (isset($_POST['submitBtn'])) {
+  $instance =$instance;
+  $record_id =$SrNo1;
+  $createBy =$loginUser;
+  $createDate =$todayDate;
   $cur_coun_name = $_POST['cur_coun_name'];
   $cur_name = $_POST['cur_name'];
   $cur_code = $_POST['cur_code'];
@@ -125,7 +453,7 @@ if (isset($_POST['submitBtn'])) {
   }
 
   // Checking currency name if it is already been added
-  $selectCurName = mysqli_query($con, "SELECT * FROM currency_setup WHERE cur_name='$cur_name' ");
+  /*$selectCurName = mysqli_query($con, "SELECT * FROM currency_setup WHERE cur_name='$cur_name' ");
   while ($rowCurName = mysqli_fetch_array($selectCurName))
   {
     $existCurName = $rowCurName['cur_name'];
@@ -138,15 +466,17 @@ if (isset($_POST['submitBtn'])) {
     </script>';
 
     // header("Location: currency_setup.php");
-  }
+  }*/
 
-  else
-  {
+  // else
+  // {
     //  insert qurey
     $insertQuery = mysqli_query($con, "insert into currency_setup (cur_coun_name,cur_name,cur_code,cur_symbol, status) values ('$cur_coun_name','$cur_name' ,'$cur_code','$cur_symbol','$status')");
+
+    $insertQuery2 = mysqli_query($con, "insert into chainlog (instance, formName, record_id,createBy, createDate) values ('$newID1', 'Currency', '$SrNo1', '$loginUser1', '$todayDate1') ");
    
-    header("Location: currency_setup.php");
-  }
+    // header("Location: currency_setup.php");
+  // }
 
  
 
@@ -161,7 +491,7 @@ if (isset($_POST['submitBtn'])) {
   <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
   <link rel="stylesheet" href="css/font-awesome.css" type="text/css">
   <link rel="stylesheet" type="text/css" href="css/symfra_forms.css">
-    <link rel="stylesheet" type="text/css" href="css/main_box_widgets.css">
+  <link rel="stylesheet" type="text/css" href="css/main_box_widgets.css">
   <link rel="stylesheet" type="text/css" href="css/usertable.css">
   <link rel="stylesheet" type="text/css" href="css/sidebar.css">
   <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
@@ -269,6 +599,44 @@ if (isset($_POST['submitBtn'])) {
 <form action="" method="POST">
 <div class="leave-manage-sec  main_widget_box ">
 
+   <div class="confirmTable-modal modal fade" id="activateTable_C" role="dialog">
+            <div class="modal-dialog">
+                  <div class="modal-content pop_up_content">
+                      <div class="modal-header pop_up-header">
+                        <button type="button" class="close pop_close_btn" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title pop_title">Confirmation</h4>
+                      </div>
+                      <div class="modal-body Popup_bdy">
+                        <div class="input-feild">
+                            <p>Do you really want to activate selected records?</p>
+                            
+                        </div>
+                        <button type="submit" name="btnActivate">Yes</button>
+                        <button type="button" name="btnDelete_N" data-dismiss="modal" >No</button>
+                      </div>
+                 </div>
+              </div>
+          </div>
+
+          <div class="confirmTable-modal modal fade" id="deactivateTable_C" role="dialog">
+            <div class="modal-dialog">
+                  <div class="modal-content pop_up_content">
+                      <div class="modal-header pop_up-header">
+                        <button type="button" class="close pop_close_btn" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title pop_title">Confirmation</h4>
+                      </div>
+                      <div class="modal-body Popup_bdy">
+                        <div class="input-feild">
+                            <p>Do you really want to deactivate selected records?</p>
+                            
+                        </div>
+                        <button type="submit" name="btnDeactivate">Yes</button>
+                        <button type="button" name="btnDelete_N" data-dismiss="modal" >No</button>
+                      </div>
+                 </div>
+              </div>
+          </div>
+
   <!-- Modal Two-->
                <div class="modal fade confirmTable-modal" id="submitCurrency" role="dialog">
                     <div class="modal-dialog">
@@ -312,8 +680,8 @@ if (isset($_POST['submitBtn'])) {
         <!-- 
           Add Currency Button click btn Add currency
          -->
-         
           <button type="button" id="myBtn">  <small>Add Currency</small></button>
+          <button type="button" name="saveBtn" onclick="logUserFunc();"> <small>Change Logs</small></button>
       </div>
          
 
@@ -416,18 +784,18 @@ if (isset($_POST['submitBtn'])) {
                   </div>
                    <div class="input-fields"> 
                     <label>Currency Name</label> 
-                    <input type="text" name="cur_nameV" id="cur_nameV" >
+                    <input type="text" name="cur_nameV" id="cur_nameV" maxlength="30" >
                        
                   </div>
 
                   <div class="input-fields">  
                     <label>Currency Code</label> 
-                    <input type="text" name="cur_codeV" id="cur_codeV" >   
+                    <input type="text" name="cur_codeV" id="cur_codeV" maxlength="3" >   
                   </div>
 
                    <div class="input-fields hide"> 
                     <label>Currency Symbol</label> 
-                    <input type="text" name="cur_symbolV" id="cur_symbolV" >
+                    <input type="text" name="cur_symbolV" id="cur_symbolV" maxlength="3" >
                        
                   </div>
                    <div class="input-fields"> 
@@ -500,6 +868,69 @@ if (isset($_POST['submitBtn'])) {
               </div>
       </div>
 
+      <!-- Show Log Chain -->
+      <div class="modal fade symfra_popup2" id="logUser_Modal" role="dialog">
+            <div class="modal-dialog">
+              <!-- Show Log Chain -->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Change Logs Details</h4>
+                </div>
+
+                  <table id="dpttable1" class="display nowrap no-footer" style="width:100%">
+                     
+                     <thead>
+                      <tr>
+                      <th>SrNo</th>
+                      <th>Instance</th>
+                      <th>Record ID</th>
+                      <th>Created By</th>
+                      <th>Created Date</th>
+                      <th>Update By</th>
+                      <th>Update Date</th>
+                      <th>Pervious Value</th>
+                      <th>New Value</th>
+                      </tr>
+
+                     </thead>
+                     <tbody>
+                      <?php
+
+                              include 'manage/connection.php';
+
+                              $selectchainlog = mysqli_query($con, "select * from chainlog where formName = 'Currency' ");
+
+                              ?>
+                          <?php
+
+                                while ($rowchainlog = mysqli_fetch_array($selectchainlog))
+                                {
+                                ?>
+
+                      <tr>
+                      <td><?php echo $rowchainlog['SrNo']; ?></td>
+                      <td><?php echo $rowchainlog['instance']; ?></td>
+                      <td><?php echo $rowchainlog['record_id']; ?></td>
+                      <td><?php echo $rowchainlog['createBy']; ?></td>
+                      <td><?php echo $rowchainlog['createDate']; ?></td>
+                      <td><?php echo $rowchainlog['updateBy']; ?></td>
+                      <td><?php echo $rowchainlog['updateDate']; ?></td>
+                      <td><?php echo $rowchainlog['perValue']; ?></td>
+                      <td><?php echo $rowchainlog['newValue']; ?></td>
+                      </tr>
+                      <?php
+                     }
+                     ?>
+                     </tbody>
+
+                  </table>
+                
+              </div>
+              
+            </div>
+        </div>
+
        <!-- Active popup Model -->
       <div class="confirmTable-modal modal fade" id="deleteTable_C1" role="dialog">
             <div class="modal-dialog">
@@ -530,14 +961,9 @@ if (isset($_POST['submitBtn'])) {
         <div class="tbleDrpdown">
              <div id="tblebtn">
                 <ul>
-                
-
-                  <li><button type="button" id="btnDelete_C1"><i class="fa fa-trash"></i>Activate</button></li>
-                  <li><button type="button" id="btnDelete_C"><i class="fa fa-trash"></i>Deactivate</button></li>
-                  <li><button type="submit" id="btnExport_P"> <i class="fa fa-print"></i><a href="cur_print.php" target="_blank"> Print</a></button></li>
+                  <li><button type="button" id="btnActivate_C"><i class="fa fa-trash"></i>  Activate</button></li>
+                  <li><button type="button" id="btnDeactivate_C"><i class="fa fa-trash"></i>  Deactivate</button></li>
                   <li><button type="button" id="exportBtn"><i class="fa fa-download"></i>  Export</button></li>
-                 
-
                 </ul>
               </div>
             </div>
@@ -548,13 +974,12 @@ if (isset($_POST['submitBtn'])) {
                                   <tr>
                                    <th><input type="checkbox" onchange="checkAll(this)" name="chk[]" /></th>
                                    <th>Country Name</th>
-                                  <th>Currency Name</th>
-                                  <th>Currency Code</th>
-                                  <th>Currency Symbol</th>
-                                  <th>Status</th>
-                                  <th>Edit</th>
-                                  <th>Action</th>
-
+                                   <th>Currency Name</th>
+                                   <th>Currency Code</th>
+                                   <th>Currency Symbol</th>
+                                   <th>Status</th>
+                                   <th>Edit</th>
+                                   <th>Action</th>
                                    </tr>
                         </thead>
                         <tbody>
@@ -1071,6 +1496,29 @@ $(".remove").click(function(){
     return (window.getComputedStyle(elm, null).getPropertyValue(css))
    }
   };
+</script>
+
+<script type="text/javascript">
+  function logUserFunc()
+  {
+  $("#logUser_Modal").modal();
+  }
+</script>
+
+<script>
+$(document).ready(function(){
+  $("#btnActivate_C").click(function(){
+    $("#activateTable_C").modal();
+  });
+});
+</script>
+
+<script>
+$(document).ready(function(){
+  $("#btnDeactivate_C").click(function(){
+    $("#deactivateTable_C").modal();
+  });
+});
 </script>
 
 <script src="js/jquery.dataTables.min.js"></script>    
