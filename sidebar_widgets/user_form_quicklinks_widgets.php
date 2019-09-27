@@ -838,19 +838,6 @@ echo '<style type="text/css">
                       ?>
 
                       <?php
-                      if ($regionView == '1')
-                      {
-                      ?>
-
-                      <li>
-                        <a href="region_setup_table.php">Region</a>
-                      </li>
-
-                      <?php
-                      }
-                      ?>
-
-                      <?php
                       if ($sectorView == '1')
                       {
                       ?>
@@ -869,7 +856,7 @@ echo '<style type="text/css">
                       ?>
 
                       <li>
-                        <a href="shipping_setup_table.php">Shipping Line</a>
+                        <a href="shipLine_setup_table.php">Shipping Line</a>
                       </li>
 
                       <?php
