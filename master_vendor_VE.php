@@ -780,7 +780,7 @@ if(isset($_POST['updateBtn']))
                   
                   <div id="home" class="tab-pane fade in active">
 
-                    <div class="container">
+                    <div class="">
                       <br />
                       <div align="right">
                         <button type="button" id="eduHist" onclick="eduHistory();">Add New</button>
@@ -798,7 +798,7 @@ if(isset($_POST['updateBtn']))
                   </div>
 
                   <div id="menu1" class="tab-pane fade">
-                    <div class="container">
+                    <div class="">
                       <br />
                       <div align="right">
                         <button type="button" id="empHist" onclick="empHistory();">Add New</button>
