@@ -28,7 +28,7 @@ while ($rowSrNo = mysqli_fetch_array($selectSrNo))
 
 
 
-	if (isset($_POST['submitBtn'])) {
+  if (isset($_POST['submitBtn'])) {
   $instance =$instance;
   $record_id =$SrNo;
   $createBy =$loginUser;
@@ -110,27 +110,27 @@ if (isset($_POST['submitBtn2'])) {
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Airport Setup</title>
-	<link rel="shortcut icon" type="image/png" href="./images/favicon.png">
-	<link rel="stylesheet" href="css/bootstrap.css" type="text/css">
-	<link rel="stylesheet" href="css/font-awesome.css" type="text/css">
-	<link rel="stylesheet" type="text/css" href="css/symfra_forms.css">
+  <title>Airport Setup</title>
+  <link rel="shortcut icon" type="image/png" href="./images/favicon.png">
+  <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+  <link rel="stylesheet" href="css/font-awesome.css" type="text/css">
+  <link rel="stylesheet" type="text/css" href="css/symfra_forms.css">
   <link rel="stylesheet" type="text/css" href="css/crm.css">
   <link rel="stylesheet" type="text/css" href="css/main_box_widgets.css">
-	<link rel="stylesheet" type="text/css" href="css/usertable.css">
-	<link rel="stylesheet" type="text/css" href="css/sidebar.css">
-	<link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
+  <link rel="stylesheet" type="text/css" href="css/usertable.css">
+  <link rel="stylesheet" type="text/css" href="css/sidebar.css">
+  <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
 
-	<link rel="stylesheet" href="css/symfra_popups.css" type="text/css">
-	<script src="js/jquery-3.3.1.js"></script>
+  <link rel="stylesheet" href="css/symfra_popups.css" type="text/css">
+  <script src="js/jquery-3.3.1.js"></script>
 
   <!-- Bread crumbs starting here -->
   <link rel="stylesheet" href="css/breadCrumb.css" type="text/css">
   <link rel="shortcut icon" type="image/png" href="images/favicon.png">
   <link rel="stylesheet" href="css/user_ribbon.css" type="text/css">
   <!-- Bread crumbs ending here -->
-	
-  	<script src="js/sidebar.js"></script>
+  
+    <script src="js/sidebar.js"></script>
     <script src="js/jquery.min.js"></script>
     
 
@@ -274,34 +274,34 @@ if (isset($_POST['submitBtn2'])) {
 </div>
 
 <div class="  main_widget_box">
-	<div class="">
-									<!-- <hr> -->
-			<form action="" method="POST" enctype="multipart/form-data">
+  <div class="">
+                  <!-- <hr> -->
+      <form action="" method="POST" enctype="multipart/form-data">
 
-				     	 <!-- Modal Save-->
-			 <div class="modal fade confirmTable-modal" id="saveAirline_Modal" role="dialog">
-			    <div class="modal-dialog">
-			    
-			      <!-- Modal Save-->
-			      <div class="modal-content">
-			        <div class="modal-header">
-			          <button type="button" class="close" data-dismiss="modal">&times;</button>
-			          <h4 class="modal-title">Confirmation</h4>
-			        </div>
-			        <div class="modal-body">
-			          <p>Are You Sure You Want to Save?</p>
-			          <button type="submit" name="submitBtn1">Yes</button>
-	                  <button type="button" name="btnDelete_N" data-dismiss="modal" >No</button>
+               <!-- Modal Save-->
+       <div class="modal fade confirmTable-modal" id="saveAirline_Modal" role="dialog">
+          <div class="modal-dialog">
+          
+            <!-- Modal Save-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Confirmation</h4>
+              </div>
+              <div class="modal-body">
+                <p>Are You Sure You Want to Save?</p>
+                <button type="submit" name="submitBtn1">Yes</button>
+                    <button type="button" name="btnDelete_N" data-dismiss="modal" >No</button>
 
-			        </div>
-			        <div class="modal-footer">
-			        	<p>Add Related content if needed</p>
-			         
-			        </div>
-			      </div>
-			      
-			    </div>
-			 </div>
+              </div>
+              <div class="modal-footer">
+                <p>Add Related content if needed</p>
+               
+              </div>
+            </div>
+            
+          </div>
+       </div>
 
        <!-- Modal Save-->
        <div class="modal fade confirmTable-modal" id="cancelAirline_Modal" role="dialog">
@@ -329,32 +329,32 @@ if (isset($_POST['submitBtn2'])) {
        </div>
 
 
-				       <!-- Modal Submit-->
-				       <div class="modal fade confirmTable-modal" id="submitAirline_Modal" role="dialog">
-				            <div class="modal-dialog">
-				              <!-- Modal Submit-->
-				              <div class="modal-content">
-				                <div class="modal-header">
-				                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-				                  <h4 class="modal-title">Confirmation</h4>
-				                </div>
-				                <div class="modal-body">
-				                  <p>Are You Sure You Want to Submit?</p>
-				                  <button type="submit" name="submitBtn">Yes</button>
-				                      <button type="button" name="btnDelete_N" data-dismiss="modal" >No</button>
+               <!-- Modal Submit-->
+               <div class="modal fade confirmTable-modal" id="submitAirline_Modal" role="dialog">
+                    <div class="modal-dialog">
+                      <!-- Modal Submit-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Confirmation</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>Are You Sure You Want to Submit?</p>
+                          <button type="submit" name="submitBtn">Yes</button>
+                              <button type="button" name="btnDelete_N" data-dismiss="modal" >No</button>
 
-				                </div>
-				                <div class="modal-footer">
-				                  <p>Add Related content if needed</p>
-				                 
-				                </div>
-				              </div>
-				            </div>
-				       </div>
+                        </div>
+                        <div class="modal-footer">
+                          <p>Add Related content if needed</p>
+                         
+                        </div>
+                      </div>
+                    </div>
+               </div>
 
-				       
+               
 
-               		      
+                        
 
          <div class="modal fade symfra_popup2" id="popupExport" role="dialog">
             <div class="modal-dialog">
@@ -389,24 +389,24 @@ if (isset($_POST['submitBtn2'])) {
       </div>
 
 
-			 <h4><label id="formSummary" style="color: red;"></label></h4>
+       <h4><label id="formSummary" style="color: red;"></label></h4>
        <p id="V_airport_name" style="color: red;"></p>
         <p id="V_airport_ICAO" style="color: red;"></p>
         <p id="V_email" style="color: red;"></p>
         <p id="V_cont_per_off" style="color: red;"></p>
         <p id="V_fax_no" style="color: red;"></p>
-							
+              
 
-											  
-								<div class=" widget_iner_box">
+                        
+                <div class=" widget_iner_box">
 
-											<div class="form_sec_action_btn col-md-12">
-													<div class="form_action_right_btn">
-										                      <!-- Go back button code starting here -->
-										                      <?php include('inc_widgets/backBtn.php'); ?>
-										                      <!-- Go back button code ending here -->
-													</div>
-													<button type="button" id="btnConfirm_Su" onclick="FormValidation()" > <small>Submit</small></button>
+                      <div class="form_sec_action_btn col-md-12">
+                          <div class="form_action_right_btn">
+                                          <!-- Go back button code starting here -->
+                                          <?php include('inc_widgets/backBtn.php'); ?>
+                                          <!-- Go back button code ending here -->
+                          </div>
+                          <button type="button" id="btnConfirm_Su" onclick="FormValidation()" > <small>Submit</small></button>
                           <button type="button" name="btnConfirm_S" onclick="saveAirlineFunc();"> <small>Save</small></button>
                           <button type="button" name="cancel" onclick="cancelAirlineFunc();"> <small>Cancel</small></button>       
                       </div>
@@ -508,17 +508,17 @@ if (isset($_POST['submitBtn2'])) {
                         <div class="cls"></div>
                         <hr>
 
-								
+                
 
 
           
           
-											
-								
-		</form>
-				
+                      
+                
+    </form>
+        
 
-	</div>
+  </div>
 
 </div>
 
@@ -527,6 +527,7 @@ if (isset($_POST['submitBtn2'])) {
    {
     var regexp = /^[a-z]*$/i;
     var regexp2 = /^[0-9]*$/i;
+    var regexp3 = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/i;
     var re = /\S+@\S+\.\S+/;
       var missingVal = 0;
 
@@ -582,7 +583,7 @@ if (isset($_POST['submitBtn2'])) {
           document.getElementById('cont_per_off').style.borderColor = "white";
           document.getElementById("V_cont_per_off").innerHTML = "";
 
-          if (!regexp2.test(cont_per_off))
+          if (!regexp3.test(cont_per_off))
         {
           document.getElementById('cont_per_off').style.borderColor = "red";
             missingVal = 1;
@@ -597,7 +598,7 @@ if (isset($_POST['submitBtn2'])) {
           document.getElementById('fax_no').style.borderColor = "white";
           document.getElementById("V_fax_no").innerHTML = "";
 
-          if (!regexp2.test(fax_no))
+          if (!regexp3.test(fax_no))
         {
           document.getElementById('fax_no').style.borderColor = "red";
             missingVal = 1;
@@ -677,36 +678,36 @@ if (isset($_POST['submitBtn2'])) {
 <script type="text/javascript">
 function saveAirlineFunc()
 {
-	$("#saveAirline_Modal").modal();
+  $("#saveAirline_Modal").modal();
 }
 </script>
 
 <script type="text/javascript">
 function cancelAirlineFunc()
 {
-	$("#cancelAirline_Modal").modal();
+  $("#cancelAirline_Modal").modal();
 }
 </script>
 <script type="text/javascript">
-		function readURL(input) 
-		{
-	        if (input.files && input.files[0])
-	        {
-	            var reader = new FileReader();
+    function readURL(input) 
+    {
+          if (input.files && input.files[0])
+          {
+              var reader = new FileReader();
 
-	            reader.onload = function (e)
-	            {
-	                $('#blah')
-	                    .attr('src', e.target.result)
-	                    .width(185)
-	                    .height(185);
-	            };
+              reader.onload = function (e)
+              {
+                  $('#blah')
+                      .attr('src', e.target.result)
+                      .width(185)
+                      .height(185);
+              };
 
-	            reader.readAsDataURL(input.files[0]);
-	        }
-    	}
-	</script>
-	<script>
+              reader.readAsDataURL(input.files[0]);
+          }
+      }
+  </script>
+  <script>
 $(document).ready(function(){
   $("#myBtn").click(function(){
     $("#popupMEdit").modal();
