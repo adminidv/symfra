@@ -46,8 +46,8 @@ while ($rowdest = mysqli_fetch_array($select))
     $a = 'A' . $iii;
     $b = 'B' . $iii;
     $c = 'C' . $iii;
-    $b = 'D' . $iii;
-    $c = 'E' . $iii;
+    $d = 'D' . $iii;
+    $e = 'E' . $iii;
    
 
     /*$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(7); 
@@ -77,7 +77,7 @@ while ($rowdest = mysqli_fetch_array($select))
 
     }
 
-$file = 'test.xlsx';
+$file = 'Destinations.xlsx';
   // redirecting browser
   header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
   header('Content-Disposition: attachment; filename=' . $file);
