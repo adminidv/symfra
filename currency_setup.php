@@ -453,30 +453,32 @@ if (isset($_POST['submitBtn'])) {
   }
 
   // Checking currency name if it is already been added
-  /*$selectCurName = mysqli_query($con, "SELECT * FROM currency_setup WHERE cur_name='$cur_name' ");
+  $existCurName = "0";
+  $selectCurName = mysqli_query($con, "SELECT * FROM currency_setup WHERE cur_name='$cur_name' ");
   while ($rowCurName = mysqli_fetch_array($selectCurName))
   {
     $existCurName = $rowCurName['cur_name'];
   }
 
-  if ($existCurName != "")
+  if ($existCurName != "0")
   {
     echo '<script type="text/javascript">
       alert("This currency is already added");
+      location.replace("currency_setup.php");
     </script>';
 
     // header("Location: currency_setup.php");
-  }*/
+  }
 
-  // else
-  // {
+  else
+  {
     //  insert qurey
     $insertQuery = mysqli_query($con, "insert into currency_setup (cur_coun_name,cur_name,cur_code,cur_symbol, status) values ('$cur_coun_name','$cur_name' ,'$cur_code','$cur_symbol','$status')");
 
     $insertQuery2 = mysqli_query($con, "insert into chainlog (instance, formName, record_id,createBy, createDate) values ('$newID1', 'Currency', '$SrNo1', '$loginUser1', '$todayDate1') ");
    
-    // header("Location: currency_setup.php");
-  // }
+    header("Location: currency_setup.php");
+  }
 
  
 
@@ -700,6 +702,7 @@ if (isset($_POST['submitBtn'])) {
                   <p id="V_cur_name" style="color: red;"></p>
                   <p id="V_cur_code" style="color: red;"></p>
                   <p id="V_cur_symbol" style="color: red;"></p>
+                  <p id="V_exRate" style="color: red;"></p>
 
                    <div class="input-fields"> 
                     <label>Country Name</label> 
@@ -733,10 +736,17 @@ if (isset($_POST['submitBtn'])) {
                     <label>Currency Symbol</label> 
                     <input type="text" name="cur_symbol" id="cur_symbol" maxlength="3" placeholder="Enter currency symbol">    
                   </div>
+
+                  <div class="input-fields">  
+                    <label>Exchange Rate</label> 
+                    <input type="text" name="exRate" id="exRate" maxlength="10" placeholder="Enter exchange rate">    
+                  </div>
+
                    <div class="input-fields">  
                     <label>Active</label> 
                     <input type="checkbox" name="status" id="status">    
                   </div>
+
                   <button type="submit" name="btnadd" onclick="FormValidation(); return false;">Submit</button>
                   <button type="submit" name="btnadd2" class="btnadd2" id="btnadd2" onclick="FormValidation2(); return false;">Add More</button>
                   <button type="submit" name="btnCancel" class="btnCancel" id="btnCancel" >Cancel</button>
@@ -1169,14 +1179,17 @@ $(".remove").click(function(){
 <script type="text/javascript">
    function FormValidation()
    {
+    var regexpSymb = /^[$,@,€,a-z]*$/i;
     var regexp = /^[a-z]*$/i;
     var regexp2 = /^[0-9]*$/i;
+    var regexpdec = /^[0-9, . , 0-9]*$/i;
     var re = /\S+@\S+\.\S+/;
       var missingVal = 0;
 
       var cur_name=document.getElementById('cur_name').value;
       var cur_code=document.getElementById('cur_code').value;
       var cur_symbol=document.getElementById('cur_symbol').value;
+      var exRate=document.getElementById('exRate').value;
 
       var summary = "Summary: ";
 
@@ -1191,6 +1204,14 @@ $(".remove").click(function(){
       {
           document.getElementById('cur_name').style.borderColor = "white";
           document.getElementById("V_cur_name").innerHTML = "";
+
+        if (!regexp.test(cur_name))
+        {
+          document.getElementById('cur_name').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_cur_name").innerHTML = "Only alphabets are allowed in Currency name.";
+        }
       }
 
       if(cur_code == "")
@@ -1226,7 +1247,7 @@ $(".remove").click(function(){
           document.getElementById('cur_symbol').style.borderColor = "white";
           document.getElementById("V_cur_symbol").innerHTML = "";
 
-        if (!regexp.test(cur_symbol))
+        if (!regexpSymb.test(cur_symbol))
         {
           document.getElementById('cur_symbol').style.borderColor = "red";
           missingVal = 1;
@@ -1235,11 +1256,33 @@ $(".remove").click(function(){
         }
       }
 
+      if(exRate == "")
+      {
+          document.getElementById('exRate').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_exRate").innerHTML = "Exchange rate is required.";
+      }
+      if(exRate != "")
+      {
+          document.getElementById('exRate').style.borderColor = "white";
+          document.getElementById("V_exRate").innerHTML = "";
+
+        if (!regexpdec.test(exRate))
+        {
+          document.getElementById('exRate').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_exRate").innerHTML = "Only numbers and decimals are allowed in exchange rate.";
+        }
+      }
+
       if (missingVal != 1)
       {
         document.getElementById('cur_name').style.borderColor = "white";
         document.getElementById('cur_code').style.borderColor = "white";
         document.getElementById('cur_symbol').style.borderColor = "white";
+        document.getElementById('exRate').style.borderColor = "white";
        
         $("#submitCurrency").modal();
         
@@ -1281,14 +1324,17 @@ $(".remove").click(function(){
 
    function FormValidation2()
    {
+    var regexpSymb = /^[$,@,€,a-z]*$/i;
     var regexp = /^[a-z]*$/i;
     var regexp2 = /^[0-9]*$/i;
+    var regexpdec = /^[0-9, . , 0-9]*$/i;
     var re = /\S+@\S+\.\S+/;
       var missingVal = 0;
 
       var cur_name=document.getElementById('cur_name').value;
       var cur_code=document.getElementById('cur_code').value;
       var cur_symbol=document.getElementById('cur_symbol').value;
+      var exRate=document.getElementById('exRate').value;
 
       var summary = "Summary: ";
 
@@ -1309,7 +1355,7 @@ $(".remove").click(function(){
           document.getElementById('cur_name').style.borderColor = "red";
           missingVal = 1;
           // summary += "Firstname is required.";
-          document.getElementById("V_cur_name").innerHTML = "Only alphabets are allowed in Currency code.";
+          document.getElementById("V_cur_name").innerHTML = "Only alphabets are allowed in Currency name.";
         }
       }
 
@@ -1346,7 +1392,7 @@ $(".remove").click(function(){
           document.getElementById('cur_symbol').style.borderColor = "white";
           document.getElementById("V_cur_symbol").innerHTML = "";
 
-        if (!regexp.test(cur_symbol))
+        if (!regexpSymb.test(cur_symbol))
         {
           document.getElementById('cur_symbol').style.borderColor = "red";
           missingVal = 1;
@@ -1355,13 +1401,36 @@ $(".remove").click(function(){
         }
       }
 
+      if(exRate == "")
+      {
+          document.getElementById('exRate').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_exRate").innerHTML = "Exchange rate is required.";
+      }
+      if(exRate != "")
+      {
+          document.getElementById('exRate').style.borderColor = "white";
+          document.getElementById("V_exRate").innerHTML = "";
+
+        if (!regexpdec.test(exRate))
+        {
+          document.getElementById('exRate').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_exRate").innerHTML = "Only numbers and decimals are allowed in exchange rate.";
+        }
+      }
+
       if (missingVal != 1)
       {
         document.getElementById('cur_name').style.borderColor = "white";
         document.getElementById('cur_code').style.borderColor = "white";
         document.getElementById('cur_symbol').style.borderColor = "white";
+        document.getElementById('exRate').style.borderColor = "white";
        
         addMore();
+        
       }
 
       if (missingVal == 1)
