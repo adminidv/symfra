@@ -487,14 +487,14 @@ if (isset($_POST['submitBtn'])) {
 
 
          
-<!-- Show Log Chain -->
+      <!-- Show Log Chain -->
       <div class="modal fade symfra_popup2" id="logUser_Modal" role="dialog">
             <div class="modal-dialog">
               <!-- Show Log Chain -->
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Log Chain Details</h4>
+                  <h4 class="modal-title">Change Logs Details</h4>
                 </div>
 
                   <table id="dpttable1" class="display nowrap no-footer" style="width:100%">
@@ -550,7 +550,54 @@ if (isset($_POST['submitBtn'])) {
             </div>
         </div>
 
-      <div class="modal fade symfra_popup2" id="popupMEdit4" role="dialog">
+              <!-- valdition submit popup -->
+              <div class="modal fade confirmTable-modal" id="submit_Modal" role="dialog">
+                    <div class="modal-dialog">
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Confirmation</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>Are You Sure You Want to Submit?</p>
+                          <button type="submit" name="btnadd">Yes</button>
+                              <button type="button" name="btnDelete_N" data-dismiss="modal" >No</button>
+
+                        </div>
+                        <div class="modal-footer">
+                          <p>Add Related content if needed</p>
+                          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                        </div>
+                      </div>
+                    </div>
+              </div>
+
+               <!-- valdition Edit popup -->
+                <div class="modal fade confirmTable-modal" id="Edit_Modal" role="dialog">
+                    <div class="modal-dialog">
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Confirmation</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>Are You Sure You Want to Submit?</p>
+                          <button type="submit" name="btnedit1">Yes</button>
+                              <button type="button" name="btnDelete_N" data-dismiss="modal" >No</button>
+
+                        </div>
+                        <div class="modal-footer">
+                          <p>Add Related content if needed</p>
+                          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                        </div>
+                      </div>
+                    </div>
+                </div>
+
+
+          <div class="modal fade symfra_popup2" id="popupMEdit4" role="dialog">
             <div class="modal-dialog">
               <!-- ADD Airport Details-->
               <div class="modal-content">
@@ -566,6 +613,8 @@ if (isset($_POST['submitBtn'])) {
                  <p id="V_rep_name" style="color: red;"></p>
                   <p id="V_rep_desg" style="color: red;"></p>
                   <p id="V_rep_email" style="color: red;"></p>
+                  <p id="V_rep_office_no" style="color: red;"></p>
+                  <p id="V_rep_phone_no" style="color: red;"></p>
 
                             <div class="input-fields">  
                               <label>Name</label> 
@@ -594,12 +643,12 @@ if (isset($_POST['submitBtn'])) {
                             <input type="checkbox" name="status" id="status" class="status">    
                           </div>
 
-                          <button type="submit" name="btnadd" onclick="FormValidation2(); return false;">Submit</button>
+                          <button type="submit" name="btnadd1" onclick="FormValidation2(); return false;">Submit</button>
 
                         </div>
                       </div>
                     </div>
-        </div>
+          </div>
 
               <!-- Edit Airport Details -->
           <div class="modal fade symfra_popup2" id="btn1" role="dialog">
@@ -618,11 +667,14 @@ if (isset($_POST['submitBtn'])) {
 
                  <div class="modal-body">
 
-                  <!-- For Validation Box Red Popup -->
+                  <<!-- For Validation Box Red Popup -->
                    <h4><label id="formSummary2" style="color: red;"></label></h4>
                   <p id="EV_rep_nameV" style="color: red;"></p>
                   <p id="EV_rep_desgV" style="color: red;"></p>
                   <p id="EV_rep_emailV" style="color: red;"></p>
+                  <p id="EV_rep_office_noV" style="color: red;"></p>
+                  <p id="EV_rep_phone_noV" style="color: red;"></p>
+
 
                             <div class="input-fields">  
                               <label>Name</label> 
@@ -657,10 +709,10 @@ if (isset($_POST['submitBtn'])) {
                       </div>
                     </div>
                 </div>   
-          </div>
+           </div>
 
 
-                  <div class="modal fade confirmTable-modal" id="save_Modal" role="dialog">
+        <div class="modal fade confirmTable-modal" id="save_Modal" role="dialog">
           <div class="modal-dialog">
           
             <!-- Modal content-->
@@ -682,10 +734,10 @@ if (isset($_POST['submitBtn'])) {
             </div>
             
           </div>
-       </div>
+         </div>
 
                <!-- Modal Two-->
-               <div class="modal fade confirmTable-modal" id="submit_Modal" role="dialog">
+               <div class="modal fade confirmTable-modal" id="submit_Modal1" role="dialog">
                     <div class="modal-dialog">
                       <!-- Modal content-->
                       <div class="modal-content">
@@ -707,7 +759,7 @@ if (isset($_POST['submitBtn'])) {
                     </div>
                </div>
                
-                <div class="confirmTable-modal modal fade" id="deleteTable_C" role="dialog">
+          <!-- <div class="confirmTable-modal modal fade" id="deleteTable_C" role="dialog">
             <div class="modal-dialog">
                   <div class="modal-content pop_up_content">
                       <div class="modal-header pop_up-header">
@@ -743,42 +795,14 @@ if (isset($_POST['submitBtn'])) {
                       </div>
                  </div>
               </div>
-      </div>
+      </div> -->
 
-      <div class="modal fade symfra_popup2" id="popupExport" role="dialog">
-            <div class="modal-dialog">
+      <!-- <div class="modal fade symfra_popup2" id="popupExport" role="dialog">
+            <div class="modal-dialog">-->
 
-              <!-- Export Options -->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Export Options</h4>
-                </div>
-                <div class="modal-body">
-                  <div class="input-fields"> 
-                      <label>Options</label>  
-                      <select name="exportOptions" required>
-                          <option value="Select">Select </option>
-                          <option value="excel">Export to Excel </option>
-                          <option value="csv">Export to CSV </option>
-                          <option value="pdf">Export to PDF </option>
-                      </select>  
-                  </div>
-
-                  <button type="submit" name="btnExport_D" >Submit</button>
-
-                </div>
-                <div class="modal-footer">
-                  <p>Add Related content if needed</p>
-                  <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-                </div>
-              </div>
               
-            </div>
-      </div>
-
       
-      <div class="confirmTable-modal modal fade" id="deleteTable_C" role="dialog">
+     <!--  <div class="confirmTable-modal modal fade" id="deleteTable_C" role="dialog">
             <div class="modal-dialog">
                   <div class="modal-content pop_up_content">
                       <div class="modal-header pop_up-header">
@@ -814,7 +838,7 @@ if (isset($_POST['submitBtn'])) {
                   </div>
              </div>
           </div>
-      </div>
+      </div> -->
 
        <!-- valdition submit popup -->
                <div class="modal fade confirmTable-modal" id="submit_Modal" role="dialog">
@@ -862,15 +886,17 @@ if (isset($_POST['submitBtn'])) {
                     </div>
                </div>
 
-<h4><label id="formSummary" style="color: red;"></label></h4>
-       <p id="V_partyname" style="color: red;"></p>
-        <p id="V_subpartyname" style="color: red;"></p>
-        <p id="V_email" style="color: red;"></p>
-        <p id="V_phone" style="color: red;"></p>
-        <p id="V_fax" style="color: red;"></p>
-        <p id="V_export_reg_no" style="color: red;"></p>
-        <p id="V_sales_tax_no" style="color: red;"></p>
-        <p id="V_ntn_no" style="color: red;"></p>
+               
+
+            <h4><label id="formSummary" style="color: red;"></label></h4>
+                   <p id="V_partyname" style="color: red;"></p>
+                    <p id="V_subpartyname" style="color: red;"></p>
+                    <p id="V_email" style="color: red;"></p>
+                    <p id="V_phone" style="color: red;"></p>
+                    <p id="V_fax" style="color: red;"></p>
+                    <p id="V_export_reg_no" style="color: red;"></p>
+                    <p id="V_sales_tax_no" style="color: red;"></p>
+                    <p id="V_ntn_no" style="color: red;"></p>
 
               
 
@@ -885,7 +911,7 @@ if (isset($_POST['submitBtn'])) {
                           </div>
                            <!-- log change btn -->
                           <button type="button" name="saveBtn" onclick="logUserFunc();"> <small>Log Chain</small></button>
-                          <button type="button" id="btnConfirm_Su" onclick="FormValidation()" > <small>Submit</small></button>
+                          <button type="button" id="btnConfirm_Su" onclick="FormValidation1()" > <small>Submit</small></button>
                           <button type="button" name="btnConfirm_S" onclick="saveFunc();"> <small>Save</small></button>
                           <button type="button" name="cancel"> <small>Cancel</small></button>       
                       </div>
@@ -922,11 +948,11 @@ if (isset($_POST['submitBtn'])) {
                                                       }
                                                     ?>
 
-                                              </select> 
+                                              </select><span class="steric">*</span>
                                                       </div> 
                                                        <div class="input-label"><label >Sub Party Agent</label></div>
                                                       <div class="input-feild">
-                                                              <input class="mini_input_field"  type="text" name="subpartyname" id="subpartyname" value="<?php echo $subpartyname_P ?>" placeholder="Enter Here Sub Party Nmae !">
+                                                              <input class="mini_input_field"  type="text" name="subpartyname" id="subpartyname" value="<?php echo $subpartyname_P ?>" placeholder="Enter Here Sub Party Nmae !"><span class="steric">*</span>
                                                                 
                                                       </div>
 
@@ -1139,19 +1165,19 @@ if (isset($_POST['submitBtn'])) {
 
 
 <script>
-$(document).ready(function(){
-  $("#exportBtn").click(function(){
-    $("#popupExport").modal();
+  $(document).ready(function(){
+    $("#exportBtn").click(function(){
+      $("#popupExport").modal();
+    });
   });
-});
 </script>
 
 <script>
-$(document).ready(function(){
-  $("#btnDelete_C").click(function(){
-    $("#deleteTable_C").modal();
+  $(document).ready(function(){
+    $("#btnDelete_C").click(function(){
+      $("#deleteTable_C").modal();
+    });
   });
-});
 </script>
 
 <script>
@@ -1163,18 +1189,19 @@ $(document).ready(function(){
 </script>
 
 <script type="text/javascript">
-function saveFunc()
-{
-  $("#save_Modal").modal();
-}
+  function saveFunc()
+  {
+    $("#save_Modal").modal();
+  }
 </script>
 
 
 <script type="text/javascript">
-   function FormValidation()
+   function FormValidation1()
    {
     var regexp = /^[a-z]*$/i;
     var regexp2 = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/i;
+    var regexp3 = /^[0-9, . , 0-9]*$/i;
     var re = /\S+@\S+\.\S+/;
       var missingVal = 0;
 
@@ -1185,106 +1212,107 @@ function saveFunc()
       var fax=document.getElementById('fax').value;
       var export_reg_no=document.getElementById('export_reg_no').value;
       var sales_tax_no=document.getElementById('sales_tax_no').value;
+      var ntn_no=document.getElementById('ntn_no').value;
      
      
       var summary = "Summary: ";
 
       if(partyname == "")
-      {
-          document.getElementById('partyname').style.borderColor = "red";
-          missingVal = 1;
-          // summary += "Firstname is .";
-          document.getElementById("V_partyname").innerHTML = "Firstname is required.";
-      }
+        {
+            document.getElementById('partyname').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is .";
+            document.getElementById("V_partyname").innerHTML = "Firstname is required.";
+        }
       if(partyname != "")
-      {
-          document.getElementById('partyname').style.borderColor = "";
-          document.getElementById("V_partyname").innerHTML = "";
+        {
+            document.getElementById('partyname').style.borderColor = "white";
+            document.getElementById("V_partyname").innerHTML = "";
 
-      }
+        }
 
       if(subpartyname == "")
-      {
-          document.getElementById('subpartyname').style.borderColor = "red";
-          missingVal = 1;
-          // summary += "Firstname is .";
-          document.getElementById("V_subpartyname").innerHTML = "Sub Agent is required.";
-      }
+        {
+            document.getElementById('subpartyname').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is .";
+            document.getElementById("V_subpartyname").innerHTML = "Sub Agent is required.";
+        }
       if(subpartyname != "")
-      {
-          document.getElementById('subpartyname').style.borderColor = "white";
-          document.getElementById("V_subpartyname").innerHTML = "";
+          {
+              document.getElementById('subpartyname').style.borderColor = "white";
+              document.getElementById("V_subpartyname").innerHTML = "";
 
-         
-      }
+             
+          }
 
        if(phone != "")
-      {
-          document.getElementById('phone').style.borderColor = "white";
-          document.getElementById("V_phone").innerHTML = "";
+          {
+              document.getElementById('phone').style.borderColor = "white";
+              document.getElementById("V_phone").innerHTML = "";
 
-          if (!regexp2.test(phone))
-        {
-          document.getElementById('phone').style.borderColor = "red";
-            missingVal = 1;
-            // summary += "Firstname is .";
-            document.getElementById("V_phone").innerHTML = "Only Number are allow.";
-        }
-      }
+              if (!regexp2.test(phone))
+            {
+              document.getElementById('phone').style.borderColor = "red";
+                missingVal = 1;
+                // summary += "Firstname is .";
+                document.getElementById("V_phone").innerHTML = "Only Number are allowed in Contact No.";
+            }
+          }
 
        if(fax != "")
-      {
-          document.getElementById('fax').style.borderColor = "white";
-          document.getElementById("V_fax").innerHTML = "";
+          {
+              document.getElementById('fax').style.borderColor = "white";
+              document.getElementById("V_fax").innerHTML = "";
 
-          if (!regexp2.test(fax))
-        {
-          document.getElementById('fax').style.borderColor = "red";
-            missingVal = 1;
-            // summary += "Firstname is .";
-            document.getElementById("V_fax").innerHTML = "Only Number are allow.";
-        }
-      }
+              if (!regexp2.test(fax))
+            {
+              document.getElementById('fax').style.borderColor = "red";
+                missingVal = 1;
+                // summary += "Firstname is .";
+                document.getElementById("V_fax").innerHTML = "Only Number are allowed in Fax No.";
+            }
+          }
 
       if(export_reg_no != "")
-      {
-          document.getElementById('export_reg_no').style.borderColor = "white";
-          document.getElementById("V_export_reg_no").innerHTML = "";
-
-          if (!regexp2.test(export_reg_no))
         {
-          document.getElementById('export_reg_no').style.borderColor = "red";
-            missingVal = 1;
-            // summary += "Firstname is .";
-            document.getElementById("V_export_reg_no").innerHTML = "Only Number are allow.";
+            document.getElementById('export_reg_no').style.borderColor = "white";
+            document.getElementById("V_export_reg_no").innerHTML = "";
+
+            if (!regexp3.test(export_reg_no))
+          {
+            document.getElementById('export_reg_no').style.borderColor = "red";
+              missingVal = 1;
+              // summary += "Firstname is .";
+              document.getElementById("V_export_reg_no").innerHTML = "Only Number are allowed in Export No.";
+          }
         }
-      }
 
       if(sales_tax_no != "")
       {
           document.getElementById('sales_tax_no').style.borderColor = "white";
           document.getElementById("V_sales_tax_no").innerHTML = "";
 
-          if (!regexp2.test(sales_tax_no))
+          if (!regexp3.test(sales_tax_no))
         {
           document.getElementById('sales_tax_no').style.borderColor = "red";
             missingVal = 1;
             // summary += "Firstname is .";
-            document.getElementById("V_sales_tax_no").innerHTML = "Only Number are allow.";
+            document.getElementById("V_sales_tax_no").innerHTML = "Only Number are allowed in Sales Tax No.";
         }
       }
 
-      if(ntn_no != "")
+       if(ntn_no != "")
       {
           document.getElementById('ntn_no').style.borderColor = "white";
           document.getElementById("V_ntn_no").innerHTML = "";
 
-          if (!regexp2.test(ntn_no))
+          if (!regexp3.test(ntn_no))
         {
           document.getElementById('ntn_no').style.borderColor = "red";
             missingVal = 1;
             // summary += "Firstname is .";
-            document.getElementById("V_ntn_no").innerHTML = "Only Number are allow.";
+            document.getElementById("V_ntn_no").innerHTML = "Only Number are allowed in Ntn No.";
         }
       }
 
@@ -1307,7 +1335,7 @@ function saveFunc()
       
       if (missingVal != 1)
       {
-        document.getElementById('partyname').style.borderColor = "white";
+        document.getElementById('partyname').style.borderColor = "";
         document.getElementById('subpartyname').style.borderColor = "white";
          document.getElementById('email').style.borderColor = "white";
          document.getElementById('phone').style.borderColor = "white";
@@ -1316,7 +1344,7 @@ function saveFunc()
          document.getElementById('sales_tax_no').style.borderColor = "white";
          document.getElementById('ntn_no').style.borderColor = "white";
        
-        $("#submit_Modal").modal();
+        $("#submit_Modal1").modal();
         
       }
 
@@ -1331,9 +1359,11 @@ function saveFunc()
 
 
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
-    <script type="text/javascript">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+
+<script type="text/javascript">
         $("body").on("click", "#btnExport", function () {
             html2canvas($('#usrtble')[0], {
                 onrendered: function (canvas) {
@@ -1348,38 +1378,38 @@ function saveFunc()
                 }
             });
         });
-    </script>
+</script>
 <script type="text/javascript">
-$(document).on('click', '.editData', function(){  
-  var employee_id = $(this).attr("id"); 
+  $(document).on('click', '.editData', function(){  
+    var employee_id = $(this).attr("id"); 
 
-      $.ajax({
-         url:"fatch_representative.php",  
-                method:"GET",  
-                data:{employee_id:employee_id},  
-                dataType:"json",  
-         success: function(data) {
-              $('#SrNoV').val(data.SrNo);  
-              $('#rep_nameV').val(data.rep_name);  
-              $('#rep_desgV').val(data.rep_desg);  
-              $('#rep_office_noV').val(data.rep_office_no); 
-              $('#rep_phone_noV').val(data.rep_phone_no);
-               $('#rep_emailV').val(data.rep_email);  
+        $.ajax({
+           url:"fatch_representative.php",  
+                  method:"GET",  
+                  data:{employee_id:employee_id},  
+                  dataType:"json",  
+           success: function(data) {
+                $('#SrNoV').val(data.SrNo);  
+                $('#rep_nameV').val(data.rep_name);  
+                $('#rep_desgV').val(data.rep_desg);  
+                $('#rep_office_noV').val(data.rep_office_no); 
+                $('#rep_phone_noV').val(data.rep_phone_no);
+                 $('#rep_emailV').val(data.rep_email);  
 
-              var checkif = data.status;
-              if (checkif == "Active") {
-                 $('#statusV').attr("checked", true);
-                 document.getElementByID("statusV").checked = true;
-              }
-              else
-              {
-                $('#statusV').attr("checked", false);
-              }
-               
-         }
-      });
-    
-});
+                var checkif = data.status;
+                if (checkif == "Active") {
+                   $('#statusV').attr("checked", true);
+                   document.getElementByID("statusV").checked = true;
+                }
+                else
+                {
+                  $('#statusV').attr("checked", false);
+                }
+                 
+           }
+        });
+      
+  });
 </script>
 
 
@@ -1402,7 +1432,7 @@ $(document).on('click', '.editData', function(){
              }
          }
      }
-   </script>
+</script>
 
 <script>
 
@@ -1418,10 +1448,10 @@ $(document).on('click', '.editData', function(){
 
 <!-- java script -->
 <script type="text/javascript">
-function logUserFunc()
-{
-  $("#logUser_Modal").modal();
-}
+  function logUserFunc()
+  {
+    $("#logUser_Modal").modal();
+  }
 </script>
 
 <script type="text/javascript">
@@ -1449,7 +1479,8 @@ function logUserFunc()
    function FormValidation2()
    {
 
-     var regexp3 = /^[a-z\S, ]*$/i;
+    var regexp4 = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/i;
+     var regexp3 = /^[a-z, ,a-z]*$/i;
     var regexp = /^[a-z]*$/i;
     var regexp2 = /^[0-9]*$/i;
     var re = /\S+@\S+\.\S+/;
@@ -1458,6 +1489,8 @@ function logUserFunc()
       var rep_name=document.getElementById('rep_name').value;
       var rep_desg=document.getElementById('rep_desg').value;
       var rep_email=document.getElementById('rep_email').value;
+      var rep_office_no=document.getElementById('rep_office_no').value;
+      var rep_phone_no=document.getElementById('rep_phone_no').value;
      
       var summary = "Summary: ";
 
@@ -1505,6 +1538,34 @@ function logUserFunc()
         }
       }
 
+       if(rep_office_no != "")
+      {
+          document.getElementById('rep_office_no').style.borderColor = "white";
+          document.getElementById("V_rep_office_no").innerHTML = "";
+
+          if (!regexp4.test(rep_office_no))
+        {
+          document.getElementById('rep_office_no').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_rep_office_no").innerHTML = "Only Number are allowed.";
+        }
+      }
+
+       if(rep_phone_no != "")
+      {
+          document.getElementById('rep_phone_no').style.borderColor = "white";
+          document.getElementById("V_rep_phone_no").innerHTML = "";
+
+          if (!regexp4.test(rep_phone_no))
+        {
+          document.getElementById('rep_phone_no').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_rep_phone_no").innerHTML = "Only Number are allowed.";
+        }
+      }
+
       
       if(rep_email != "")
       {
@@ -1530,6 +1591,8 @@ function logUserFunc()
         document.getElementById('rep_name').style.borderColor = "white";
         document.getElementById('rep_desg').style.borderColor = "white";
         document.getElementById('rep_desg').style.borderColor = "white";
+        document.getElementById('rep_office_no').style.borderColor = "white";
+        document.getElementById('rep_phone_no').style.borderColor = "white";
        
         $("#submit_Modal").modal();
         
@@ -1549,7 +1612,9 @@ function logUserFunc()
    function FormValidation4()
    {
 
-    var regexp3 = /^[a-z\S, ]*$/i;
+
+    var regexp4 = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/i;
+    var regexp3 = /^[a-z, ,a-z]*$/i;
     var regexp = /^[a-z]*$/i;
     var regexp2 = /^[0-9]*$/i;
     var re = /\S+@\S+\.\S+/;
@@ -1558,6 +1623,8 @@ function logUserFunc()
       var rep_nameV=document.getElementById('rep_nameV').value;
       var rep_desgV=document.getElementById('rep_desgV').value;
       var rep_emailV=document.getElementById('rep_emailV').value;
+      var rep_office_noV=document.getElementById('rep_office_noV').value;
+      var rep_phone_noV=document.getElementById('rep_phone_noV').value;
      
       var summary = "Summary: ";
 
@@ -1597,6 +1664,34 @@ function logUserFunc()
         }
       }
 
+      if(rep_office_noV != "")
+      {
+          document.getElementById('rep_office_noV').style.borderColor = "white";
+          document.getElementById("EV_rep_office_noV").innerHTML = "";
+
+          if (!regexp4.test(rep_nameV))
+        {
+          document.getElementById('rep_office_noV').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("EV_rep_office_noV").innerHTML = "Only alphabets are allowed in Name.";
+        }
+      }
+
+      if(rep_phone_noV != "")
+      {
+          document.getElementById('rep_phone_noV').style.borderColor = "white";
+          document.getElementById("EV_rep_phone_noV").innerHTML = "";
+
+          if (!regexp4.test(rep_nameV))
+        {
+          document.getElementById('rep_phone_noV').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("EV_rep_phone_noV").innerHTML = "Only alphabets are allowed in Name.";
+        }
+      }
+
       
       if(rep_emailV != "")
       {
@@ -1622,6 +1717,8 @@ function logUserFunc()
         document.getElementById('rep_nameV').style.borderColor = "white";
         document.getElementById('rep_desgV').style.borderColor = "white";
         document.getElementById('rep_emailV').style.borderColor = "white";
+        document.getElementById('rep_office_noV').style.borderColor = "white";
+        document.getElementById('rep_phone_noV').style.borderColor = "white";
        
         $("#Edit_Modal").modal();
         
@@ -1633,6 +1730,8 @@ function logUserFunc()
       }
    }
 </script>
+
+
 
 
 
