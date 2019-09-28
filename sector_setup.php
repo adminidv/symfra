@@ -367,15 +367,36 @@ if (isset($_POST['btnadd'])) {
   {
     $status='Deactive';
   }
- 
 
- $insertQuery = mysqli_query($con, "insert into sector_setup (sector_name, status) values ('$sector_name', '$status')");
+  // Checking currency name if it is already been added
+  $existCurName = "0";
+  $selectSecName = mysqli_query($con, "SELECT * FROM sector_setup WHERE sector_name='$sector_name' ");
+  while ($rowSecName = mysqli_fetch_array($selectSecName))
+  {
+    $existCurName = $rowSecName['sector_name'];
+  }
 
- $insertQuery2 = mysqli_query($con, "insert into chainlog (instance, formName, record_id,createBy, createDate) values ('$newID1', 'Sector', '$SrNo1', '$loginUser1', '$todayDate1') ");
- 
- header("Location: sector_setup.php");
+  if ($existCurName != "0")
+  {
+    echo '<script type="text/javascript">
+      alert("This sector is already added");
+      location.replace("sector_setup.php");
+    </script>';
+
+    // header("Location: currency_setup.php");
+  }
+
+  else
+  {
+    $insertQuery = mysqli_query($con, "insert into sector_setup (sector_name, status) values ('$sector_name', '$status')");
+
+   $insertQuery2 = mysqli_query($con, "insert into chainlog (instance, formName, record_id,createBy, createDate) values ('$newID1', 'Sector', '$SrNo1', '$loginUser1', '$todayDate1') ");
+   
+   header("Location: sector_setup.php");
+  }
 
 }
+
 ?>
 
 <!DOCTYPE html>
