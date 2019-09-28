@@ -21,7 +21,7 @@ if(isset($_POST['btnedit1']))
   $rep_desgV = $_POST['rep_desgV'];
   $rep_office_noV = $_POST['rep_office_noV'];
   $rep_phone_noV = $_POST['rep_phone_noV'];
-  $emailV = $_POST['emailV'];
+  $emailV = $_POST['rep_emailV'];
    if (isset($_POST['statusV'])) {
     $statusV='Active';
 
@@ -660,7 +660,7 @@ if (isset($_POST['submitBtn'])) {
                                                   $rep_desg =$rowairport['rep_desg'];
                                                   $rep_office_no =$rowairport['rep_office_no'];
                                                   $rep_phone_no =$rowairport['rep_phone_no'];
-                                                  $email =$rowairport['email'];
+                                                  $rep_email =$rowairport['rep_email'];
                                                   $status =$rowairport['status'];
                                                                                                    
 
@@ -671,7 +671,7 @@ if (isset($_POST['submitBtn'])) {
                                           <td><?php echo $rep_desg ?></td>
                                           <td><?php echo $rep_office_no ?></td>
                                           <td><?php echo $rep_phone_no ?></td>
-                                          <td><?php echo $email ?></td>
+                                          <td><?php echo $rep_email ?></td>
                                           <td><?php echo $status ?></td>
                                           <td>Edit</td> 
                                           <?php
