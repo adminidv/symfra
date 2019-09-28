@@ -41,16 +41,16 @@ if (isset($_POST['submitBtn'])) {
   $createBy =$loginUser;
   $createDate =$todayDate;
   $partyname= $_POST['partyname'];
-  $spar_name= $_POST['spar_name'];
+  $subpartyname= $_POST['subpartyname'];
   $address = $_POST['address'];
-  $country_name = $_POST['country_name'];
-  $city_name = $_POST['city_name'];
+  $country = $_POST['country'];
+  $city = $_POST['city'];
   $phone = $_POST['phone'];
-  $fax_no = $_POST['fax_no'];
+  $fax = $_POST['fax'];
   $email = $_POST['email'];
   $website = $_POST['website'];
-  $export_no = $_POST['export_no'];
-  $sale_tax = $_POST['sale_tax'];
+  $export_reg_no = $_POST['export_reg_no'];
+  $sales_tax_no = $_POST['sales_tax_no'];
   $ntn_no = $_POST['ntn_no'];
   if (isset($_POST['status'])) {
     $status='Active';
@@ -60,20 +60,34 @@ if (isset($_POST['submitBtn'])) {
   {
     $status='Deactive';
   }
-//  insert qurey
- $insertQuery = mysqli_query($con, "insert into  sub_agents_parties_setup(partyname,subpartyname,address,country,city,phone,fax,email,website,export_reg_no,sales_tax_no,ntn_no,status) values ('$partyname','$spar_name','$address','$country_name','$city_name','$phone','$fax_no','$email','$website','$export_no','$sale_tax','$ntn_no','$status')") or die(mysqli_error($con));
 
-  $insertQuery2 = mysqli_query($con, "insert into chainlog (instance, formName, record_id,createBy, createDate) values ('$newID1', 'SubAgent', '$SrNo', '$loginUser', '$todayDate') ");
- 
-  $msg = "Record is inserted successfully.";
-  function alert($msg)
-  {
-    echo "<script type='text/javascript'>alert('$msg');</script>";
-  }
-  alert($msg);
+     // Checking currency name if it is already been added
+     $existCurName = "0";
+     $selectCurName = mysqli_query($con, "SELECT * FROM sub_agents_parties_setup WHERE subpartyname='$subpartyname' ");
+     while ($rowCurName = mysqli_fetch_array($selectCurName))
+     {
+       $existCurName = $rowCurName['subpartyname'];
+     }
+     if ($existCurName != "0")
+     {
+       echo '<script type="text/javascript">
+         alert("This Sub Party Name is already added");
+         location.replace("sub_agent_setup.php");
+       </script>';
+       // header("Location: currency_setup.php");
+     }
+     else
+     {
+    //  insert qurey
+     $insertQuery = mysqli_query($con, "insert into sub_agents_parties_setup(partyname,subpartyname,address,country,city,phone,fax,email,website,export_reg_no,sales_tax_no,ntn_no,status) values ('$partyname','$subpartyname','$address','$country','$city','$phone','$fax','$email','$website','$export_reg_no','$sales_tax_no','$ntn_no','$status')") or die(mysqli_error($con));
 
- header("Location: sub_agent_setup_V1.php?id=" . $SrNo1);
+      $insertQuery2 = mysqli_query($con, "insert into chainlog (instance, formName, record_id,createBy, createDate) values ('$newID1', 'SubAgent', '$SrNo', '$loginUser', '$todayDate') ");
+     
+     
 
+     header("Location: sub_agent_setup_V1.php?id=" . $SrNo1);
+
+}
 }
 ?>
 
@@ -303,7 +317,7 @@ if (isset($_POST['submitBtn'])) {
 
    <h4><label id="formSummary" style="color: red;"></label></h4>
        <p id="V_partyname" style="color: red;"></p>
-        <p id="V_spar_name" style="color: red;"></p>
+        <p id="V_subpartyname" style="color: red;"></p>
         <p id="V_email" style="color: red;"></p>
         <p id="V_phone" style="color: red;"></p>
         <p id="V_fax" style="color: red;"></p>
@@ -353,14 +367,14 @@ if (isset($_POST['submitBtn'])) {
                                                       </div> 
                                                        <div class="input-label"><label >Sub Party Agent</label></div>
                                                       <div class="input-feild">
-                                                              <input class="mini_input_field"  type="text" name="spar_name" maxlength="40" id="spar_name" placeholder="Enter Here Sub Party Name !"><span class="steric">*</span>
+                                                              <input class="mini_input_field"  type="text" name="subpartyname" maxlength="40" id="subpartyname" placeholder="Enter Here Sub Party Name !"><span class="steric">*</span>
                                                                 
                                                       </div>
 
                                                       <div class="input-label"><label >Country</label></div> 
                                              <div class="input-feild"> 
-                                             <select name="country_name" id="country_name" class="country_name"  onchange="checkCities();">
-                                                  <option value="">Select </option>
+                                             <select name="country" id="country" class="country"  onchange="checkCities();">
+                                                  <option >Select </option>
                                                   <!-- Drop Down list Country Name -->
                                                   <?php
 
@@ -377,8 +391,8 @@ if (isset($_POST['submitBtn'])) {
                                                       </div>
                                                       <div class="input-label"><label >City</label></div> 
                                 <div class="input-feild">
-                                           <select name="city_name" id="city_name" class="city_name" >
-                                                <option value="">Select </option>
+                                           <select name="city" id="city" class="city" >
+                                                <option>Select </option>
                                                 <!-- Drop Down list Country Name -->
                                                 <?php
 
@@ -410,7 +424,7 @@ if (isset($_POST['submitBtn'])) {
                                                       
                                                       <div class="input-label"><label >Fax No.</label></div>
                                                       <div class="input-feild">
-                                                              <input class=""  type="text" name="fax_no" id="fax_no" maxlength="14">
+                                                              <input class=""  type="text" name="fax" id="fax" maxlength="14">
                                                                  
                                                       </div>
 
@@ -426,12 +440,12 @@ if (isset($_POST['submitBtn'])) {
                                                       </div>
                                                       <div class="input-label"><label >Export No.</label></div> 
                                                       <div class="input-feild">
-                                                            <input type="text" maxlength="20" name="export_no" id="export_no">
+                                                            <input type="text" maxlength="20" name="export_reg_no" id="export_reg_no">
                                                              
                                                       </div>
                                                       <div class="input-label"><label >Sales Tax No.</label></div> 
                                                       <div class="input-feild">
-                                                            <input type="text" name="sale_tax" id="sale_tax">
+                                                            <input type="text" name="sales_tax_no" id="sales_tax_no">
                                                              
                                                       </div>                                      
                                                        <div class="input-label"><label >NTN No.</label></div> 
@@ -442,7 +456,7 @@ if (isset($_POST['submitBtn'])) {
 
                                                        <div class="input-label"><label>Active</label></div> 
                                                        <div class="input-feild"> 
-                                                       <input type="checkbox"  name="status" id="status" value="<?php echo $status ?>" >
+                                                       <input type="checkbox"  name="status" id="status">
                                                        </div>
                               </div>                
                 </div>      
@@ -456,34 +470,34 @@ if (isset($_POST['submitBtn'])) {
 
 
 <script>
-$(document).ready(function(){
-  $("#exportBtn").click(function(){
-    $("#popupExport").modal();
+  $(document).ready(function(){
+    $("#exportBtn").click(function(){
+      $("#popupExport").modal();
+    });
   });
-});
 </script>
 
 <script>
-$(document).ready(function(){
-  $("#btnDelete_C").click(function(){
-    $("#deleteTable_C").modal();
+  $(document).ready(function(){
+    $("#btnDelete_C").click(function(){
+      $("#deleteTable_C").modal();
+    });
   });
-});
 </script>
 
 <script>
-$(document).ready(function(){
-  $("#myBtn").click(function(){
-    $("#popupMEdit").modal();
+  $(document).ready(function(){
+    $("#myBtn").click(function(){
+      $("#popupMEdit").modal();
+    });
   });
-});
 </script>
 
 <script type="text/javascript">
-function saveFunc()
-{
-  $("#save_Modal").modal();
-}
+  function saveFunc()
+  {
+    $("#save_Modal").modal();
+  }
 </script>
 
 <script type="text/javascript">
@@ -491,16 +505,18 @@ function saveFunc()
    {
     var regexp = /^[a-z]*$/i;
     var regexp2 = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/i;
+    var regexp3 = /^[0-9, . , 0-9]*$/i;
     var re = /\S+@\S+\.\S+/;
       var missingVal = 0;
 
       var partyname=document.getElementById('partyname').value;
-      var spar_name=document.getElementById('spar_name').value;
+      var subpartyname=document.getElementById('subpartyname').value;
       var email=document.getElementById('email').value;
       var phone=document.getElementById('phone').value;
       var fax=document.getElementById('fax').value;
       var export_reg_no=document.getElementById('export_reg_no').value;
       var sales_tax_no=document.getElementById('sales_tax_no').value;
+      var ntn_no=document.getElementById('ntn_no').value;
      
      
       var summary = "Summary: ";
@@ -519,17 +535,17 @@ function saveFunc()
 
       }
 
-      if(spar_name == "")
+      if(subpartyname == "")
       {
-          document.getElementById('spar_name').style.borderColor = "red";
+          document.getElementById('subpartyname').style.borderColor = "red";
           missingVal = 1;
           // summary += "Firstname is .";
-          document.getElementById("V_spar_name").innerHTML = "Sub Agent is required.";
+          document.getElementById("V_subpartyname").innerHTML = "Sub Agent is required.";
       }
-      if(spar_name != "")
+      if(subpartyname != "")
       {
-          document.getElementById('spar_name').style.borderColor = "white";
-          document.getElementById("V_spar_name").innerHTML = "";
+          document.getElementById('subpartyname').style.borderColor = "white";
+          document.getElementById("V_subpartyname").innerHTML = "";
 
          
       }
@@ -544,21 +560,21 @@ function saveFunc()
           document.getElementById('phone').style.borderColor = "red";
             missingVal = 1;
             // summary += "Firstname is .";
-            document.getElementById("V_phone").innerHTML = "Only Number are allow.";
+            document.getElementById("V_phone").innerHTML = "Only Number are allowed in Contact No.";
         }
       }
 
        if(fax != "")
       {
           document.getElementById('fax').style.borderColor = "white";
-          document.getElementById("V_faxe").innerHTML = "";
+          document.getElementById("V_fax").innerHTML = "";
 
           if (!regexp2.test(fax))
         {
           document.getElementById('fax').style.borderColor = "red";
             missingVal = 1;
             // summary += "Firstname is .";
-            document.getElementById("V_fax").innerHTML = "Only Number are allow.";
+            document.getElementById("V_fax").innerHTML = "Only Number are allowed in Fax No.";
         }
       }
 
@@ -567,12 +583,12 @@ function saveFunc()
           document.getElementById('export_reg_no').style.borderColor = "white";
           document.getElementById("V_export_reg_no").innerHTML = "";
 
-          if (!regexp2.test(export_reg_no))
+          if (!regexp3.test(export_reg_no))
         {
           document.getElementById('export_reg_no').style.borderColor = "red";
             missingVal = 1;
             // summary += "Firstname is .";
-            document.getElementById("V_export_reg_no").innerHTML = "Only Number are allow.";
+            document.getElementById("V_export_reg_no").innerHTML = "Only Number are allowed in Export No.";
         }
       }
 
@@ -581,12 +597,12 @@ function saveFunc()
           document.getElementById('sales_tax_no').style.borderColor = "white";
           document.getElementById("V_sales_tax_no").innerHTML = "";
 
-          if (!regexp2.test(sales_tax_no))
+          if (!regexp3.test(sales_tax_no))
         {
           document.getElementById('sales_tax_no').style.borderColor = "red";
             missingVal = 1;
             // summary += "Firstname is .";
-            document.getElementById("V_sales_tax_no").innerHTML = "Only Number are allow.";
+            document.getElementById("V_sales_tax_no").innerHTML = "Only Number are allowed in Sales Tax No.";
         }
       }
 
@@ -595,12 +611,12 @@ function saveFunc()
           document.getElementById('ntn_no').style.borderColor = "white";
           document.getElementById("V_ntn_no").innerHTML = "";
 
-          if (!regexp2.test(ntn_no))
+          if (!regexp3.test(ntn_no))
         {
           document.getElementById('ntn_no').style.borderColor = "red";
             missingVal = 1;
             // summary += "Firstname is .";
-            document.getElementById("V_ntn_no").innerHTML = "Only Number are allow.";
+            document.getElementById("V_ntn_no").innerHTML = "Only Number are allowed in Ntn No.";
         }
       }
 
@@ -623,8 +639,8 @@ function saveFunc()
       
       if (missingVal != 1)
       {
-        document.getElementById('partyname').style.borderColor = "white";
-        document.getElementById('spar_name').style.borderColor = "white";
+        document.getElementById('partyname').style.borderColor = "";
+        document.getElementById('subpartyname').style.borderColor = "white";
          document.getElementById('email').style.borderColor = "white";
          document.getElementById('phone').style.borderColor = "white";
          document.getElementById('fax').style.borderColor = "white";
@@ -700,7 +716,7 @@ function saveFunc()
 <script type="text/javascript">
   function checkCities()
   {
-    var bpCountry = document.getElementById("country_name").value;
+    var bpCountry = document.getElementById("country").value;
 
     $.ajax({
        url:"checkCities.php",  
@@ -708,7 +724,7 @@ function saveFunc()
               data:{bpCountry:bpCountry}, 
               dataType:"text", 
        success: function(data) {
-           $('#city_name').html(data);
+           $('#city').html(data);
        }
     });
   }
