@@ -81,7 +81,7 @@ if (isset($_POST['submitBtn'])) {
     //  insert qurey
      $insertQuery = mysqli_query($con, "insert into sub_agents_parties_setup(partyname,subpartyname,address,country,city,phone,fax,email,website,export_reg_no,sales_tax_no,ntn_no,status) values ('$partyname','$subpartyname','$address','$country','$city','$phone','$fax','$email','$website','$export_reg_no','$sales_tax_no','$ntn_no','$status')") or die(mysqli_error($con));
 
-      $insertQuery2 = mysqli_query($con, "insert into chainlog (instance, formName, record_id,createBy, createDate) values ('$newID1', 'SubAgent', '$SrNo', '$loginUser', '$todayDate') ");
+      $insertQuery2 = mysqli_query($con, "insert into chainlog (instance, formName, record_id,createBy, createDate) values ('$newID1', 'SubAgent', '$SrNo1', '$loginUser', '$todayDate') ");
      
      
 
