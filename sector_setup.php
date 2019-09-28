@@ -7,7 +7,6 @@ $subRibbon = 'addUser';
 $Quick = 'Hide';
 $Quickhr = '';
 
-
 // For Change log Edit
 $userID = $_SESSION['user'];
 //login user
@@ -22,7 +21,6 @@ while ($rowSrNo = mysqli_fetch_array($selectSrNo))
   $SrNo = $rowSrNo['SrNo'];
   
 }
-
 
 // Add Change log
 //login user
@@ -52,43 +50,205 @@ $selectLastID1 = mysqli_query($con, "SELECT * FROM chainlog WHERE record_id = '$
  $selectsector = mysqli_query($con, "select * from  sector_setup ");
 
 
-// multi Deactived
-if(isset($_POST["btnDelete"]))
+if(isset($_POST["btnActivate"]))
 {
-  $id = $_POST['user_check'];
-  while (list($key, $val) = @each ($id))
+  if (isset($_POST["user_check"]))
   {
-    $selectStatus = mysqli_query($con, "SELECT * FROM sector_setup WHERE SrNo='".$val."' ");
-    while ($rowStatus = mysqli_fetch_array($selectStatus))
+    $id = $_POST['user_check'];
+    // echo count($id);
+    while (list($key, $val) = @each ($id))
     {
-      $currentStatus = $rowStatus['status'];
-    }
-    if ($currentStatus == "Active")
-    {
-      mysqli_query($con, "UPDATE sector_setup SET status='Deactive' WHERE SrNo = '".$val."' ");
-    }
-     header("Location: sector_setup.php");
-}
-
-}
-    // multi Actived
-    if(isset($_POST["btnDelete1"]))
-{
-  $id = $_POST['user_check'];
-  while (list($key, $val) = @each ($id))
-  {
-    $selectStatus = mysqli_query($con, "SELECT * FROM sector_setup WHERE SrNo='".$val."' ");
-    while ($rowStatus = mysqli_fetch_array($selectStatus))
-    {
-      $currentStatus = $rowStatus['status'];
-    }
-     if ($currentStatus == "Deactive")
-    {
-      mysqli_query($con, "UPDATE sector_setup SET status='Active' WHERE SrNo = '".$val."' ");
+      // mysqli_query($con, "UPDATE custmaster SET cmpStatus= '2' WHERE newCode = '$val' ");
+      mysqli_query($con, "UPDATE sector_setup SET status='Active' WHERE SrNo = '$val' ");
+      // header("Location: ");
     }
 
+    $clause = " WHERE ";//Initial clause
+    $searchRecord="SELECT * FROM `users` WHERE userBr='$userBr' ";
+
+        // if user is giving the middle name
+        if(!empty($_POST['user_mName']))
+        {
+            $user_mName = $_POST['user_mName'];
+            $searchRecord .= $clause."`user_mName` LIKE '%$user_mName%'";
+            $user_mName = 1;
+        }
+        else
+        {
+          $user_mName = 0;
+        }
+
+        // if user is giving the first name
+        if(!empty($_POST['user_fName']))
+        {
+            if($user_mName == 1)
+            {
+              $clause = " AND ";
+            }
+            $user_fName = $_POST['user_fName'];
+            $searchRecord .= $clause."`user_fName` LIKE '%$user_fName%'";
+            $fNameStatus = 1;
+        }
+        else
+        {
+          $fNameStatus = 0;
+        }
+
+        // if user is selecting any department
+        if(!empty($_POST['dept_list']))
+        {
+            if($fNameStatus == 1 OR $user_mName == 1)
+            {
+              $clause = " AND ";
+            }
+            foreach($_POST['dept_list'] as $c)
+            {
+                if(!empty($c)){
+                    $searchRecord .= $clause."`dept_ID` = '{$c}'";
+                    $clause = " OR ";
+                }   
+            }
+            $deptStatus = 1;
+        }
+        else
+        {
+          $deptStatus = 0;
+        }
+
+        // if user is selecting any designation
+        if(!empty($_POST['desig_list']))
+        {
+            if($deptStatus == 1 OR $fNameStatus == 1 OR $user_mName == 1)
+            {
+              $clause = " AND ";
+            }
+            foreach($_POST['desig_list'] as $d)
+            {
+                if(!empty($d))
+                {
+                    $searchRecord .= $clause."`desig_ID` LIKE '%{$d}%'";
+                    $clause = " OR ";
+                }   
+            }
+        }
+        else
+        {
+          // echo "Nothing Selected.";
+        }
+    // echo $sql; //Remove after testing
+    $search = " SELECT * FROM  sector_setup";
+    $searchQuery = mysqli_query($con, $search);
     header("Location: sector_setup.php");
   }
+
+  else
+  {
+    echo '<script type="text/javascript">'; 
+    echo 'alert("Please select something to activate.");'; 
+    echo 'window.location.href = "sector_setup.php";';
+    echo '</script>';
+  }
+  
+}
+
+else if(isset($_POST["btnDeactivate"]))
+{
+  if (isset($_POST["user_check"]))
+  {
+    $id = $_POST['user_check'];
+    while (list($key, $val) = @each ($id))
+    {
+      // mysqli_query($con, "UPDATE custmaster SET cmpStatus= '2' WHERE newCode = '$val' ");
+      mysqli_query($con, "UPDATE sector_setup SET status='Deactive' WHERE SrNo = '$val' ");
+      // header("Location: ");
+    }
+
+    $clause = " WHERE ";//Initial clause
+    $searchRecord="SELECT * FROM `users` ";
+
+        // if user is giving the middle name
+        if(!empty($_POST['user_mName']))
+        {
+            $user_mName = $_POST['user_mName'];
+            $searchRecord .= $clause."`user_mName` LIKE '%$user_mName%'";
+            $user_mName = 1;
+        }
+        else
+        {
+          $user_mName = 0;
+        }
+
+        // if user is giving the first name
+        if(!empty($_POST['user_fName']))
+        {
+            if($user_mName == 1)
+            {
+              $clause = " AND ";
+            }
+            $user_fName = $_POST['user_fName'];
+            $searchRecord .= $clause."`user_fName` LIKE '%$user_fName%'";
+            $fNameStatus = 1;
+        }
+        else
+        {
+          $fNameStatus = 0;
+        }
+
+        // if user is selecting any department
+        if(!empty($_POST['dept_list']))
+        {
+            if($fNameStatus == 1 OR $user_mName == 1)
+            {
+              $clause = " AND ";
+            }
+            foreach($_POST['dept_list'] as $c)
+            {
+                if(!empty($c)){
+                    $searchRecord .= $clause."`dept_ID` = '{$c}'";
+                    $clause = " OR ";
+                }   
+            }
+            $deptStatus = 1;
+        }
+        else
+        {
+          $deptStatus = 0;
+        }
+
+        // if user is selecting any designation
+        if(!empty($_POST['desig_list']))
+        {
+            if($deptStatus == 1 OR $fNameStatus == 1 OR $user_mName == 1)
+            {
+              $clause = " AND ";
+            }
+            foreach($_POST['desig_list'] as $d)
+            {
+                if(!empty($d))
+                {
+                    $searchRecord .= $clause."`desig_ID` LIKE '%{$d}%'";
+                    $clause = " OR ";
+                }   
+            }
+        }
+        else
+        {
+          // echo "Nothing Selected.";
+        }
+    // echo $sql; //Remove after testing
+    $search = " SELECT * FROM  sector_setup";
+    $searchQuery = mysqli_query($con, $search);
+    header("Location: sector_setup.php");
+  }
+
+  else
+  {
+    echo '<script type="text/javascript">'; 
+    echo 'alert("Please select something to deactivate.");'; 
+    echo 'window.location.href = "sector_setup.php";';
+    echo '</script>';
+  }
+
 }
 
 if(isset($_POST['btnedit1']))
@@ -104,16 +264,6 @@ if(isset($_POST['btnedit1']))
   {
     $statusV='Deactive';
   }
-
-
-
-  $selectPrev = mysqli_query($con, "SELECT * FROM sector_setup WHERE SrNo='$sector_SrNoV' ");
-  while ($rowPrev = mysqli_fetch_array($selectPrev))
-  {
-    $sector_nameV_p = $rowPrev['sector_name'];
-    $statusV_p = $rowPrev['status'];
-  }
-
   
   $clause = " WHERE SrNo='$sector_SrNoV'";
   $initQuery = "UPDATE sector_setup SET SrNo='$sector_SrNoV' ";
@@ -329,8 +479,6 @@ if (isset($_POST['btnadd'])) {
            </div>
                     <!-- sidebar-search  -->
 
-           
-           
                        <!-- sidebar-advanced-search_options  -->
            <?php include 'sidebar_widgets/user_form_quicklinks_widgets.php'; ?>
                           <!-- sidebar-menu  -->
@@ -343,8 +491,6 @@ if (isset($_POST['btnadd'])) {
 
 <form action="" method="POST">
 <div class="leave-manage-sec  main_widget_box ">
-  
-
       <div class="form_sec_action_btn col-md-12">
          <div class="form_action_right_btn">
             <!-- Go back button code starting here -->
@@ -366,7 +512,6 @@ if (isset($_POST['btnadd'])) {
           <button type="button" id="myBtn">  <small>Add Sector</small></button>
           <button type="button" name="saveBtn" onclick="logUserFunc();"> <small>Change Logs</small></button>
       </div>
-         
 
          <!-- Modal Two-->
                <div class="modal fade confirmTable-modal" id="popupMEdit2" role="dialog">
@@ -413,7 +558,6 @@ if (isset($_POST['btnadd'])) {
                       </div>
                     </div>
                </div>
-         
 
       <!-- Add Sector -->
       <div class="modal fade symfra_popup2" id="popupMEdit" role="dialog">
@@ -428,7 +572,7 @@ if (isset($_POST['btnadd'])) {
 
                    <!-- For Validation Box Red Popup -->
          <h4><label id="formSummary" style="color: red;"></label></h4>
-       <p id="V_sector_name" style="color: red;"></p>
+         <p id="V_sector_name" style="color: red;"></p>
 
                    <div class="input-fields"> 
                     <label>Sector Name</label> 
@@ -530,7 +674,7 @@ if (isset($_POST['btnadd'])) {
       </div>
 
       
-      <div class="confirmTable-modal modal fade" id="deleteTable_C" role="dialog">
+      <div class="confirmTable-modal modal fade" id="activateTable_C" role="dialog">
             <div class="modal-dialog">
                   <div class="modal-content pop_up_content">
                       <div class="modal-header pop_up-header">
@@ -539,17 +683,17 @@ if (isset($_POST['btnadd'])) {
                       </div>
                       <div class="modal-body Popup_bdy">
                         <div class="input-feild">
-                            <p>Do you really want to Deactivate selected records?</p>
+                            <p>Do you really want to activate selected records?</p>
                             
                         </div>
-                        <button type="submit" name="btnDelete">Yes</button>
+                        <button type="submit" name="btnActivate">Yes</button>
                         <button type="button" name="btnDelete_N" data-dismiss="modal" >No</button>
                       </div>
                  </div>
               </div>
-      </div>
+          </div>
 
-       <div class="confirmTable-modal modal fade" id="deleteTable_C1" role="dialog">
+          <div class="confirmTable-modal modal fade" id="deactivateTable_C" role="dialog">
             <div class="modal-dialog">
                   <div class="modal-content pop_up_content">
                       <div class="modal-header pop_up-header">
@@ -558,15 +702,15 @@ if (isset($_POST['btnadd'])) {
                       </div>
                       <div class="modal-body Popup_bdy">
                         <div class="input-feild">
-                            <p>Do you really want to Activate selected records?</p>
+                            <p>Do you really want to deactivate selected records?</p>
                             
                         </div>
-                        <button type="submit" name="btnDelete1">Yes</button>
+                        <button type="submit" name="btnDeactivate">Yes</button>
                         <button type="button" name="btnDelete_N" data-dismiss="modal" >No</button>
                       </div>
                  </div>
               </div>
-      </div>
+          </div>
 
        <!-- Show Log Chain -->
       <div class="modal fade symfra_popup2" id="logUser_Modal" role="dialog">
@@ -597,16 +741,16 @@ if (isset($_POST['btnadd'])) {
                      <tbody>
                       <?php
 
-                              include 'manage/connection.php';
+                      include 'manage/connection.php';
 
-                              $selectchainlog = mysqli_query($con, "select * from chainlog where formName = 'Sector' ");
+                      $selectchainlog = mysqli_query($con, "select * from chainlog where formName = 'Sector' ");
 
-                              ?>
-                          <?php
+                      ?>
+                      <?php
 
-                                while ($rowchainlog = mysqli_fetch_array($selectchainlog))
-                                {
-                                ?>
+                      while ($rowchainlog = mysqli_fetch_array($selectchainlog))
+                      {
+                      ?>
 
                       <tr>
                       <td><?php echo $rowchainlog['SrNo']; ?></td>
@@ -638,14 +782,9 @@ if (isset($_POST['btnadd'])) {
         <div class="tbleDrpdown">
              <div id="tblebtn">
                 <ul>
-                
-
-                  <li><button type="button" id="btnDelete_C1"><i class="fa fa-trash"></i>  Activate</button></li>
-                  <li><button type="button" id="btnDelete_C"><i class="fa fa-trash"></i>  Deactivate</button></li>
-                  
+                  <li><button type="button" id="btnActivate_C"><i class="fa fa-trash"></i>  Activate</button></li>
+                  <li><button type="button" id="btnDeactivate_C"><i class="fa fa-trash"></i>  Deactivate</button></li>
                   <li><button type="button" id="exportBtn"><i class="fa fa-download"></i>  Export</button></li>
-                 
-
                 </ul>
               </div>
             </div>
@@ -653,22 +792,21 @@ if (isset($_POST['btnadd'])) {
       <table  id="dpttable" class="display nowrap no-footer" style="width:100%">
                         
                        <thead>
-                                  <tr>
-                                   <th><input type="checkbox" onchange="checkAll(this)" name="chk[]" /></th>
-                                  <th>Sector Name</th>
-                                  <th>Status</th>
-                                  <th>Edit</th>
-                                  <th>Action</th>
-
-                                   </tr>
+                          <tr>
+                            <th><input type="checkbox" onchange="checkAll(this)" name="chk[]" /></th>
+                            <th>Sector Name</th>
+                            <th>Status</th>
+                            <th>Edit</th>
+                            <th>Action</th>
+                          </tr>
                         </thead>
                         <tbody>
                           
-                          <?php
+                        <?php
 
-                                while ($rowsector= mysqli_fetch_array($selectsector))
-                                {
-                                ?>
+                        while ($rowsector= mysqli_fetch_array($selectsector))
+                        {
+                        ?>
                         <tr>
                           <?php echo '<td><input type="checkbox" name="user_check[]" value="'. $rowsector['SrNo'] .' " /></td>'; ?>
                           <td><?php echo $rowsector['sector_name']; ?></td>
@@ -693,8 +831,8 @@ if (isset($_POST['btnadd'])) {
                           ?>
                         </tr>
                         <?php
-                         }
-                          ?>
+                        }
+                        ?>
 
                       </tbody>  
       </table>
@@ -702,8 +840,6 @@ if (isset($_POST['btnadd'])) {
     </div>
   
 </div>
-
-
 
 <script>
 $(document).ready(function(){
@@ -737,28 +873,24 @@ $(document).ready(function(){
 });
 </script>
 
-
-
-
-
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
-    <script type="text/javascript">
-        $("body").on("click", "#btnExport", function () {
-            html2canvas($('#usrtble')[0], {
-                onrendered: function (canvas) {
-                    var data = canvas.toDataURL();
-                    var docDefinition = {
-                        content: [{
-                            image: data,
-                            width: 500
-                        }]
-                    };
-                    pdfMake.createPdf(docDefinition).download("Table.pdf");
-                }
-            });
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+<script type="text/javascript">
+    $("body").on("click", "#btnExport", function () {
+        html2canvas($('#usrtble')[0], {
+            onrendered: function (canvas) {
+                var data = canvas.toDataURL();
+                var docDefinition = {
+                    content: [{
+                        image: data,
+                        width: 500
+                    }]
+                };
+                pdfMake.createPdf(docDefinition).download("Table.pdf");
+            }
         });
-    </script>
+    });
+</script>
 <script type="text/javascript">
 $(document).on('click', '.editData', function(){  
   var employee_id = $(this).attr("id"); 
@@ -791,9 +923,6 @@ $(document).on('click', '.editData', function(){
     
 });
 </script>
-
-
-
 
 <!-- addmore ajaxpopup -->
 
@@ -842,11 +971,6 @@ $(document).on('click', '.editData', function(){
 
       }
 
-      
-     
-
-      
-      
       if (missingVal != 1)
       {
         document.getElementById('sector_name').style.borderColor = "white";
@@ -864,9 +988,6 @@ $(document).on('click', '.editData', function(){
 </script>
 
 <!-- addmore ajaxpopup -->
-
-
-
 
 <script type="text/javascript">
     function checkAll(ele) {
@@ -925,11 +1046,6 @@ $(document).on('click', '.editData', function(){
 
       }
 
-      
-     
-
-      
-      
       if (missingVal != 1)
       {
         document.getElementById('sector_name').style.borderColor = "white";
@@ -996,11 +1112,23 @@ function logUserFunc()
 }
 </script>
 
+<script>
+$(document).ready(function(){
+  $("#btnActivate_C").click(function(){
+    $("#activateTable_C").modal();
+  });
+});
+</script>
 
-
+<script>
+$(document).ready(function(){
+  $("#btnDeactivate_C").click(function(){
+    $("#deactivateTable_C").modal();
+  });
+});
+</script>
 
 <script src="js/jquery.dataTables.min.js"></script>
-    
 
 <script src="js/bootstrap.min.js"></script>
 
