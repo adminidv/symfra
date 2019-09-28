@@ -109,7 +109,7 @@ if(isset($_POST["btnDelete"]))
     <div class="">
         <div class="btn-group btn-breadcrumb">
           <a href="usermodules.php" class="btn btn-info "><i class="glyphicon glyphicon-home"></i></a>
-          <a href="usermodules.php" class="btn btn-info">Human Resource</a>
+          <a href="usermodules.php" class="btn btn-info">User Management</a>
           <a href="viewdesg.php" class="btn btn-info active">View Designation</a>
         </div>
     </div>
@@ -172,7 +172,7 @@ if(isset($_POST["btnDelete"]))
 
       <div class="col-md-12">
             <div class="user_table-title">
-              <h4>Employee Info Table</h4>
+              <h4>Designations Table</h4>
             </div>
         <form action="" method="POST">
 
