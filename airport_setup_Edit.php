@@ -937,10 +937,6 @@ header("Location: airport_setup_2.php");
 
 
               <div class="col-md-12">  
-
-                <div class="user_table-title">
-                <h4>Add Representative</h4>
-              </div>
                 <div class="leave-manage-sec-table widget_iner_box ">
                   <div class="form_sec_action_btn col-md-12">
                     <button type="button" id="myBtn">  <small>Add Representative</small></button>
@@ -1491,6 +1487,263 @@ header("Location: airport_setup_2.php");
   {
   $("#logUser_Modal").modal();
   }
+</script>
+
+<!-- validation on add rep -->
+<script type="text/javascript">
+   function FormValidation2()
+   {
+
+    var regexp4 = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/i;
+     var regexp3 = /^[a-z, ,a-z]*$/i;
+    var regexp = /^[a-z]*$/i;
+    var regexp2 = /^[0-9]*$/i;
+    var re = /\S+@\S+\.\S+/;
+      var missingVal = 0;
+
+      var rep_name=document.getElementById('rep_name').value;
+      var rep_desg=document.getElementById('rep_desg').value;
+      var rep_email=document.getElementById('rep_email').value;
+      var rep_office_no=document.getElementById('rep_office_no').value;
+      var rep_phone_no=document.getElementById('rep_phone_no').value;
+     
+      var summary = "Summary: ";
+
+
+      //  if(rep_desg == "")
+      // {
+      //   document.getElementById('rep_desg').style.borderColor = "red";
+      //       missingVal = 1;
+      //       // summary += " Contact number required.";
+      //       document.getElementById("V_rep_desg").innerHTML = "Designation is required.";
+      // }
+      if(rep_desg != "")
+      {
+          document.getElementById('rep_desg').style.borderColor = "white";
+          document.getElementById("V_rep_desg").innerHTML = "";
+
+          if (!regexp3.test(rep_desg))
+        {
+          document.getElementById('rep_desg').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_rep_desg").innerHTML = "Only alphabets are allowed in Designation.";
+        }
+      }
+
+
+       if(rep_name == "")
+      {
+        document.getElementById('rep_name').style.borderColor = "red";
+            missingVal = 1;
+            // summary += " Contact number required.";
+            document.getElementById("V_rep_name").innerHTML = "Name is required.";
+      }
+       if(rep_name != "")
+      {
+          document.getElementById('rep_name').style.borderColor = "white";
+          document.getElementById("V_rep_name").innerHTML = "";
+
+          if (!regexp.test(rep_name))
+        {
+          document.getElementById('rep_name').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_rep_name").innerHTML = "Only alphabets are allowed in Name.";
+        }
+      }
+
+       if(rep_office_no != "")
+      {
+          document.getElementById('rep_office_no').style.borderColor = "white";
+          document.getElementById("V_rep_office_no").innerHTML = "";
+
+          if (!regexp4.test(rep_office_no))
+        {
+          document.getElementById('rep_office_no').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_rep_office_no").innerHTML = "Only Number are allowed.";
+        }
+      }
+
+       if(rep_phone_no != "")
+      {
+          document.getElementById('rep_phone_no').style.borderColor = "white";
+          document.getElementById("V_rep_phone_no").innerHTML = "";
+
+          if (!regexp4.test(rep_phone_no))
+        {
+          document.getElementById('rep_phone_no').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_rep_phone_no").innerHTML = "Only Number are allowed.";
+        }
+      }
+
+      
+      if(rep_email != "")
+      {
+          document.getElementById('rep_email').style.borderColor = "white";
+          document.getElementById("V_rep_email").innerHTML = "";
+
+          if (!re.test(rep_email))
+        {
+          document.getElementById('rep_email').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_rep_email").innerHTML = "Please follow the email format (user@domain.com).";
+        }
+      }
+
+
+     
+
+      
+      
+      if (missingVal != 1)
+      {
+        document.getElementById('rep_name').style.borderColor = "white";
+        document.getElementById('rep_desg').style.borderColor = "white";
+        document.getElementById('rep_desg').style.borderColor = "white";
+        document.getElementById('rep_office_no').style.borderColor = "white";
+        document.getElementById('rep_phone_no').style.borderColor = "white";
+       
+        $("#submit_Modal").modal();
+        
+      }
+
+      if (missingVal == 1)
+      {
+        document.getElementById("formSummary1").textContent="Error: ";
+      }
+   }
+</script>
+
+
+
+<!-- validation on Edit rep -->
+<script type="text/javascript">
+   function FormValidation4()
+   {
+
+
+    var regexp4 = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/i;
+    var regexp3 = /^[a-z\S, ]*$/i;
+    var regexp = /^[a-z]*$/i;
+    var regexp2 = /^[0-9]*$/i;
+    var re = /\S+@\S+\.\S+/;
+      var missingVal = 0;
+
+      var rep_nameV=document.getElementById('rep_nameV').value;
+      var rep_desgV=document.getElementById('rep_desgV').value;
+      var rep_emailV=document.getElementById('rep_emailV').value;
+      var rep_office_noV=document.getElementById('rep_office_noV').value;
+      var rep_phone_noV=document.getElementById('rep_phone_noV').value;
+     
+      var summary = "Summary: ";
+
+      if(rep_desgV != "")
+      {
+          document.getElementById('rep_desgV').style.borderColor = "white";
+          document.getElementById("EV_rep_desgV").innerHTML = "";
+
+          if (!regexp3.test(rep_desgV))
+        {
+          document.getElementById('rep_desgV').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("EV_rep_desgV").innerHTML = "Only alphabets are allowed in Designation.";
+        }
+      }
+
+
+      if(rep_nameV == "")
+      {
+        document.getElementById('rep_nameV').style.borderColor = "red";
+            missingVal = 1;
+            // summary += " Contact number required.";
+            document.getElementById("EV_rep_nameV").innerHTML = "Name is required.";
+      }
+       if(rep_nameV != "")
+      {
+          document.getElementById('rep_nameV').style.borderColor = "white";
+          document.getElementById("EV_rep_nameV").innerHTML = "";
+
+          if (!regexp.test(rep_nameV))
+        {
+          document.getElementById('rep_nameV').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("EV_rep_nameV").innerHTML = "Only alphabets are allowed in Name.";
+        }
+      }
+
+      if(rep_office_noV != "")
+      {
+          document.getElementById('rep_office_noV').style.borderColor = "white";
+          document.getElementById("EV_rep_office_noV").innerHTML = "";
+
+          if (!regexp4.test(rep_nameV))
+        {
+          document.getElementById('rep_office_noV').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("EV_rep_office_noV").innerHTML = "Only alphabets are allowed in Name.";
+        }
+      }
+
+      if(rep_phone_noV != "")
+      {
+          document.getElementById('rep_phone_noV').style.borderColor = "white";
+          document.getElementById("EV_rep_phone_noV").innerHTML = "";
+
+          if (!regexp4.test(rep_nameV))
+        {
+          document.getElementById('rep_phone_noV').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("EV_rep_phone_noV").innerHTML = "Only alphabets are allowed in Name.";
+        }
+      }
+
+      
+      if(rep_emailV != "")
+      {
+          document.getElementById('rep_emailV').style.borderColor = "white";
+          document.getElementById("EV_rep_emailV").innerHTML = "";
+
+          if (!re.test(rep_emailV))
+        {
+          document.getElementById('rep_emailV').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("EV_rep_emailV").innerHTML = "Please follow the email format (user@domain.com).";
+        }
+      }
+
+
+     
+
+      
+      
+      if (missingVal != 1)
+      {
+        document.getElementById('rep_nameV').style.borderColor = "white";
+        document.getElementById('rep_desgV').style.borderColor = "white";
+        document.getElementById('rep_emailV').style.borderColor = "white";
+        document.getElementById('rep_office_noV').style.borderColor = "white";
+        document.getElementById('rep_phone_noV').style.borderColor = "white";
+       
+        $("#Edit_Modal").modal();
+        
+      }
+
+      if (missingVal == 1)
+      {
+        document.getElementById("formSummary2").textContent="Error: ";
+      }
+   }
 </script>
 
 <script src="js/jquery.dataTables.min.js"></script>
