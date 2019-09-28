@@ -45,7 +45,7 @@
                </div>
 
 
-                <div class="modal fade symfra_popup2" id="popupMEdit4" role="dialog">
+          <div class="modal fade symfra_popup2" id="popupMEdit4" role="dialog">
             <div class="modal-dialog">
               <!-- ADD Airport Details-->
               <div class="modal-content">
@@ -61,6 +61,8 @@
                  <p id="V_rep_name" style="color: red;"></p>
                   <p id="V_rep_desg" style="color: red;"></p>
                   <p id="V_rep_email" style="color: red;"></p>
+                  <p id="V_rep_office_no" style="color: red;"></p>
+                  <p id="V_rep_phone_no" style="color: red;"></p>
 
                             <div class="input-fields">  
                               <label>Name</label> 
@@ -113,11 +115,14 @@
 
                  <div class="modal-body">
 
-                  <!-- For Validation Box Red Popup -->
+                  <<!-- For Validation Box Red Popup -->
                    <h4><label id="formSummary2" style="color: red;"></label></h4>
                   <p id="EV_rep_nameV" style="color: red;"></p>
                   <p id="EV_rep_desgV" style="color: red;"></p>
                   <p id="EV_rep_emailV" style="color: red;"></p>
+                  <p id="EV_rep_office_noV" style="color: red;"></p>
+                  <p id="EV_rep_phone_noV" style="color: red;"></p>
+
 
                             <div class="input-fields">  
                               <label>Name</label> 
@@ -163,7 +168,8 @@
    function FormValidation2()
    {
 
-     var regexp3 = /^[a-z\S, ]*$/i;
+    var regexp4 = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/i;
+     var regexp3 = /^[a-z, ,a-z]*$/i;
     var regexp = /^[a-z]*$/i;
     var regexp2 = /^[0-9]*$/i;
     var re = /\S+@\S+\.\S+/;
@@ -172,6 +178,8 @@
       var rep_name=document.getElementById('rep_name').value;
       var rep_desg=document.getElementById('rep_desg').value;
       var rep_email=document.getElementById('rep_email').value;
+      var rep_office_no=document.getElementById('rep_office_no').value;
+      var rep_phone_no=document.getElementById('rep_phone_no').value;
      
       var summary = "Summary: ";
 
@@ -219,6 +227,34 @@
         }
       }
 
+       if(rep_office_no != "")
+      {
+          document.getElementById('rep_office_no').style.borderColor = "white";
+          document.getElementById("V_rep_office_no").innerHTML = "";
+
+          if (!regexp4.test(rep_office_no))
+        {
+          document.getElementById('rep_office_no').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_rep_office_no").innerHTML = "Only Number are allowed.";
+        }
+      }
+
+       if(rep_phone_no != "")
+      {
+          document.getElementById('rep_phone_no').style.borderColor = "white";
+          document.getElementById("V_rep_phone_no").innerHTML = "";
+
+          if (!regexp4.test(rep_phone_no))
+        {
+          document.getElementById('rep_phone_no').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_rep_phone_no").innerHTML = "Only Number are allowed.";
+        }
+      }
+
       
       if(rep_email != "")
       {
@@ -244,6 +280,8 @@
         document.getElementById('rep_name').style.borderColor = "white";
         document.getElementById('rep_desg').style.borderColor = "white";
         document.getElementById('rep_desg').style.borderColor = "white";
+        document.getElementById('rep_office_no').style.borderColor = "white";
+        document.getElementById('rep_phone_no').style.borderColor = "white";
        
         $("#submit_Modal").modal();
         
@@ -263,7 +301,9 @@
    function FormValidation4()
    {
 
-    var regexp3 = /^[a-z\S, ]*$/i;
+
+    var regexp4 = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/i;
+    var regexp3 = /^[a-z, ,a-z]*$/i;
     var regexp = /^[a-z]*$/i;
     var regexp2 = /^[0-9]*$/i;
     var re = /\S+@\S+\.\S+/;
@@ -272,6 +312,8 @@
       var rep_nameV=document.getElementById('rep_nameV').value;
       var rep_desgV=document.getElementById('rep_desgV').value;
       var rep_emailV=document.getElementById('rep_emailV').value;
+      var rep_office_noV=document.getElementById('rep_office_noV').value;
+      var rep_phone_noV=document.getElementById('rep_phone_noV').value;
      
       var summary = "Summary: ";
 
@@ -311,6 +353,34 @@
         }
       }
 
+      if(rep_office_noV != "")
+      {
+          document.getElementById('rep_office_noV').style.borderColor = "white";
+          document.getElementById("EV_rep_office_noV").innerHTML = "";
+
+          if (!regexp4.test(rep_nameV))
+        {
+          document.getElementById('rep_office_noV').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("EV_rep_office_noV").innerHTML = "Only alphabets are allowed in Name.";
+        }
+      }
+
+      if(rep_phone_noV != "")
+      {
+          document.getElementById('rep_phone_noV').style.borderColor = "white";
+          document.getElementById("EV_rep_phone_noV").innerHTML = "";
+
+          if (!regexp4.test(rep_nameV))
+        {
+          document.getElementById('rep_phone_noV').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("EV_rep_phone_noV").innerHTML = "Only alphabets are allowed in Name.";
+        }
+      }
+
       
       if(rep_emailV != "")
       {
@@ -336,6 +406,8 @@
         document.getElementById('rep_nameV').style.borderColor = "white";
         document.getElementById('rep_desgV').style.borderColor = "white";
         document.getElementById('rep_emailV').style.borderColor = "white";
+        document.getElementById('rep_office_noV').style.borderColor = "white";
+        document.getElementById('rep_phone_noV').style.borderColor = "white";
        
         $("#Edit_Modal").modal();
         
