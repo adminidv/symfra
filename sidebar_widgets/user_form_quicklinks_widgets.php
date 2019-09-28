@@ -799,6 +799,19 @@ echo '<style type="text/css">
                       ?>
 
                       <?php
+                      if ($commodityView == '1')
+                      {
+                      ?>
+
+                      <li>
+                        <a href="container_setup.php">Container</a>
+                      </li>
+
+                      <?php
+                      }
+                      ?>
+
+                      <?php
                       if ($countryView == '1')
                       {
                       ?>
