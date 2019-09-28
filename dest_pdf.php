@@ -12,7 +12,7 @@ $run= mysqli_query($con, "SELECT * FROM  destination_setup");
 <!DOCTYPE html>
 <html>
 <head>
-  <title>usertable2</title>
+  <title>Destinations</title>
   <style type="text/css">
   .abc {
 
@@ -97,7 +97,7 @@ while ($data = mysqli_fetch_array($run))
                             width: 500
                         }]
                     };
-                    pdfMake.createPdf(docDefinition).download("Table.pdf");
+                    pdfMake.createPdf(docDefinition).download("Destinations.pdf");
                     // window.close();
                     // Close the tab here
                 }
