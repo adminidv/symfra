@@ -58,7 +58,7 @@ include 'manage/connection.php';
 
      </script>
 </head>
-<body onload="exportTableToCSV('members_dept.csv')">
+<body onload="exportTableToCSV('Destinations.csv')">
 
     <table>
         <thead>
