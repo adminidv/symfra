@@ -719,11 +719,11 @@ if (isset($_POST['submitBtn'])) {
 
                   <div class="input-fields"> 
                     <label>Country Code</label> 
-                    <input type="text" name="country_code" id="country_code" maxlength="30" placeholder="Enter Here Country Code!">    
+                    <input type="text" name="country_code" id="country_code" maxlength="5" placeholder="Enter Here Country Code!">    
                   </div>
                    <div class="input-fields"> 
                     <label>Country Name</label> 
-                    <input type="text" name="country_name" id="country_name" placeholder="Enter Here Country Code!">    
+                    <input type="text" name="country_name" id="country_name" maxlength="30" placeholder="Enter Here Country Code!">    
                   </div>
 
                   <div class="input-fields">  
@@ -1352,6 +1352,14 @@ $(".remove").click(function(){
       {
           document.getElementById('country_name').style.borderColor = "white";
           document.getElementById("V_country_name").innerHTML = "";
+
+        if (!regexp.test(country_name))
+        {
+          document.getElementById('country_name').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_country_name").innerHTML = "Only alphabets are allowed in Conutry Name.";
+        }
       }
 
       if (missingVal != 1)
