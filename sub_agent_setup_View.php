@@ -60,7 +60,7 @@ if(isset($_POST['btnedit1']))
   $rep_office_noV = $_POST['rep_office_noV'];
   $rep_phone_noV = $_POST['rep_phone_noV'];
   
-  $emailV = $_POST['emailV'];
+  $rep_emailV = $_POST['rep_emailV'];
   
   
   // Active or Inactive Condition 
@@ -75,7 +75,7 @@ if(isset($_POST['btnedit1']))
  
 
 // update query
-   $updateQuery12 = mysqli_query($con, "UPDATE represent_setup SET rep_name='$rep_nameV',rep_desg='$rep_desgV',rep_office_no='$rep_office_noV',rep_phone_no='$rep_phone_noV',email='$emailV',status='$statusV' WHERE SrNo='$SrNoV'") or die(mysqli_error($con));
+   $updateQuery12 = mysqli_query($con, "UPDATE represent_setup SET rep_name='$rep_nameV',rep_desg='$rep_desgV',rep_office_no='$rep_office_noV',rep_phone_no='$rep_phone_noV',rep_email='$rep_emailV',status='$statusV' WHERE SrNo='$SrNoV'") or die(mysqli_error($con));
 
 // msg Alert
     $msg = "Record is inserted successfully.";
@@ -119,7 +119,7 @@ if (isset($_POST['btnadd'])) {
   $rep_desg= $_POST['rep_desg'];
   $rep_office_no = $_POST['rep_office_no'];
   $rep_phone_no = $_POST['rep_phone_no'];
-  $email = $_POST['email'];
+  $rep_email = $_POST['rep_email'];
   
   if (isset($_POST['status'])) {
     $status='Active';
@@ -130,7 +130,7 @@ if (isset($_POST['btnadd'])) {
     $status='Deactive';
   }
 //  insert qurey
- $insertQuery = mysqli_query($con, "insert into represent_setup(userNo,rep_name,rep_desg,rep_office_no,rep_phone_no,email,status) values ('$userNo','$rep_name','$rep_desg','$rep_office_no','$rep_phone_no','$email','$status')") or die(mysqli_error($con));
+ $insertQuery = mysqli_query($con, "insert into represent_setup(userNo,rep_name,rep_desg,rep_office_no,rep_phone_no,rep_email,status) values ('$userNo','$rep_name','$rep_desg','$rep_office_no','$rep_phone_no','$rep_email','$status')") or die(mysqli_error($con));
  
   $msg = "Record is inserted successfully.";
   function alert($msg)
@@ -385,7 +385,7 @@ if (isset($_POST['submitBtn'])) {
                   </div>
                   <div class="input-fields">  
                     <label>Email</label> 
-                    <input type="text" name="email" id="email" placeholder="Enter Here Email !">    
+                    <input type="text" name="rep_email" id="rep_email" placeholder="Enter Here Email !">    
                   </div>
                   
                    <div class="input-fields">  
@@ -439,7 +439,7 @@ if (isset($_POST['submitBtn'])) {
                   </div>
                   <div class="input-fields">  
                     <label>Email</label> 
-                    <input type="text" name="emailV" id="emailV" placeholder="Enter Here Email !">    
+                    <input type="text" name="rep_emailV" id="rep_emailV" placeholder="Enter Here Email !">    
                   </div>
                  
                    <div class="input-fields">  
@@ -504,37 +504,9 @@ if (isset($_POST['submitBtn'])) {
                </div>
                
 
-      <div class="modal fade symfra_popup2" id="popupExport" role="dialog">
-            <div class="modal-dialog">
+      
 
-              <!-- Export Options -->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Export Options</h4>
-                </div>
-                <div class="modal-body">
-                  <div class="input-fields"> 
-                      <label>Options</label>  
-                      <select name="exportOptions" required>
-                          <option value="Select">Select </option>
-                          <option value="excel">Export to Excel </option>
-                          <option value="csv">Export to CSV </option>
-                          <option value="pdf">Export to PDF </option>
-                      </select>  
-                  </div>
-
-                  <button type="submit" name="btnExport_D" disabled >Submit</button>
-
-                </div>
-                <div class="modal-footer">
-                  <p>Add Related content if needed</p>
-                  <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-                </div>
-              </div>
-              
-            </div>
-      </div>
+            
 
       
       <div class="confirmTable-modal modal fade" id="deleteTable_C" role="dialog">
@@ -602,7 +574,9 @@ if (isset($_POST['submitBtn'])) {
                                                       
                                                       <div class="input-label"><label >Party Name</label></div>  
                                                       <div class="input-feild">
-                                                             <select name="partyname" disabled id="partyname" class="partyname" required>
+                                                             <select name="partyname" disabled id="partyname" class="partyname" >
+
+                                                              <option><?php echo $partyname  ?></option>
                                                   <!-- <option value="Select">Select </option> -->
                                                   <!-- Drop Down list Country Name -->
                                                   <?php
@@ -625,17 +599,18 @@ if (isset($_POST['submitBtn'])) {
                                                       }
                                                     ?>
 
-                                              </select> 
+                                              </select><span class="steric">*</span> 
                                                       </div> 
                                                        <div class="input-label"><label >Sub Party Agent</label></div>
                                                       <div class="input-feild">
-                                                              <input class="mini_input_field" disabled type="text" name="subpartyname" id="subpartyname" value="subpartyname" placeholder="Enter Here Sub Party Nmae !">
+                                                              <input class="mini_input_field" disabled type="text" name="subpartyname" id="subpartyname" value="subpartyname" placeholder="Enter Here Sub Party Nmae !"><span class="steric">*</span>
                                                                 
                                                       </div>
 
                                                       <div class="input-label"><label >Country</label></div> 
                                              <div class="input-feild"> 
                                              <select name="country" id="country" disabled class="country" required>
+                                              <option><?php echo $country  ?></option>
                                                   
                                                   <!-- Drop Down list Country Name -->
                                                   <?php
@@ -664,6 +639,7 @@ if (isset($_POST['submitBtn'])) {
                                                       <div class="input-label"><label >City</label></div> 
                                 <div class="input-feild">
                                            <select name="city" id="city" disabled class="city" required>
+                                            <option><?php echo $partyname  ?></option>
                                                 <!-- <option value="Select">Select </option> -->
                                                 <!-- Drop Down list Country Name -->
                                                 <?php
@@ -767,10 +743,10 @@ if (isset($_POST['submitBtn'])) {
                 <ul>
                 
 
-                  <li><button type="button" id="btnDelete_C1" disabled> <i class="fa fa-trash"></i> Activate</button></li>
+                 <!--  <li><button type="button" id="btnDelete_C1" disabled> <i class="fa fa-trash"></i> Activate</button></li>
                   <li><button type="button" id="btnDelete_C" disabled><i class="fa fa-trash"></i> Deactivate</button></li>
-                 <!--  <li><button type="submit" id="btnExport_P"> <i class="fa fa-print"></i><a href="airport_print.php" target="_blank"> Print</a></button></li> -->
-                  <li><button type="button" id="exportBtn" disabled><i class="fa fa-download"></i>  Export</button></li>
+                  <li><button type="submit" id="btnExport_P"> <i class="fa fa-print"></i><a href="airport_print.php" target="_blank"> Print</a></button></li>
+                  <li><button type="button" id="exportBtn" disabled><i class="fa fa-download"></i>  Export</button></li> -->
                  
 
                 </ul>
@@ -808,7 +784,7 @@ if (isset($_POST['submitBtn'])) {
                                           <td><?php echo $rowairport['rep_desg']; ?></td>
                                           <td><?php echo $rowairport['rep_office_no']; ?></td>
                                           <td><?php echo $rowairport['rep_phone_no']; ?></td>
-                                          <td><?php echo $rowairport['email']; ?></td>
+                                          <td><?php echo $rowairport['rep_email']; ?></td>
                                           <td><?php echo $rowairport['status']; ?></td>
                                           <td><a href="#" class="editData" data-toggle="modal" id="<?php echo $rowairport['SrNo']; ?>" data-target="#btn1" >Edit</td> 
                                           <?php
@@ -918,7 +894,7 @@ $(document).on('click', '.editData', function(){
               // $('#addressV').val(data.address);    
               $('#rep_office_noV').val(data.rep_office_no); 
               $('#rep_phone_noV').val(data.rep_phone_no);
-               $('#emailV').val(data.email);  
+               $('#rep_emailV').val(data.rep_email);  
               // $('#websiteV').val(data.website); 
               //  $('#export_noV').val(data.export_no);  
               // $('#sale_taxV').val(data.sale_tax);   
