@@ -363,7 +363,7 @@ if (isset($_POST['btnadd'])) {
 
       <div class="col-md-12">
             <div class="user_table-title">
-              <h4>Currency Table</h4>
+              <h4>Container Table</h4>
             </div>
         <form action="" method="POST">
 
