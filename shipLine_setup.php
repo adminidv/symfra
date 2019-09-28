@@ -18,7 +18,9 @@ $selectSrNo = mysqli_query($con, "SELECT * FROM shipping_setup ORDER BY SrNo DES
 while ($rowSrNo = mysqli_fetch_array($selectSrNo))
 {
   $SrNo = $rowSrNo['SrNo'];
- 
+  $SnewID1 = $SrNo + 1;
+  $SrNo1 = $SnewID1;
+
 
 }
 
@@ -57,18 +59,47 @@ if (isset($_POST['submitBtn'])) {
 			    $status='Deactive';
 			  }
 	        // echo "The file has been uploaded.";
+			  // Checking currency name if it is already been added
+			 $existCurName = "0";
+			 $existShipCode = "1";
+			 $selectCurName = mysqli_query($con, "SELECT * FROM shipping_setup WHERE  ship_code='$ship_code' OR ship_name='$ship_name'");
+			 while ($rowCurName = mysqli_fetch_array($selectCurName))
+			 {
+			   $existCurName = $rowCurName['ship_name'];
+			   $existShipCode = $rowCurName['ship_code'];
+			 }
+			  if ($existShipCode != "1")
+			 {
+			   echo '<script type="text/javascript">
+			     alert("This Record is already added");
+			     location.replace("shipLine_setup.php");
+			   </script>';
+			   // header("Location: currency_setup.php");
+			 }
+			 
+			 else if ($existCurName != "0")
+			 {
+			   echo '<script type="text/javascript">
+			     alert("This Ship Name is already added");
+			     location.replace("shipLine_setup.php");
+			   </script>';
+			   // header("Location: currency_setup.php");
+			 }
 
+			 else
+			 {
 	        // Inserting records to DB
 			$insertQuery = mysqli_query($con, "insert into shipping_setup (ship_code, ship_name, country, city, address, phone, fax, email, website, status) values ('$ship_code', '$ship_name',  '$country', '$city','$address', '$phone', '$fax', '$email', '$website', '$status')") or die( mysqli_error($con));
 
 
-  			$insertQuery2 = mysqli_query($con, "insert into chainlog (instance, formName, record_id,createBy, createDate) values ('$newID1', 'Shipping', '$SrNo', '$loginUser', '$todayDate') ");
+  			$insertQuery2 = mysqli_query($con, "insert into chainlog (instance, formName, record_id,createBy, createDate) values ('$newID1', 'Shipping', '$SrNo1', '$loginUser', '$todayDate') ");
 
 			// echo "The record is inserted successfully.";
 
-		
+			 header("Location: shipLine_setup_V1.php?id=" . $SrNo1);
+
 	    }
-	
+	}
 
  ?>
 
@@ -265,7 +296,13 @@ if (isset($_POST['submitBtn'])) {
 				     
 
 
-						 <label id="formSummary" style="color: red;"></label>
+						 
+   <h4><label id="formSummary" style="color: red;"></label></h4>
+       <p id="V_ship_code" style="color: red;"></p>
+        <p id="V_ship_name" style="color: red;"></p>
+        <p id="V_email" style="color: red;"></p>
+        <p id="V_phone" style="color: red;"></p>
+        <p id="V_fax" style="color: red;"></p>
 
 							
 
@@ -278,7 +315,7 @@ if (isset($_POST['submitBtn'])) {
 										                      <?php include('inc_widgets/backBtn.php'); ?>
 										                      <!-- Go back button ship_code ending here -->
 													</div>
-													<button type="button" id="btnConfirm_Su" onclick="submitAirlineFunc();" > <small>Submit</small></button>
+													<button type="button" id="btnConfirm_Su" onclick="FormValidation();" > <small>Submit</small></button>
 													<button type="button" name="btnConfirm_S" onclick="saveAirlineFunc();"> <small>Save</small></button>
 													<button type="button" name="cancel"> <small>Cancel</small></button>				
 											</div>
@@ -292,11 +329,11 @@ if (isset($_POST['submitBtn'])) {
 	                                                
 	                                                <div class="input-label"><label >ship_code</label></div>	
 	                                                <div class="input-feild">
-	                                                        <input   type="text" name="ship_code" id="ship_code">
+	                                                        <input   type="text" name="ship_code" id="ship_code" maxlength="4"><span class="steric">*</span>
 	                                                </div> 
 	                                                 <div class="input-label"><label >Name</label></div>
 	                                                <div class="input-feild">
-	                                                        <input   type="text" name="ship_name" id="ship_name">
+	                                                        <input   type="text" name="ship_name" id="ship_name" maxlength="40"><span class="steric">*</span>
 	                                                      		
 	                                                </div>
 			                                                 
@@ -313,7 +350,7 @@ if (isset($_POST['submitBtn'])) {
 															<div class="input-label"><label >Country</label></div> 
 																<div class="input-feild"> 
 												                     <select name="country" id="country" class="country" onchange="checkCities();">
-												                          <option value="Select">Select </option>
+												                          <option >Select </option>
 												                          <!-- Drop Down list Country Name -->
 												                          <?php
 
@@ -331,7 +368,7 @@ if (isset($_POST['submitBtn'])) {
 				                                           		<div class="input-label"><label >City</label></div> 
 																<div class="input-feild">
 											                     <select name="city" id="city" class="city" required>
-											                          <option value="Select">Select </option>
+											                          <option>Select </option>
 											                          <!-- Drop Down list Country Name -->
 											                          <?php
 
@@ -349,7 +386,7 @@ if (isset($_POST['submitBtn'])) {
 
 															<div class="input-label"><label >Address</label></div>
 			                                                <div class="input-feild">
-			                                                        <textarea name="address" id="address"></textarea>
+			                                                        <textarea name="address" id="address" maxlength="100"></textarea>
 			                                                      		
 			                                                </div>
 			                                             	  
@@ -363,13 +400,13 @@ if (isset($_POST['submitBtn'])) {
 										<div class="col-md-6">
 															<div class="input-label"><label >Phone</label></div>
 			                                                <div class="input-feild">
-			                                                        <input type="text" name="phone" id="phone">
+			                                                        <input type="text" name="phone" id="phone" maxlength="14">
 			                                                      		
 			                                                </div>
 			                                                
 			                                                <div class="input-label"><label >Fax No.</label></div>
 			                                                <div class="input-feild">
-			                                                        <input class=""  type="text" name="fax" id="fax">
+			                                                        <input class=""  type="text" name="fax" id="fax" maxlength="14">
 			                                                      		
 			                                                </div>			                                                    
 										</div>
@@ -378,13 +415,13 @@ if (isset($_POST['submitBtn'])) {
 
 															<div class="input-label"><label >Email</label></div>
 			                                                <div class="input-feild">
-			                                                        <input class=""  type="text" name="email" id="email">
+			                                                        <input class=""  type="text" name="email" id="email" maxlength="40">
 			                                                      		
 			                                                </div> 
 
 			                                                <div class="input-label"><label >Website</label></div>
 			                                                <div class="input-feild">
-			                                                        <input class=""  type="text" name="website" id="website">
+			                                                        <input class=""  type="text" name="website" id="website" maxlength="30">
 			                                                      		
 			                                                </div>
 
@@ -423,12 +460,12 @@ function saveAirlineFunc()
 	$("#saveAirline_Modal").modal();
 }
 </script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 function submitAirlineFunc()
 {
 	$("#submitAirline_Modal").modal();
 }
-</script>
+</script> -->
 
 
 
@@ -454,6 +491,121 @@ $("#scroltop").click(function() {
       });
     }
 
+</script>
+
+<script type="text/javascript">
+   function FormValidation()
+   {
+    var regexp = /^[a-z]*$/i;
+    var regexp2 = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/i;
+    var regexp3 = /^[0-9, . , 0-9]*$/i;
+    var re = /\S+@\S+\.\S+/;
+      var missingVal = 0;
+
+      var ship_code=document.getElementById('ship_code').value;
+      var ship_name=document.getElementById('ship_name').value;
+      var email=document.getElementById('email').value;
+      var phone=document.getElementById('phone').value;
+      var fax=document.getElementById('fax').value;
+     
+     
+      var summary = "Summary: ";
+
+      if(ship_code == "")
+      {
+          document.getElementById('ship_code').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is .";
+          document.getElementById("V_ship_code").innerHTML = "Firstname is required.";
+      }
+      if(ship_code != "")
+      {
+          document.getElementById('ship_code').style.borderColor = "white";
+          document.getElementById("V_ship_code").innerHTML = "";
+
+      }
+
+      if(ship_name == "")
+      {
+          document.getElementById('ship_name').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is .";
+          document.getElementById("V_ship_name").innerHTML = "Sub Agent is required.";
+      }
+      if(ship_name != "")
+      {
+          document.getElementById('ship_name').style.borderColor = "white";
+          document.getElementById("V_ship_name").innerHTML = "";
+
+         
+      }
+
+       if(phone != "")
+      {
+          document.getElementById('phone').style.borderColor = "white";
+          document.getElementById("V_phone").innerHTML = "";
+
+          if (!regexp2.test(phone))
+        {
+          document.getElementById('phone').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is .";
+            document.getElementById("V_phone").innerHTML = "Only Number are allowed in Contact No.";
+        }
+      }
+
+       if(fax != "")
+      {
+          document.getElementById('fax').style.borderColor = "white";
+          document.getElementById("V_fax").innerHTML = "";
+
+          if (!regexp2.test(fax))
+        {
+          document.getElementById('fax').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is .";
+            document.getElementById("V_fax").innerHTML = "Only Number are allowed in Fax No.";
+        }
+      }
+
+      // if(export_reg_no != "")
+    
+
+
+      if(email != "")
+      {
+          document.getElementById('email').style.borderColor = "white";
+          document.getElementById("V_email").innerHTML = "";
+
+          if (!re.test(email))
+        {
+          document.getElementById('email').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is .";
+            document.getElementById("V_email").innerHTML = "Please follow the email format (user@domain.com).";
+        }
+      }
+
+      
+      
+      if (missingVal != 1)
+      {
+        document.getElementById('ship_code').style.borderColor = "white";
+        document.getElementById('ship_name').style.borderColor = "white";
+         document.getElementById('email').style.borderColor = "white";
+         document.getElementById('phone').style.borderColor = "white";
+         document.getElementById('fax').style.borderColor = "white";
+       
+        $("#submitAirline_Modal").modal();
+        
+      }
+
+      if (missingVal == 1)
+      {
+        document.getElementById("formSummary").textContent="Error: ";
+      }
+      
+  }
 </script>
 
 
