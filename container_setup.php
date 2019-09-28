@@ -374,7 +374,7 @@ if (isset($_POST['btnadd'])) {
          -->
          
           <button type="button" id="myBtn">  <small>Add Container</small></button>
-      <button type="button" name="saveBtn" onclick="logUserFunc();"> <small>Log Chain</small></button>
+      <button type="button" name="saveBtn" onclick="logUserFunc();"> <small>Change Log</small></button>
       </div>
 
        <!-- Modal Two-->
