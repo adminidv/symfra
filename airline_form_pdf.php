@@ -16,14 +16,15 @@ include 'manage/connection.php';
             $country_Ar = $rowAr['country_Ar'];
             $city_Ar = $rowAr['city_Ar'];
             $account_no_Ar = $rowAr['account_no_Ar'];
-            $contact_person_Ar = $rowAr['contact_person_Ar'];
+            $airline_icao_Ar = $rowAr['airline_icao_Ar'];
             $con_office_Ar = $rowAr['con_office_Ar'];
-            $con_personal_Ar = $rowAr['con_personal_Ar'];
+            $airline_iata_Ar = $rowAr['airline_iata_Ar'];
             $fax_no_Ar = $rowAr['fax_no_Ar'];
             $email_Ar = $rowAr['email_Ar'];
             $website_Ar = $rowAr['website_Ar'];
             $kb_adj_Ar = $rowAr['kb_adj_Ar'];
             $awb_standard_Ar = $rowAr['awb_standard_Ar'];
+            $awb_code_Ar = $rowAr['awb_code_Ar'];
             $iata_mem_Ar = $rowAr['iata_mem_Ar'];
             $sec_charges_Ar = $rowAr['sec_charges_Ar'];
             $fuel_charges_Ar = $rowAr['fuel_charges_Ar'];
@@ -129,10 +130,10 @@ include 'manage/connection.php';
                                   ?>
 
                                   <?php
-                                  if ($contact_person_Ar == 1)
+                                  if ($airline_icao_Ar == 1)
                                   {
                                   ?>
-                                  <th>Contact Person Airline</th>
+                                  <th>ICAO</th>
                                   <?php
                                   }
                                   ?>
@@ -147,10 +148,10 @@ include 'manage/connection.php';
                                   ?>
 
                                   <?php
-                                  if ($con_personal_Ar == 1)
+                                  if ($airline_iata_Ar == 1)
                                   {
                                   ?>
-                                  <th>Contact Personal</th>
+                                  <th>IATA</th>
                                   <?php
                                   }
                                   ?>
@@ -195,6 +196,15 @@ include 'manage/connection.php';
                                   {
                                   ?>
                                   <th>Standard AWB No.</th>
+                                  <?php
+                                  }
+                                  ?>
+
+                                  <?php
+                                  if ($awb_code_Ar == 1)
+                                  {
+                                  ?>
+                                  <th>AWB Code.</th>
                                   <?php
                                   }
                                   ?>
@@ -259,14 +269,15 @@ while ($rowairline= mysqli_fetch_array($selectairline))
                                                             $country = $rowairline['country'];
                                                             $city = $rowairline['city'];
                                                             $account_no = $rowairline['account_no'];
-                                                            $contact_person = $rowairline['contact_person'];
+                                                            $airline_icao = $rowairline['airline_icao'];
                                                             $con_office = $rowairline['con_office'];
-                                                            $con_personal = $rowairline['con_personal'];
+                                                            $airline_iata = $rowairline['airline_iata'];
                                                             $fax_no = $rowairline['fax_no'];
                                                             $email = $rowairline['email'];
                                                             $website = $rowairline['website'];
                                                             $kb_adj = $rowairline['kb_adj'];
-                                                            $awb_standard = $rowairline['awb_standard'];;
+                                                            $awb_standard = $rowairline['awb_standard'];
+                                                            $awb_code = $rowairline['awb_code'];
                                                             $iata_mem = $rowairline['iata_mem'];
                                                             $sec_charges = $rowairline['sec_charges'];
                                                             $fuel_charges = $rowairline['fuel_charges'];
@@ -341,10 +352,10 @@ while ($rowairline= mysqli_fetch_array($selectairline))
                                                             ?>
 
                                                             <?php
-                                                            if ($contact_person_Ar == 1)
+                                                            if ($airline_icao_Ar == 1)
                                                             {
                                                             ?>
-                                                            <td><?php echo $contact_person; ?></td>
+                                                            <td><?php echo $airline_icao; ?></td>
                                                             <?php
                                                             }
                                                             ?>
@@ -359,10 +370,10 @@ while ($rowairline= mysqli_fetch_array($selectairline))
                                                             ?>
 
                                                             <?php
-                                                            if ($con_personal_Ar == 1)
+                                                            if ($airline_iata_Ar == 1)
                                                             {
                                                             ?>
-                                                            <td><?php echo $con_personal; ?></td>
+                                                            <td><?php echo $airline_iata; ?></td>
                                                             <?php
                                                             }
                                                             ?>
@@ -383,7 +394,9 @@ while ($rowairline= mysqli_fetch_array($selectairline))
                                                             <td><?php echo $email; ?></td>
                                                             <?php
                                                             }
-                                                            ?> <?php
+                                                            ?> 
+
+                                                            <?php
                                                             if ($website_Ar == 1)
                                                             {
                                                             ?>
@@ -406,6 +419,15 @@ while ($rowairline= mysqli_fetch_array($selectairline))
                                                             {
                                                             ?>
                                                             <td><?php echo $awb_standard; ?></td>
+                                                            <?php
+                                                            }
+                                                            ?>
+
+                                                            <?php
+                                                            if ($awb_code_Ar == 1)
+                                                            {
+                                                            ?>
+                                                            <td><?php echo $awb_code; ?></td>
                                                             <?php
                                                             }
                                                             ?>
