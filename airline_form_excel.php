@@ -30,26 +30,27 @@ $objPHPExcel->getActiveSheet()->setTitle('User Details');
 $iii = 2;
 while ($rowairline= mysqli_fetch_array($select))
       {
-        $id = $rowairline['SrNo'];
         $air_name = $rowairline['air_name'];
         $flight_name = $rowairline['flight_name'];
         $address = $rowairline['address'];
         $country = $rowairline['country'];
         $city = $rowairline['city'];
         $account_no = $rowairline['account_no'];
-        $contact_person = $rowairline['contact_person'];
+        $airline_icao = $rowairline['airline_icao'];
         $con_office = $rowairline['con_office'];
-        $con_personal = $rowairline['con_personal'];
+        $airline_iata = $rowairline['airline_iata'];
         $fax_no = $rowairline['fax_no'];
         $email = $rowairline['email'];
         $website = $rowairline['website'];
         $kb_adj = $rowairline['kb_adj'];
-        $awb_standard = $rowairline['awb_standard'];;
+        $awb_standard = $rowairline['awb_standard'];
+        $awb_code = $rowairline['awb_code'];
         $iata_mem = $rowairline['iata_mem'];
         $sec_charges = $rowairline['sec_charges'];
         $fuel_charges = $rowairline['fuel_charges'];
         $scan_charges = $rowairline['scan_charges'];
         $status = $rowairline['status'];
+        $id = $rowairline['SrNo'];
                                                             
 
     $a = 'A' . $iii;
@@ -72,6 +73,7 @@ while ($rowairline= mysqli_fetch_array($select))
     $r = 'R' . $iii;
     $s = 'S' . $iii;
     $t = 'T' . $iii;
+    $u = 'U' . $iii;
 
     /*$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(7); 
     $objPHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(20); 
@@ -91,19 +93,20 @@ while ($rowairline= mysqli_fetch_array($select))
     ->setCellValue($e, $country)
     ->setCellValue($f, $city)
     ->setCellValue($g, $account_no)
-    ->setCellValue($h, $contact_person)
+    ->setCellValue($h, $airline_icao)
     ->setCellValue($i, $con_office)
-    ->setCellValue($j, $con_personal)
+    ->setCellValue($j, $airline_iata)
     ->setCellValue($k, $fax_no)
     ->setCellValue($l, $email)
     ->setCellValue($m, $website)
     ->setCellValue($n, $kb_adj)
     ->setCellValue($o, $awb_standard)
-    ->setCellValue($p, $iata_mem)
-    ->setCellValue($q, $sec_charges)
-    ->setCellValue($r, $fuel_charges)
-    ->setCellValue($s, $scan_charges)
-    ->setCellValue($t, $status);
+    ->setCellValue($p, $awb_code)
+    ->setCellValue($q, $iata_mem)
+    ->setCellValue($r, $sec_charges)
+    ->setCellValue($s, $fuel_charges)
+    ->setCellValue($t, $scan_charges)
+    ->setCellValue($u, $status);
     
 
     $iii++;
