@@ -534,6 +534,13 @@ if (isset($_POST['btnadd1'])) {
 
 }
 
+
+if (isset($_POST['cancel'])) {
+
+    header("Location: airline_codes_n_charges.php");
+
+}
+
  ?>
 
 <!DOCTYPE html>
@@ -1240,7 +1247,7 @@ if (isset($_POST['btnadd1'])) {
                           <button type="button" name="saveBtn" onclick="logUserFunc();"> <small>Log Chain</small></button>
                          <button type="button" id="btnConfirm_Su" onclick="FormValidation();" > <small>Submit</small></button>
                           <button type="button" name="btnConfirm_S" onclick="saveAirlineFunc();"> <small>Save</small></button>
-                          <button type="button" name="cancel"> <small>Cancel</small></button>            
+                          <button type="submit" name="cancel"> <small>Cancel</small></button>            
                       </div>
                               
                               <div class="cls"></div>
