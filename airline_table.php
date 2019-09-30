@@ -19,15 +19,18 @@ if(isset($_POST["btnCustom_U"]))
   $address_Ar = 0;
   $country_Ar = 0;
   $city_Ar = 0;
+  // $airline_icao_Ar = 0;
+  // $airline_icao_Ar = 0;
   $account_no_Ar = 0;
-  $contact_person_Ar = 0;
+  $airline_icao_Ar = 0;
   $con_office_Ar = 0;
-  $con_personal_Ar = 0;
+  $airline_iata_Ar = 0;
   $fax_no_Ar = 0;
   $email_Ar = 0;
   $website_Ar = 0;
   $kb_adj_Ar = 0;
   $awb_standard_Ar = 0;
+  $awb_code_Ar = 0;
   $iata_mem_Ar = 0;
   $sec_charges_Ar = 0;
   $fuel_charges_Ar = 0;
@@ -63,17 +66,17 @@ if(isset($_POST["btnCustom_U"]))
   {
     $account_no_Ar = 1;
   }
-  if (isset($_POST['contact_person_Ar']))
+  if (isset($_POST['airline_icao_Ar']))
   {
-    $contact_person_Ar = 1;
+    $airline_icao_Ar = 1;
   }
   if (isset($_POST['con_office_Ar']))
   {
     $con_office_Ar = 1;
   }
-  if (isset($_POST['con_personal_Ar']))
+  if (isset($_POST['airline_iata_Ar']))
   {
-    $con_personal_Ar = 1;
+    $airline_iata_Ar = 1;
   }
   if (isset($_POST['fax_no_Ar']))
   {
@@ -94,6 +97,10 @@ if(isset($_POST["btnCustom_U"]))
   if (isset($_POST['awb_standard_Ar']))
   {
     $awb_standard_Ar = 1;
+  }
+   if (isset($_POST['awb_code_Ar']))
+  {
+    $awb_code_Ar = 1;
   }
   if (isset($_POST['iata_mem_Ar']))
   {
@@ -116,7 +123,7 @@ if(isset($_POST["btnCustom_U"]))
     $status_Ar = 1;
   }
 
-  $updateUM = mysqli_query($con, "UPDATE airlinecustomize SET air_name_Ar = '$air_name_Ar', flight_name_Ar='$flight_name_Ar', address_Ar='$address_Ar', country_Ar='$country_Ar', city_Ar='$city_Ar', account_no_Ar='$account_no_Ar', contact_person_Ar='$contact_person_Ar', con_office_Ar='$con_office_Ar', con_personal_Ar='$con_personal_Ar', fax_no_Ar='$fax_no_Ar', email_Ar='$email_Ar', website_Ar='$website_Ar', kb_adj_Ar='$kb_adj_Ar', awb_standard_Ar='$awb_standard_Ar', iata_mem_Ar='$iata_mem_Ar', sec_charges_Ar='$sec_charges_Ar', fuel_charges_Ar='$fuel_charges_Ar', scan_charges_Ar='$scan_charges_Ar', status_Ar='$status_Ar' WHERE SrNo_Ar= '$SrNo_Ar' ")or die(mysqli_error($con));
+  $updateUM = mysqli_query($con, "UPDATE airlinecustomize SET air_name_Ar = '$air_name_Ar', flight_name_Ar='$flight_name_Ar', address_Ar='$address_Ar', country_Ar='$country_Ar', city_Ar='$city_Ar', account_no_Ar='$account_no_Ar', airline_icao_Ar='$airline_icao_Ar', con_office_Ar='$con_office_Ar', airline_iata_Ar='$airline_iata_Ar', fax_no_Ar='$fax_no_Ar', email_Ar='$email_Ar', website_Ar='$website_Ar', kb_adj_Ar='$kb_adj_Ar', awb_standard_Ar='$awb_standard_Ar',awb_code_Ar='$awb_code_Ar', iata_mem_Ar='$iata_mem_Ar', sec_charges_Ar='$sec_charges_Ar', fuel_charges_Ar='$fuel_charges_Ar', scan_charges_Ar='$scan_charges_Ar', status_Ar='$status_Ar' WHERE SrNo_Ar= '$SrNo_Ar' ")or die(mysqli_error($con));
 
 }
 
@@ -383,14 +390,15 @@ if(isset($_POST["btnDelete"]))
             $country_Ar = $rowAr['country_Ar'];
             $city_Ar = $rowAr['city_Ar'];
             $account_no_Ar = $rowAr['account_no_Ar'];
-            $contact_person_Ar = $rowAr['contact_person_Ar'];
+            $airline_icao_Ar = $rowAr['airline_icao_Ar'];
             $con_office_Ar = $rowAr['con_office_Ar'];
-            $con_personal_Ar = $rowAr['con_personal_Ar'];
+            $airline_iata_Ar = $rowAr['airline_iata_Ar'];
             $fax_no_Ar = $rowAr['fax_no_Ar'];
             $email_Ar = $rowAr['email_Ar'];
             $website_Ar = $rowAr['website_Ar'];
             $kb_adj_Ar = $rowAr['kb_adj_Ar'];
             $awb_standard_Ar = $rowAr['awb_standard_Ar'];
+            $awb_code_Ar = $rowAr['awb_code_Ar'];
             $iata_mem_Ar = $rowAr['iata_mem_Ar'];
             $sec_charges_Ar = $rowAr['sec_charges_Ar'];
             $fuel_charges_Ar = $rowAr['fuel_charges_Ar'];
@@ -474,13 +482,13 @@ if(isset($_POST["btnDelete"]))
                                 echo '<input type="checkbox" name="account_no_Ar" > <label>Account No. </label> <br>';
                               }
 
-                              if ($contact_person_Ar == 1)
+                              if ($airline_icao_Ar == 1)
                               {
-                                echo '<input type="checkbox" name="contact_person_Ar" checked> <label>Contact Person </label> <br>';
+                                echo '<input type="checkbox" name="airline_icao_Ar" checked> <label>ICAO </label> <br>';
                               }
                               else
                               {
-                                echo '<input type="checkbox" name="contact_person_Ar" > <label>Contact Person </label> <br>';
+                                echo '<input type="checkbox" name="airline_icao_Ar" > <label>ICAO </label> <br>';
                               }
 
                               if ($con_office_Ar == 1)
@@ -494,13 +502,13 @@ if(isset($_POST["btnDelete"]))
                               echo '</div>';
 
                               echo '<div class="col-md-4">';
-                              if ($con_personal_Ar == 1)
+                              if ($airline_iata_Ar == 1)
                               {
-                                echo '<input type="checkbox" name="con_personal_Ar" checked> <label>Contact No. Personal </label> <br>';
+                                echo '<input type="checkbox" name="airline_iata_Ar" checked> <label>IATA </label> <br>';
                               }
                               else
                               {
-                                echo '<input type="checkbox" name="con_personal_Ar" > <label>Contact No. Personal </label> <br>';
+                                echo '<input type="checkbox" name="airline_iata_Ar" > <label>IATA </label> <br>';
                               }
 
                               if ($fax_no_Ar == 1)
@@ -545,6 +553,14 @@ if(isset($_POST["btnDelete"]))
                               else
                               {
                                 echo '<input type="checkbox" name="awb_standard_Ar" > <label>Standard AWB No. </label> <br>';
+                              }
+                              if ($awb_code_Ar == 1)
+                              {
+                                echo '<input type="checkbox" name="awb_code_Ar" checked> <label> AWB Code. </label> <br>';
+                              }
+                              else
+                              {
+                                echo '<input type="checkbox" name="awb_code_Ar" > <label> AWB Code. </label> <br>';
                               }
 
                               if ($iata_mem_Ar == 1)
@@ -763,10 +779,10 @@ if(isset($_POST["btnDelete"]))
                                   ?>
 
                                   <?php
-                                  if ($contact_person_Ar == 1)
+                                  if ($airline_icao_Ar == 1)
                                   {
                                   ?>
-                                  <th>Contact Person Airline</th>
+                                  <th>ICAO</th>
                                   <?php
                                   }
                                   ?>
@@ -781,10 +797,10 @@ if(isset($_POST["btnDelete"]))
                                   ?>
 
                                   <?php
-                                  if ($con_personal_Ar == 1)
+                                  if ($airline_iata_Ar == 1)
                                   {
                                   ?>
-                                  <th>Contact Personal</th>
+                                  <th>IATA</th>
                                   <?php
                                   }
                                   ?>
@@ -829,6 +845,15 @@ if(isset($_POST["btnDelete"]))
                                   {
                                   ?>
                                   <th>Standard AWB No.</th>
+                                  <?php
+                                  }
+                                  ?>
+
+                                   <?php
+                                  if ($awb_code_Ar == 1)
+                                  {
+                                  ?>
+                                  <th> AWB Code.</th>
                                   <?php
                                   }
                                   ?>
@@ -897,14 +922,15 @@ if(isset($_POST["btnDelete"]))
                                                             $country = $rowairline['country'];
                                                             $city = $rowairline['city'];
                                                             $account_no = $rowairline['account_no'];
-                                                            $contact_person = $rowairline['contact_person'];
+                                                            $airline_icao = $rowairline['airline_icao'];
                                                             $con_office = $rowairline['con_office'];
-                                                            $con_personal = $rowairline['con_personal'];
+                                                            $airline_iata = $rowairline['airline_iata'];
                                                             $fax_no = $rowairline['fax_no'];
                                                             $email = $rowairline['email'];
                                                             $website = $rowairline['website'];
                                                             $kb_adj = $rowairline['kb_adj'];
-                                                            $awb_standard = $rowairline['awb_standard'];;
+                                                            $awb_standard = $rowairline['awb_standard'];
+                                                            $awb_code = $rowairline['awb_code'];
                                                             $iata_mem = $rowairline['iata_mem'];
                                                             $sec_charges = $rowairline['sec_charges'];
                                                             $fuel_charges = $rowairline['fuel_charges'];
@@ -982,10 +1008,10 @@ if(isset($_POST["btnDelete"]))
                                                             ?>
 
                                                             <?php
-                                                            if ($contact_person_Ar == 1)
+                                                            if ($airline_icao_Ar == 1)
                                                             {
                                                             ?>
-                                                            <td><?php echo $contact_person; ?></td>
+                                                            <td><?php echo $airline_icao; ?></td>
                                                             <?php
                                                             }
                                                             ?>
@@ -1000,10 +1026,10 @@ if(isset($_POST["btnDelete"]))
                                                             ?>
 
                                                             <?php
-                                                            if ($con_personal_Ar == 1)
+                                                            if ($airline_iata_Ar == 1)
                                                             {
                                                             ?>
-                                                            <td><?php echo $con_personal; ?></td>
+                                                            <td><?php echo $airline_iata; ?></td>
                                                             <?php
                                                             }
                                                             ?>
@@ -1047,6 +1073,15 @@ if(isset($_POST["btnDelete"]))
                                                             {
                                                             ?>
                                                             <td><?php echo $awb_standard; ?></td>
+                                                            <?php
+                                                            }
+                                                            ?>
+
+                                                            <?php
+                                                            if ($awb_code_Ar == 1)
+                                                            {
+                                                            ?>
+                                                            <td><?php echo $awb_code; ?></td>
                                                             <?php
                                                             }
                                                             ?>
