@@ -1112,7 +1112,7 @@ function afterDisc()
           }*/
       }
 
-      if(totalBefDisc != "")
+      if(saleDisc != "")
       {
           if (!regexn.test(saleDisc))
           {
