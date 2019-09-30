@@ -140,6 +140,11 @@ if (isset($_POST['submitBtn'])) {
 }
 }
 
+if (isset($_POST['cancel'])) {
+
+	header("location: airline_codes_n_charges.php");
+}
+
  ?>
 
 <!DOCTYPE html>
@@ -362,7 +367,7 @@ if (isset($_POST['submitBtn'])) {
 													</div>
 													<button type="button" id="btnConfirm_Su" onclick="FormValidation();" > <small>Submit</small></button>
 													<button type="button" name="btnConfirm_S" onclick="saveAirlineFunc();"> <small>Save</small></button>
-													<button type="button" name="cancel"> <small>Cancel</small></button>				
+													<button type="submit" name="cancel"> <small>Cancel</small></button>				
 											</div>
 															
 															<div class="cls"></div>
