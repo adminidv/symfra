@@ -13,7 +13,8 @@ $updateQuery1 = mysqli_query($con, "SELECT * FROM airline_charges_setup WHERE Sr
 // $row = mysqli_fetch_array($updateQuery1);
 while ($row2 = mysqli_fetch_array($updateQuery1)) 
 {
-    echo "<option value=".$row2['airport_name'].">".$row2['airport_name']."</option>";
+	 echo '<option value="'.$row2['airport_name'].'">'.$row2['airport_name'].'</option>';
+    // echo "<option value=".$row2['airport_name'].">".$row2['airport_name']."</option>";
 
     $selectairport = $row2['airport_name'];
 }
@@ -24,7 +25,8 @@ $updateQuery2 = mysqli_query($con, "SELECT * FROM airport_setup WHERE airport_na
 
 while ($row3 = mysqli_fetch_array($updateQuery2)) 
 {
-    echo "<option value=".$row3['airport_name'].">".$row3['airport_name']."</option>";
+    // echo "<option value=".$row3['airport_name'].">".$row3['airport_name']."</option>";
+    echo '<option value="'.$row3['airport_name'].'">'.$row3['airport_name'].'</option>';
 }
 
 // echo json_encode($row);  
