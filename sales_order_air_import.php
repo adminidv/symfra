@@ -35,39 +35,37 @@ $soNo = $newID;
 
 
 if (isset($_POST['submitBtn'])) {
-
+   $soNo =$soNo;
    $saleCust =$_POST['saleCust'];
    $conPerson =$_POST['conPerson'];
    $conRef =$_POST['conRef'];
    $saleCurr =$_POST['saleCurr'];
-   // $saleStatus =$_POST['saleStatus'];
-   $postDate =$_POST['postDate'];
-   $docDate =$_POST['docDate'];
    $agentParty =$_POST['agentParty'];
    $foreignAgent =$_POST['foreignAgent'];
    $saleNom =$_POST['saleNom'];
    $saleSPO =$_POST['saleSPO'];
+   $postDate =$_POST['postDate'];
+   $docDate =$_POST['docDate'];
    $mawbNo =$_POST['mawbNo'];
-   $mawbDate =$_POST['mawbDate'];
-   $flightNo =$_POST['flightNo'];
-   $flightDate =$_POST['flightDate'];
    $salePcs =$_POST['salePcs'];
-   // $saleCBM =$_POST['volWeight'];
    $grsWeight =$_POST['grsWeight'];
    $saleComm =$_POST['saleComm'];
    $chWeight =$_POST['chWeight'];
+   $saleOrigin =$_POST['saleOrigin'];
+   $saleDest =$_POST['saleDest'];
+   $flightNo =$_POST['flightNo'];
+   $flightDate =$_POST['flightDate'];
+   $mawbDate =$_POST['mawbDate'];
    $saleRate =$_POST['saleRate'];
    $totalFreight =$_POST['totalFreight'];
    $goodsDesc =$_POST['goodsDesc'];
-   $saleOrigin =$_POST['saleOrigin'];
-   $saleDest =$_POST['saleDest'];
    $saleRem =$_POST['saleRem'];
+   $lastNotification =$_POST['lastNotification'];
    $totalBefDisc =$_POST['totalBefDisc'];
    $saleDisc =$_POST['saleDisc'];
    $saleTax =$_POST['saleTax'];
    $saleTotal =$_POST['saleTotal'];
    $saleReason =$_POST['saleReason'];
-   $lastNotification =$_POST['lastNotification'];
    // $saleType =$_POST['saleType'];
 
    // Checking for approval if present
@@ -83,7 +81,7 @@ if (isset($_POST['submitBtn'])) {
       $appFlowID = $rowAppFlow['SrNo'];
     }
 
-    $insertQurey= mysqli_query($con, " insert into saleorders (soNo, saleCust, conPerson, conRef, saleCurr, saleStatus, postDate, docDate, agentParty, foreignAgent, saleNom, saleSPO, mawbNo, mawbDate, flightNo, flightDate, salePcs, grsWeight, saleComm, chWeight, saleRate, totalFreight, goodsDesc, saleOrigin, saleDest, saleRem, totalBefDisc, saleDisc, saleTax, saleTotal, saleReason, saleType, lastNotification) value ('$soNo','$saleCust','$conPerson','$conRef','$saleCurr','Waiting for first approval','$postDate','$docDate','$agentParty','$foreignAgent','$saleNom','$saleSPO','$mawbNo','$mawbDate','$flightNo','$flightDate', '$salePcs','$grsWeight','$saleComm','$chWeight','$saleRate','$totalFreight','$goodsDesc','$saleOrigin','$saleDest','$saleRem','$totalBefDisc','$saleDisc','$saleTax','$saleTotal','$saleReason','Air Import', '$lastNotification')")or die(mysqli_error($con));
+    $insertQurey= mysqli_query($con, " insert into saleorders (soNo, saleCust, conPerson, conRef, saleCurr, saleStatus, postDate, docDate, agentParty, foreignAgent, saleNom, saleSPO, mawbNo, mawbDate, salePcs, grsWeight, saleComm, chWeight, saleRate, totalFreight, goodsDesc, saleOrigin, saleDest, flightNo, flightDate, saleRem, totalBefDisc, saleDisc, saleTax, saleTotal, saleReason, saleType, lastNotification) value ('$soNo','$saleCust','$conPerson','$conRef','$saleCurr','Waiting for first approval','$postDate','$docDate','$agentParty','$foreignAgent','$saleNom','$saleSPO','$mawbNo','$mawbDate','$salePcs','$grsWeight', '$saleComm','$chWeight','$saleRate','$totalFreight','$goodsDesc','$saleOrigin','$saleDest','$flightNo','$flightDate','$saleRem','$totalBefDisc','$saleDisc','$saleTax','$saleTotal','$saleReason','Air Import', '$lastNotification')")or die(mysqli_error($con));
 
     $selectUsername = mysqli_query($con, "SELECT * FROM users WHERE user_ID='$userID' ");
     while ($rowNotUser = mysqli_fetch_array($selectUsername))
@@ -99,7 +97,7 @@ if (isset($_POST['submitBtn'])) {
 
   else
   {
-    $insertQurey= mysqli_query($con, " insert into saleorders (soNo, saleCust, conPerson, conRef, saleCurr, saleStatus, postDate, docDate, agentParty, foreignAgent, saleNom, saleSPO, mawbNo, mawbDate, flightNo, flightDate, salePcs, grsWeight, saleComm, chWeight, saleRate, totalFreight, goodsDesc, saleOrigin, saleDest, saleRem, totalBefDisc, saleDisc, saleTax, saleTotal, saleReason, saleType, 'lastNotification') value ('$soNo','$saleCust','$conPerson','$conRef','$saleCurr','Active','$postDate','$docDate','$agentParty','$foreignAgent','$saleNom','$saleSPO','$mawbNo','$mawbDate','$flightNo','$flightDate', '$salePcs','$grsWeight','$saleComm','$chWeight','$saleRate','$totalFreight','$goodsDesc','$saleOrigin','$saleDest','$saleRem','$totalBefDisc','$saleDisc','$saleTax','$saleTotal','$saleReason','Air Import', '$lastNotification')")or die(mysqli_error($con));
+    $insertQurey= mysqli_query($con, " insert into saleorders (soNo, saleCust, conPerson, conRef, saleCurr, saleStatus, postDate, docDate, agentParty, foreignAgent, saleNom, saleSPO, mawbNo, mawbDate, salePcs, grsWeight, saleComm, chWeight, saleRate, totalFreight, goodsDesc, saleOrigin, saleDest, flightNo, flightDate, saleRem, totalBefDisc, saleDisc, saleTax, saleTotal, saleReason, saleType, lastNotification) value ('$soNo','$saleCust','$conPerson','$conRef','$saleCurr','Active','$postDate','$docDate','$agentParty','$foreignAgent','$saleNom','$saleSPO','$mawbNo','$mawbDate','$salePcs','$grsWeight', '$saleComm','$chWeight','$saleRate','$totalFreight','$goodsDesc','$saleOrigin','$saleDest','$flightNo','$flightDate','$saleRem','$totalBefDisc','$saleDisc','$saleTax','$saleTotal','$saleReason','Air Import', '$lastNotification')")or die(mysqli_error($con));
 
     header("Location: sales_order_air_import.php");
   }
@@ -259,6 +257,27 @@ if (isset($_POST['submitBtn'])) {
        </div>
 
             			 <label id="formSummary" style="color: red;"></label>
+                   <p id="V_saleCust" style="color: red;"></p>
+                   <p id="V_conPerson" style="color: red;"></p>
+                   <p id="V_conRef" style="color: red;"></p>
+                   <p id="V_saleCurr" style="color: red;"></p>
+                   <p id="V_postDate" style="color: red;"></p>
+                   <p id="V_docDate" style="color: red;"></p>
+                   <p id="V_saleSPO" style="color: red;"></p>
+                   <p id="V_mawbNo" style="color: red;"></p>
+                   <p id="V_salePcs" style="color: red;"></p>
+                   <p id="V_grsWeight" style="color: red;"></p>
+                   <p id="V_chWeight" style="color: red;"></p>
+                   <p id="V_saleRate" style="color: red;"></p>
+                   <p id="V_totalFreight" style="color: red;"></p>
+                   <p id="V_goodsDesc" style="color: red;"></p>
+                   <p id="V_saleDest" style="color: red;"></p>
+                   <p id="V_saleOrigin" style="color: red;"></p>
+                   <p id="V_flightNo" style="color: red;"></p>
+                   <p id="V_totalBefDisc" style="color: red;"></p>
+                   <p id="V_saleDisc" style="color: red;"></p>
+                   <p id="V_saleTax" style="color: red;"></p>
+                   <p id="V_saleTotal" style="color: red;"></p>
 
             				<div class="Bsic_usr_info widget_iner_box">
 
@@ -268,7 +287,7 @@ if (isset($_POST['submitBtn'])) {
 						                      <?php include('inc_widgets/backBtn.php'); ?>
 						                      <!-- Go back button code ending here -->
             										</div>
-            										<button type="button" id="btnConfirm_Su" onclick="submitFunc();"> <small>Submit</small></button>
+            										<button type="button" id="btnConfirm_Su" onclick="FormValidation();"> <small>Submit</small></button>
                                 <button type="button" name="btnConfirm_S" onclick="saveFunc();"> <small>Save</small></button>
                                 <button type="button" name="submitBtn"> <small>Cancel</small></button>        
                             </div>
@@ -285,7 +304,7 @@ if (isset($_POST['submitBtn'])) {
                               <div class="input-label"><label >Customer</label></div>
                               <div class="input-feild">
                                 <select name="saleCust" id="saleCust" class="saleCust" onchange="checkValues()">
-                                  <option value="Select">Select </option>
+                                  <option value="">Select </option>
                                   <?php
 
                                     $selectCust = mysqli_query($con, "select * from custmaster");
@@ -295,7 +314,7 @@ if (isset($_POST['submitBtn'])) {
                                       echo '<option value="'.$rowCust['newCode'].'">'.$rowCust['cmpTitle'].'</option>';
                                     }
                                   ?>
-                                </select>
+                                </select><span class="steric">*</span>
                               </div>
                              
                          
@@ -310,18 +329,18 @@ if (isset($_POST['submitBtn'])) {
                                     <option > </option>
                                     <option > </option>
                                     <option ></option>
-                                </select>
+                                </select><span class="steric">*</span>
                               </div>
 
                               <div class="input-label"><label >Contact Ref. No.  </label></div>  
                               <div class="input-feild">
-                                 <input  type="text"   placeholder="" name="conRef" id="conRef" class="conRef">
+                                 <input  type="text" maxlength="30" placeholder="" name="conRef" id="conRef" class="conRef">
                               </div>    
                                     
                               <div class="input-label"><label >Currency  </label></div>
                               <div class="input-feild">
                                   <select class="mini_select_field" name="saleCurr" id="saleCurr" >
-                                    <option value="Select">Select </option>
+                                    <option value="">Select </option>
                                     <?php
 
                                       $selectCust = mysqli_query($con, "select * from currency_setup");
@@ -331,7 +350,7 @@ if (isset($_POST['submitBtn'])) {
                                         echo '<option value="'.$rowCust['SrNo'].'">'.$rowCust['cur_name'].'</option>';
                                       }
                                     ?>
-                                  </select>
+                                  </select><span class="steric">*</span>
                               </div>   
 
                               <div class="cls"></div>
@@ -340,7 +359,7 @@ if (isset($_POST['submitBtn'])) {
                                <div class="input-label"><label >Agent Party   </label></div>  
                               <div class="input-feild">
                                     <select class="mini_select_field agentParty" name="agentParty" id="agentParty" >
-                                               <option value="Select">Select </option>
+                                               <option value="">Select </option>
                                               <?php
 
                                                 $selectCust = mysqli_query($con, "select * from sub_agents_parties_setup");
@@ -356,7 +375,7 @@ if (isset($_POST['submitBtn'])) {
                                <div class="input-label"><label >Foreign Agent </label></div>  
                               <div class="input-feild">
                                      <select class="mini_select_field foreignAgent" name="foreignAgent" id="foreignAgent">
-                                              <option value="Select">Select </option>
+                                              <option value="">Select </option>
                                               <?php
 
                                                 $selectCust = mysqli_query($con, "select * from custmaster");
@@ -373,8 +392,8 @@ if (isset($_POST['submitBtn'])) {
                               <div class="input-feild ">
                                       <select class="mini_select_field saleNom" name="saleNom" 
                                         id="saleNom">
-                                              <option >No</option>
-                                              <option value="yes" >Yes</option>
+                                              <option value="No">No</option>
+                                              <option value="Yes" >Yes</option>
                                       </select>
                               </div> 
 
@@ -382,7 +401,7 @@ if (isset($_POST['submitBtn'])) {
                                  <div class="input-label"><label >SPO </label></div>
                                   <div class="input-feild ">
                                           <select class="mini_select_field saleSPO" name="saleSPO" id="saleSPO">
-                                                   <option value="Select">Select </option>
+                                                   <option value="">Select </option>
                                               <?php
 
                                                 $selectCust = mysqli_query($con, "select * from spo_setup");
@@ -392,7 +411,7 @@ if (isset($_POST['submitBtn'])) {
                                                   echo '<option value="'.$rowCust['SrNo'].'">'.$rowCust['spo_name'].'</option>';
                                                 }
                                               ?>
-                                      </select>
+                                      </select><span class="steric">*</span>
                                   </div>
                               </div>    
                                                                            
@@ -402,12 +421,12 @@ if (isset($_POST['submitBtn'])) {
 
                               <div class="input-label"><label >Posting Date  </label></div>  
                               <div class="input-feild">
-                                <input type="date" name="postDate" id="postDate" class="postDate">
+                                <input type="date" name="postDate" id="postDate" class="postDate"><span class="steric">*</span>
                               </div>
 
                               <div class="input-label"><label >Document Date</label></div>  
                               <div class="input-feild">
-                                <input type="date" name="docDate" id="docDate" class="docDate">
+                                <input type="date" name="docDate" id="docDate" class="docDate"><span class="steric">*</span>
                               </div>
                                                                                                                      
                             </div>
@@ -420,25 +439,23 @@ if (isset($_POST['submitBtn'])) {
                         <div class="col-md-6">
                             <div class="input-label"><label >Mawb No.</label></div>  
                             <div class="input-feild">
-                              <input  type="text" name="mawbNo" id="mawbNo" class="mawbNo">
+                              <input  type="text" name="mawbNo" id="mawbNo" class="mawbNo" maxlength="12"><span class="steric">*</span>
                             </div>
-
-                            
 
                             <div class="input-label"><label >Pcs</label></div>  
                           <div class="input-feild">
-                            <input  type="text" name="salePcs" id="salePcs" class="salePcs">
+                            <input  type="text" name="salePcs" id="salePcs" class="salePcs" maxlength="5"><span class="steric">*</span>
                           </div>
 
                           <div class="input-label"><label >Gross Weight</label></div>  
                           <div class="input-feild">
-                            <input  type="text" name="grsWeight" id="grsWeight" class="grsWeight">
+                            <input  type="text" name="grsWeight" id="grsWeight" class="grsWeight" maxlength="10"><span class="steric">*</span>
                           </div>
 
                           <div class="input-label"><label >Commodity</label></div>  
                           <div class="input-feild">
                             <select class="saleComm" name="saleComm" id="saleComm">
-                              <option value="Select">Select </option>
+                              <option value="">Select </option>
                                 <?php
 
                                   $selectCust = mysqli_query($con, "select * from pro_setup_commodity");
@@ -453,7 +470,7 @@ if (isset($_POST['submitBtn'])) {
 
                           <div class="input-label"><label >Charge Weight</label></div>  
                           <div class="input-feild">
-                            <input  type="text" name="chWeight" id="chWeight" class="chWeight">
+                            <input  type="text" name="chWeight" id="chWeight" class="chWeight"><span class="steric">*</span>
                           </div>
 
                           <div class="cls"></div>
@@ -464,7 +481,7 @@ if (isset($_POST['submitBtn'])) {
                           <div class="input-label"><label >Origin</label></div>  
                           <div class="input-feild">
                                   <select name="saleOrigin" id="saleOrigin" class="saleOrigin">
-                                    <option value="Select">Select </option>
+                                    <option value="">Select </option>
                                       <?php
 
                                         $selectCust = mysqli_query($con, "select * from destination_setup");
@@ -474,13 +491,13 @@ if (isset($_POST['submitBtn'])) {
                                           echo '<option value="'.$rowCust['SrNo'].'">'.$rowCust['dest_name'].'</option>';
                                         }
                                       ?>
-                                  </select>
+                                  </select><span class="steric">*</span>
                           </div>
 
                           <div class="input-label"><label >Destination</label></div>  
                           <div class="input-feild">
                             <select name="saleDest" id="saleDest" class="saleDest">
-                              <option value="Select">Select </option>
+                              <option value="">Select </option>
                                 <?php
 
                                   $selectCust = mysqli_query($con, "select * from destination_setup");
@@ -490,20 +507,18 @@ if (isset($_POST['submitBtn'])) {
                                     echo '<option value="'.$rowCust['SrNo'].'">'.$rowCust['dest_name'].'</option>';
                                   }
                                 ?>
-                            </select>
+                            </select><span class="steric">*</span>
                           </div>
 
                             <div class="input-label"><label >Flight No.</label></div>  
                             <div class="input-feild">
-                                    <input  type="text" name="flightNo" id="flightNo" class="flightNo">
-                              
+                                <input  type="text" name="flightNo" id="flightNo" class="flightNo" maxlength="6">
                             </div>
 
                             <div class="input-label"><label >Flight Date</label></div>  
                             <div class="input-feild">
                                 <input type="date" name="flightDate" id="flightDate" class="flightDate">
                             </div>
-
 
                         </div>
                         <div class="col-md-6">  
@@ -515,19 +530,18 @@ if (isset($_POST['submitBtn'])) {
 
                             <div class="input-label"><label >Rate</label></div>  
                             <div class="input-feild">
-                                    <input  type="text" name="saleRate" id="saleRate" class="saleRate" onfocusout="calcFreight();">
+                                    <input  type="text" name="saleRate" id="saleRate" class="saleRate" onfocusout="calcFreight();" maxlength="10"><span class="steric">*</span>
                             </div>
 
                             <div class="input-label"><label >Total</label></div>  
                             <div class="input-feild">
-                                    <input  type="text" name="totalFreight" id="totalFreight" class="totalFreight">
+                                    <input  type="text" name="totalFreight" id="totalFreight" class="totalFreight"><span class="steric">*</span>
                             </div>
 
                              <div class="input-label"><label >Goods & Description</label></div>  
                             <div class="input-feild">
-                                    <textarea name="goodsDesc" id="goodsDesc" class="goodsDesc"></textarea>
+                                    <textarea name="goodsDesc" id="goodsDesc" class="goodsDesc" maxlength="200"></textarea><span class="steric">*</span>
                             </div>
-
 
                         </div>
                      </div>            
@@ -537,11 +551,10 @@ if (isset($_POST['submitBtn'])) {
 
                  		   <div class="widget_iner_box">
                  		   		 <div class="col-md-6">
-                                                            
-                                                           
+
                                                             <div class="input-label"><label >Remarks</label></div>
                                                             <div class="input-feild">
-                                                              <textarea name="saleRem" id="saleRem" class="saleRem"></textarea>
+                                                              <textarea name="saleRem" id="saleRem" class="saleRem" maxlength="200"></textarea>
                                                             </div>
 
                                                             <div class="input-label"><label>Select Final Notification:</label></div>  
@@ -575,27 +588,27 @@ if (isset($_POST['submitBtn'])) {
                                                         
                                                             <div class="input-label"><label >Total Freight Before Discount</label></div>
                                                             <div class="input-feild">
-                                                                <input type="text"  name="totalBefDisc" id="totalBefDisc" class="totalBefDisc">
+                                                                <input type="text"  name="totalBefDisc" id="totalBefDisc" class="totalBefDisc"><span class="steric">*</span>
                                                             </div>
                                                             
                                                             <div class="input-label"><label >Discount %</label></div>
                                                             <div class="input-feild">
-                                                                 <input class="mini_input_field" type="text" name="saleDisc" id="saleDisc" class="saleDisc">
+                                                                 <input class="mini_input_field" type="text" name="saleDisc" id="saleDisc" class="saleDisc" maxlength="8">
                                                             </div>
 
                                                             <div class="input-label"><label >Tax</label></div>
                                                             <div class="input-feild">
-                                                                 <input type="text" name="saleTax" id="saleTax" class="saleTax" onfocusout="afterDisc();" >
+                                                                 <input type="text" name="saleTax" id="saleTax" class="saleTax" onfocusout="afterDisc();" maxlength="10">
                                                             </div>
 
                                                             <div class="input-label"><label >Total</label></div>
                                                             <div class="input-feild">
-                                                                 <input  type="text" name="saleTotal" id="saleTotal" class="saleTotal">
+                                                                 <input  type="text" name="saleTotal" id="saleTotal" class="saleTotal"><span class="steric">*</span>
                                                             </div>
 
                                                             <div class="input-label"><label >Reason For Sale</label></div>
                                                             <div class="input-feild">
-                                                              <textarea name="saleReason" id="saleReason" class="saleReason"></textarea>
+                                                              <textarea name="saleReason" id="saleReason" class="saleReason" maxlength="200"></textarea><span class="steric">*</span>
                                                             </div>                                                       
                                                         </div>	  
                  		   </div>  
@@ -604,8 +617,6 @@ if (isset($_POST['submitBtn'])) {
                        <hr>
 
    </div>                                                       
-      					
-                   
 
       		</form>
 	</div>
@@ -755,7 +766,384 @@ function afterDisc()
   // document.getElementById("totalBefDisc").value = totalFreight;
 }
 
- </script>
+</script>
+
+<script type="text/javascript">
+   function FormValidation()
+   {
+      // var re = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/;
+      var re = /\S+@\S+\.\S+/;
+      var regexp = /^[a-z .\-]+$/i;
+      var regexp3 = /^[a-z, -, 0-9]+$/i;
+      var regexp2 = /^[0-9]*$/i;
+      var regexp4 = /^[0-9, . , 0-9]*$/i;
+      var regexn = /^(\d+-?)+\d+$/;
+      var missingVal = 0;
+
+      var saleCust=document.getElementById('saleCust').value;
+      var conPerson=document.getElementById('conPerson').value;
+      var conRef=document.getElementById('conRef').value;
+      var saleCurr=document.getElementById('saleCurr').value;
+      var postDate=document.getElementById('postDate').value;
+      var docDate=document.getElementById('docDate').value;
+      var saleSPO=document.getElementById('saleSPO').value;
+      var mawbNo=document.getElementById('mawbNo').value;
+      var salePcs=document.getElementById('salePcs').value;
+      var grsWeight=document.getElementById('grsWeight').value;
+      var chWeight=document.getElementById('chWeight').value;
+      var saleRate=document.getElementById('saleRate').value;
+      var totalFreight=document.getElementById('totalFreight').value;
+      var goodsDesc=document.getElementById('goodsDesc').value;
+      var saleDest=document.getElementById('saleDest').value;
+      var saleOrigin=document.getElementById('saleOrigin').value;
+      var flightNo=document.getElementById('flightNo').value;
+      var totalBefDisc=document.getElementById('totalBefDisc').value;
+      var saleDisc=document.getElementById('saleDisc').value;
+      var saleTax=document.getElementById('saleTax').value;
+      var saleTotal=document.getElementById('saleTotal').value;
+
+    
+      var summary = "Summary: ";
+
+      if(saleCust == "")
+      {
+          document.getElementById('saleCust').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "First name is required.";
+          document.getElementById("V_saleCust").innerHTML = "Customer is required.";
+      }
+      if(saleCust != "")
+      {
+          document.getElementById('saleCust').style.borderColor = "white";
+          document.getElementById("V_saleCust").innerHTML = "";
+      }
+
+      if(conPerson == "")
+      {
+          document.getElementById('conPerson').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "First name is required.";
+          document.getElementById("V_conPerson").innerHTML = "Contact person is required.";
+      }
+      if(conPerson != "")
+      {
+          document.getElementById('conPerson').style.borderColor = "white";
+          document.getElementById("V_conPerson").innerHTML = "";
+      }
+
+      if(conRef != "")
+      {
+          if (!regexp2.test(conRef))
+          {
+            document.getElementById('conRef').style.borderColor = "red";
+              missingVal = 1;
+              // summary += "Firstname is required.";
+              document.getElementById("V_conRef").innerHTML = "Only numbers are allowed in contact reference.";
+          }
+      }
+      
+      if(saleCurr == "")
+      {
+          document.getElementById('saleCurr').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Last name is required.";
+          document.getElementById("V_saleCurr").innerHTML = "Currency required.";
+      }
+      if(saleCurr != "")
+      {
+          document.getElementById('saleCurr').style.borderColor = "white";
+          document.getElementById("V_saleCurr").innerHTML = "";
+      }
+
+      if(postDate == "")
+      {
+          document.getElementById('postDate').style.borderColor = "red";
+          missingVal = 1;
+          // summary += " Father/Husband name is required.";
+          document.getElementById("V_postDate").innerHTML = "Post Date is required.";
+      }
+      if(postDate != "")
+      {
+          document.getElementById('postDate').style.borderColor = "white";
+          document.getElementById("V_postDate").innerHTML = "";
+      }
+
+      if(docDate == "")
+      {
+          document.getElementById('docDate').style.borderColor = "red";
+          missingVal = 1;
+          // summary +=  " CNIC number is required ";
+          document.getElementById("V_docDate").innerHTML = "Document date required.";
+      }
+      if(docDate != "")
+      {
+          document.getElementById('docDate').style.borderColor = "white";
+          document.getElementById("V_docDate").innerHTML = "";
+      }
+
+      if(saleSPO == "")
+      {
+          document.getElementById('saleSPO').style.borderColor = "red";
+          missingVal = 1;
+          // summary +=  " CNIC number is required ";
+          document.getElementById("V_saleSPO").innerHTML = "SPO required.";
+      }
+      if(saleSPO != "")
+      {
+          document.getElementById('saleSPO').style.borderColor = "white";
+          document.getElementById("V_saleSPO").innerHTML = "";
+      }
+
+      if(mawbNo == "")
+      {
+          document.getElementById('mawbNo').style.borderColor = "red";
+          missingVal = 1;
+          // summary +=  " CNIC number is required ";
+          document.getElementById("V_mawbNo").innerHTML = "MAWB No. is required.";
+      }
+      if(mawbNo != "")
+      {
+          document.getElementById('mawbNo').style.borderColor = "white";
+          document.getElementById("V_mawbNo").innerHTML = "";
+
+          if (!regexp3.test(mawbNo))
+          {
+              document.getElementById('mawbNo').style.borderColor = "red";
+              missingVal = 1;
+              // summary += "Firstname is required.";
+              document.getElementById("V_mawbNo").innerHTML = "Alpha-numeric and (-) is allowed in MAWB No.";
+          }
+      }
+
+      if(salePcs == "")
+      {
+          document.getElementById('salePcs').style.borderColor = "red";
+          missingVal = 1;
+          // summary +=  " CNIC number is required ";
+          document.getElementById("V_salePcs").innerHTML = "Sale pieces required.";
+      }
+      if(salePcs != "")
+      {
+          document.getElementById('salePcs').style.borderColor = "white";
+          document.getElementById("V_salePcs").innerHTML = "";
+
+          if (!regexp2.test(salePcs))
+          {
+              document.getElementById('salePcs').style.borderColor = "red";
+              missingVal = 1;
+              // summary += "Firstname is required.";
+              document.getElementById("V_salePcs").innerHTML = "Sale pieces must contain numbers only.";
+          }
+      }
+
+      if(grsWeight == "")
+      {
+          document.getElementById('grsWeight').style.borderColor = "red";
+          missingVal = 1;
+          // summary +=  " CNIC number is required ";
+          document.getElementById("V_grsWeight").innerHTML = "Gross Weight required.";
+      }
+      if(grsWeight != "")
+      {
+          document.getElementById('grsWeight').style.borderColor = "white";
+          document.getElementById("V_grsWeight").innerHTML = "";
+
+          if (!regexp4.test(grsWeight))
+          {
+              document.getElementById('grsWeight').style.borderColor = "red";
+              missingVal = 1;
+              // summary += "Firstname is required.";
+              document.getElementById("V_grsWeight").innerHTML = "Gross must contain numbers or decimals only.";
+          }
+      }
+
+      if(chWeight == "")
+      {
+          document.getElementById('chWeight').style.borderColor = "red";
+          missingVal = 1;
+          // summary +=  " CNIC number is required ";
+          document.getElementById("V_chWeight").innerHTML = "Charge weight required.";
+      }
+      if(chWeight != "")
+      {
+          document.getElementById('chWeight').style.borderColor = "white";
+          document.getElementById("V_chWeight").innerHTML = "";
+      }
+
+      if(saleRate == "")
+      {
+          document.getElementById('saleRate').style.borderColor = "red";
+          missingVal = 1;
+          // summary +=  " CNIC number is required ";
+          document.getElementById("V_saleRate").innerHTML = "Sale rate is required.";
+      }
+      if(saleRate != "")
+      {
+          document.getElementById('saleRate').style.borderColor = "white";
+          document.getElementById("V_saleRate").innerHTML = "";
+
+          if (!regexp4.test(saleRate))
+          {
+              document.getElementById('saleRate').style.borderColor = "red";
+              missingVal = 1;
+              // summary += "Firstname is required.";
+              document.getElementById("V_saleRate").innerHTML = "Sale rate must contain numbers or decimals only.";
+          }
+      }
+
+      if(totalFreight == "")
+      {
+          document.getElementById('totalFreight').style.borderColor = "red";
+          missingVal = 1;
+          // summary +=  " CNIC number is required ";
+          document.getElementById("V_totalFreight").innerHTML = "Total freight is required.";
+      }
+      if(totalFreight != "")
+      {
+          document.getElementById('totalFreight').style.borderColor = "white";
+          document.getElementById("V_totalFreight").innerHTML = "";
+      }
+
+      if(goodsDesc == "")
+      {
+          document.getElementById('goodsDesc').style.borderColor = "red";
+          missingVal = 1;
+          // summary +=  " CNIC number is required ";
+          document.getElementById("V_goodsDesc").innerHTML = "Goods description required.";
+      }
+      if(goodsDesc != "")
+      {
+          document.getElementById('goodsDesc').style.borderColor = "white";
+          document.getElementById("V_goodsDesc").innerHTML = "";
+      }
+
+      if(saleDest == "")
+      {
+          document.getElementById('saleDest').style.borderColor = "red";
+          missingVal = 1;
+          // summary +=  " CNIC number is required ";
+          document.getElementById("V_saleDest").innerHTML = "Sale destination required.";
+      }
+      if(saleDest != "")
+      {
+          document.getElementById('saleDest').style.borderColor = "white";
+          document.getElementById("V_saleDest").innerHTML = "";
+      }
+
+      if(saleOrigin == "")
+      {
+          document.getElementById('saleOrigin').style.borderColor = "red";
+          missingVal = 1;
+          // summary +=  " CNIC number is required ";
+          document.getElementById("V_saleOrigin").innerHTML = "Sale origin required.";
+      }
+      if(saleOrigin != "")
+      {
+          document.getElementById('saleOrigin').style.borderColor = "white";
+          document.getElementById("V_saleOrigin").innerHTML = "";
+      }
+
+      if(flightNo != "")
+      {
+          document.getElementById('flightNo').style.borderColor = "white";
+          document.getElementById("V_flightNo").innerHTML = "";
+
+          if (!regexp3.test(flightNo))
+          {
+              document.getElementById('flightNo').style.borderColor = "red";
+              missingVal = 1;
+              // summary += "Firstname is required.";
+              document.getElementById("V_flightNo").innerHTML = "CNIC must contain numbers only.";
+          }
+      }
+
+      if(totalBefDisc == "")
+      {
+          document.getElementById('totalBefDisc').style.borderColor = "red";
+          missingVal = 1;
+          // summary +=  " CNIC number is required ";
+          document.getElementById("V_totalBefDisc").innerHTML = "Origin required.";
+      }
+      if(totalBefDisc != "")
+      {
+          document.getElementById('totalBefDisc').style.borderColor = "white";
+          document.getElementById("V_totalBefDisc").innerHTML = "";
+      }
+
+      if(saleDisc != "")
+      {
+          if (!regexp4.test(saleDisc))
+          {
+              document.getElementById('saleDisc').style.borderColor = "red";
+              missingVal = 1;
+              // summary += "Firstname is required.";
+              document.getElementById("V_saleDisc").innerHTML = "Discount must contain numbers or decimals only.";
+          }
+      }
+
+      if(saleTax != "")
+      {
+          document.getElementById('saleTax').style.borderColor = "white";
+          document.getElementById("V_saleTax").innerHTML = "";
+
+          if (!regexp4.test(saleTax))
+          {
+              document.getElementById('saleTax').style.borderColor = "red";
+              missingVal = 1;
+              // summary += "Firstname is required.";
+              document.getElementById("V_saleTax").innerHTML = "Tax must contain numbers or decimals only.";
+          }
+      }
+
+      if(saleTotal == "")
+      {
+          document.getElementById('saleTotal').style.borderColor = "red";
+          missingVal = 1;
+          // summary +=  " CNIC number is required ";
+          document.getElementById("V_saleTotal").innerHTML = "Sale Total required.";
+      }
+      if(saleTotal != "")
+      {
+          document.getElementById('saleTotal').style.borderColor = "white";
+          document.getElementById("V_saleTotal").innerHTML = "";
+      }
+
+      ///////////////////////////////////////
+
+      if (missingVal != 1)
+      {
+        document.getElementById('saleCust').style.borderColor = "white";
+        document.getElementById('conPerson').style.borderColor = "white";
+        document.getElementById('conRef').style.borderColor = "white";
+        document.getElementById('saleCurr').style.borderColor = "white";
+        document.getElementById('postDate').style.borderColor = "white";
+        document.getElementById('docDate').style.borderColor = "white";
+        document.getElementById('saleSPO').style.borderColor = "white";
+        document.getElementById('mawbNo').style.borderColor = "white";
+        document.getElementById('salePcs').style.borderColor = "white";
+        document.getElementById('grsWeight').style.borderColor = "white";
+        document.getElementById('chWeight').style.borderColor = "white";
+        document.getElementById('saleRate').style.borderColor = "white";
+        document.getElementById('totalFreight').style.borderColor = "white";
+        document.getElementById('goodsDesc').style.borderColor = "white";
+        document.getElementById('saleDest').style.borderColor = "white";
+        document.getElementById('saleOrigin').style.borderColor = "white";
+        document.getElementById('flightNo').style.borderColor = "white";
+        document.getElementById('totalBefDisc').style.borderColor = "white";
+        document.getElementById('saleDisc').style.borderColor = "white";
+        document.getElementById('saleTax').style.borderColor = "white";
+        document.getElementById('saleTotal').style.borderColor = "white";
+        
+        $("#submit_Modal").modal();
+       
+      }
+
+      if (missingVal == 1)
+      {
+        document.getElementById("formSummary").textContent=summary;
+      }
+  }
+</script>
 
 <script src="js/jquery.dataTables.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
