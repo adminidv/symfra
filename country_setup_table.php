@@ -727,16 +727,16 @@ if (isset($_POST['submitBtn'])) {
                   </div>
 
                   <div class="input-fields">  
-                     <label>Region</label>  
+                     <label>Sector</label>  
                       <select name="country_region" id="country_region">
                           <option value="Select">Select </option>
                           <?php
 
-                            $selectregion = mysqli_query($con, "select * from region_setup");
+                            $selectregion = mysqli_query($con, "select * from sector_setup");
 
                             while ($rowregion = mysqli_fetch_array($selectregion))
                             {
-                              echo '<option value="'.$rowregion['reg_name'].'">'.$rowregion['reg_name'].'</option>';
+                              echo '<option value="'.$rowregion['sector_name'].'">'.$rowregion['sector_name'].'</option>';
                             }
 
                           ?>
