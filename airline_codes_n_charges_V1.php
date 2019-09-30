@@ -24,17 +24,18 @@ $userNo = $_GET['id'];
       $address = $row['address'];
       $country = $row['country'];
       $city = $row['city'];
-      $iata_name = $row['iata_name'];
-      $icao_code = $row['icao_code'];
+      $airline_icao = $row['airline_icao'];
+      $airline_iata = $row['airline_iata'];
       $account_no = $row['account_no'];
-      $contact_person = $row['contact_person'];
+      // $contact_person = $row['contact_person'];
       $con_office = $row['con_office'];
-      $con_personal = $row['con_personal'];
+      // $con_personal = $row['con_personal'];
       $fax_no = $row['fax_no'];
       $email = $row['email'];
       $website = $row['website'];
       $kb_adj = $row['kb_adj'];
       $awb_standard = $row['awb_standard'];
+      $awb_code = $row['awb_code'];
       $iata_mem = $row['iata_mem'];
       $sec_charges = $row['sec_charges'];
       $fuel_charges = $row['fuel_charges'];
@@ -51,6 +52,8 @@ if (isset($_POST['btnadd'])) {
   $airport_sec = $_POST['airport_sec'];
   $airport_fuel = $_POST['airport_fuel'];
   $airport_screen = $_POST['airport_screen'];
+  $additional_charges = $_POST['additional_charges'];
+  $amount_charges = $_POST['amount_charges'];
   $airport_awc = $_POST['airport_awc'];
   $airport_awb = $_POST['airport_awb']; 
   if (isset($_POST['status'])) {
@@ -62,141 +65,122 @@ if (isset($_POST['btnadd'])) {
     $status='Deactive';
   }
   // insertQuery
-   $insertQuery = mysqli_query($con, "insert into airline_charges_setup (airport_name,w_e_f,airport_sec,airport_fuel,airport_screen,airport_awc,airport_awb, status) values ('$airport_name','$w_e_f' ,'$airport_sec','$airport_fuel','$airport_screen','$airport_awc','$airport_awb','$status')");
+   $insertQuery = mysqli_query($con, "insert into airline_charges_setup (airport_name,w_e_f,airport_sec,airport_fuel,airport_screen,additional_charges,amount_charges,airport_awc,airport_awb, status) values ('$airport_name','$w_e_f' ,'$airport_sec','$airport_fuel','$airport_screen','$additional_charges','$amount_charges','$airport_awc','$airport_awb','$status')");
 
-  header("Location: airline_codes_n_charges.php");
+  header("Location: airline_codes_n_charges_V1.php?id=". $userNo);
 }
 
 
- // Export
- if(isset($_POST["btnExport_D"]))
-{
-  $exportOptions = $_POST['exportOptions'];
-  if ($exportOptions == "Select")
-  {
 
-  }
-  else if ($exportOptions == "excel")
-  {
-    header("Location: airline_excel.php?searchRecord=$searchRecord");
-  }
-  else if ($exportOptions == "csv")
-  {
-    echo '<script type="text/javascript" language="Javascript">window.open("airline_csv.php?searchRecord=$searchRecord");</script>';
-    //header("Location: downloadtableCSV_U.php?searchRecord=$searchRecord");
-  }
-  else if ($exportOptions == "pdf")
-  {
-    echo '<script type="text/javascript" language="Javascript">window.open("airline_pdf.php?searchRecord=$searchRecord");</script>';
-    //header("Location: downloadtableCSV_U.php?searchRecord=$searchRecord");
-  }
-}
 
 
 // fatch data in currency setup
    $selectairline = mysqli_query($con, "select * from  airline_charges_setup ");
 
 // click Edit submit btn
-if(isset($_POST['btnedit']))
-{
-  $airport_SrNoV = $_POST['airport_SrNoV']; 
-  $airport_nameV = $_POST['airport_nameV'];
-  $w_e_fV = $_POST['w_e_fV'];
-  $airport_secV = $_POST['airport_secV'];
-  $airport_fuelV = $_POST['airport_fuelV'];
-  $airport_screenV = $_POST['airport_screenV'];
-  $airport_awcV = $_POST['airport_awcV'];
-  $airport_awbV = $_POST['airport_awbV']; 
+if(isset($_POST['btnedit'])){
 
-   if (isset($_POST['statusV'])) {
-    $statusV='Active';
+    $airport_SrNoV = $_POST['airport_SrNoV']; 
+    $airport_nameV = $_POST['airport_nameV'];
+    $w_e_fV = $_POST['w_e_fV'];
+    $airport_secV = $_POST['airport_secV'];
+    $airport_fuelV = $_POST['airport_fuelV'];
+    $airport_screenV = $_POST['airport_screenV'];
+    $additional_chargesV = $_POST['additional_chargesV'];
+    $amount_chargesV = $_POST['amount_chargesV'];
+    $airport_awcV = $_POST['airport_awcV'];
+    $airport_awbV = $_POST['airport_awbV']; 
 
-  }
-  else
-  {
-    $statusV='Deactive';
-  }
+     if (isset($_POST['statusV'])) {
+      $statusV='Active';
+
+    }
+    else
+    {
+      $statusV='Deactive';
+    }
  
 
-// update qury
-   $updateQuery12 = mysqli_query($con, "UPDATE  airline_charges_setup SET airport_name='$airport_nameV', w_e_f='$w_e_fV', airport_sec='$airport_secV', airport_fuel='$airport_fuelV',airport_screen='$airport_screenV',airport_awc='$airport_awcV',airport_awb='$airport_awbV',status='$statusV' WHERE SrNo='$airport_SrNoV' ") or die(mysqli_error($con));
 
-    $msg = "Record is inserted successfully.";
-  function alert($msg)
-  {
-    echo "<script type='text/javascript'>alert('$msg');</script>";
-  }
-  alert($msg);
+    // update qury
+       $updateQuery12 = mysqli_query($con, "UPDATE  airline_charges_setup SET airport_name='$airport_nameV', w_e_f='$w_e_fV', airport_sec='$airport_secV', airport_fuel='$airport_fuelV',airport_screen='$airport_screenV',additional_charges='$additional_chargesV',amount_charges='$amount_chargesV',airport_awc='$airport_awcV',airport_awb='$airport_awbV',status='$statusV' WHERE SrNo='$airport_SrNoV' ") or die(mysqli_error($con));
 
-  header("Location: airline_codes_n_charges.php");
+        $msg = "Record is inserted successfully.";
+      function alert($msg)
+      {
+        echo "<script type='text/javascript'>alert('$msg');</script>";
+      }
+      alert($msg);
+
+      header("Location: airline_codes_n_charges_V1.php?id=". $userNo);
 }
 
-// click Edit submit btn 
+// click Edit Rep btn 
 if(isset($_POST['btnedit1']))
 {
-  // valuse save in variable
-  $SrNoV = $_POST['$SrNoV'];
-  $rep_nameV= $_POST['rep_nameV'];
-  $rep_desgV = $_POST['rep_desgV'];
-  $rep_office_noV = $_POST['rep_office_noV'];
-  $rep_phone_noV = $_POST['rep_phone_noV'];
-  $emailV = $_POST['emailV'];
-   if (isset($_POST['statusV'])) {
-    $statusV='Active';
+      // valuse save in variable
+      $SrNoV = $_POST['SrNoV'];
+      $rep_nameV= $_POST['rep_nameV'];
+      $rep_desgV = $_POST['rep_desgV'];
+      $rep_office_noV = $_POST['rep_office_noV'];
+      $rep_phone_noV = $_POST['rep_phone_noV'];
+      $rep_emailV = $_POST['rep_emailV'];
+       if (isset($_POST['statusV'])) {
+        $statusV='Active';
 
-  }
-  else
-  {
-    $statusV='Deactive';
-  }
- 
-$expload = $userNo."-AL";
-// update query
-   $updateQuery13 = mysqli_query($con, " UPDATE represent_setup SET userNo='$expload',rep_name='$rep_nameV',rep_desg='$rep_desgV',rep_office_no='$rep_office_noV',rep_phone_no='$rep_phone_noV',email='$emailV',status='$statusV' WHERE SrNo='$SrNoV'")or die(mysqli_error($con));
+      }
+      else
+      {
+        $statusV='Deactive';
+      }
+     
+        $expload = $userNo."-AL";
+        // update query
+           $updateQuery13 = mysqli_query($con, " UPDATE represent_setup SET userNo='$expload',rep_name='$rep_nameV',rep_desg='$rep_desgV',rep_office_no='$rep_office_noV',rep_phone_no='$rep_phone_noV',rep_email='$rep_emailV',status='$statusV' WHERE SrNo='$SrNoV'")or die(mysqli_error($con));
 
-// msg Alert
-    $msg = "Record is inserted successfully.";
-  function alert($msg)
-  {
-    echo "<script type='text/javascript'>alert('$msg');</script>";
-  }
-  alert($msg);
+        // msg Alert
+            $msg = "Record is inserted successfully.";
+          function alert($msg)
+          {
+            echo "<script type='text/javascript'>alert('$msg');</script>";
+          }
+          alert($msg);
 
-  header("Location: airline_codes_n_charges.php");
+          header("Location: airline_codes_n_charges_V1.php?id=". $userNo);
 }
 
 
 
-// click Add btn (sub agents setup) 
+// click Add Rep btn  
 
 if (isset($_POST['btnadd1'])) {
- $rep_name= $_POST['rep_name'];
-  $rep_desg= $_POST['rep_desg'];
-  $rep_office_no = $_POST['rep_office_no'];
-  $rep_phone_no = $_POST['rep_phone_no'];
-  $email = $_POST['email'];
-  
-  if (isset($_POST['status'])) {
-    $status='Active';
+      $rep_name= $_POST['rep_name'];
+      $rep_desg= $_POST['rep_desg'];
+      $rep_office_no = $_POST['rep_office_no'];
+      $rep_phone_no = $_POST['rep_phone_no'];
+      $rep_email = $_POST['rep_email'];
+      
+      if (isset($_POST['status'])) {
+        $status='Active';
 
-  }
-  else
-  {
-    $status='Deactive';
-  }
+      }
+      else
+      {
+        $status='Deactive';
+      }
 
-  $expload = $userNo."-AL";
-//  insert qurey
- $insertQuery = mysqli_query($con, "insert into represent_setup(userNo,rep_name,rep_desg,rep_office_no,rep_phone_no,email,status) values ('$expload','$rep_name','$rep_desg','$rep_office_no','$rep_phone_no','$email','$status')") or die(mysqli_error($con));
- 
-  $msg = "Record is inserted successfully.";
-  function alert($msg)
-  {
-    echo "<script type='text/javascript'>alert('$msg');</script>";
-  }
-  alert($msg);
+      $expload = $userNo."-AL";
+      //  insert qurey
+       $insertQuery = mysqli_query($con, "insert into represent_setup(userNo,rep_name,rep_desg,rep_office_no,rep_phone_no,rep_email,status) values ('$expload','$rep_name','$rep_desg','$rep_office_no','$rep_phone_no','$rep_email','$status')") or die(mysqli_error($con));
+       
+        $msg = "Record is inserted successfully.";
+        function alert($msg)
+        {
+          echo "<script type='text/javascript'>alert('$msg');</script>";
+        }
+        alert($msg);
 
- header("Location: airline_codes_n_charges.php");
+        header("Location: airline_codes_n_charges_V1.php?id=". $userNo);
 
 }
 
@@ -354,157 +338,217 @@ if (isset($_POST['btnadd1'])) {
 									<!-- <hr> -->
 			<form action="" method="POST" enctype="multipart/form-data">
 
-				     	 <!-- Modal_one-->
-			 <div class="modal fade confirmTable-modal" id="saveAirline_Modal" role="dialog">
-			    <div class="modal-dialog">
-			    
-			      <!-- Modal content-->
-			      <div class="modal-content">
-			        <div class="modal-header">
-			          <button type="button" class="close" data-dismiss="modal">&times;</button>
-			          <h4 class="modal-title">Confirmation</h4>
-			        </div>
-			        <div class="modal-body">
-			          <p>Are You Sure You Want to Save?</p>
-			          <button type="submit" name="saveBtn">Yes</button>
-	                  <button type="button" name="btnDelete_N" data-dismiss="modal" >No</button>
+				     	 
 
-			        </div>
-			        <div class="modal-footer">
-			        	<p>Add Related content if needed</p>
-			          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-			        </div>
-			      </div>
-			      
-			    </div>
-			 </div>
+               <!-- valdition submit Airport popup -->
+               <div class="modal fade confirmTable-modal" id="submitAirport_Modal" role="dialog">
+                    <div class="modal-dialog">
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Confirmation</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>Are You Sure You Want to Submit?</p>
+                          <button type="submit" name="btnadd">Yes</button>
+                              <button type="button" name="btnDelete_N" data-dismiss="modal" >No</button>
 
-				       <!-- Modal Two-->
-				       <div class="modal fade confirmTable-modal" id="submitAirline_Modal" role="dialog">
-				            <div class="modal-dialog">
-				              <!-- Modal content-->
-				              <div class="modal-content">
-				                <div class="modal-header">
-				                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-				                  <h4 class="modal-title">Confirmation</h4>
-				                </div>
-				                <div class="modal-body">
-				                  <p>Are You Sure You Want to Submit?</p>
-				                  <button type="submit" name="submitBtn">Yes</button>
-				                      <button type="button" name="btnDelete_N" data-dismiss="modal" >No</button>
+                        </div>
+                        <div class="modal-footer">
+                          <p>Add Related content if needed</p>
+                          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                        </div>
+                      </div>
+                    </div>
+               </div>
 
-				                </div>
-				                <div class="modal-footer">
-				                  <p>Add Related content if needed</p>
-				                  <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-				                </div>
-				              </div>
-				            </div>
-				       </div>
+               <!-- valdition Edit Airport popup -->
+               <div class="modal fade confirmTable-modal" id="EditAirport_Modal" role="dialog">
+                    <div class="modal-dialog">
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Confirmation</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>Are You Sure You Want to Submit?</p>
+                          <button type="submit" name="btnedit">Yes</button>
+                              <button type="button" name="btnDelete_N" data-dismiss="modal" >No</button>
 
-				       <div class="modal fade symfra_popup2" id="popupMEdit" role="dialog">
+                        </div>
+                        <div class="modal-footer">
+                          <p>Add Related content if needed</p>
+                          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                        </div>
+                      </div>
+                    </div>
+               </div>
+
+
+				       <!-- valdition submit Rep popup -->
+               <div class="modal fade confirmTable-modal" id="submit_Modal" role="dialog">
+                    <div class="modal-dialog">
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Confirmation</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>Are You Sure You Want to Submit?</p>
+                          <button type="submit" name="btnadd1">Yes</button>
+                              <button type="button" name="btnDelete_N" data-dismiss="modal" >No</button>
+
+                        </div>
+                        <div class="modal-footer">
+                          <p>Add Related content if needed</p>
+                          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                        </div>
+                      </div>
+                    </div>
+               </div>
+
+               <!-- valdition Edit Rep popup -->
+               <div class="modal fade confirmTable-modal" id="Edit_Modal" role="dialog">
+                    <div class="modal-dialog">
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Confirmation</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>Are You Sure You Want to Submit?</p>
+                          <button type="submit" name="btnedit1">Yes</button>
+                              <button type="button" name="btnDelete_N" data-dismiss="modal" >No</button>
+
+                        </div>
+                        <div class="modal-footer">
+                          <p>Add Related content if needed</p>
+                          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                        </div>
+                      </div>
+                    </div>
+               </div>
+
+
+               <!-- Add Rep Detail -->
+          <div class="modal fade symfra_popup2" id="popupMEdit4" role="dialog">
             <div class="modal-dialog">
-              <!-- ADD agents Modal-->
+              <!-- ADD Airport Details-->
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Representative Details</h4>
-                </div>
-                <div class="modal-body">
+                  
+                <h4 class="modal-title">Add Representative Details</h4>
+                        </div>
+                        <div class="modal-body">
 
-                  <!-- <div class="input-fields hide">  
-                    <label>Party Name</label> 
-                    <input type="text" name="userNo" id="userNo" placeholder="Enter Here Representative Namee !">    
-                  </div>
- -->
-                  <div class="input-fields">  
-                    <label>Representative Name</label> 
-                    <input type="text" name="rep_name" id="rep_name" placeholder="Enter Here Representative Namee !">    
-                  </div>
-                   <div class="input-fields"> 
-                    <label>Designation</label> 
-                    <input type="text" name="rep_desg" id="rep_desg" placeholder="Enter Here Representative Designation!">    
-                  </div>
-                  
-                  <div class="input-fields">  
-                    <label>Office No.</label> 
-                    <input type="text" name="rep_office_no" id="rep_office_no" placeholder="Enter Here Office Number !">    
-                  </div>
-                 
-                  <div class="input-fields">  
-                    <label>Phone No.</label> 
-                    <input type="text" name="rep_phone_no" id="rep_phone_no" placeholder="Enter Here Phone Number !">    
-                  </div>
-                  <div class="input-fields">  
-                    <label>Email</label> 
-                    <input type="text" name="email" id="email" placeholder="Enter Here Email !">    
-                  </div>
-                  
-                   <div class="input-fields">  
-                    <label>Active</label> 
-                    <input type="checkbox" name="status" id="status">    
-                  </div>
-                  <button type="submit" name="btnadd1" >Submit</button>
-                </div>
-                <div class="modal-footer">
-                  <p>Add Related content if needed</p>
-                  <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-                </div>
-              </div>
-              
-            </div>
+                           <!-- For Validation Box Red Popup -->
+                   <h4><label id="formSummary1" style="color: red;"></label></h4>
+                 <p id="V_rep_name" style="color: red;"></p>
+                  <p id="V_rep_desg" style="color: red;"></p>
+                  <p id="V_rep_email" style="color: red;"></p>
+                  <p id="V_rep_office_no" style="color: red;"></p>
+                  <p id="V_rep_phone_no" style="color: red;"></p>
+
+                            <div class="input-fields">  
+                              <label>Name</label> 
+                              <input type="text" name="rep_name" id="rep_name" class="rep_name" maxlength="40" placeholder="Organization Name"><span class="steric">*</span>
+                            </div>
+
+                          <div class="input-fields"> 
+                            <label>Designation</label> 
+                            <input type="text" name="rep_desg" id="rep_desg" maxlength="30" placeholder="Enter Here Sub Party Name!">    
+                          </div>
+
+                          <div class="input-fields">  
+                            <label>Official #</label> 
+                            <input type="text" name="rep_office_no" id="rep_office_no" class="rep_office_no" maxlength="14" placeholder="Office Contact">    
+                          </div>
+                          <div class="input-fields">  
+                            <label>Personal #</label> 
+                            <input type="text" name="rep_phone_no" id="rep_phone_no" class="rep_phone_no" maxlength="14" placeholder="Personal Contact">    
+                          </div>
+                          <div class="input-fields">  
+                            <label>Email</label> 
+                            <input type="text" name="rep_email" id="rep_email" class="rep_email" maxlength="50" placeholder="Email">    
+                          </div>
+                           <div class="input-fields">  
+                            <label>Active</label> 
+                            <input type="checkbox" name="status" id="status" class="status">    
+                          </div>
+
+                          <button type="submit" name="btnadd5" onclick="FormValidation1(); return false;">Submit</button>
+
+                        </div>
+                      </div>
+                    </div>
         </div>
-         <!-- Edit Representative Modal-->
-      <div class="modal fade symfra_popup2" id="btn1" role="dialog">
+
+              <!-- Edit Rep Details -->
+          <div class="modal fade symfra_popup2" id="btn1" role="dialog">
             <div class="modal-dialog">
-              <!-- Edit Representative Modal -->
+              <!-- Edit Airport Details-->
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Edit Representative Details</h4>
+                <h4 class="modal-title">Add Representative Details</h4>
                 </div>
                 <div class="modal-body">
                   <div class="input-fields hide"> 
                     <label>SrNo</label> 
-                    <input type="text" name="SrNoV" id="SrNoV" class="SrNoV" >
-                       
+                    <input type="text" name="SrNoV" id="SrNoV" class="SrNoV">    
                   </div>
-                  <div class="input-fields"> 
-                 <label>Representative Name</label> 
-                    <input type="text" name="rep_nameV" id="rep_nameV" placeholder="Enter Here Party Nmae !">    
-                  </div>
-                   <div class="input-fields"> 
-                    <label>Designation</label> 
-                    <input type="text" name="rep_desgV" id="rep_desgV" placeholder="Enter Here Sub Party Name!">    
-                  </div>
-                  <div class="input-fields">  
-                    <label>Office No.</label> 
-                    <input type="text" name="rep_office_noV" id="rep_office_noV" placeholder="Enter Here Phone Number !">    
-                  </div>
-                 
-                  <div class="input-fields">  
-                    <label>Phone No.</label> 
-                    <input type="text" name="rep_phone_noV" id="rep_phone_noV" placeholder="Enter Here Fax Number !">    
-                  </div>
-                  <div class="input-fields">  
-                    <label>Email</label> 
-                    <input type="text" name="emailV" id="emailV" placeholder="Enter Here Email !">    
-                  </div>
-                 
-                   <div class="input-fields">  
-                    <label>Active</label> 
-                    <input type="checkbox" name="statusV" id="statusV">    
-                  </div>
-                  <button type="submit" name="btnedit1" >Submit</button>
-                </div>
-                <div class="modal-footer">
-                  <p>Add Related content if needed</p>
-                  <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-                </div>
-              </div>
-              
-            </div>
-        </div>
+
+                 <div class="modal-body">
+
+                  <!-- For Validation Box Red Popup -->
+                   <h4><label id="formSummary2" style="color: red;"></label></h4>
+                  <p id="EV_rep_nameV" style="color: red;"></p>
+                  <p id="EV_rep_desgV" style="color: red;"></p>
+                  <p id="EV_rep_emailV" style="color: red;"></p>
+                  <p id="EV_rep_office_noV" style="color: red;"></p>
+                  <p id="EV_rep_phone_noV" style="color: red;"></p>
+
+
+                            <div class="input-fields">  
+                              <label>Name</label> 
+                              <input type="text" name="rep_nameV" id="rep_nameV" class="rep_nameV" maxlength="40" placeholder="Organization Name"><span class="steric">*</span>    
+                            </div>
+
+                           <div class="input-fields"> 
+                            <label>Designation</label> 
+                            <input type="text" name="rep_desgV" id="rep_desgV" maxlength="30" placeholder="Enter Here Sub Party Name!">    
+                           </div>
+
+                          <div class="input-fields">  
+                            <label>Official #</label> 
+                            <input type="text" name="rep_office_noV" id="rep_office_noV" class="rep_office_noV" maxlength="14" placeholder="Office Contact">    
+                          </div>
+                          <div class="input-fields">  
+                            <label>Personal #</label> 
+                            <input type="text" name="rep_phone_noV" id="rep_phone_noV" class="rep_phone_noV" maxlength="14" placeholder="Personal Contact">    
+                          </div>
+                          <div class="input-fields">  
+                            <label>Email</label> 
+                            <input type="text" name="rep_emailV" id="rep_emailV" class="rep_emailV" maxlength="50" placeholder="Email">    
+                          </div>
+                           <div class="input-fields">  
+                            <label>Active</label> 
+                            <input type="checkbox" name="statusV" id="statusV" class="status">    
+                          </div>
+
+                           <button type="submit" name="btn" onclick="FormValidation2(); return false;">Submit</button>
+
+                        </div>
+                      </div>
+                    </div>
+                </div>   
+          </div>
+
 
 
 				      <!-- ADD Airport Details -->
@@ -518,10 +562,20 @@ if (isset($_POST['btnadd1'])) {
                 </div>
                 <div class="modal-body">
 
+                   <!-- For Validation Box Red Popup -->
+                   <h4><label id="formSummary3" style="color: red;"></label></h4>
+                  <p id="V_airport_name" style="color: red;"></p>
+                  <p id="V_airport_sec" style="color: red;"></p>
+                  <p id="V_airport_fuel" style="color: red;"></p>
+                  <p id="V_airport_screen" style="color: red;"></p>
+                  <p id="V_amount_charges" style="color: red;"></p>
+                  <p id="V_airport_awc" style="color: red;"></p>
+                  <p id="V_airport_awb" style="color: red;"></p>
+
                   <div class="input-fields">  
                     <label>Airport Departure</label> 
-                    <select name="airport_name" id="airport_name">
-                    	<option value="Select">Select </option>
+                    <select name="airport_name" id="airport_name" class="airport_name">
+                    	<option value="">Select </option>
                           <!-- Drop Down list Country Name -->
                           <?php
 
@@ -533,7 +587,7 @@ if (isset($_POST['btnadd1'])) {
                             }
 
                           ?>
-                    </select>    
+                    </select><span class="steric">*</span>    
                   </div>
                    <div class="input-fields"> 
                     <label>W.E.F.</label> 
@@ -541,29 +595,50 @@ if (isset($_POST['btnadd1'])) {
                   </div>
                   <div class="input-fields"> 
                     <label>Security Charges.</label> 
-                    <input type="text" name="airport_sec" id="airport_sec" placeholder="Enter Here City Name!">    
+                    <input type="text" name="airport_sec" id="airport_sec" maxlength="10" placeholder="Enter Here City Name!">    
                   </div>
                   <div class="input-fields">  
                     <label>Fuel Charges</label> 
-                    <input type="text" name="airport_fuel" id="airport_fuel" placeholder="Enter Here Region Name !">    
+                    <input type="text" name="airport_fuel" id="airport_fuel" maxlength="10" placeholder="Enter Here Region Name !">    
                   </div>
                   <div class="input-fields">  
                     <label>Screen Charges</label> 
-                    <input type="text" name="airport_screen" id="airport_screen" placeholder="Enter Here Region Name !">    
+                    <input type="text" name="airport_screen" id="airport_screen" maxlength="10" placeholder="Enter Here Region Name !">    
+                  </div>
+                  <div class="input-fields">  
+                    <label>Additional Charges</label> 
+                    <select name="additional_charges" id="additional_charges" class="additional_charges">
+                      <option value="">Select </option>
+                          <!-- Drop Down list Country Name -->
+                          <?php
+
+                            $selectairport = mysqli_query($con, "select * from mop_setup");
+
+                            while ($rowairport = mysqli_fetch_array($selectairport))
+                            {
+                              echo '<option value="'.$rowairport['mop_description'].'">'.$rowairport['mop_description'].'</option>';
+                            }
+
+                          ?>
+                    </select>     
+                  </div>
+                  <div class="input-fields">  
+                    <label>Amount Charges</label> 
+                    <input type="text" name="amount_charges" id="amount_charges" maxlength="10" placeholder="Enter Here Amount Charges !">    
                   </div>
                   <div class="input-fields">  
                     <label>AWC Charges</label> 
-                    <input type="text" name="airport_awc" id="airport_awc" placeholder="Enter Here Region Name !">    
+                    <input type="text" name="airport_awc" id="airport_awc" maxlength="10" placeholder="Enter Here Region Name !">    
                   </div>
                   <div class="input-fields">  
                     <label>AWB Charges</label> 
-                    <input type="text" name="airport_awb" id="airport_awb" placeholder="Enter Here Region Name !">    
+                    <input type="text" name="airport_awb" id="airport_awb" maxlength="10" placeholder="Enter Here Region Name !">    
                   </div>
                    <div class="input-fields">  
                     <label>Active</label> 
                     <input type="checkbox" name="status" id="status">    
-                  </div>
-                  <button type="submit" name="btnadd" >Submit</button>
+                  </div> 
+                   <button type="submit" name="btnadd7" onclick="FormValidation3(); return false;">Submit</button>
                 </div>
                 <div class="modal-footer">
                   <p>Add Related content if needed</p>
@@ -584,6 +659,17 @@ if (isset($_POST['btnadd1'])) {
                   <h4 class="modal-title">Airport Charges Details</h4>
                 </div>
                 <div class="modal-body">
+
+                  <!-- For Validation Box Red Popup -->
+                   <h4><label id="formSummary4" style="color: red;"></label></h4>
+                  <p id="EV_airport_nameV" style="color: red;"></p>
+                  <p id="EV_airport_secV" style="color: red;"></p>
+                  <p id="EV_airport_fuelV" style="color: red;"></p>
+                  <p id="EV_airport_screenV" style="color: red;"></p>
+                  <p id="EV_amount_chargesV" style="color: red;"></p>
+                  <p id="EV_airport_awcV" style="color: red;"></p>
+                  <p id="EV_airport_awbV" style="color: red;"></p>
+
                 	<div class="input-fields hide"> 
                     <label>SrNo</label> 
                     <input type="text" name="airport_SrNoV" id="airport_SrNoV" >    
@@ -592,7 +678,7 @@ if (isset($_POST['btnadd1'])) {
                   <div class="input-fields">  
                     <label>Airport Departure</label> 
                     <select name="airport_nameV" id="airport_nameV" class="airport_nameV">
-                    	<option value="Select">Select </option>
+                    	<option value="">Select </option>
                           <!-- Drop Down list Country Name -->
                           <?php
 
@@ -612,29 +698,50 @@ if (isset($_POST['btnadd1'])) {
                   </div>
                   <div class="input-fields"> 
                     <label>Security Charges.</label> 
-                    <input type="text" name="airport_secV" id="airport_secV" placeholder="Enter Here Security Charges!">    
+                    <input type="text" name="airport_secV" id="airport_secV" maxlength="10" placeholder="Enter Here Security Charges!">    
                   </div>
                   <div class="input-fields">  
                     <label>Fuel Charges</label> 
-                    <input type="text" name="airport_fuelV" id="airport_fuelV" placeholder="Enter Here Fuel Charges !">    
+                    <input type="text" name="airport_fuelV" id="airport_fuelV" maxlength="10" placeholder="Enter Here Fuel Charges !">    
                   </div>
                   <div class="input-fields">  
                     <label>Screen Charges</label> 
-                    <input type="text" name="airport_screenV" id="airport_screenV" placeholder="Enter Here Screen Charges !">    
+                    <input type="text" name="airport_screenV" id="airport_screenV" maxlength="10" placeholder="Enter Here Screen Charges !">    
+                  </div>
+                  <div class="input-fields">  
+                    <label>Additional Charges</label> 
+                    <select name="additional_chargesV" id="additional_chargesV" class="additional_chargesV">
+                      <option value="">Select </option>
+                          <!-- Drop Down list Country Name -->
+                          <?php
+
+                            $selectairport = mysqli_query($con, "select * from mop_setup");
+
+                            while ($rowairport = mysqli_fetch_array($selectairport))
+                            {
+                              echo '<option value="'.$rowairport['mop_description'].'">'.$rowairport['mop_description'].'</option>';
+                            }
+
+                          ?>
+                    </select>     
+                  </div>
+                  <div class="input-fields">  
+                    <label>Amount Charges</label> 
+                    <input type="text" name="amount_chargesV" id="amount_chargesV" maxlength="10" placeholder="Enter Here Amount Charges !">    
                   </div>
                   <div class="input-fields">  
                     <label>AWC Charges</label> 
-                    <input type="text" name="airport_awcV" id="airport_awcV" placeholder="Enter Here AWC Charges !">    
+                    <input type="text" name="airport_awcV" id="airport_awcV" maxlength="10" placeholder="Enter Here AWC Charges !">    
                   </div>
                   <div class="input-fields">  
                     <label>AWB Charges</label> 
-                    <input type="text" name="airport_awbV" id="airport_awbV" placeholder="Enter Here AwB Charges !">    
+                    <input type="text" name="airport_awbV" id="airport_awbV" maxlength="10" placeholder="Enter Here AwB Charges !">    
                   </div>
                    <div class="input-fields">  
                     <label>Active</label> 
                     <input type="checkbox" name="statusV" id="statusV">    
                   </div>
-                  <button type="submit" name="btnedit" >Submit</button>
+                  <button type="submit" name="btnedit4" onclick="FormValidation4(); return false;" >Submit</button>
                 </div>
                 <div class="modal-footer">
                   <p>Add Related content if needed</p>
@@ -766,16 +873,16 @@ if (isset($_POST['btnadd1'])) {
 			                 				 </div>
 
 											<div class="col-md-6">
-			                                             	  <div class="input-label"><label >Person Name</label></div>
+			                                             	 <!--  <div class="input-label"><label >Person Name</label></div>
 			                                                <div class="input-feild">
 			                                                        <input class=""  type="text" name="contact_person" id="contact_person" value="<?php echo $contact_person ?>" disabled >
 			                                                      		
-			                                                </div> 
-			                                                <div class="input-label"><label >Contact No.</label></div>
+			                                                </div>  -->
+			                                               <!--  <div class="input-label"><label >Contact No.</label></div>
 			                                                <div class="input-feild">
 			                                                        <input class=""  type="text" name="con_personal" id="con_personal" value="<?php echo $con_personal ?>" disabled>
 			                                                      		
-			                                                </div>
+			                                                </div> -->
 			                                                <div class="input-label"><label >Contact Office</label></div>	
 			                                                <div class="input-feild">
 			                                                      <input type="text" name="con_office" id="con_office" value="<?php echo $con_office ?>" disabled>
@@ -795,13 +902,13 @@ if (isset($_POST['btnadd1'])) {
 
                                                        <div class="input-label"><label >IATA Name</label></div>
                                                       <div class="input-feild">
-                                                              <input class=""  type="text" name="iata_name" id="iata_name" disabled maxlength="14"  value="<?php echo $iata_name ?>" >
+                                                              <input class=""  type="text" name="airline_iata" id="airline_iata" disabled maxlength="14"  value="<?php echo $airline_iata ?>" >
                                                                 
                                                       </div>
 
                                                       <div class="input-label"><label >ICAO</label></div>
                                                       <div class="input-feild">
-                                                              <input class=""  type="text" name="icao_code" id="icao_code" disabled maxlength="14"  value="<?php echo $icao_code ?>" >
+                                                              <input class=""  type="text" name="airline_icao" id="airline_icao" disabled maxlength="14"  value="<?php echo $airline_icao ?>" >
                                                                 
                                                       </div>                                              
 			             				    </div>								
@@ -824,13 +931,20 @@ if (isset($_POST['btnadd1'])) {
 
 				                                           		<div class="input-label"><label >Standard AWB No. </label></div> 
 				                                              	<div class="input-feild">
-				                                                      <select class="mini_select_field" name="awb_standard" id="awb_standard" disabled>
+				                                                      <select class="mini_select_field" name="awb_standard" id="awb_standard" disabled onchange="nomChange();">
 				                                                      	<option value="<?php echo $awb_standard ?>"><?php echo $awb_standard ?></option>
 				                                                      	<option>no</option>
 
 				                                                      </select>
 				                                                      
 				                                           		</div> 
+
+                                                      <div class="input-label" id="awbid"><label > AWB Code </label></div> 
+                                                        <div class="input-feild">
+                                                           <input class="mini_select_field"  type="text"  name="awb_code" id="awb_code" class="awb_code" maxlength="3" value="<?php echo $awb_code ?>" >
+                                                              
+                                                              
+                                                      </div> 
 
 				                                           		<div class="input-label"><label >IATA no. </label></div> 
 				                                              	<div class="input-feild">
@@ -885,7 +999,7 @@ if (isset($_POST['btnadd1'])) {
 												<div class="acount_info widget_iner_box">
                             <ul class="nav nav-tabs">
                                 
-                                <li><a data-toggle="tab" href="#menu1">Airpoet Charges</a></li>
+                                <li><a data-toggle="tab" href="#menu1">Airport Charges</a></li>
                                 <li><a data-toggle="tab" href="#menu4">Representative </a></li>
                             </ul>
                           
@@ -904,8 +1018,8 @@ if (isset($_POST['btnadd1'])) {
                                  <div class="tbleDrpdown">
                                          <div id="tblebtn">
                                             <ul>
-                                            <li><button type="button"  id="btnDelete_C1"><i class="fa fa-trash"></i> Activate</button></li>
-                                            <li><button type="button"  id="btnDelete_C"><i class="fa fa-trash"></i> Deactivate</button></li>
+                                            <!-- <li><button type="button"  id="btnDelete_C1"><i class="fa fa-trash"></i> Activate</button></li>
+                                            <li><button type="button"  id="btnDelete_C"><i class="fa fa-trash"></i> Deactivate</button></li> -->
                                              
 
                                             </ul>
@@ -921,7 +1035,9 @@ if (isset($_POST['btnadd1'])) {
                                                     <th>W.E.F</th>
                                                     <th>Security Chg</th>
                                                     <th>Fuel Chg</th>                 
-                                                    <th>Screen Chg</th>                
+                                                    <th>Screen Chg</th>  
+                                                    <th>Additional Charges</th> 
+                                                    <th>Amount Charges</th>             
                                                     <th>AWC Chg</th>                  
                                                     <th>AWC Fee</th>                   
                                                     <th>Status</th>       
@@ -948,6 +1064,8 @@ if (isset($_POST['btnadd1'])) {
                                                 <td><?php echo $rowairline['airport_sec'];?></td>
                                                 <td><?php echo $rowairline['airport_fuel'];?></td>
                                                 <td><?php echo $rowairline['airport_screen'];?></td>
+                                                <td><?php echo $rowairline['additional_charges'];?></td>
+                                                <td><?php echo $rowairline['amount_charges'];?></td>
                                                 <td><?php echo $rowairline['airport_awc'];?></td>
                                                 <td><?php echo $rowairline['airport_awb'];?></td>
                                                 <td><?php echo $rowairline['status'];?></td>
@@ -991,8 +1109,8 @@ if (isset($_POST['btnadd1'])) {
                             <div class="tbleDrpdown">
                               <div id="tblebtn">
                                 <ul>
-                                    <li><button type="button"  id="btnDelete_C1"><i class="fa fa-trash"></i> Activate</button></li>
-                                    <li><button type="button"  id="btnDelete_C"><i class="fa fa-trash"></i> Deactivate</button></li>
+                                    <!-- <li><button type="button"  id="btnDelete_C1"><i class="fa fa-trash"></i> Activate</button></li>
+                                    <li><button type="button"  id="btnDelete_C"><i class="fa fa-trash"></i> Deactivate</button></li> -->
                                     
                                 </ul>
                               </div>
@@ -1026,7 +1144,7 @@ if (isset($_POST['btnadd1'])) {
                                                           $rep_desg =$rowairport['rep_desg'];
                                                           $rep_office_no =$rowairport['rep_office_no'];
                                                           $rep_phone_no =$rowairport['rep_phone_no'];
-                                                          $email =$rowairport['email'];
+                                                          $rep_email =$rowairport['rep_email'];
                                                           $status =$rowairport['status'];
                                                                                                            
 
@@ -1037,7 +1155,7 @@ if (isset($_POST['btnadd1'])) {
                                                   <td><?php echo $rep_desg ?></td>
                                                   <td><?php echo $rep_office_no ?></td>
                                                   <td><?php echo $rep_phone_no ?></td>
-                                                  <td><?php echo $email ?></td>
+                                                  <td><?php echo $rep_email ?></td>
                                                   <td><?php echo $status ?></td>
                                                   <td><a href="#" class="editData" data-toggle="modal" id="<?php echo $rowairport['SrNo']; ?>" data-target="#btn1" >Edit</td> 
                                                   <?php
@@ -1111,7 +1229,7 @@ function edit() {
 } );
 
 </script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 function saveAirlineFunc()
 {
 	$("#saveAirline_Modal").modal();
@@ -1122,7 +1240,7 @@ function submitAirlineFunc()
 {
 	$("#submitAirline_Modal").modal();
 }
-</script>
+</script> -->
 
 <script>
 $(document).ready(function(){
@@ -1155,7 +1273,7 @@ $(document).on('click', '.editData', function(){
               $('#rep_desgV').val(data.rep_desg);  
               $('#rep_office_noV').val(data.rep_office_no); 
               $('#rep_phone_noV').val(data.rep_phone_no);
-               $('#emailV').val(data.email);  
+               $('#rep_emailV').val(data.rep_email);  
 
               var checkif = data.status;
               if (checkif == "Active") {
@@ -1225,6 +1343,7 @@ $(document).on('click', '.editData', function(){
               $('#airport_secV').val(data.airport_sec);    
               $('#airport_fuelV').val(data.airport_fuel);  
               $('#airport_screenV').val(data.airport_screen);  
+              $('#amount_chargesV').val(data.amount_charges);  
               $('#airport_awcV').val(data.airport_awc);    
               $('#airport_awbV').val(data.airport_awb);  
               $('.airport_nameV').html(data.airport_name);    
@@ -1271,6 +1390,629 @@ $(document).on('click', '.editData', function(){
       });
     
 });
+</script>
+
+<script type="text/javascript">
+$(document).on('click', '.editData', function(){  
+  var employee_id = $(this).attr("id"); 
+
+      $.ajax({
+         url:"fatch_airline09.php",  
+                method:"GET",  
+                data:{employee_id:employee_id},  
+                dataType:"text",  
+         success: function(data) {
+              /*$('#country_SrNoV').val(data.SrNo);  
+              $('#country_codeV').val(data.country_code);  
+              $('#country_nameV').val(data.country_name);  */
+              $('.additional_chargesV').html(data);  
+              /*$('#employee_id').val(data.id); */
+              // $("#"+id).btnedit1();
+              // $("#btn1").modal('hide');
+              // alert('Running');
+              
+         }
+      });
+    
+});
+</script>
+
+<!-- for hide field awb code -->
+<script>
+  function nomChange()
+  {
+    var awb_standard = document.getElementById("awb_standard").value;
+    if (awb_standard == "no")
+    {
+      document.getElementById('awb_code').style.visibility='hidden';
+      document.getElementById('awbid').style.visibility='hidden';
+      // alert("Working");
+    }
+    else if (awb_standard == "yes")
+    {
+      document.getElementById('awb_code').style.visibility='visible';
+      document.getElementById('awbid').style.visibility='visible';
+      // alert("Working");
+    }
+  }
+</script>
+
+
+<!-- validation on Add rep -->
+<script type="text/javascript">
+   function FormValidation1()
+   {
+
+    var regexp4 = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/i;
+     var regexp3 = /^[a-z, ,a-z]*$/i;
+    var regexp = /^[a-z]*$/i;
+    var regexp2 = /^[0-9]*$/i;
+    var re = /\S+@\S+\.\S+/;
+      var missingVal = 0;
+
+      var rep_name=document.getElementById('rep_name').value;
+      var rep_desg=document.getElementById('rep_desg').value;
+      var rep_email=document.getElementById('rep_email').value;
+      var rep_office_no=document.getElementById('rep_office_no').value;
+      var rep_phone_no=document.getElementById('rep_phone_no').value;
+     
+      var summary = "Summary: ";
+
+
+      //  if(rep_desg == "")
+      // {
+      //   document.getElementById('rep_desg').style.borderColor = "red";
+      //       missingVal = 1;
+      //       // summary += " Contact number required.";
+      //       document.getElementById("V_rep_desg").innerHTML = "Designation is required.";
+      // }
+      if(rep_desg != "")
+      {
+          document.getElementById('rep_desg').style.borderColor = "white";
+          document.getElementById("V_rep_desg").innerHTML = "";
+
+          if (!regexp3.test(rep_desg))
+        {
+          document.getElementById('rep_desg').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_rep_desg").innerHTML = "Only alphabets are allowed in Designation.";
+        }
+      }
+
+
+       if(rep_name == "")
+      {
+        document.getElementById('rep_name').style.borderColor = "red";
+            missingVal = 1;
+            // summary += " Contact number required.";
+            document.getElementById("V_rep_name").innerHTML = "Name is required.";
+      }
+       if(rep_name != "")
+      {
+          document.getElementById('rep_name').style.borderColor = "white";
+          document.getElementById("V_rep_name").innerHTML = "";
+
+          if (!regexp.test(rep_name))
+        {
+          document.getElementById('rep_name').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_rep_name").innerHTML = "Only alphabets are allowed in Name.";
+        }
+      }
+
+       if(rep_office_no != "")
+      {
+          document.getElementById('rep_office_no').style.borderColor = "white";
+          document.getElementById("V_rep_office_no").innerHTML = "";
+
+          if (!regexp4.test(rep_office_no))
+        {
+          document.getElementById('rep_office_no').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_rep_office_no").innerHTML = "Only Number are allowed.";
+        }
+      }
+
+       if(rep_phone_no != "")
+      {
+          document.getElementById('rep_phone_no').style.borderColor = "white";
+          document.getElementById("V_rep_phone_no").innerHTML = "";
+
+          if (!regexp4.test(rep_phone_no))
+        {
+          document.getElementById('rep_phone_no').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_rep_phone_no").innerHTML = "Only Number are allowed.";
+        }
+      }
+
+      
+      if(rep_email != "")
+      {
+          document.getElementById('rep_email').style.borderColor = "white";
+          document.getElementById("V_rep_email").innerHTML = "";
+
+          if (!re.test(rep_email))
+        {
+          document.getElementById('rep_email').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_rep_email").innerHTML = "Please follow the email format (user@domain.com).";
+        }
+      }
+
+
+     
+
+      
+      
+      if (missingVal != 1)
+      {
+        document.getElementById('rep_name').style.borderColor = "white";
+        document.getElementById('rep_desg').style.borderColor = "white";
+        document.getElementById('rep_desg').style.borderColor = "white";
+        document.getElementById('rep_office_no').style.borderColor = "white";
+        document.getElementById('rep_phone_no').style.borderColor = "white";
+       
+        $("#submit_Modal").modal();
+        
+      }
+
+      if (missingVal == 1)
+      {
+        document.getElementById("formSummary1").textContent="Error: ";
+      }
+   }
+</script>
+
+
+
+<!-- validation on Edit rep -->
+<script type="text/javascript">
+   function FormValidation2()
+   {
+
+
+    var regexp4 = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/i;
+    var regexp3 = /^[a-z, ,a-z]*$/i;
+    var regexp = /^[a-z]*$/i;
+    var regexp2 = /^[0-9]*$/i;
+    var re = /\S+@\S+\.\S+/;
+      var missingVal = 0;
+
+      var rep_nameV=document.getElementById('rep_nameV').value;
+      var rep_desgV=document.getElementById('rep_desgV').value;
+      var rep_emailV=document.getElementById('rep_emailV').value;
+      var rep_office_noV=document.getElementById('rep_office_noV').value;
+      var rep_phone_noV=document.getElementById('rep_phone_noV').value;
+     
+      var summary = "Summary: ";
+
+      if(rep_desgV != "")
+      {
+          document.getElementById('rep_desgV').style.borderColor = "white";
+          document.getElementById("EV_rep_desgV").innerHTML = "";
+
+          if (!regexp3.test(rep_desgV))
+        {
+          document.getElementById('rep_desgV').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("EV_rep_desgV").innerHTML = "Only alphabets are allowed in Designation.";
+        }
+      }
+
+
+      if(rep_nameV == "")
+      {
+        document.getElementById('rep_nameV').style.borderColor = "red";
+            missingVal = 1;
+            // summary += " Contact number required.";
+            document.getElementById("EV_rep_nameV").innerHTML = "Name is required.";
+      }
+       if(rep_nameV != "")
+      {
+          document.getElementById('rep_nameV').style.borderColor = "white";
+          document.getElementById("EV_rep_nameV").innerHTML = "";
+
+          if (!regexp.test(rep_nameV))
+        {
+          document.getElementById('rep_nameV').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("EV_rep_nameV").innerHTML = "Only alphabets are allowed in Name.";
+        }
+      }
+
+      if(rep_office_noV != "")
+      {
+          document.getElementById('rep_office_noV').style.borderColor = "white";
+          document.getElementById("EV_rep_office_noV").innerHTML = "";
+
+          if (!regexp4.test(rep_office_noV))
+        {
+          document.getElementById('rep_office_noV').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("EV_rep_office_noV").innerHTML = "Only Number are allowed.";
+        }
+      }
+
+      if(rep_phone_noV != "")
+      {
+          document.getElementById('rep_phone_noV').style.borderColor = "white";
+          document.getElementById("EV_rep_phone_noV").innerHTML = "";
+
+          if (!regexp4.test(rep_phone_noV))
+        {
+          document.getElementById('rep_phone_noV').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("EV_rep_phone_noV").innerHTML = "Only Number are allowed.";
+        }
+      }
+
+      
+      if(rep_emailV != "")
+      {
+          document.getElementById('rep_emailV').style.borderColor = "white";
+          document.getElementById("EV_rep_emailV").innerHTML = "";
+
+          if (!re.test(rep_emailV))
+        {
+          document.getElementById('rep_emailV').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("EV_rep_emailV").innerHTML = "Please follow the email format (user@domain.com).";
+        }
+      }
+
+
+     
+
+      
+      
+      if (missingVal != 1)
+      {
+        document.getElementById('rep_nameV').style.borderColor = "white";
+        document.getElementById('rep_desgV').style.borderColor = "white";
+        document.getElementById('rep_emailV').style.borderColor = "white";
+        document.getElementById('rep_office_noV').style.borderColor = "white";
+        document.getElementById('rep_phone_noV').style.borderColor = "white";
+       
+        $("#Edit_Modal").modal();
+        
+      }
+
+      if (missingVal == 1)
+      {
+        document.getElementById("formSummary2").textContent="Error: ";
+      }
+   }
+</script>
+
+
+ 
+<!-- validation on Add Airport -->
+<script type="text/javascript">
+   function FormValidation3()
+   {
+
+
+    var regexp4 = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/i;
+    var regexp3 = /^[a-z, ,a-z]*$/i;
+    var regexp = /^[a-z]*$/i;
+    var regexp2 = /^[0-9]*$/i;
+    var regexp5 = /^[0-9, . ,0-9]*$/i;
+    var re = /\S+@\S+\.\S+/;
+      var missingVal = 0;
+
+      var airport_name=document.getElementById('airport_name').value;
+      var airport_sec=document.getElementById('airport_sec').value;
+      var airport_fuel=document.getElementById('airport_fuel').value;
+      var airport_screen=document.getElementById('airport_screen').value;
+      var amount_charges=document.getElementById('amount_charges').value;
+      var airport_awc=document.getElementById('airport_awc').value;
+      var airport_awb=document.getElementById('airport_awb').value;
+     
+      var summary = "Summary: ";
+
+
+       if(airport_name == "")
+        {
+            document.getElementById('airport_name').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is .";
+            document.getElementById("V_airport_name").innerHTML = "Airport Name is required.";
+        }
+      if(airport_name != "")
+        {
+            document.getElementById('airport_name').style.borderColor = "white";
+            document.getElementById("V_airport_name").innerHTML = "";
+
+        }
+
+      if(airport_sec != "")
+      {
+          document.getElementById('airport_sec').style.borderColor = "white";
+          document.getElementById("V_airport_sec").innerHTML = "";
+
+          if (!regexp5.test(airport_sec))
+        {
+          document.getElementById('airport_sec').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_airport_sec").innerHTML = "Only alphabets are allowed in Designation.";
+        }
+      }
+
+      if(airport_fuel != "")
+      {
+          document.getElementById('airport_fuel').style.borderColor = "white";
+          document.getElementById("V_airport_fuel").innerHTML = "";
+
+          if (!regexp5.test(airport_fuel))
+        {
+          document.getElementById('airport_fuel').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_airport_fuel").innerHTML = "Only Number are allowed.";
+        }
+      }
+
+
+      if(airport_screen != "")
+      {
+          document.getElementById('airport_screen').style.borderColor = "white";
+          document.getElementById("V_airport_screen").innerHTML = "";
+
+          if (!regexp5.test(airport_screen))
+        {
+          document.getElementById('airport_screen').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_airport_screen").innerHTML = "Only Number are allowed.";
+        }
+      }
+
+
+      if(amount_charges != "")
+      {
+          document.getElementById('amount_charges').style.borderColor = "white";
+          document.getElementById("V_amount_charges").innerHTML = "";
+
+          if (!regexp5.test(amount_charges))
+        {
+          document.getElementById('amount_charges').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_amount_charges").innerHTML = "Only Number are allowed.";
+        }
+      }
+
+
+      if(airport_awc != "")
+      {
+          document.getElementById('airport_awc').style.borderColor = "white";
+          document.getElementById("V_airport_awc").innerHTML = "";
+
+          if (!regexp5.test(airport_awc))
+        {
+          document.getElementById('airport_awc').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_airport_awc").innerHTML = "Only Number are allowed.";
+        }
+      }
+
+
+      if(airport_awb != "")
+      {
+          document.getElementById('airport_awb').style.borderColor = "white";
+          document.getElementById("V_airport_awb").innerHTML = "";
+
+          if (!regexp5.test(airport_awb))
+        {
+          document.getElementById('airport_awb').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_airport_awb").innerHTML = "Only Number are allowed.";
+        }
+      }
+
+
+
+
+     
+
+      
+      
+      if (missingVal != 1)
+      {
+        document.getElementById('airport_name').style.borderColor = "white";
+        document.getElementById('airport_sec').style.borderColor = "white";
+        document.getElementById('airport_fuel').style.borderColor = "white";
+        document.getElementById('airport_screen').style.borderColor = "white";
+        document.getElementById('amount_charges').style.borderColor = "white";
+        document.getElementById('airport_awc').style.borderColor = "white";
+        document.getElementById('airport_awb').style.borderColor = "white";
+       
+        $("#submitAirport_Modal").modal();
+        
+      }
+
+      if (missingVal == 1)
+      {
+        document.getElementById("formSummary3").textContent="Error: ";
+      }
+   }
+</script>
+
+<!-- validation on Edit Airport -->
+<script type="text/javascript">
+   function FormValidation4()
+   {
+
+
+    var regexp4 = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/i;
+    var regexp3 = /^[a-z, ,a-z]*$/i;
+    var regexp = /^[a-z]*$/i;
+    var regexp2 = /^[0-9]*$/i;
+    var regexp5 = /^[0-9, . ,0-9]*$/i;
+    var re = /\S+@\S+\.\S+/;
+      var missingVal = 0;
+
+      var airport_nameV=document.getElementById('airport_nameV').value;
+      var airport_secV=document.getElementById('airport_secV').value;
+      var airport_fuelV=document.getElementById('airport_fuelV').value;
+      var airport_screenV=document.getElementById('airport_screenV').value;
+      var amount_chargesV=document.getElementById('amount_chargesV').value;
+      var airport_awcV=document.getElementById('airport_awcV').value;
+      var airport_awbV=document.getElementById('airport_awbV').value;
+     
+      var summary = "Summary: ";
+
+
+       if(airport_nameV == "")
+        {
+            document.getElementById('airport_nameV').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is .";
+            document.getElementById("EV_airport_nameV").innerHTML = "Firstname is required.";
+        }
+      if(airport_nameV != "")
+        {
+            document.getElementById('airport_nameV').style.borderColor = "white";
+            document.getElementById("EV_airport_nameV").innerHTML = "";
+
+        }
+
+      if(airport_secV != "")
+      {
+          document.getElementById('airport_secV').style.borderColor = "white";
+          document.getElementById("EV_airport_secV").innerHTML = "";
+
+          if (!regexp5.test(airport_secV))
+        {
+          document.getElementById('airport_secV').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("EV_airport_secV").innerHTML = "Only alphabets are allowed in Designation.";
+        }
+      }
+
+      if(airport_fuelV != "")
+      {
+          document.getElementById('airport_fuelV').style.borderColor = "white";
+          document.getElementById("EV_airport_fuelV").innerHTML = "";
+
+          if (!regexp5.test(airport_fuelV))
+        {
+          document.getElementById('airport_fuelV').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("EV_airport_fuelV").innerHTML = "Only alphabets are allowed in Designation.";
+        }
+      }
+
+
+      if(airport_screenV != "")
+      {
+          document.getElementById('airport_screenV').style.borderColor = "white";
+          document.getElementById("EV_airport_screenV").innerHTML = "";
+
+          if (!regexp5.test(airport_screenV))
+        {
+          document.getElementById('airport_screenV').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("EV_airport_screenV").innerHTML = "Only alphabets are allowed in Designation.";
+        }
+      }
+
+
+      if(amount_chargesV != "")
+      {
+          document.getElementById('amount_chargesV').style.borderColor = "white";
+          document.getElementById("EV_amount_chargesV").innerHTML = "";
+
+          if (!regexp5.test(amount_chargesV))
+        {
+          document.getElementById('amount_chargesV').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("EV_amount_chargesV").innerHTML = "Only alphabets are allowed in Designation.";
+        }
+      }
+
+
+      if(airport_awcV != "")
+      {
+          document.getElementById('airport_awcV').style.borderColor = "white";
+          document.getElementById("EV_airport_awcV").innerHTML = "";
+
+          if (!regexp5.test(airport_awcV))
+        {
+          document.getElementById('airport_awcV').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("EV_airport_awcV").innerHTML = "Only alphabets are allowed in Designation.";
+        }
+      }
+
+
+      if(airport_awbV != "")
+      {
+          document.getElementById('airport_awbV').style.borderColor = "white";
+          document.getElementById("EV_airport_awbV").innerHTML = "";
+
+          if (!regexp5.test(airport_awbV))
+        {
+          document.getElementById('airport_awbV').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("EV_airport_awbV").innerHTML = "Only alphabets are allowed in Designation.";
+        }
+      }
+
+
+
+
+     
+
+      
+      
+      if (missingVal != 1)
+      {
+        document.getElementById('airport_nameV').style.borderColor = "white";
+        document.getElementById('airport_secV').style.borderColor = "white";
+        document.getElementById('airport_fuelV').style.borderColor = "white";
+        document.getElementById('airport_screenV').style.borderColor = "white";
+        document.getElementById('amount_chargesV').style.borderColor = "white";
+        document.getElementById('airport_awcV').style.borderColor = "white";
+        document.getElementById('airport_awbV').style.borderColor = "white";
+       
+        $("#EditAirport_Modal").modal();
+        
+      }
+
+      if (missingVal == 1)
+      {
+        document.getElementById("formSummary4").textContent="Error: ";
+      }
+   }
+</script>
+
+<script>
+ $(document).ready(function(){
+  $("#myBtn").click(function(){
+    $("#popupMEdit4").modal();
+  });
+ });
 </script>
 <script src="js/jquery.dataTables.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
