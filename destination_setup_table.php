@@ -43,14 +43,11 @@ while ($rowSrNo = mysqli_fetch_array($selectSrNo))
 
 // For Change Log Record
 $selectLastID1 = mysqli_query($con, "SELECT * FROM chainlog WHERE record_id = '$SrNo' ORDER BY instance DESC LIMIT 1  ");
-  $rowLastID1 = mysqli_fetch_array($selectLastID1, MYSQLI_ASSOC);
+$rowLastID1 = mysqli_fetch_array($selectLastID1, MYSQLI_ASSOC);
 
-  $lastID1 = $rowLastID1['instance'];
-  $newID1 = $lastID1 + 1;
-  $instance = $newID1;
-
-
-
+$lastID1 = $rowLastID1['instance'];
+$newID1 = $lastID1 + 1;
+$instance = $newID1;
 
 $selectreg = mysqli_query($con, "select * from destination_setup ");
 
@@ -435,15 +432,16 @@ if (isset($_POST['btnadd'])) {
                             }
 
                           ?>
-
                       </select><span class="steric">*</span>  
                   </div>
-                  <div>
+
+                  <div class="input-fields">
                      <label>Active</label> 
                     <input type="checkbox" name="status" id="status" checked> 
                   </div>
-                  <button type="submit" name="btnadd">Submit</button>
-                  <button type="submit" name="btnadd2" class="btnadd2" id="btnadd2" onclick="addMore(); return false;">Add More</button>
+                  
+                  <button type="submit" name="btnadd" onclick="FormValidation();">Submit</button>
+                  <button type="submit" name="btnadd2" class="btnadd2" id="btnadd2" onclick="FormValidation2(); return false;">Add More</button>
                   <button type="submit" name="btnCancel" class="btnCancel" id="btnCancel" >Cancel</button>
                 </div>
                 <div class="modal-footer">
@@ -886,6 +884,76 @@ $(document).on('click', '.editData', function(){
       });
 
   }
+
+  function FormValidation2()
+   {
+      var regexp = /^[a-z]*$/i;
+      var regexp2 = /^[0-9]*$/i;
+      var re = /\S+@\S+\.\S+/;
+      var missingVal = 0;
+
+      var dest_code=document.getElementById('dest_code').value;
+      var dest_name=document.getElementById('dest_name').value;
+      var dest_country=document.getElementById('dest_country').value;
+
+      var summary = "Summary: ";
+
+      if(dest_code == "")
+      {
+          document.getElementById('dest_code').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_dest_code").innerHTML = "Commodity Code is required.";
+      }
+      if(dest_code != "")
+      {
+          document.getElementById('dest_code').style.borderColor = "white";
+          document.getElementById("V_dest_code").innerHTML = "";
+
+      }
+
+      if(dest_name == "")
+      {
+          document.getElementById('dest_name').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_dest_name").innerHTML = "Commodity Code is required.";
+      }
+      if(dest_name != "")
+      {
+          document.getElementById('dest_name').style.borderColor = "white";
+          document.getElementById("V_dest_name").innerHTML = "";
+
+      }
+
+      if(dest_country == "")
+      {
+          document.getElementById('dest_country').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_dest_country").innerHTML = "Commodity Code is required.";
+      }
+      if(dest_country != "")
+      {
+          document.getElementById('dest_country').style.borderColor = "white";
+          document.getElementById("V_dest_country").innerHTML = "";
+      }
+      
+      if (missingVal != 1)
+      {
+        document.getElementById('dest_code').style.borderColor = "white";
+        document.getElementById('dest_name').style.borderColor = "white";
+        document.getElementById('dest_country').style.borderColor = "white";
+       
+        addMore();
+      }
+
+      if (missingVal == 1)
+      {
+        document.getElementById("formSummary").textContent="Error: ";
+      }
+      
+  }
 </script>
 
 <script type="text/javascript">
@@ -921,16 +989,15 @@ $(document).on('click', '.editData', function(){
 <script type="text/javascript">
    function FormValidation()
    {
-    var regexp = /^[a-z]*$/i;
-    var regexp2 = /^[0-9]*$/i;
-    var re = /\S+@\S+\.\S+/;
+      var regexp = /^[a-z]*$/i;
+      var regexp2 = /^[0-9]*$/i;
+      var re = /\S+@\S+\.\S+/;
       var missingVal = 0;
 
       var dest_code=document.getElementById('dest_code').value;
       var dest_name=document.getElementById('dest_name').value;
       var dest_country=document.getElementById('dest_country').value;
-     
-     
+
       var summary = "Summary: ";
 
       if(dest_code == "")
@@ -947,7 +1014,6 @@ $(document).on('click', '.editData', function(){
 
       }
 
-      
       if(dest_name == "")
       {
           document.getElementById('dest_name').style.borderColor = "red";
@@ -962,8 +1028,6 @@ $(document).on('click', '.editData', function(){
 
       }
 
-      
-      
       if(dest_country == "")
       {
           document.getElementById('dest_country').style.borderColor = "red";
@@ -975,7 +1039,6 @@ $(document).on('click', '.editData', function(){
       {
           document.getElementById('dest_country').style.borderColor = "white";
           document.getElementById("V_dest_country").innerHTML = "";
-
       }
       
       if (missingVal != 1)
@@ -985,7 +1048,6 @@ $(document).on('click', '.editData', function(){
         document.getElementById('dest_country').style.borderColor = "white";
        
         $("#popupMEdit").modal();
-        
       }
 
       if (missingVal == 1)
