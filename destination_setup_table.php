@@ -440,7 +440,7 @@ if (isset($_POST['btnadd'])) {
                     <input type="checkbox" name="status" id="status" checked> 
                   </div>
                   
-                  <button type="submit" name="btnadd" onclick="FormValidation();">Submit</button>
+                  <button type="submit" name="btnadd" onclick="FormValidation(); return false;">Submit</button>
                   <button type="submit" name="btnadd2" class="btnadd2" id="btnadd2" onclick="FormValidation2(); return false;">Add More</button>
                   <button type="submit" name="btnCancel" class="btnCancel" id="btnCancel" >Cancel</button>
                 </div>
