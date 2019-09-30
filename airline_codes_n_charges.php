@@ -41,17 +41,18 @@ if (isset($_POST['submitBtn'])) {
   $address= $_POST['address'];
   $country= $_POST['country'];
   $city= $_POST['city'];
-  $iata_name = $_POST['iata_name'];
-  $icao_code = $_POST['icao_code'];
+  $airline_icao = $_POST['airline_icao'];
+  $airline_iata = $_POST['airline_iata'];
   $account_no= $_POST['account_no'];
-  $contact_person= $_POST['contact_person'];
+  // $contact_person= $_POST['contact_person'];
   $con_office= $_POST['con_office'];
-  $con_personal= $_POST['con_personal'];
+  // $con_personal= $_POST['con_personal'];
   $fax_no= $_POST['fax_no'];
   $email= $_POST['email'];
   $website= $_POST['website'];
   $kb_adj= $_POST['kb_adj'];
   $awb_standard= $_POST['awb_standard'];
+  $awb_code= $_POST['awb_code'];
   $iata_mem= $_POST['iata_mem'];
   $sec_charges= $_POST['sec_charges'];
   $fuel_charges= $_POST['fuel_charges'];
@@ -65,29 +66,79 @@ if (isset($_POST['submitBtn'])) {
     $status='Deactive';
   }
     // echo "The file has been uploaded.";
+  // Checking currency name if it is already been added
+ $existairName = "0";
+ $existflightName = "1";
+ // $existicao = "2";
+ // $existiata = "3";
+ // $existawbcode = "4";
 
-	        // Inserting records to DB
-			$insertQuery = mysqli_query($con, "insert into  airline_setup (air_name, flight_name, address, country, city, iata_name, icao_code,account_no, contact_person, con_office, con_personal, fax_no, email, website, kb_adj, awb_standard, iata_mem, sec_charges, fuel_charges, scan_charges, status) values  ('$air_name', '$flight_name', '$address', '$country', '$city', '$iata_name','$icao_code','$account_no', '$contact_person', '$con_office', '$con_personal', '$fax_no', '$email', '$website', '$kb_adj', '$awb_standard', '$iata_mem', '$sec_charges', '$fuel_charges', '$scan_charges', '$status')")or die(mysqli_error($con));
+ $selectCurName = mysqli_query($con, "SELECT * FROM airline_setup WHERE air_name='$air_name' OR flight_name='$flight_name' ");
+     // OR airline_icao='$airline_icao' OR airline_iata='$airline_iata' OR awb_code='$awb_code'
+ while ($rowCurName = mysqli_fetch_array($selectCurName))
+ {
+   $existairName = $rowCurName['air_name'];
+   $existflightName = $rowCurName['flight_name'];
+   // $existicao = $rowCurName['airline_icao'];
+   // $existiata = $rowCurName['airline_iata'];
+   // $existawbcode = $rowCurName['awb_code'];
+ }
+ if ($existairName != "0")
+ {
+   echo '<script type="text/javascript">
+     alert("This Airline Name is already added");
+     location.replace("airline_codes_n_charges.php");
+   </script>';
+   // header("Location: currency_setup.php");
+ }
 
-      $insertQuery2 = mysqli_query($con, "insert into chainlog (instance, formName, record_id,createBy, createDate) values ('$newID1', 'Airline', '$SrNo', '$loginUser', '$todayDate') ");
+ else if ($existflightName != "1")
+ {
+   echo '<script type="text/javascript">
+     alert("This Flight Name is already added");
+     location.replace("airline_codes_n_charges.php");
+   </script>';
+   // header("Location: currency_setup.php");
+ }
+ // else if ($existicao != "2")
+ // {
+ //   echo '<script type="text/javascript">
+ //     alert("This ICAO is already added");
+ //     location.replace("airline_codes_n_charges.php");
+ //   </script>';
+ //   // header("Location: currency_setup.php");
+ // }
+ // else if ($existiata != "3")
+ // {
+ //   echo '<script type="text/javascript">
+ //     alert("This IATA is already added");
+ //     location.replace("airline_codes_n_charges.php");
+ //   </script>';
+ //   // header("Location: currency_setup.php");
+ // }
+ // else if ($existawbcode != "4")
+ // {
+ //   echo '<script type="text/javascript">
+ //     alert("This AWB Code is already added");
+ //     location.replace("airline_codes_n_charges.php");
+ //   </script>';
+ //   // header("Location: currency_setup.php");
+ // }
+
+ else
+ {
+  
+
+
+    // Inserting records to DB
+	$insertQuery = mysqli_query($con, "insert into  airline_setup (air_name, flight_name, address, country, city, airline_icao, airline_iata,account_no, con_office, fax_no, email, website, kb_adj, awb_standard,awb_code, iata_mem, sec_charges, fuel_charges, scan_charges, status) values  ('$air_name', '$flight_name', '$address', '$country', '$city', '$airline_icao','$airline_iata','$account_no','$con_office','$fax_no', '$email', '$website', '$kb_adj', '$awb_standard', '$awb_code','$iata_mem', '$sec_charges', '$fuel_charges', '$scan_charges', '$status')")or die(mysqli_error($con));
+
+    $insertQuery2 = mysqli_query($con, "insert into chainlog (instance, formName, record_id,createBy, createDate) values ('$newID1', 'Airline', '$SrNo', '$loginUser', '$todayDate') ");
  
 
-			// echo "The record is inserted successfully.";
-
-    			// Generating the alert
-    		$msg = "Record is inserted successfully.";
-        function alert($msg)
-        {
-          echo "<script type='text/javascript'>alert('$msg');</script>";
-        }
-        alert($msg);
-
       header("Location: airline_codes_n_charges_V1.php?id=" . $SrNo);
-	
-	    
-
 }
-
+}
 
  ?>
 
@@ -279,6 +330,7 @@ if (isset($_POST['submitBtn'])) {
 				            </div>
 				       </div>
 
+
 				      	      
 
          
@@ -286,9 +338,17 @@ if (isset($_POST['submitBtn'])) {
 
 						 <h4><label id="formSummary" style="color: red;"></label></h4>
              
-             <p id="V_air_name" style="color: red;"></p>
-             <p id="V_flight_name" style="color: red;"></p>
-             <p id="V_email" style="color: red;"></p>
+			             <p id="V_air_name" style="color: red;"></p>
+			             <p id="V_flight_name" style="color: red;"></p>
+			             <p id="V_email" style="color: red;"></p>
+			             <p id="V_airline_icao" style="color: red;"></p>
+			             <p id="V_con_office" style="color: red;"></p>
+			             <p id="V_fax_no" style="color: red;"></p>
+			             <p id="V_awb_code" style="color: red;"></p>
+			             <p id="V_sec_charges" style="color: red;"></p>
+			             <p id="V_fuel_charges" style="color: red;"></p>
+			             <p id="V_scan_charges" style="color: red;"></p>
+
 							
 
 											  
@@ -335,7 +395,7 @@ if (isset($_POST['submitBtn'])) {
 			                                                </div>
 			                                                <div class="input-label"><label >Country</label></div> 
 																<div class="input-feild"> 
-												                     <select name="country" id="country" class="country" required>
+												                     <select name="country" id="country" class="country" onchange="checkCities();" >
 												                          <option value="Select">Select </option>
 												                          <!-- Drop Down list Country Name -->
 												                          <?php
@@ -353,7 +413,7 @@ if (isset($_POST['submitBtn'])) {
 				                                           		</div>
 				                                           		<div class="input-label"><label >City</label></div> 
 																<div class="input-feild">
-											                     <select name="city" id="city" class="city" required>
+											                     <select name="city" id="city" class="city" >
 											                          <option value="Select">Select </option>
 											                          <!-- Drop Down list Country Name -->
 											                          <?php
@@ -377,16 +437,16 @@ if (isset($_POST['submitBtn'])) {
 			                 				 </div>
 
 											<div class="col-md-6">
-			                                             	  <div class="input-label"><label >Person Name</label></div>
+			                                             	  <!-- <div class="input-label"><label >Person Name</label></div>
 			                                                <div class="input-feild">
 			                                                        <input class=""  type="text" name="contact_person" id="contact_person" maxlength="30">
 			                                                      		
-			                                                </div> 
-			                                                <div class="input-label"><label >Contact No.</label></div>
+			                                                </div>  -->
+			                                                <!-- <div class="input-label"><label >Contact No.</label></div>
 			                                                <div class="input-feild">
 			                                                        <input class=""  type="text" name="con_personal" id="con_personal" maxlength="14">
 			                                                      		
-			                                                </div>
+			                                                </div> -->
 			                                                <div class="input-label"><label >Contact Office</label></div>	
 			                                                <div class="input-feild">
 			                                                      <input type="text" name="con_office" id="con_office" maxlength="14">
@@ -406,13 +466,13 @@ if (isset($_POST['submitBtn'])) {
 
                                                       <div class="input-label"><label >IATA Name</label></div>
                                                       <div class="input-feild">
-                                                              <input class=""  type="text" name="iata_name" id="iata_name" maxlength="14" >
+                                                              <input class=""  type="text" name="airline_iata" id="airline_iata" maxlength="2" >
                                                                 
                                                       </div>
 
                                                       <div class="input-label"><label >ICAO</label></div>
                                                       <div class="input-feild">
-                                                              <input class=""  type="text" name="icao_code" id="icao_code" maxlength="14" >
+                                                              <input class=""  type="text" name="airline_icao" id="airline_icao" maxlength="3" >
                                                                 
                                                       </div>                                       
 			             				    </div>								
@@ -435,13 +495,21 @@ if (isset($_POST['submitBtn'])) {
 
 				                                           		<div class="input-label"><label >Standard AWB No. </label></div> 
 				                                              	<div class="input-feild">
-				                                                      <select class="mini_select_field" name="awb_standard" id="awb_standard">
+				                                                      <select class="mini_select_field" name="awb_standard" id="awb_standard" onchange="nomChange();">
 				                                                      	<option>yes</option>
 				                                                      	<option>no</option>
 
 				                                                      </select>
 				                                                      
 				                                           		</div> 
+
+				                                           		<div class="input-label" id="awbid"><label > AWB Code </label></div> 
+				                                              	<div class="input-feild">
+				                                              		 <input class="mini_select_field"  type="text"  name="awb_code" id="awb_code" class="awb_code" maxlength="3" >
+				                                                      
+				                                                      
+				                                           		</div> 
+
 
 				                                           		<div class="input-label"><label >IATA no. </label></div> 
 				                                              	<div class="input-feild">
@@ -491,9 +559,9 @@ if (isset($_POST['submitBtn'])) {
 
 										</div>	 
 								</div>
-			
+			<!-- 
 												<div class="cls"></div>
-												<hr>
+												<hr> -->
 
 
 											
@@ -516,20 +584,11 @@ if (isset($_POST['submitBtn'])) {
 </script>
 
 
-<!-- 
-<script>
-
- $(document).ready(function() {
-    $('#airlinechargestble').DataTable();
-    $('#airlinechargestble2').DataTable();
-
-} );
-</script> -->
 <script type="text/javascript">
-function saveAirlineFunc()
-{
-	$("#saveAirline_Modal").modal();
-}
+	function saveAirlineFunc()
+	{
+		$("#saveAirline_Modal").modal();
+	}
 </script>
 
 <script type="text/javascript">
@@ -550,112 +609,126 @@ function saveAirlineFunc()
 	            reader.readAsDataURL(input.files[0]);
 	        }
     	}
-	</script>
-	<script>
-$(document).ready(function(){
-  $("#myBtn").click(function(){
-    $("#popupMEdit").modal();
-  });
-});
 </script>
+
 <script>
-$(document).ready(function(){
-  $("#exportBtn").click(function(){
-    $("#popupExport").modal();
-  });
-});
+	$(document).ready(function(){
+	  $("#myBtn").click(function(){
+	    $("#popupMEdit").modal();
+	  });
+	});
+</script>
+
+<script>
+	$(document).ready(function(){
+	  $("#exportBtn").click(function(){
+	    $("#popupExport").modal();
+	  });
+	});
 </script>
 
 
 <script>
-$("#scroltop").click(function() {
-    $("html").animate({ scrollTop: 0 }, "slow");
-  });
+	$("#scroltop").click(function() {
+	    $("html").animate({ scrollTop: 0 }, "slow");
+	  });
 </script>
 
 
 <script type="text/javascript">
-$(document).on('click', '.editData', function(){  
-  var employee_id = $(this).attr("id"); 
+	$(document).on('click', '.editData', function(){  
+	  var employee_id = $(this).attr("id"); 
 
-      $.ajax({
-         url:"fatch_airline.php",  
-                method:"GET",  
-                data:{employee_id:employee_id},  
-                dataType:"json",  
-         success: function(data) {
-              $('#airport_SrNoV').val(data.SrNo);  
-              //$('.cur_coun_nameV').html(data.cur_coun_name);
-              $('#w_e_fV').val(data.w_e_f);  
-              $('#airport_secV').val(data.airport_sec);    
-              $('#airport_fuelV').val(data.airport_fuel);  
-              $('#airport_screenV').val(data.airport_screen);  
-              $('#airport_awcV').val(data.airport_awc);    
-              $('#airport_awbV').val(data.airport_awb);  
-              $('.air_nameV').html(data.air_name);    
+	      $.ajax({
+	         url:"fatch_airline.php",  
+	                method:"GET",  
+	                data:{employee_id:employee_id},  
+	                dataType:"json",  
+	         success: function(data) {
+	              $('#airport_SrNoV').val(data.SrNo);  
+	              //$('.cur_coun_nameV').html(data.cur_coun_name);
+	              $('#w_e_fV').val(data.w_e_f);  
+	              $('#airport_secV').val(data.airport_sec);    
+	              $('#airport_fuelV').val(data.airport_fuel);  
+	              $('#airport_screenV').val(data.airport_screen);  
+	              $('#airport_awcV').val(data.airport_awc);    
+	              $('#airport_awbV').val(data.airport_awb);  
+	              $('.air_nameV').html(data.air_name);    
 
-              var checkif = data.status;
-              if (checkif == "Active") {
-                 $('#statusV').attr("checked", true);
-                 document.getElementByID("statusV").checked = true;
-              }
-              else
-              {
-                $('#statusV').attr("checked", false);
-              }
-              /*$('#employee_id').val(data.id); */
-              // $("#"+id).btnedit1();
-              // $("#btn1").modal('hide');
-              // alert('Running');
-               
-         }
-      });
-    
-});
+	              var checkif = data.status;
+	              if (checkif == "Active") {
+	                 $('#statusV').attr("checked", true);
+	                 document.getElementByID("statusV").checked = true;
+	              }
+	              else
+	              {
+	                $('#statusV').attr("checked", false);
+	              }
+	              /*$('#employee_id').val(data.id); */
+	              // $("#"+id).btnedit1();
+	              // $("#btn1").modal('hide');
+	              // alert('Running');
+	               
+	         }
+	      });
+	    
+	});
 </script>
+
+
 <script type="text/javascript">
-$(document).on('click', '.editData', function(){  
-  var employee_id = $(this).attr("id"); 
+	$(document).on('click', '.editData', function(){  
+	  var employee_id = $(this).attr("id"); 
 
-      $.ajax({
-         url:"fatch_airline2.php",  
-                method:"GET",  
-                data:{employee_id:employee_id},  
-                dataType:"text",  
-         success: function(data) {
-              /*$('#country_SrNoV').val(data.SrNo);  
-              $('#country_codeV').val(data.country_code);  
-              $('#country_nameV').val(data.country_name);  */
-              $('.air_nameV').html(data);  
-              /*$('#employee_id').val(data.id); */
-              // $("#"+id).btnedit1();
-              // $("#btn1").modal('hide');
-              // alert('Running');
-              
-         }
-      });
-    
-});
+	      $.ajax({
+	         url:"fatch_airline2.php",  
+	                method:"GET",  
+	                data:{employee_id:employee_id},  
+	                dataType:"text",  
+	         success: function(data) {
+	              /*$('#country_SrNoV').val(data.SrNo);  
+	              $('#country_codeV').val(data.country_code);  
+	              $('#country_nameV').val(data.country_name);  */
+	              $('.air_nameV').html(data);  
+	              /*$('#employee_id').val(data.id); */
+	              // $("#"+id).btnedit1();
+	              // $("#btn1").modal('hide');
+	              // alert('Running');
+	              
+	         }
+	      });
+	    
+	});
 </script>
+
 <!-- java script -->
-        <script type="text/javascript">
+<script type="text/javascript">
         function logUserFunc()
         {
           $("#logUser_Modal").modal();
         }
-        </script>
+ </script>
 
-        <script type="text/javascript">
+<script type="text/javascript">
    function FormValidation()
    {
     var regexp = /^[a-z]*$/i;
     var regexp2 = /^[0-9]*$/i;
+    var regexp3 = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/i;
     var re = /\S+@\S+\.\S+/;
+    var regexp4 = /^[0-9, . ,0-9]*$/i;
       var missingVal = 0;
 
       var air_name=document.getElementById('air_name').value;
       var flight_name=document.getElementById('flight_name').value;
       var email=document.getElementById('email').value;
+      var airline_icao=document.getElementById('airline_icao').value;
+      var con_office=document.getElementById('con_office').value;
+      var fax_no=document.getElementById('fax_no').value;
+      var awb_code=document.getElementById('awb_code').value;
+      var sec_charges=document.getElementById('sec_charges').value;
+      var fuel_charges=document.getElementById('fuel_charges').value;
+      var scan_charges=document.getElementById('scan_charges').value;
      
      
       var summary = "Summary: ";
@@ -695,6 +768,113 @@ $(document).on('click', '.editData', function(){
         }
       }
 
+       if(con_office != "")
+      {
+          document.getElementById('con_office').style.borderColor = "white";
+          document.getElementById("V_con_office").innerHTML = "";
+
+          if (!regexp3.test(con_office))
+        {
+          document.getElementById('con_office').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_con_office").innerHTML = "Only Number are allowed in Contact No.";
+        }
+       } 
+
+       if(awb_code != "")
+      {
+          document.getElementById('awb_code').style.borderColor = "white";
+          document.getElementById("V_awb_code").innerHTML = "";
+
+          if (!regexp2.test(con_office))
+        {
+          document.getElementById('awb_code').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_awb_code").innerHTML = "Only Number in Awb Code";
+        }
+       } 
+
+
+       if(fax_no != "")
+      {
+          document.getElementById('fax_no').style.borderColor = "white";
+          document.getElementById("V_fax_no").innerHTML = "";
+
+          if (!regexp3.test(fax_no))
+        {
+          document.getElementById('fax_no').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_fax_no").innerHTML = "Only Number are allowed in Fax No.";
+        }
+       } 
+      //  if(airline_icao == "")
+      // {
+      //     document.getElementById('airline_icao').style.borderColor = "red";
+      //     missingVal = 1;
+      //     // summary += "Firstname is required.";
+      //     document.getElementById("V_airline_icao").innerHTML = "ICAO is required.";
+      // }
+      if(airline_icao != "")
+      {
+          document.getElementById('airline_icao').style.borderColor = "white";
+          document.getElementById("V_airline_icao").innerHTML = "";
+
+          if (!regexp.test(airline_icao))
+        {
+          document.getElementById('airline_icao').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_airline_icao").innerHTML = "Only alphabets are allowed in ICAO.";
+        }
+      }
+
+       if(sec_charges != "")
+      {
+          document.getElementById('sec_charges').style.borderColor = "white";
+          document.getElementById("V_sec_charges").innerHTML = "";
+
+          if (!regexp4.test(sec_charges))
+        {
+          document.getElementById('sec_charges').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_sec_charges").innerHTML = "Number and Decimals are allowed in Sec Charges.";
+        }
+      }
+
+       if(fuel_charges != "")
+      {
+          document.getElementById('fuel_charges').style.borderColor = "white";
+          document.getElementById("V_fuel_charges").innerHTML = "";
+
+          if (!regexp4.test(fuel_charges))
+        {
+          document.getElementById('fuel_charges').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_fuel_charges").innerHTML = "Number and Decimals are allowed  in Fuel Charges .";
+        }
+      }
+
+
+      if(scan_charges != "")
+      {
+          document.getElementById('scan_charges').style.borderColor = "white";
+          document.getElementById("V_scan_charges").innerHTML = "";
+
+          if (!regexp4.test(scan_charges))
+        {
+          document.getElementById('scan_charges').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_scan_charges").innerHTML = "Number and Decimals are allowed  in Scan Charges .";
+        }
+      }
+
+
       // if(email == "")
       // {
       //     document.getElementById('email').style.borderColor = "red";
@@ -726,6 +906,13 @@ $(document).on('click', '.editData', function(){
         document.getElementById('air_name').style.borderColor = "white";
         document.getElementById('flight_name').style.borderColor = "white";
         document.getElementById('email').style.borderColor = "white";
+        document.getElementById('airline_icao').style.borderColor = "white";
+        document.getElementById('con_office').style.borderColor = "white";
+        document.getElementById('fax_no').style.borderColor = "white";
+        document.getElementById('sec_charges').style.borderColor = "white";
+        document.getElementById('fuel_charges').style.borderColor = "white";
+        document.getElementById('scan_charges').style.borderColor = "white";
+        document.getElementById('awb_code').style.borderColor = "white";
        
         $("#submitAirline_Modal").modal();
         
@@ -738,6 +925,44 @@ $(document).on('click', '.editData', function(){
       
   }
 </script>
+
+<!-- for hide field awb code -->
+<script>
+  function nomChange()
+  {
+    var awb_standard = document.getElementById("awb_standard").value;
+    if (awb_standard == "no")
+    {
+      document.getElementById('awb_code').style.visibility='hidden';
+      document.getElementById('awbid').style.visibility='hidden';
+      // alert("Working");
+    }
+    else if (awb_standard == "yes")
+    {
+      document.getElementById('awb_code').style.visibility='visible';
+      document.getElementById('awbid').style.visibility='visible';
+      // alert("Working");
+    }
+  }
+</script>
+
+<script type="text/javascript">
+	function checkCities()
+	{
+	  var bpCountry = document.getElementById("country").value;
+
+	  $.ajax({
+	     url:"checkCities.php",  
+	            method:"GET",  
+	            data:{bpCountry:bpCountry}, 
+	            dataType:"text", 
+	     success: function(data) {
+	         $('#city').html(data);
+	     }
+	  });
+	}
+</script>
+
 <script src="js/jquery.dataTables.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 </body>
