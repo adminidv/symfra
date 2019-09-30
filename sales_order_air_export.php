@@ -491,7 +491,7 @@ if (isset($_POST['submitBtn'])) {
                                                     echo '<option value="'.$rowCust['SrNo'].'">'.$rowCust['dest_name'].'</option>';
                                                   }
                                                 ?>
-                                        </select> 
+                                        </select> <span class="steric">*</span>
                           </div>
 
                           <div class="input-label"><label >Destination</label></div>  
@@ -508,7 +508,7 @@ if (isset($_POST['submitBtn'])) {
                                                     echo '<option value="'.$rowCust['SrNo'].'">'.$rowCust['dest_name'].'</option>';
                                                   }
                                                 ?>
-                                        </select>
+                                        </select><span class="steric">*</span>
                           </div>
 
 
@@ -780,6 +780,7 @@ function afterDisc()
       // var re = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/;
       var re = /\S+@\S+\.\S+/;
       var regexp = /^[a-z .\-]+$/i;
+      var regexp2 = /^[0-9]*$/i;
       var regexn = /^(\d+-?)+\d+$/;
       var missingVal = 0;
 
@@ -829,12 +830,12 @@ function afterDisc()
 
       if(conRef != "")
       {
-          if (!regexp.test(conRef))
+          if (!regexp2.test(conRef))
           {
             document.getElementById('conRef').style.borderColor = "red";
               missingVal = 1;
               // summary += "Firstname is required.";
-              document.getElementById("V_conRef").innerHTML = "Only alphabets are allowed in contact reference.";
+              document.getElementById("V_conRef").innerHTML = "Only numbers are allowed in contact reference.";
           }
       }
       
@@ -1164,12 +1165,7 @@ function afterDisc()
           }*/
       }
 
-
-
       ///////////////////////////////////////
-
-      
-
 
       if (missingVal != 1)
       {
@@ -1189,7 +1185,6 @@ function afterDisc()
         // document.getElementById('empPerEmail').style.borderColor = "white";
         document.getElementById('chWeight').style.borderColor = "white";
 
-
         document.getElementById('saleRate').style.borderColor = "white";
 
         document.getElementById('totalFreight').style.borderColor = "white";
@@ -1202,13 +1197,13 @@ function afterDisc()
         document.getElementById('conRef').style.borderColor = "white";
         document.getElementById('saleDisc').style.borderColor = "white";
         
-        $("#addUser_Modal").modal();
+        $("#submit_Modal").modal();
        
       }
 
       if (missingVal == 1)
       {
-        document.getElementById("submit_Modal").textContent=summary;
+        document.getElementById("formSummary").textContent=summary;
       }
       /*if (/^[0-9]+$/.test(document.getElementById("firstname").value)) {
           alert("First Name Contains Numbers!");
