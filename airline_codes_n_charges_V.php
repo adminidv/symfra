@@ -23,17 +23,18 @@ $userNo = $_GET['SrNo'];
       $address = $row['address'];
       $country = $row['country'];
       $city = $row['city'];
-      $iata_name = $row['iata_name'];
-      $icao_code = $row['icao_code'];
+      $airline_icao = $row['airline_icao'];
+      $airline_iata = $row['airline_iata'];
       $account_no = $row['account_no'];
-      $contact_person = $row['contact_person'];
+      // $contact_person = $row['contact_person'];
       $con_office = $row['con_office'];
-      $con_personal = $row['con_personal'];
+      // $con_personal = $row['con_personal'];
       $fax_no = $row['fax_no'];
       $email = $row['email'];
       $website = $row['website'];
       $kb_adj = $row['kb_adj'];
       $awb_standard = $row['awb_standard'];
+      $awb_code = $row['awb_code'];
       $iata_mem = $row['iata_mem'];
       $sec_charges = $row['sec_charges'];
       $fuel_charges = $row['fuel_charges'];
@@ -502,16 +503,16 @@ $userNo = $_GET['SrNo'];
 			                 				 </div>
 
 											<div class="col-md-6">
-			                                             	  <div class="input-label"><label >Person Name</label></div>
+			                                             	  <!-- <div class="input-label"><label >Person Name</label></div>
 			                                                <div class="input-feild">
 			                                                        <input class=""  type="text" name="contact_person" id="contact_person" value="<?php echo $contact_person ?>" disabled >
 			                                                      		
-			                                                </div> 
-			                                                <div class="input-label"><label >Contact No.</label></div>
+			                                                </div> --> 
+			                                                <!-- <div class="input-label"><label >Contact No.</label></div>
 			                                                <div class="input-feild">
 			                                                        <input class=""  type="text" name="con_personal" id="con_personal" value="<?php echo $con_personal ?>" disabled>
 			                                                      		
-			                                                </div>
+			                                                </div> -->
 			                                                <div class="input-label"><label >Contact Office</label></div>	
 			                                                <div class="input-feild">
 			                                                      <input type="text" name="con_office" id="con_office" value="<?php echo $con_office ?>" disabled>
@@ -531,13 +532,13 @@ $userNo = $_GET['SrNo'];
 
                                                        <div class="input-label"><label >IATA Name</label></div>
                                                       <div class="input-feild">
-                                                              <input class=""  type="text" name="iata_name" id="iata_name" disabled maxlength="14"  value="<?php echo $iata_name ?>" >
+                                                              <input class=""  type="text" name="airline_icao" id="airline_icao" disabled maxlength="14"  value="<?php echo $airline_icao ?>" >
                                                                 
                                                       </div>
 
                                                       <div class="input-label"><label >ICAO</label></div>
                                                       <div class="input-feild">
-                                                              <input class=""  type="text" name="icao_code" id="icao_code" disabled maxlength="14"  value="<?php echo $icao_code ?>" >
+                                                              <input class=""  type="text" name="airline_iata" id="airline_iata" disabled maxlength="14"  value="<?php echo $airline_iata ?>" >
                                                                 
                                                       </div>                                              
 			             				    </div>								
@@ -567,6 +568,13 @@ $userNo = $_GET['SrNo'];
 				                                                      </select>
 				                                                      
 				                                           		</div> 
+
+                                                      <div class="input-label" id="awbid"><label > AWB Code </label></div> 
+                                                        <div class="input-feild">
+                                                           <input class="mini_select_field"  type="text"  name="awb_code" id="awb_code" class="awb_code" maxlength="3"  value="<?php echo $awb_code ?>" >
+                                                              
+                                                              
+                                                      </div> 
 
 				                                           		<div class="input-label"><label >IATA no. </label></div> 
 				                                              	<div class="input-feild">
@@ -640,8 +648,8 @@ $userNo = $_GET['SrNo'];
                                  <div class="tbleDrpdown">
                                          <div id="tblebtn">
                                             <ul>
-                                            <li><button type="button" disabled id="btnDelete_C1"><i class="fa fa-trash"></i> Activate</button></li>
-                                            <li><button type="button" disabled id="btnDelete_C"><i class="fa fa-trash"></i> Deactivate</button></li>
+                                            <!-- <li><button type="button" disabled id="btnDelete_C1"><i class="fa fa-trash"></i> Activate</button></li>
+                                            <li><button type="button" disabled id="btnDelete_C"><i class="fa fa-trash"></i> Deactivate</button></li> -->
                                              
 
                                             </ul>
@@ -653,12 +661,13 @@ $userNo = $_GET['SrNo'];
                                        <thead>
                                                   <tr>
                                                      <th><input type="checkbox" onchange="checkAll(this)" name="chk[]" /></th>
-                                                    <th>Airline Name</th>
                                                     <th>Airport D </th>
                                                     <th>W.E.F</th>
                                                     <th>Security Chg</th>
                                                     <th>Fuel Chg</th>                 
-                                                    <th>Screen Chg</th>                
+                                                    <th>Screen Chg</th>  
+                                                    <th>Additional Charges</th> 
+                                                    <th>Amount Charges</th>             
                                                     <th>AWC Chg</th>                  
                                                     <th>AWC Fee</th>                   
                                                     <th>Status</th>       
@@ -680,12 +689,13 @@ $userNo = $_GET['SrNo'];
                                             ?>        
                                                <tr>
                                                  <?php echo '<td><input type="checkbox" name="user_check[]" value="'. $rowairline['SrNo'] .' " /></td>'; ?>
-                                                <td><?php echo $air_name ?></td> 
                                                 <td><?php echo $rowairline['airport_name']; ?></td> 
                                                 <td><?php echo $rowairline['w_e_f'];?></td> 
                                                 <td><?php echo $rowairline['airport_sec'];?></td>
                                                 <td><?php echo $rowairline['airport_fuel'];?></td>
                                                 <td><?php echo $rowairline['airport_screen'];?></td>
+                                                <td><?php echo $rowairline['additional_charges'];?></td>
+                                                <td><?php echo $rowairline['amount_charges'];?></td>
                                                 <td><?php echo $rowairline['airport_awc'];?></td>
                                                 <td><?php echo $rowairline['airport_awb'];?></td>
                                                 <td><?php echo $rowairline['status'];?></td>
@@ -729,8 +739,8 @@ $userNo = $_GET['SrNo'];
                             <div class="tbleDrpdown">
                               <div id="tblebtn">
                                 <ul>
-                                    <li><button type="button" disabled id="btnDelete_C1"><i class="fa fa-trash"></i> Activate</button></li>
-                                    <li><button type="button" disabled id="btnDelete_C"><i class="fa fa-trash"></i> Deactivate</button></li>
+                                    <!-- <li><button type="button" disabled id="btnDelete_C1"><i class="fa fa-trash"></i> Activate</button></li>
+                                    <li><button type="button" disabled id="btnDelete_C"><i class="fa fa-trash"></i> Deactivate</button></li> -->
                                     
                                 </ul>
                               </div>
@@ -742,7 +752,6 @@ $userNo = $_GET['SrNo'];
                                    <thead>
                                               <tr>
                                                <th><input type="checkbox" onchange="checkAll(this)" name="chk[]" /></th>
-                                               <th>Sub Party Name</th>
                                                <th>Representative Name</th>
                                                <th>Representative Designation</th>
                                                <th>Office No.</th>
@@ -765,19 +774,18 @@ $userNo = $_GET['SrNo'];
                                                           $rep_desg =$rowairport['rep_desg'];
                                                           $rep_office_no =$rowairport['rep_office_no'];
                                                           $rep_phone_no =$rowairport['rep_phone_no'];
-                                                          $email =$rowairport['email'];
+                                                          $rep_email =$rowairport['rep_email'];
                                                           $status =$rowairport['status'];
                                                                                                            
 
                                                         ?>
-                                            <tr>
+                                             <tr>
                                                   <?php echo '<td><input type="checkbox" name="user_check[]" value="'. $rowairport['SrNo'] .' " /></td>'; ?>
-                                                  <td><?php echo $air_name ?></td>
                                                   <td><?php echo $rep_name ?></td>
                                                   <td><?php echo $rep_desg ?></td>
                                                   <td><?php echo $rep_office_no ?></td>
                                                   <td><?php echo $rep_phone_no ?></td>
-                                                  <td><?php echo $email ?></td>
+                                                  <td><?php echo $rep_email ?></td>
                                                   <td><?php echo $status ?></td>
                                                   <td><a href="#" class="editData" data-toggle="modal" id="<?php echo $rowairport['SrNo']; ?>" data-target="#btn1" >Edit</td> 
                                                   <?php
