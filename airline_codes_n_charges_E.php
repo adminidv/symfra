@@ -1471,8 +1471,8 @@ if (isset($_POST['cancel'])) {
                                  <div class="tbleDrpdown">
                                          <div id="tblebtn">
                                             <ul>
-                                            <li><button type="button" id="btnDelete_C1"><i class="fa fa-trash"></i> Activate</button></li>
-                                            <li><button type="button" id="btnDelete_C"><i class="fa fa-trash"></i> Deactivate</button></li>
+                                           <!--  <li><button type="button" id="btnDelete_C1"><i class="fa fa-trash"></i> Activate</button></li>
+                                            <li><button type="button" id="btnDelete_C"><i class="fa fa-trash"></i> Deactivate</button></li> -->
                                              
 
                                             </ul>
