@@ -26,7 +26,7 @@ if(isset($_POST['submitBtn']))
     if(!empty($_POST["remember"])) {
             setcookie ("username",$_POST["username"],time()+ 3600);
             setcookie ("pswd",$_POST["pswd"],time()+ 3600);
-            echo "Cookies Set Successfuly";
+            // echo "Cookies Set Successfuly";
         } else {
             setcookie("username","");
             setcookie("pswd","");
