@@ -1005,7 +1005,7 @@ else
            </div>
                     <!-- sidebar-search  -->
 
-           <?php include 'sidebar_widgets/adv_hr_bar.php'; ?>
+           <?php include 'sidebar_widgets/dae_advanced_search_widget.php'; ?>
                        <!-- sidebar-advanced-search_options  -->
            <?php include 'sidebar_widgets/user_form_quicklinks_widgets.php'; ?>
                           <!-- sidebar-menu  -->
