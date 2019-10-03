@@ -331,7 +331,7 @@ if(isset($_POST["btnCustom_U"]))
 
   
   // echo $sql; //Remove after testing
-  $search = " SELECT * FROM saleorders WHERE saleType='Air Export' ";
+  $search = " SELECT * FROM saleorders WHERE saleType='Sea Export' ";
     $searchQuery = mysqli_query($con, $search);
   // header('Location: usertable.php');
 }
@@ -417,7 +417,7 @@ else if(isset($_POST["btnDelete"]))
         // echo "Nothing Selected.";
       }
   // echo $sql; //Remove after testing
- $search = " SELECT * FROM saleorders WHERE saleType='Air Export' ";
+ $search = " SELECT * FROM saleorders WHERE saleType='Sea Export'";
     $searchQuery = mysqli_query($con, $search);
   // header('Location: usertable.php');
 }
@@ -530,7 +530,7 @@ else if(isset($_POST["btnEdit"]))
           // echo "Nothing Selected.";
         }
     // echo $sql; //Remove after testing
-    $search = " SELECT * FROM saleorders WHERE saleType='Air Export' ";
+    $search = " SELECT * FROM saleorders WHERE saleType='Sea Export' ";
     $searchQuery = mysqli_query($con, $search);
     // header('Location: usertable.php');
   }
@@ -539,7 +539,7 @@ else if(isset($_POST["btnEdit"]))
   {
     echo '<script type="text/javascript">'; 
     echo 'alert("Please select something to edit.");'; 
-    echo 'window.location.href = "so_air_export_table.php";';
+    echo 'window.location.href = "so_sea_export_table.php";';
     echo '</script>';
   }
   
@@ -620,7 +620,7 @@ else if(isset($_POST["btnExport_D"]))
         // echo "Nothing Selected.";
       }
   // echo $sql; //Remove after testing
-  $search = " SELECT * FROM saleorders WHERE saleType='Air Export' ";
+  $search = " SELECT * FROM saleorders WHERE saleType='Sea Export' ";
     $searchQuery = mysqli_query($con, $search);
   // header('Location: usertable.php');
 
@@ -742,7 +742,7 @@ else
     $search = " SELECT * FROM saleorders WHERE saleType='Air Export' ";
   }*/
 
- $search = " SELECT * FROM saleorders WHERE saleType='Air Export' ";
+ $search = " SELECT * FROM saleorders WHERE saleType='Sea Export' ";
     $searchQuery = mysqli_query($con, $search);;
   // echo $searchRecord;
 }
@@ -752,7 +752,7 @@ else
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Air Export Table</title>
+  <title>Sea Export Table</title>
   <link rel="shortcut icon" type="image/png" href="./images/favicon.png">
   <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
   <link rel="stylesheet" href="css/font-awesome.css" type="text/css">
@@ -833,7 +833,7 @@ else
         <div class="btn-group btn-breadcrumb">
           <a href="usermodules.php" class="btn btn-info "><i class="glyphicon glyphicon-home"></i></a>
           <a href="usermodules.php" class="btn btn-info">Sale Orders</a>
-          <a href="so_air_export_table.php" class="btn btn-info active">Air Export</a>
+          <a href="so_sea_export_table.php" class="btn btn-info active">Sea Export</a>
         </div>
     </div>
   </div>
@@ -892,7 +892,7 @@ else
 
       <div class="col-md-12">
         <div class="user_table-title">
-          <h4>Sale Orders (Air Export)</h4>
+          <h4>Sale Orders (Sea Export)</h4>
         </div>
         
         <form action="" method="POST">

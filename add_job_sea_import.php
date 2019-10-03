@@ -185,7 +185,7 @@ if (isset($_POST['submitBtn1'])) {
 <!DOCTYPE html>
 <html>
 <head>
-	 <title>Sea Import (Job Entry) </title>
+   <title>Sea Import (Job Entry) </title>
   <link rel="shortcut icon" type="image/png" href="./images/favicon.png">
   <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
   <link rel="stylesheet" href="css/font-awesome.css" type="text/css">
@@ -233,10 +233,15 @@ if (isset($_POST['submitBtn1'])) {
     display: none;
 }
 
-#hawbtable2 td input {
+/*#hawbtable2 td input {
     width: 45px;
+}*/
+#aimport_form_table .mini_input_field {
+    width: 85% !important;
+} 
+  th {
+    text-align: left !important;
 }
-
 
 </style>
 
@@ -251,9 +256,9 @@ if (isset($_POST['submitBtn1'])) {
     <div class="">
         <div class="btn-group btn-breadcrumb">
           <a href="#" class="btn btn-info "><i class="glyphicon glyphicon-home"></i></a>
-          <a href="usermodules.php" class="btn btn-info ">Operations</a>
+          <a href="Usermodules.php" class="btn btn-info ">Operations</a>
 
-          <a href="add_job_sea_import.php" class="btn btn-info active">Sea Import (Job Entry)</a>
+          <a href="Usermodules.php" class="btn btn-info active">Sea Import (Job Entry)</a>
 
         </div>
     </div>
@@ -290,7 +295,7 @@ if (isset($_POST['submitBtn1'])) {
                     <!-- sidebar-search  -->
 
            
-           <?php include 'sidebar_widgets/dsi_advanced_search_widget.php'; ?>
+           <?php include 'sidebar_widgets/adv_hr_bar.php'; ?>
                        <!-- sidebar-advanced-search_options  -->
            <?php include 'sidebar_widgets/user_form_quicklinks_widgets.php'; ?>
                           <!-- sidebar-menu  -->
@@ -302,9 +307,9 @@ if (isset($_POST['submitBtn1'])) {
 </div>
 
 <div class="main_widget_box">
-	<div class="">
-									<!-- <hr> -->
-		<form action="" method="POST" enctype="multipart/form-data">
+  <div class="">
+                  <!-- <hr> -->
+    <form action="" method="POST" enctype="multipart/form-data">
 
       <!-- Modal_one-->
        <div class="modal fade confirmTable-modal" id="save_Modal" role="dialog">
@@ -355,7 +360,7 @@ if (isset($_POST['submitBtn1'])) {
                     </div>
                </div>
 
-			 <label id="formSummary" style="color: red;"></label>
+       <label id="formSummary" style="color: red;"></label>
 
         <div class="widget_iner_box">
                <div class="form_sec_action_btn col-md-12">
@@ -372,6 +377,11 @@ if (isset($_POST['submitBtn1'])) {
 
                 <div class="col-md-6">
 
+                  <div class="input-label"><label>Sale Order</label></div>
+                  <div class="input-feild">
+                    <input class="mini_input_field" type="text" name="so_no"  >
+                  </div>
+
                   <div class="input-label"><label>Job No.</label></div>
                   <div class="input-feild">
                    <?php echo '<input type="text" name="job_no" id="job_no" disabled value="'.$job_no.'">'; ?>
@@ -387,7 +397,10 @@ if (isset($_POST['submitBtn1'])) {
                     <input class="mini_input_field" type="date" name="job_date" value="<?php echo $todayDate?>" >
                   </div>
                 </div>
-                 <div class="col-md-9"> 
+
+
+
+                 <div class="col-md-12"> 
 
                    <table  id="aimport_form_table" class="display nowrap no-footer" style="width:100%">
                                                                   
@@ -408,17 +421,17 @@ if (isset($_POST['submitBtn1'])) {
                                                                   <tbody>   
                                                                              <tr>
                                                                               <th>MBL No.</th>
-                                                                              <td> <input type="text" name="mbl_no"></td>
-                                                                              <td> <input type="date" name="mbl_date"></td>
-                                                                              <td> <select name="mbl_pp_cc">
+                                                                              <td> <input class="mini_input_field" type="text" name="mbl_no"></td>
+                                                                              <td> <input class="mini_input_field"type="date" name="mbl_date"></td>
+                                                                              <td> <select class="mini_input_field" name="mbl_pp_cc">
                                                                                 <option value="pp">pp</option>
                                                                                 <option value="cc">cc</option>
                                                                               </select></td>
-                                                                              <td> <input type="text" name="mbl_pieces"></td>
-                                                                             <td> <input type="text" name="mbl_cbm"></td>
-                                                                              <td> <input type="text" name="mbl_grs_weight"></td>
-                                                                              <td> <input type="text" name="mbl_ch_weight"></td>
-                                                                              <td> <input type="text" name="mbl_rate"></td>
+                                                                              <td> <input class="mini_input_field" type="text" name="mbl_pieces"></td>
+                                                                             <td> <input class="mini_input_field" type="text" name="mbl_cbm"></td>
+                                                                              <td> <input class="mini_input_field" type="text" name="mbl_grs_weight"></td>
+                                                                              <td> <input class="mini_input_field" type="text" name="mbl_ch_weight"></td>
+                                                                              <td> <input class="mini_input_field" type="text" name="mbl_rate"></td>
                                                                               
                                                                              </tr>  
                                                                               
@@ -426,44 +439,33 @@ if (isset($_POST['submitBtn1'])) {
 
                                                                             <tr>
                                                                               <th>HBL No.</th>
-                                                                              <td> <input type="text" name="hbl_no"></td>
-                                                                              <td> <input type="date" name="hbl_date"></td>
-                                                                                <td> <select name="hbl_pp_cc">
+                                                                              <td> <input class="mini_input_field" type="text" name="hbl_no"></td>
+                                                                              <td> <input class="mini_input_field" type="date" name="hbl_date"></td>
+                                                                                <td> <select class="mini_input_field" name="hbl_pp_cc">
                                                                                 <option value="pp">pp</option>
                                                                                 <option value="cc">cc</option>
                                                                               </select></td>
-                                                                              <td> <input type="text" name="hbl_pieces"></td>
-                                                                              <td> <input type="text" name="hbl_cbm"></td>
-                                                                              <td> <input type="text" name="hbl_grs_weight"></td>
-                                                                              <td> <input type="text" name="hbl_ch_weight"></td>
-                                                                              <td> <input type="text" name="hbl_rate"></td>
+                                                                              <td> <input class="mini_input_field" type="text" name="hbl_pieces"></td>
+                                                                              <td> <input class="mini_input_field" type="text" name="hbl_cbm"></td>
+                                                                              <td> <input class="mini_input_field" type="text" name="hbl_grs_weight"></td>
+                                                                              <td> <input class="mini_input_field" type="text" name="hbl_ch_weight"></td>
+                                                                              <td> <input class="mini_input_field" type="text" name="hbl_rate"></td>
                                                                              
 
                                                                                </tr>
                                                                             
                                                                   </tbody>
                   </table> 
-                  </div>
+                </div>
+                <div class="cls"></div>
+                <hr>
 
-                  <div class="col-md-3">
-                      <table  id="aimport_form_table2" class="display nowrap no-footer" style="width:100%">
-                                                                  
-                           <thead>
-                                      <tr>
+                  <div class="col-md-6">
+                      <div class="input-label"><label>Goods Description</label></div>
+                    <div class="input-feild">
+                    <textarea name="description"></textarea>
+                    </div>
 
-                                        <th>Goods Description</th>
-                                        
-                                       
-                                      </tr>
-                            </thead>
-                            <tbody> 
-                              <td rowspan="2"><textarea></textarea></td>
-                                
-                                      
-                                      
-                            </tbody>
-                        </table
->
                   </div>
             
 
@@ -471,7 +473,7 @@ if (isset($_POST['submitBtn1'])) {
              </div>        
 
         <div class="cls"></div>
-        <hr>				
+        <hr>        
  
        <div class="widget_iner_box">         
                <div class="col-md-4">
@@ -517,25 +519,37 @@ if (isset($_POST['submitBtn1'])) {
                       </select>
                       </div>
 
+                      <div class="input-label"><label>Shipping Line</label></div>
+                      <div class="input-feild">
+                        <select name="party" >
+                          <option value="Select">Select </option>
+                          <?php
+
+                            $selectship = mysqli_query($con, "select * from shipping_setup");
+
+                            while ($rowship = mysqli_fetch_array($selectship))
+                            {
+                              echo '<option value="'.$rowship['ship_name'].'">'.$rowship['ship_name'].'</option>';
+                            }
+                          ?>
+                        </select>
+
+                      </div>
+
                </div> 
                  
                  <div class="col-md-4">
 
-                      <div class="input-label"><label>SPO Code</label></div>
-                      <div class="input-feild">
-                        <select name="spo" required>
-                          <option value="Select">Select </option>
-                          <?php
+                         <div class="input-label"><label>Nomination</label></div>
+                          <div class="input-feild">
+                            <select class="mini_select_field" name="nomination">
+                              <option>No</option>
+                              <option>Yes</option>
 
-                            $selectSpo = mysqli_query($con, "select * from  spo_setup");
+                            </select>
+                          </div>
 
-                            while ($rowSpo = mysqli_fetch_array($selectSpo))
-                            {
-                              echo '<option value="'.$rowSpo['spo_name'].'">'.$rowSpo['spo_name'].'</option>';
-                            }
-                          ?>
-                      </select>
-                      </div>
+                     
 
                       <div class="input-label"><label>Origin</label></div>
                       <div class="input-feild">
@@ -553,8 +567,37 @@ if (isset($_POST['submitBtn1'])) {
                       </select>
                       </div>
 
+                      <div class="input-label"><label>Vessel</label></div>
+                      <div class="input-feild">
+                        <input class="" type="text" name="vessel">
+                        
+                      </div>
 
-                      <div class="input-label"><label>Destination</label></div>
+                     
+
+
+                      
+                  </div> 
+
+                  <div class="col-md-4">
+
+                     <div class="input-label"><label>SPO Code</label></div>
+                      <div class="input-feild">
+                        <select name="spo" required>
+                          <option value="Select">Select </option>
+                          <?php
+
+                            $selectSpo = mysqli_query($con, "select * from  spo_setup");
+
+                            while ($rowSpo = mysqli_fetch_array($selectSpo))
+                            {
+                              echo '<option value="'.$rowSpo['spo_name'].'">'.$rowSpo['spo_name'].'</option>';
+                            }
+                          ?>
+                      </select>
+                      </div>  
+                    
+                       <div class="input-label"><label>Destination</label></div>
                       <div class="input-feild">
                         <select name="destination" required>
                           <option value="Select">Select </option>
@@ -568,34 +611,6 @@ if (isset($_POST['submitBtn1'])) {
                             }
                           ?>
                       </select>
-                      </div>
-
-
-                      
-                  </div> 
-
-                  <div class="col-md-4">
-
-                    <div class="input-label"><label>shipping Line</label></div>
-                      <div class="input-feild">
-                        <select name="party" >
-                          <option value="Select">Select </option>
-                          <?php
-
-                            $selectship = mysqli_query($con, "select * from shipping_setup");
-
-                            while ($rowship = mysqli_fetch_array($selectship))
-                            {
-                              echo '<option value="'.$rowship['ship_name'].'">'.$rowship['ship_name'].'</option>';
-                            }
-                          ?>
-                        </select>
-
-                      </div>
-                    <div class="input-label"><label>Vessel</label></div>
-                      <div class="input-feild">
-                        <input class="" type="text" name="vessel">
-                        
                       </div>
                      
                      <div class="input-label"><label>Voyage</label></div>
@@ -627,11 +642,7 @@ if (isset($_POST['submitBtn1'])) {
                         
                       </div>
 
-                      <div class="input-label"><label>Index No.</label></div>
-                      <div class="input-feild">
-                        <input type="text" name="index_no">
-                        
-                      </div>
+                      
 
 
                       <div class="input-label"><label>E.T.D</label></div>
@@ -639,14 +650,7 @@ if (isset($_POST['submitBtn1'])) {
                         <input  type="date" name="e_t_d">                        
                       </div>
 
-                      <div class="input-label"><label>L/F</label></div>
-                      <div class="input-feild">
-                        <select name="lcl_fcl" >
-                          <option>lcl</option>
-                          <option>fcl</option>
-                          
-                        </select>                     
-                      </div>
+                     
 
                       
                     </div>
@@ -663,111 +667,43 @@ if (isset($_POST['submitBtn1'])) {
             <div class="input-feild"><input type="date" name=" b_n_d" data-date-inline-picker="false" data-date-open-on-focus="true" /></div>
           
 
-            <div class="input-label"><label>Sub Index</label></div>
-            <div class="input-feild"><input type="date" name="sub_index_no" data-date-inline-picker="false" data-date-open-on-focus="true" /></div>
+            
 
             <div class="input-label"><label>E.T.A</label></div>
             <div class="input-feild"><input type="date" name="e_t_a" data-date-inline-picker="false" data-date-open-on-focus="true" /></div>
 
-            <div class="input-label"><label>Arrived Date</label></div>
-            <div class="input-feild"><input type="date" name="arrived_date" data-date-inline-picker="false" data-date-open-on-focus="true" /></div>
+           
            
                       </div>
 
             <div class="col-md-4">
-               <div class="widget_child_title"><h4>Container Info</h4></div>
+
+                     <div class="input-label"><label>L/F</label></div>
+                      <div class="input-feild">
+                        <select name="lcl_fcl" >
+                          <option>Lcl</option>
+                          <option>Fcl</option>
+                          
+                        </select>                     
+                      </div>
+
+                    <div class="input-label"><label>Index No.</label></div>
+                      <div class="input-feild">
+                        <input type="text" name="index_no">
+                        
+                      </div>
+
+                      <div class="input-label"><label>Sub Index</label></div>
+                      <div class="input-feild"><input type="date" name="sub_index_no" data-date-inline-picker="false" data-date-open-on-focus="true" /></div>
+
+
+                    <div class="input-label"><label>Arrived Date</label></div>
+                     <div class="input-feild"><input type="date" name="arrived_date" data-date-inline-picker="false" data-date-open-on-focus="true" /></div>
+
+                <div class="widget_child_title"><h4>Container Info</h4></div>
             
 
-             <table id="hawbtable2" class="display nowrap no-footer" style="width:100%">
-               <thead>
-                <tr>
-                  <th class="hide">Job No.</th> 
-                  <th>Container No</th>
-                  <th>Size</th>
-                  <th>Seal No.</th>
-
-
-
-                </tr>
-              </thead>
-              <tbody>
-                 <tr>
-                  <td class="hide"><?php echo '<input type="text" name="job_no" id="job_no"  value="'.$job_no.'">'; ?></td>
-                  <td><input type="text" name="con_no1" id="con_no1"></td>
-                  <td>
-                    <select name="sel_val1" id="sel_val1" onchange="drop1();" >
-                    <option>Select</option>
-                    <option value="20">20</option>
-                    <option value="40">40</option>
-                    <option value="40HC">40HC</option>
-                    <option value="45">45</option>
-                  </select>
-                </td>
-                  
-                  <td><input type="text" name="seal_no1" id="seal_no1"></td>
-
-                </tr>
-                <tr>
-                  <td class="hide"><?php echo '<input type="text" name="job_no" id="job_no"  value="'.$job_no.'">'; ?></td>
-                  <td><input type="text" name="con_no2" id="con_no2"></td>
-                  <td><select name="sel_val2" id="sel_val2" onchange="drop2();" >
-                    <option>Select</option>
-                    <option value="20">20</option>
-                    <option value="40">40</option>
-                    <option value="40HC">40HC</option>
-                    <option value="45">45</option>
-                  </select></td>
-                  
-                  <td><input type="text" name="seal_no2" id="seal_no2"></td>
-
-                </tr>
-                 <tr>
-                  <td class="hide"><?php echo '<input type="text" name="job_no" id="job_no"  value="'.$job_no.'">'; ?></td>
-                  <td><input type="text" name="con_no3" id="con_no3"></td>
-                  <td><select name="sel_val3" id="sel_val3" onchange="drop3();" >
-                    <option>Select</option>
-                    <option value="20">20</option>
-                    <option value="40">40</option>
-                    <option value="40HC">40HC</option>
-                    <option value="45">45</option>
-                  </select></td>
-                  
-                  <td><input type="text" name="seal_no3" id="seal_no3"></td>
-
-                </tr>
-                <tr>
-                  <td class="hide"><?php echo '<input type="text" name="job_no" id="job_no"  value="'.$job_no.'">'; ?></td>
-                  <td><input type="text" name="con_no4" id="con_no4"></td>
-                  <td><select name="sel_val4" id="sel_val4" onchange="drop4();" >
-                    <option>Select</option>
-                    <option value="20">20</option>
-                    <option value="40">40</option>
-                    <option value="40HC">40HC</option>
-                    <option value="45">45</option>
-                  </select></td>
-                  
-                  <td><input type="text" name="seal_no4" id="seal_no4"></td>
-
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <td class="hide"></td>
-                <td><label>20*</label>
-                    <input type="text" name="sel_1" id="sel_1">
-                    <label>40*</label>
-                    <input type="text" name="sel_2" id="sel_2">
-                </td>
-               
-                <td><label>40HC</label>
-                    <input type="text" name="sel_3" id="sel_3">
-                </td>
-                <td><label>45*</label>
-                    <input type="text" name="sel_4" id="sel_4">
-                </td>
-                </tr>
-              </tfoot>
-            </table>
+            
                       </div>
 
                    
@@ -797,14 +733,7 @@ if (isset($_POST['submitBtn1'])) {
 
           <div class="cls"></div>
           <hr>
-            <div class="input-label"><label>Nomination</label></div>
-            <div class="input-feild">
-              <select class="mini_select_field" name="nomination">
-                <option>No</option>
-                <option>Yes</option>
-
-              </select>
-            </div>
+            
 
           </div>
         </div> 
@@ -914,7 +843,8 @@ if (isset($_POST['submitBtn1'])) {
         <div class="widget_iner_box">
             <div class="col-md-12"> 
                 <ul class="nav nav-tabs">
-                  <li class="active"><a data-toggle="tab" href="#local_invoices">Local Invoices</a></li>
+                  <li class="active"><a data-toggle="tab" href="#containertab">Container Info</a></li>
+                  <li><a data-toggle="tab" href="#local_invoices">Local Invoices</a></li>
                   <li><a data-toggle="tab" href="#party_agent_details">Party & Foreign Agent Details</a></li>
                 </ul>
             </div>
@@ -922,7 +852,105 @@ if (isset($_POST['submitBtn1'])) {
 
            <div class="tab-content">
 
-              <div id="local_invoices" class="tab-pane fade in active">
+              <div id="containertab" class="tab-pane fade in active">
+
+                  <div class="col-md-10">  
+                    <table id="hawbtable2" class="display nowrap no-footer" style="width:100%">
+                        <thead>
+                          <tr>
+                            <th>Seq No.</th>
+                            <th class="hide">Job No.</th> 
+                            <th>Container No</th>
+                            <th>Size</th>
+                            <th>Container Types</th>
+                            <th>Seal No.</th>
+                            <th>PCD</th>
+                            <th>Vehicle</th>
+                            <th>Vehicle Dt</th>
+                          </tr>
+
+                        </thead>
+                        <tbody>
+
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+
+
+                          </tr>
+
+
+
+                         
+
+
+                        </tbody>
+                                         <!--  <tfoot>
+                                            <tr>
+                                              <td class="hide"></td>
+                                            <td><label>20*</label>
+                                                <input type="text" name="sel_1" id="sel_1">
+                                                <label>40*</label>
+                                                <input type="text" name="sel_2" id="sel_2">
+                                            </td>
+                                           
+                                            <td><label>40HC</label>
+                                                <input type="text" name="sel_3" id="sel_3">
+                                            </td>
+                                            <td><label>45*</label>
+                                                <input type="text" name="sel_4" id="sel_4">
+                                            </td>
+                                            </tr>
+                                          </tfoot> -->
+                    </table> 
+                  </div>
+
+                  <div class="col-md-2">
+                    <table id="hawbtable4" class="display nowrap no-footer">
+                      <thead>
+                        <th>Size</th>
+                        <th>No.</th>
+                      </thead> 
+
+                      <tbody>
+                           <tr>
+                            <td>
+                                <select style="float: left;" name="sel_val1" id="sel_val1" onchange="drop1();" >
+                                  <option>Select</option>
+                                  <option value="20">20</option>
+                                  <option value="40">40</option>
+                                  <option value="40HC">40HC</option>
+                                  <option value="45">45</option>
+                                </select>
+                            </td>
+                         
+                            <td>
+                            </td>
+                            
+                          </tr>
+                      </tbody> 
+
+                    </table>
+                  </div>
+                    
+
+
+                
+                                 
+              </div>
+
+              <div id="local_invoices" class="tab-pane fade in ">
+
+      
+
+
                  <table id="local_inv_table" class="display nowrap no-footer" style="width:100%">
                     <thead>
                       <tr>
@@ -949,6 +977,7 @@ if (isset($_POST['submitBtn1'])) {
               </div>
 
               <div id="party_agent_details" class="tab-pane fade">
+
                 <div class="col-md-6">
                   <table  id="prtytable" class="display nowrap no-footer" style="width:100%">
                     
@@ -1050,14 +1079,14 @@ if (isset($_POST['submitBtn1'])) {
 
         </div>      
 
-				                          
+                                  
 
-					
-		</form>
-				
+          
+    </form>
+        
         
 
-	</div>
+  </div>
 
   
 </div>
@@ -1087,7 +1116,14 @@ if (isset($_POST['submitBtn1'])) {
 
     } );
       $('#hawbtable2').DataTable( {
-        
+         "scrollX": true,
+        "paging":false,
+        "info":false,
+        "ordering":false,
+
+    } );
+
+      $('#hawbtable4').DataTable( {
         "paging":false,
         "info":false,
         "ordering":false,
@@ -1251,6 +1287,7 @@ function submitFunc()
     }
   }
 </script>
+
 <script type="text/javascript">
   function drop4() {
     var x3 = document.getElementById('sel_val4').value;
@@ -1292,10 +1329,454 @@ function submitFunc()
   }
 </script>
 
+<script type="text/javascript">
+   function FormValidation()
+   {
+      var regexp = /^[a-z]*$/i;
+      var regexp2 = /^[0-9]*$/i;
+      var re = /\S+@\S+\.\S+/;
+      var decimals = /^[-+]?[0-9]+\.[0-9]+$/;
+      var missingVal = 0;
 
+      var mawb_no=document.getElementById('mawb_no').value;
+      var awb_no=document.getElementById('awb_no').value;
+      var sale_date=document.getElementById('sale_date').value;
+      var booking_date=document.getElementById('booking_date').value;
+      var charge_code=document.getElementById('charge_code').value;
+      var station=document.getElementById('station').value;
+      var party=document.getElementById('party').value;
+      var party_name=document.getElementById('party_name').value;
+      var party_address=document.getElementById('party_address').value;
+      var con_name=document.getElementById('con_name').value;
+      var airport_dep=document.getElementById('airport_dep').value;
+      var airport_to_a=document.getElementById('airport_to_a').value;
+      var airport_by_a=document.getElementById('airport_by_a').value;
+      var currency=document.getElementById('currency').value;
+      var destination=document.getElementById('destination').value;
+      var flight_no_a=document.getElementById('flight_no_a').value;
+      var flight_no_a_date=document.getElementById('flight_no_a_date').value;
+      var pcs=document.getElementById('pcs').value;
+      var grs_weight=document.getElementById('grs_weight').value;
+      var commodity=document.getElementById('commodity').value;
+      var ch_weight=document.getElementById('ch_weight').value;
+      var rate=document.getElementById('rate').value;
+      var nominaton=document.getElementById('nominaton').value;
+      var spo=document.getElementById('spo').value;
+      var said_chain=document.getElementById('said_chain').value;
+     
+      var summary = "Summary: ";
 
+      if(said_chain == "")
+      {
+          document.getElementById('said_chain').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_said_chain").innerHTML = "Said is required.";
+      }
+      if(said_chain != "")
+      {
+          document.getElementById('said_chain').style.borderColor = "white";
+          document.getElementById("V_said_chain").innerHTML = "";
 
+      }
 
+      if(spo == "")
+      {
+          document.getElementById('spo').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_spo").innerHTML = "SPO is required.";
+      }
+      if(spo != "")
+      {
+          document.getElementById('spo').style.borderColor = "white";
+          document.getElementById("V_spo").innerHTML = "";
+
+      }
+
+      if(nominaton == "")
+      {
+          document.getElementById('nominaton').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_nominaton").innerHTML = "Nomination is required.";
+      }
+      if(nominaton != "")
+      {
+          document.getElementById('nominaton').style.borderColor = "white";
+          document.getElementById("V_nominaton").innerHTML = "";
+
+      }
+
+       
+      if(rate == "")
+      {
+          document.getElementById('rate').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("rate").innerHTML = "Rate is required.";
+      }
+      if(rate != "")
+      {
+          document.getElementById('rate').style.borderColor = "white";
+          document.getElementById("V_rate").innerHTML = "";
+
+          if (!regexp2.test(rate))
+        {
+          document.getElementById('rate').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_rate").innerHTML = "Only numbers and decimals are allowed in rate.";
+        }
+      }
+
+       if(ch_weight == "")
+      {
+          document.getElementById('ch_weight').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_ch_weight").innerHTML = "Charge Weight is required.";
+      }
+      if(ch_weight != "")
+      {
+          document.getElementById('ch_weight').style.borderColor = "white";
+          document.getElementById("V_ch_weight").innerHTML = "";
+
+          if (!regexp2.test(ch_weight))
+        {
+          document.getElementById('ch_weight').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_ch_weight").innerHTML = "Only alphabets are allowed.";
+        }
+      }
+
+      if(grs_weight == "")
+      {
+          document.getElementById('grs_weight').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_grs_weight").innerHTML = "Gross Weight is required.";
+      }
+      if(grs_weight != "")
+      {
+          document.getElementById('grs_weight').style.borderColor = "white";
+          document.getElementById("V_grs_weight").innerHTML = "";
+
+          if (!regexp2.test(grs_weight))
+        {
+          document.getElementById('grs_weight').style.borderColor = "red";
+            missingVal = 1;
+            // summary += "Firstname is required.";
+            document.getElementById("V_grs_weight").innerHTML = "Only numbers are allowed.";
+        }
+      }
+
+      if(pcs == "")
+      {
+          document.getElementById('pcs').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_pcs").innerHTML = "Pieces is required.";
+      }
+      if(pcs != "")
+      {
+          document.getElementById('pcs').style.borderColor = "white";
+          document.getElementById("V_pcs").innerHTML = "";
+
+      }
+
+      if(commodity == "")
+      {
+          document.getElementById('commodity').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_commodity").innerHTML = "Commodity is required.";
+      }
+      if(commodity != "")
+      {
+          document.getElementById('commodity').style.borderColor = "white";
+          document.getElementById("V_commodity").innerHTML = "";
+
+      }
+
+      if(flight_no_a_date == "")
+      {
+          document.getElementById('flight_no_a_date').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_flight_no_a_date").innerHTML = "Flight Date is required.";
+      }
+      if(flight_no_a_date != "")
+      {
+          document.getElementById('flight_no_a_date').style.borderColor = "white";
+          document.getElementById("V_flight_no_a_date").innerHTML = "";
+
+      }
+
+      if(flight_no_a == "")
+      {
+          document.getElementById('flight_no_a').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_flight_no_a").innerHTML = "Flight Date is required.";
+      }
+      if(flight_no_a != "")
+      {
+          document.getElementById('flight_no_a').style.borderColor = "white";
+          document.getElementById("V_flight_no_a").innerHTML = "";
+
+      }
+
+      if(destination == "")
+      {
+          document.getElementById('destination').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_destination").innerHTML = "Destination is required.";
+      }
+      if(destination != "")
+      {
+          document.getElementById('destination').style.borderColor = "white";
+          document.getElementById("V_destination").innerHTML = "";
+
+      }
+
+      if(currency == "")
+      {
+          document.getElementById('currency').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_currency").innerHTML = "Currency is required.";
+      }
+      if(currency != "")
+      {
+          document.getElementById('currency').style.borderColor = "white";
+          document.getElementById("V_currency").innerHTML = "";
+
+      }
+
+      if(airport_by_a == "")
+      {
+          document.getElementById('airport_by_a').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_airport_by_a").innerHTML = "Airport is required.";
+      }
+      if(airport_by_a != "")
+      {
+          document.getElementById('airport_by_a').style.borderColor = "white";
+          document.getElementById("V_airport_by_a").innerHTML = "";
+
+      }
+
+       if(airport_to_a == "")
+      {
+          document.getElementById('airport_to_a').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_airport_to_a").innerHTML = "Airport is required.";
+      }
+      if(airport_to_a != "")
+      {
+          document.getElementById('airport_to_a').style.borderColor = "white";
+          document.getElementById("V_airport_to_a").innerHTML = "";
+
+      }
+
+       if(airport_dep == "")
+      {
+          document.getElementById('airport_dep').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_airport_dep").innerHTML = "Airport Dep is required.";
+      }
+      if(airport_dep != "")
+      {
+          document.getElementById('airport_dep').style.borderColor = "white";
+          document.getElementById("V_airport_dep").innerHTML = "";
+
+      }
+
+      if(con_name == "")
+      {
+          document.getElementById('con_name').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_con_name").innerHTML = "Consignee name is required.";
+      }
+      if(con_name != "")
+      {
+          document.getElementById('con_name').style.borderColor = "white";
+          document.getElementById("V_con_name").innerHTML = "";
+
+      }
+
+      if(party_address == "")
+      {
+          document.getElementById('party_address').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_party_address").innerHTML = "Party Address is required.";
+      }
+      if(party_address != "")
+      {
+          document.getElementById('party_address').style.borderColor = "white";
+          document.getElementById("V_party_address").innerHTML = "";
+
+      }
+
+       if(party_name == "")
+      {
+          document.getElementById('party_name').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_party_name").innerHTML = "Party Name is required.";
+      }
+      if(party_name != "")
+      {
+          document.getElementById('party_name').style.borderColor = "white";
+          document.getElementById("V_party_name").innerHTML = "";
+
+      }
+
+      if(party == "")
+      {
+          document.getElementById('party').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_party").innerHTML = "Party is required.";
+      }
+      if(party != "")
+      {
+          document.getElementById('party').style.borderColor = "white";
+          document.getElementById("V_party").innerHTML = "";
+
+      }
+
+       if(station == "")
+      {
+          document.getElementById('station').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_station").innerHTML = "Station is required.";
+      }
+      if(station != "")
+      {
+          document.getElementById('station').style.borderColor = "white";
+          document.getElementById("V_station").innerHTML = "";
+
+      }
+
+      if(charge_code == "")
+      {
+          document.getElementById('charge_code').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_charge_code").innerHTML = "Charge Code is required.";
+      }
+      if(charge_code != "")
+      {
+          document.getElementById('charge_code').style.borderColor = "white";
+          document.getElementById("V_charge_code").innerHTML = "";
+
+      }
+
+      if(booking_date == "")
+      {
+          document.getElementById('booking_date').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_booking_date").innerHTML = "Boo Date is required.";
+      }
+      if(booking_date != "")
+      {
+          document.getElementById('booking_date').style.borderColor = "white";
+          document.getElementById("V_booking_date").innerHTML = "";
+
+      }
+
+      if(sale_date == "")
+      {
+          document.getElementById('sale_date').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_sale_date").innerHTML = "Sale date is required.";
+      }
+      if(sale_date != "")
+      {
+          document.getElementById('sale_date').style.borderColor = "white";
+          document.getElementById("V_sale_date").innerHTML = "";
+
+      }
+
+      if(awb_no == "")
+      {
+          document.getElementById('awb_no').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_awb_no").innerHTML = "AWB No. is required.";
+      }
+      if(awb_no != "")
+      {
+          document.getElementById('awb_no').style.borderColor = "white";
+          document.getElementById("V_awb_no").innerHTML = "";
+
+      }
+
+      if(mawb_no == "")
+      {
+          document.getElementById('mawb_no').style.borderColor = "red";
+          missingVal = 1;
+          // summary += "Firstname is required.";
+          document.getElementById("V_mawb_no").innerHTML = "MAWB No. is required.";
+      }
+      if(mawb_no != "")
+      {
+          document.getElementById('mawb_no').style.borderColor = "white";
+          document.getElementById("V_mawb_no").innerHTML = "";
+
+      }
+
+      if (missingVal != 1)
+      {
+        document.getElementById('flight_no_a_date').style.borderColor = "white";
+        document.getElementById('flight_no_a').style.borderColor = "white";
+        document.getElementById('destination').style.borderColor = "white";
+        document.getElementById('currency').style.borderColor = "white";
+        document.getElementById('airport_by_a').style.borderColor = "white";
+        document.getElementById('airport_to_a').style.borderColor = "white";
+        document.getElementById('airport_dep').style.borderColor = "white";
+        document.getElementById('con_name').style.borderColor = "white";
+        document.getElementById('party_address').style.borderColor = "white";
+        document.getElementById('party_name').style.borderColor = "white";
+        document.getElementById('party').style.borderColor = "white";
+        document.getElementById('station').style.borderColor = "white";
+        document.getElementById('charge_code').style.borderColor = "white";
+        document.getElementById('booking_date').style.borderColor = "white";
+        document.getElementById('sale_date').style.borderColor = "white";
+        document.getElementById('awb_no').style.borderColor = "white";
+        document.getElementById('mawb_no').style.borderColor = "white";
+        document.getElementById('pcs').style.borderColor = "white";
+        document.getElementById('grs_weight').style.borderColor = "white";
+        document.getElementById('commodity').style.borderColor = "white";
+        document.getElementById('ch_weight').style.borderColor = "white";
+        document.getElementById('rate').style.borderColor = "white";
+        document.getElementById('nominaton').style.borderColor = "white";
+        document.getElementById('spo').style.borderColor = "white";
+        document.getElementById('said_chain').style.borderColor = "white";
+       
+        $("#submit_Modal").modal();
+        
+      }
+
+      if (missingVal == 1)
+      {
+        document.getElementById("formSummary").textContent="Error: ";
+      }
+      
+  }
+</script>
 
 <script src="js/jquery.dataTables.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
