@@ -26,7 +26,7 @@ if(isset($_POST['submitBtn']))
     if(!empty($_POST["remember"])) {
             setcookie ("username",$_POST["username"],time()+ 3600);
             setcookie ("pswd",$_POST["pswd"],time()+ 3600);
-            echo "Cookies Set Successfuly";
+            // echo "Cookies Set Successfuly";
         } else {
             setcookie("username","");
             setcookie("pswd","");
@@ -109,7 +109,7 @@ if(isset($_POST['submitBtn']))
                                     <span class="checkmark"></span>
                                   </label>    
 
-                                  <a style="float:right;" href="login_form2.php"> Forgot Password?</a>       
+                                  <a href="login_form2.php" style="float:right;" > Forgot Password?</a>       
                             
                             <br><input  type="submit"  name="submitBtn" value="Login" > <br> 
                            
