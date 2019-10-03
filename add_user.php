@@ -240,6 +240,8 @@ if(isset($_POST['submitBtn']))
 	            }
 	            alert($msg);*/
 
+	            // just a testing comment
+
 	            echo '<script type="text/javascript">'; 
 			    // echo 'alert("User added successfully.");';
 			    echo 'window.location.href = "add_user.php";';

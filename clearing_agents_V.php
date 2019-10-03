@@ -432,7 +432,7 @@ if ($viewvar==$row['SrNo'])
                                                   $rep_desg =$rowairport['rep_desg'];
                                                   $rep_office_no =$rowairport['rep_office_no'];
                                                   $rep_phone_no =$rowairport['rep_phone_no'];
-                                                  $email =$rowairport['email'];
+                                                  $email =$rowairport['rep_email'];
                                                   $status =$rowairport['status'];
                                                                                                    
 

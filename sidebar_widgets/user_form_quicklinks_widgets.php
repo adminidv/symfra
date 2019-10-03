@@ -227,12 +227,12 @@ echo '<style type="text/css">
                     <ul>
 
                       <?php
-                      if ($siView == '1' || $seView == '1' || $aiView == '1' || $aeView == '1')
+                      if ($aeView == '1')
                       {
                       ?>
 
                       <li>
-                        <a href="so_air_export_table.php">View Sale Orders  </a>
+                        <a href="so_air_export_table.php">View SO - Air Export  </a>
                       </li>
 
                       <?php
@@ -253,6 +253,19 @@ echo '<style type="text/css">
                       ?>
 
                       <?php
+                      if ($aiView == '1')
+                      {
+                      ?>
+
+                      <li>
+                        <a href="so_air_import_table.php">View SO - Air Import  </a>
+                      </li>
+
+                      <?php
+                      }
+                      ?>
+
+                      <?php
                       if ($aiAdd == '1')
                       {
                       ?>
@@ -266,12 +279,38 @@ echo '<style type="text/css">
                       ?>
 
                       <?php
+                      if ($seView == '1')
+                      {
+                      ?>
+
+                      <li>
+                        <a href="so_sea_export_table.php">View SO - Sea Export  </a>
+                      </li>
+
+                      <?php
+                      }
+                      ?>
+
+                      <?php
                       if ($seAdd == '1')
                       {
                       ?>
 
                       <li>
                         <a href="sales_order_sea_export.php">Add SO - Sea Export  </a>
+                      </li>
+
+                      <?php
+                      }
+                      ?>
+
+                      <?php
+                      if ($siView == '1')
+                      {
+                      ?>
+
+                      <li>
+                        <a href="so_sea_import_table.php">View SO - Sea Import  </a>
                       </li>
 
                       <?php
@@ -577,7 +616,7 @@ echo '<style type="text/css">
                       ?>
 
                       <li>
-                        <a onclick="addemp()">Add Employee </a>
+                        <a href="hr_add_emp_info.php">Add Employee </a>
                       </li>
 
                       <?php
@@ -590,7 +629,7 @@ echo '<style type="text/css">
                       ?>
 
                       <li>
-                        <a onclick="viewemp()">View Employee </a>
+                        <a href="emptable.php">View Employee </a>
                       </li>
 
                       <?php
@@ -603,11 +642,11 @@ echo '<style type="text/css">
                       ?>
 
                       <li>
-                        <a onclick="leave()">Leave Management</a>
+                        <a href="emp_leave_manage_setup.php">Leave Management</a>
                       </li>
 
                       <li>
-                        <a onclick="Assignleave()">Assign Leave </a>
+                        <a href="emp_leave_app.php">Assign Leave </a>
                       </li>
 
                       <?php
@@ -632,7 +671,7 @@ echo '<style type="text/css">
                       {
                       ?>
                       <li>
-                        <a onclick="Adduser()">Add User</a>
+                        <a href="add_user.php">Add User</a>
                       </li>
                       <?php
                       }
@@ -643,7 +682,7 @@ echo '<style type="text/css">
                       {
                       ?>
                       <li>
-                        <a onclick="Adddept()">Add Department </a>
+                        <a href="add_department.php">Add Department </a>
                       </li>
                       <?php
                       }
@@ -654,7 +693,7 @@ echo '<style type="text/css">
                       {
                       ?>
                       <li>
-                        <a onclick="viewdept()">View Department </a>
+                        <a href="viewdept.php">View Department </a>
                       </li>
                       <?php
                       }
@@ -665,7 +704,7 @@ echo '<style type="text/css">
                       {
                       ?>
                       <li>
-                        <a onclick="adddesg()">Add Designation </a>
+                        <a href="add_designation.php">Add Designation </a>
                       </li>
                       <?php
                       }
@@ -676,7 +715,7 @@ echo '<style type="text/css">
                       {
                       ?>
                       <li>
-                        <a onclick="viewdesg()">View Designation </a>
+                        <a href="viewdesg.php">View Designation </a>
                       </li>
                       <?php
                       }
@@ -687,7 +726,7 @@ echo '<style type="text/css">
                       {
                       ?>
                       <li>
-                        <a onclick="viewuser()">View Users </a>
+                        <a href="usertable.php">View Users </a>
                       </li>
                       <?php
                       }
@@ -911,7 +950,7 @@ echo '<style type="text/css">
                 <li class="sidebar-dropdown pnl pnl_h">
                   <a href="#">
                     <i class="fa fa-tachometer"></i>
-                    <span>Data Entry</span>
+                    <span>Job Entry</span>
                   </a>
                    <div class="sidebar-submenu h">
                     <ul>
@@ -921,7 +960,20 @@ echo '<style type="text/css">
                       ?>
 
                       <li>
-                        <a href="dataentry_of_mawb_air_export.php">Air Export </a>
+                        <a href="air_export_table.php">View Air Export </a>
+                      </li>
+                      
+                      <?php
+                      }
+                      ?>
+
+                      <?php
+                      if ($aeAdd == "1")
+                      {
+                      ?>
+
+                      <li>
+                        <a href="dataentry_of_mawb_air_export.php">Add Air Export </a>
                       </li>
                       
                       <?php

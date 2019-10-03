@@ -587,7 +587,7 @@ if (isset($_POST['submitBtn'])) {
 
                       <div class="input-label"><label>Address</label></div>
                       <div class="input-feild">
-                        <textarea name="party_address" class="party_address" id="party_address"><span class="steric">*</span></textarea>
+                        <textarea name="party_address" class="party_address" id="party_address"></textarea><span class="steric">*</span>
                         
                       </div>
  
@@ -660,7 +660,7 @@ if (isset($_POST['submitBtn'])) {
                       <div class="input-label"><label>Currency</label></div>
                       <div class="input-feild">
                       <select name="currency" id="currency"  required>
-                          <option value="Select">Select </option>
+                          <option value="">Select </option>
                           <?php
 
                             $selectCurr = mysqli_query($con, "select * from currency_setup");
@@ -2430,7 +2430,7 @@ function checkCommodity() {
         }
         </script>
 
-        <script type="text/javascript">
+<script type="text/javascript">
    function FormValidation()
    {
       var regexp = /^[a-z]*$/i;
