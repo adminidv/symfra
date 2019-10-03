@@ -109,7 +109,11 @@ if(isset($_POST['submitBtn']))
                                     <span class="checkmark"></span>
                                   </label>    
 
+<<<<<<< HEAD
                                   <a href="login_form2.php" style="float:right;" > Forgot Password?</a>       
+=======
+                                  <a href="forget.php" style="float:right;" > Forgot Password?</a>       
+>>>>>>> 92ef3d6df93ae12110e9137c280966485def5b10
                             
                             <br><input  type="submit"  name="submitBtn" value="Login" > <br> 
                            
