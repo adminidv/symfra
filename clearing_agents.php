@@ -394,7 +394,7 @@ if (isset($_POST['submitBtn'])) {
 
 			                                                <div class="input-label"><label >Active</label></div> 
 															<div class="input-feild">
-								                                    <input class="" type="checkbox" name="status" id="status">
+								                                    <input class="" type="checkbox" name="status" id="status" checked>
 					                                   		</div>
 
 

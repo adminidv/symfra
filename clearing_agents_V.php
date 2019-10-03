@@ -397,8 +397,8 @@ if ($viewvar==$row['SrNo'])
                       <div class="tbleDrpdown">
                         <div id="tblebtn">
                           <ul>
-                              <li><button type="button" disabled id="btnDelete_C1"><i class="fa fa-trash"></i> Activate</button></li>
-                              <li><button type="button" disabled id="btnDelete_C"><i class="fa fa-trash"></i> Deactivate</button></li>
+                              <!-- <li><button type="button" disabled id="btnDelete_C1"><i class="fa fa-trash"></i> Activate</button></li>
+                              <li><button type="button" disabled id="btnDelete_C"><i class="fa fa-trash"></i> Deactivate</button></li> -->
                               
                           </ul>
                         </div>
@@ -432,7 +432,15 @@ if ($viewvar==$row['SrNo'])
                                                   $rep_desg =$rowairport['rep_desg'];
                                                   $rep_office_no =$rowairport['rep_office_no'];
                                                   $rep_phone_no =$rowairport['rep_phone_no'];
+<<<<<<< HEAD
                                                   $email =$rowairport['rep_email'];
+=======
+<<<<<<< HEAD
+                                                  $email =$rowairport['rep_email'];
+=======
+                                                  $rep_email =$rowairport['rep_email'];
+>>>>>>> 5dad6dd97f82d2b8cca2f6991992c28b5b76f822
+>>>>>>> 3900cf149c60b3358049860df945f68ec66a971d
                                                   $status =$rowairport['status'];
                                                                                                    
 
@@ -443,7 +451,7 @@ if ($viewvar==$row['SrNo'])
                                           <td><?php echo $rep_desg ?></td>
                                           <td><?php echo $rep_office_no ?></td>
                                           <td><?php echo $rep_phone_no ?></td>
-                                          <td><?php echo $email ?></td>
+                                          <td><?php echo $rep_email ?></td>
                                           <td><?php echo $status ?></td>
                                           <td><a href="#" class="editData" data-toggle="modal" id="<?php echo $rowairport['SrNo']; ?>" data-target="#btn1" >Edit</td> 
                                           <?php
